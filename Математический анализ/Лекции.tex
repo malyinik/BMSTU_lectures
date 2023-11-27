@@ -1,0 +1,205 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+\begin{center}
+\Huge\textbf{Математический анализ}
+\end{center}
+\tableofcontents
+\newpage
+
+\begin{center}
+\large{\textbf{Модуль №1} \\
+\textit{Элементарные функции и пределы}}
+\end{center}
+\input{Основы математического анализа.tex}
+\newpage
+\zerocounter
+\input{Числовая последовательность.tex}
+\newpage
+\zerocounter
+\input{Предел функции.tex}
+\newpage
+\zerocounter
+\input{бмф. Арифметические операции.tex}
+\newpage
+\zerocounter
+\input{Предел функции. бмф ббф.tex}
+\newpage
+\zerocounter
+\input{Непрерывность функции. Точки разрыва.tex}
+\newpage
+\zerocounter
+\begin{center}
+\large{\textbf{Модуль №2} \\
+\textit{Дифференциальное исчисление функции одной переменной}}
+\end{center}
+\input{Производная функции.tex}
+\newpage
+\zerocounter
+\input{Дифференциал функции.tex}
+\zerocounter
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Основные теоремы дифференциального исчисления}
+\begin{theorem}[\textbf{Теорема Ферма} (о нулях производной)]\hlabel{Ферма}
+Пусть функция $y=f(x)$ определена на промежутке $X$ и во внутренней точке $\bm{c}$ этого промежутка достигает наибольшего или наименьшего значения. Если в этой точке существует производная $f'(c)$, то $f'(c) = 0$. 
+\end{theorem}
+\begin{proof}
+Пусть функция $y=f(x)$ в точке $x=c$ принимает наибольшее значение на промежутке $X\Rightarrow\ \forall x \in X\ \Rightarrow\ f(x)\le f(c)$\\
+Дадим приращение $\Delta x$ в точке $x=c$, тогда $f(c + \Delta x) \le f(c)$.\\[1ex]
+Пусть $\exists\ f'(c) = \lim\limits_{\Delta x \to 0}\dfrac{\Delta y}{\Delta x} = \lim\limits_{\Delta x \to 0}\dfrac{y(c+ \Delta x) - y(c)}{\Delta x}$\\[1ex]
+Рассмотрим два случая:
+\begin{enumerate}
+\item $\Delta x > 0,\ \Delta x \to 0+,\ x \to c+$
+\begin{flalign*}
+& f'_+(c) = \lim_{\Delta x \to 0+}\frac{y(c+ \Delta  x) - y(c)}{\Delta x} = \left( \frac{-}{+}\right) \le 0 &
+\end{flalign*}
+\item $\Delta x < 0,\ \Delta x \to 0-,\ x \to c-$
+\begin{flalign*}
+& f'_-(c) = \lim_{\Delta x \to 0-}\frac{y(c+ \Delta  x) - y(c)}{\Delta x} = \left( \frac{-}{-}\right) \ge 0 &
+\end{flalign*}
+\end{enumerate}
+По теореме \textit{о существовании производной функции в точке} (\textbf{С.\pageref{Существование производной функции в точке}, Т. \ref{Существование производной функции в точке}}):
+\begin{gather*} 
+f'(c) = f'_+(c) = f'_-(c) = 0
+\end{gather*}
+\end{proof}
+\subsubsection*{Геометрический смысл теоремы Ферма}
+\begin{minipage}{15cm} 
+\begin{wrapfigure}[4]{r}{0.35\textwidth}
+\vspace{-2\topsep}
+\begin{tikzpicture}[very thick, scale=0.7]
+	\tkzInit[xmin=-1, xmax=8, ymin=-1, ymax=5]
+%	\tkzGrid
+	\tkzDrawX[thick] \tkzDrawY[thick]
+	\node[below left] at (0, 0) {$0$};
+	\draw (2, 1) .. controls (3.2, 4.5) and (4.8, 4.5) .. (6, 2) node[right]{$y=f(x)$};
+	\draw (1, 3.77) -- (8.5, 3.77) node[above]{\footnotesize{касательная}};
+	\draw[dotted] (4.2, 0) node[below]{$c$} -- (4.2, 3.77) node[above]{\footnotesize{наибольшее}};
+	\node[left] at (0, 3.77) {$f(c)$};
+\end{tikzpicture}
+\end{wrapfigure}
+Касательная к графику функции $y=f(x)$ \\
+в точке $(c, f(c))$ параллельна оси абсцисс.\\
+$f(c)$ -- наибольшее значение функции
+\end{minipage}\vspace{10\topsep}
+\begin{theorem}[\textbf{Теорема Ролля}]\hlabel{Ролль}
+Пусть $y=f(x)$
+\begin{enumerate}
+\item непрерывна на $[a;b]$
+\item дифференцируема на $(a;b)$
+\item $f(a) = f(b)$
+\end{enumerate}
+Тогда $\exists\ c \in (a;b)\colon f'(c) = 0$
+\end{theorem}
+\begin{proof}
+Так как функция $y=f(x)$ непрерывна на $[a;b]$, то по теореме \textit{Вейерштрасса} (\textbf{С.\pageref{Вейерштрасса 2}, Т.\ref{Вейерштрасса 2}}) она достигает на этом отрезке своего наибольшего и наименьшего значений.\\
+Возможны два случая:
+\begin{enumerate}
+\item Наибольшее и наименьшее значения достигаются на границе, то есть в точке $a$ и в точке $b$\\
+$M=m$, где $\begin{aligned}
+&m \text{ -- наименьшее}\\
+&M \text{ -- наибольшее}
+\end{aligned}\ \Rightarrow\ y=f(x)=const \text{ на } [a;b]\ \Rightarrow\\[1ex]
+\Rightarrow\ \forall x \in (a;b)\colon f'(x)=0$
+\item Наибольшее или наименьшее значение достигается во внутренней точке $(a;b)$.\\
+Тогда для функции $y=f(x)$ справедлива теорема \textit{Ферма} (\textbf{Т.\ref{Ферма}}) $\Rightarrow$\\
+$\Rightarrow\ \exists\ c \in (a;b)\colon f'(c) = 0$
+\end{enumerate}
+\end{proof}
+\begin{corollary}
+Если $f(a) = f(b) = 0$, то между двумя нулями функции существует хотя бы один нуль производной.
+\end{corollary}
+\newpage
+\begin{theorem}[\textbf{Теорема Лагранжа}]
+Пусть функция $y=f(x)$
+\begin{enumerate}
+\item непрерывна на $[a;b]$
+\item дифференцируема на $(a;b)$
+\end{enumerate}
+Тогда $\exists\ c \in (a;b)\colon \boxed{f(b) - f(a) = f'(c) \cdot (b-a)}$
+\end{theorem}
+\begin{proof}
+Рассмотрим вспомогательную функцию: $F(x) = f(x) - f(a) - \dfrac{f(b) - f(a)}{b - a} \cdot (x-a)$\\
+$F(x)$ непрерывна на $[a;b]$ как сумма непрерывных функций.\\
+Существует конечная производная функции $F(x)$. \vspace{-\topsep}
+\begin{flalign*}
+& F'(x) = f'(x) - \frac{f(b) - f(a)}{b-a} \Rightarrow\ \begin{aligned} &\text{по необходимому и достаточному} \\
+&\text{условию дифференцируемости } \end{aligned}\ (\textbf{С.\pageref{Условие дифференцируемости}, Т.\ref{Условие дифференцируемости}}) \Rightarrow  &\\
+& \Rightarrow\ F(x) \text{ -- дифференцируема на } (a;b) &
+\end{flalign*}
+Покажем, что $F(a) = F(b)$:
+\begin{flalign*}
+& F(a) = f(a) - f(a) - \frac{f(b) - f(a)}{b - a} \cdot(a - a) = 0 &\\
+& F(b) = f(b) - f(a) - \frac{f(b) - f(a)}{b - a} \cdot(b - a) = f(b) - f(a) - f(b) + f(a) = 0 &
+\end{flalign*}
+$\Rightarrow\ F(x)$ удовлетворяет условиям теоремы \textit{Ролля} (\textbf{Т. \ref{Ролль}}) \\
+По теореме Ролля $\Rightarrow\ \exists\ c \in (a;b) \qquad F'(c) = 0$
+\begin{flalign*}
+& F'(x) = f'(x) - \frac{f(b) - f(a)}{b - a} &\\
+& F'(c) = f'(c) - \frac{f(b) - f(a)}{b - a} = 0 &\\
+& f'(c) = \frac{f(b) - f(a)}{b - a} &\\
+& f(b) - f(a) = f'(c) \cdot (b-a)
+\end{flalign*}
+\end{proof}
+\subsubsection*{Геометрический смысл теоремы Лагранжа}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[very thick, scale=0.8, font=\footnotesize]
+	\tkzInit[xmin=-1, xmax=8, ymin=-1, ymax=5]
+%	\tkzGrid
+	\tkzDrawX[thick] \tkzDrawY[thick]
+	\node[below left] at (0, 0) {$0$};
+	\tkzDefPoint(1.5, 1.5){A}
+	\tkzDefPoint(5, 1.5){C}
+	\tkzDefPoint(5, 3.5){B}
+	\tkzDefPoint(0.5, 1.5){k1}
+	\tkzDefPoint(4.8, 4.15){k2}
+
+	\draw (A) -- (B);
+	\draw (A) to [out=60, in=183] (B);
+	\draw (k1) -- (k2) node[midway, above left, rotate=31.5]{\scriptsize{касательная}};	
+	\draw[dotted] (0, 1.5) node[left]{$f(a)$} -- (C) node[right]{$C$};	
+	\draw[dotted] (0, 3.5) node[left]{$f(b)$} -- (B) node[above]{$B$} node[right=5pt]{$y=f(x)$};
+	\draw[dotted] (A) -- (1.5, 0) node[below]{$a$};
+	\draw[dotted] (B) -- (5, 0) node[below]{$b$};
+	\draw[dotted] (2.8, 0) node[below]{$c$} -- (2.8, 2.9);
+	
+	\tkzDrawPoint[size = 2pt](A)
+	\tkzDrawPoint[size = 2pt](C)
+	\tkzDrawPoint[size = 2pt](B)
+	\tkzMarkAngle[mark=none, thin, size=0.8](C,A,B)
+	\tkzLabelAngle[pos=1.1, font=\footnotesize](C,A,B){$\alpha$}
+	\tkzMarkAngle[mark=none, thin, size=0.5](C,k1,k2)
+	\tkzLabelAngle[pos=0.75, font=\scriptsize](C,k1,k2){$\alpha'$}
+	
+	\node at (9.5, 5) {$A\big(a, f(a)\big)$};	
+	\node at (9.5, 4.3) {$B\big(b, f(b)\big)$};
+	\node at (9.65, 3.4) {$\tg \alpha = \dfrac{BC}{AC}$};
+	\node at (9.7, 2.5) {$\tg \alpha' = \tg \alpha$};
+			
+\end{tikzpicture}
+\end{figure}
+\newpage
+\begin{theorem}[\textbf{Теорема Коши}]
+Пусть функции $f(x)$ и $\varphi (x)$
+\begin{enumerate}
+\item непрерывны на $[a;b]$
+\item дифференцируемы на $(a;b)$
+\item $\forall x \in (a;b)\colon \varphi' (x) \ne 0$
+\end{enumerate}
+Тогда $\exists\ c \in (a;b)\colon$ \vspace{-\topsep}
+\begin{gather*}
+\boxed{\frac{f(b) - f(a)}{\varphi (b) - \varphi (a)} = \frac{f'(c)}{\varphi'(c)}}
+\end{gather*}
+\end{theorem}
+\begin{proof}
+Рассмотрим вспомогательную функцию:
+\begin{gather*}
+F(x) = f(x) - f(a) - \frac{f(b) - f(a)}{\varphi(b) - \varphi(a)} \cdot \Big(\varphi(x) - \varphi(a)\Big)
+\end{gather*}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
