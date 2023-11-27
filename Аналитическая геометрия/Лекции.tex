@@ -1,0 +1,507 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+\begin{center}
+\Huge\textbf{Аналитическая геометрия}
+\end{center}
+\tableofcontents
+\newpage
+
+\input{Векторная алгебра.tex}
+\newpage
+\zerocounter
+\input{Координаты вектора. Действия с векторами.tex}
+\newpage
+\zerocounter
+\input{Прямая на плоскости.tex}
+\newpage
+\zerocounter
+\input{Уравнение плоскости.tex}
+\newpage
+\zerocounter
+\input{Прямая в пространстве.tex}
+\newpage
+\zerocounter
+\begin{center}
+\large{\textbf{Модуль 2}}
+\end{center}
+\input{Кривые и поверхности 2-го порядка.tex}
+\newpage
+\zerocounter
+\input{Матрицы.tex}
+\newpage
+\zerocounter
+%\input{Системы линейных алгебраических уравнений.tex}
+%\newpage
+%\zerocounter
+%%%%%%
+\section{Системы линейных алгебраических уравнений (СЛАУ)}
+\subsection{Формы записи СЛАУ}
+\subsubsection{Координатная форма записи}
+\begin{definition}
+\textbf{Системой линейных алгебраических уравнений} называется система уравнений вида:
+\begin{align}
+\left\{
+\begin{array}{l}
+a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n = b_1 \\
+a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n = b_2 \\
+\hdotsfor{1} \\
+a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n = b_m
+\end{array} \right.
+\end{align}
+где:\\
+$a_{ij} = const$ --- коэффициенты при неизвестных в СЛАУ \quad $\begin{aligned}
+i&=1, \ldots, m\\[-3pt]
+j&=1, \ldots, n
+\end{aligned}$\\
+$b_i = const$ --- свободные члены СЛАУ \quad $i=1,\ldots,m$\\
+$x_j$ --- переменные СЛАУ \quad $j=1,\ldots,n$  %называются 
+\end{definition}
+\begin{definition}
+Совокупность переменных ($x_1, x_2, \ldots, x_n$), при которых каждое уравнение системы обращается в верное равенство, называется \textbf{решением}.
+\end{definition}
+%\begin{definition}
+%Форма записи СЛАУ (1) называется координатной формой
+%\end{definition}
+\subsubsection{Матричная форма записи}
+Обозначим: \vspace{-\topsep}\begin{gather*}
+A = \begin{pmatrix}
+a_{11} & a_{22} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{m1} & a_{m2} & \ldots & a_{mn}
+\end{pmatrix} \qquad B = \begin{pmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_n
+\end{pmatrix} \quad X = \begin{pmatrix}
+x_1 \\
+x_2 \\ 
+\vdots \\
+x_n
+\end{pmatrix}
+\end{gather*}
+Получаем $A\cdot X = B$
+\subsubsection{Векторная форма записи}
+Обозначим:
+\begin{gather*}
+\overline{a_1} = \begin{pmatrix}
+a_{11}\\
+a_{21} \\
+\vdots \\
+a_{m1}
+\end{pmatrix},\quad \overline{a_2} = \begin{pmatrix}
+a_{12}\\
+a_{22} \\
+\vdots \\
+a_{m2}
+\end{pmatrix},\ \ldots\ ,\quad \overline{a_n} = \begin{pmatrix}
+a_{1n}\\
+a_{2n} \\
+\vdots \\
+a_{mn}
+\end{pmatrix} \qquad \overline{b} = \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots \\
+b_m
+\end{pmatrix} \\
+\end{gather*} \vspace{-3\topsep}
+\[ \overline{a_1}x_1 + \overline{a_2}x_2 + \ldots + \overline{a_n}x_n = \overline{b} \]
+В векторной форме записи вектор $\overline{b}$ можно представить в виде линейной комбинации векторов $\overline{a_1},\ \overline{a_2},\ \ldots,\ \overline{a_n}$, координаты которого соответствуют столбцам матрицы $A$.
+\newpage
+\begin{definition}\ \\
+СЛАУ, имеющая решение, называется \textbf{совместной}.\\
+СЛАУ, не имеющая решение, называется \textbf{не совместной}.
+\end{definition}
+\begin{definition}\ \\
+Совместная СЛАУ, имеющая единственное решение, называется \\ \textbf{совместной определённой}. \\
+Совместная СЛАУ, имеющая бесконечное множество решений, называется \\ \textbf{совместной неопределённой}.
+\end{definition}
+\begin{definition}\ \\
+СЛАУ (1), у которой все члены равны нулю, называется \textbf{однородной}.\\
+СЛАУ (1), у которой хотя бы один $b_i \ne 0,\ 0 \le i \le m$, называется \textbf{неоднородной}.
+\end{definition}
+\begin{figure}[h]
+\begin{tikzcd}[row sep=10pt, column sep=-40pt, scale cd = 1]
+ & & \arrow{dl} \textbf{СЛАУ} \arrow{dr} &\\
+ & \arrow{dl} \begin{array}{c} \textbf{совместная} \\ \text{(имеет решение)} \end{array} \arrow{dr} & & \begin{array}{c} \textbf{несовместная} \\ \text{(не имеет решений)} \\ \Delta = 0 \\ \text{хотя бы один из } \Delta_i \ne 0 \end{array} \\
+\begin{array}{c} \textbf{определённая} \\ \text{(имеет единственное решение)} \\ \Delta \ne 0 \\ \Delta_i \text{ -- любые, } i = 1,\ldots, n \end{array} & & \begin{array}{c} \textbf{неопределённая} \\ \text{(имеет бесконечное} \\ \text{множество решений)} \\ \Delta = 0 \\ \Delta_i = 0,\ i=1,\ldots,\ n  \end{array} & 
+\end{tikzcd}
+\end{figure}
+\subsection{Решение линейных уравнений}
+\begin{enumerate}
+\item $A\cdot X = B$\\
+Умножим обе части уравнения на обратную матрицу \underline{слева}
+\begin{gather*}
+\underbrace{A^{-1} \cdot A}_{E} \cdot X = A^{-1} \cdot B\ \Rightarrow\
+\underbrace{E\cdot X}_{X} = A^{-1} \cdot B\ \Longrightarrow\ \boxed{X = A^{-1}\cdot B}
+\end{gather*}
+\item $X\cdot A = B$\\
+Умножим обе части уравнения на обратную матрицу \underline{справа}
+\begin{gather*}
+X \cdot \underbrace{A^{-1} \cdot A}_{E} = B \cdot A^{-1}\ \Rightarrow\ \underbrace{X\cdot E}_{X} = B \cdot A^{-1}\ \Longrightarrow\ \boxed{X = B\cdot A^{-1}}
+\end{gather*}
+\item $A\cdot X\cdot C = B$ \\
+Умножим обе части уравнения на обратную матрицу $A$ слева и на обратную матрицу $C$ справа
+\begin{gather*}
+\underbrace{A^{-1}\cdot A}_E \cdot X \cdot \underbrace{C \cdot C^{-1}}_{E} = A^{-1}\cdot B \cdot C^{-1}\ \Rightarrow\ \underbrace{E\cdot X\cdot E}_{X} = A^{-1}\cdot B \cdot C^{-1}\ \Longrightarrow\ X = \boxed{A^{-1}\cdot B \cdot C^{-1}}
+\end{gather*}
+\end{enumerate}
+\newpage
+\begin{eg}
+\begin{flalign*}
+&X \cdot \underbrace{\begin{pmatrix}
+2 & -1\\
+5 & 0
+\end{pmatrix}}_{A} = \underbrace{\begin{pmatrix}
+-3 & 2\\
+1 & -1
+\end{pmatrix}}_{B}\qquad
+X\cdot A = B\qquad X = B\cdot A^{-1}&\\
+&A|E = \begin{pmatrix}
+2 & -1 & \vline & 1 & 0\\
+5 & 0 & \vline & 0 & 1
+\end{pmatrix} \sim \begin{pmatrix}
+2 & -1 & \vline & 1 & 0\\
+0 & 5 & \vline & -5 & 2
+\end{pmatrix} \sim \begin{pmatrix}
+10 & 0 & \vline & 0 & 2\\
+0 & 5 & \vline & -5 & 2
+\end{pmatrix} \sim \begin{pmatrix}
+1 & 0 & \vline & 0 & \frac{1}{5}\\[1ex]
+0 & 1 & \vline & -1 & \frac{2}{5}
+\end{pmatrix}&\\
+&X = B \cdot A^{-1} = \begin{pmatrix}
+-3 & 2\\
+1 & -1
+\end{pmatrix} \cdot \begin{pmatrix}
+0 & \frac{1}{5}\\[1ex]
+-1 & \frac{2}{5}
+\end{pmatrix} = \frac{1}{5} \begin{pmatrix}
+-3 & 2\\
+1 & -1
+\end{pmatrix} \cdot \begin{pmatrix}
+0 & 1\\
+-5 & 2
+\end{pmatrix} = \frac{1}{5} \begin{pmatrix}
+-10 & 1\\
+5 & -1
+\end{pmatrix} = &\\
+&= \begin{pmatrix}
+-2 & \frac{1}{5}\\[1ex]
+1 & -\frac{1}{5}
+\end{pmatrix}&
+\end{flalign*}
+\end{eg}
+\subsection{Формулы Крамера для решения СЛАУ}
+Пусть задана СЛАУ в координатной форме (1). Запишем эту СЛАУ в матричном виде, где $A$ имеет размерность $n\times n$ (количество уравнений = количество переменных).
+\begin{gather*}
+A \cdot X = B\\ %\qquad X= A^{-1} \cdot B\\
+A_{n\times n} = \begin{pmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{n1} & a_{n2} & \ldots & a_{nn} \\
+\end{pmatrix}, \quad B_{n\times 1} = \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix}
+\end{gather*}
+Пусть матрица $A$ невырожденная, $\det A \ne 0$. Тогда обратная матрица будет иметь вид:
+\begin{gather*}
+A^{-1} = \frac{1}{\det A} \cdot \begin{pmatrix}
+A_{11} & A_{12} & \ldots & A_{1n} \\
+A_{21} & A_{22} & \ldots & A_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+A_{n1} & A_{n2} & \ldots & A_{nn} \\
+\end{pmatrix}^{T} = \begin{pmatrix}
+\frac{A_{11}}{\det A} & \frac{A_{21}}{\det A} & \ldots & \frac{A_{n1}}{\det A} \\[1ex]
+\frac{A_{12}}{\det A} & \frac{A_{22}}{\det A} & \ldots & \frac{A_{n2}}{\det A} \\[1ex]
+\ldots & \ldots & \ldots & \ldots\\[1ex]
+\frac{A_{1n}}{\det A} & \frac{A_{2n}}{\det A} & \ldots & \frac{A_{nn}}{\det A}
+\end{pmatrix}
+\end{gather*}
+Решением уравнения будет $X = A^{-1} \cdot B$
+\begin{gather*}
+\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = X = \begin{pmatrix}
+\frac{A_{11}}{\det A} & \frac{A_{21}}{\det A} & \ldots & \frac{A_{n1}}{\det A} \\[1ex]
+\frac{A_{12}}{\det A} & \frac{A_{22}}{\det A} & \ldots & \frac{A_{n2}}{\det A} \\[1ex]
+\ldots & \ldots & \ldots & \ldots\\[1ex]
+\frac{A_{1n}}{\det A} & \frac{A_{2n}}{\det A} & \ldots & \frac{A_{nn}}{\det A}
+\end{pmatrix} \cdot \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix}
+\end{gather*}
+\begin{gather*}
+x_1 = \frac{A_{11}}{\det A} \cdot b_1 + \frac{A_{21}}{\det A} \cdot b_2 + \ldots + \frac{A_{n1}}{\det A} \cdot b_n = \frac{A_{11}b_1 + A_{21}b_2 + \ldots + A_{n1}b_n}{\det A}
+\end{gather*}
+Числитель -- разложение определителя $A_1$ по столбцу: 
+\begin{gather*}
+\Delta_1 = \begin{vmatrix}
+b_1 & a_{12} & \ldots & a_{1n} \\
+b_2 & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+b_n & a_{n2} & \ldots & a_{nn} \\
+\end{vmatrix}\qquad \Delta = \begin{vmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{n1} & a_{n2} & \ldots & a_{nn} \\
+\end{vmatrix}\\
+\det A = \Delta\qquad x_1 = \frac{\Delta 1}{\Delta}
+\end{gather*}
+Определитель $\Delta_1$ получается из определителя $\Delta$, если заменить первый столбец этого определителя на столбец свободных членов СЛАУ.
+Определитель $\Delta_1$ называется \textbf{главным}. \vspace{-\topsep}
+\begin{gather*}
+\boxed{x_i = \frac{\Delta_i}{\Delta}},\ i = 1,\ldots,n \textbf{ --- формула Крамера}
+\end{gather*} % Это называется формулой Крамера
+Определитель $\Delta_i$ получается из главного определителя путём замены $i$-го столбца на столбец свободных членов СЛАУ.
+\begin{remark}
+Если главный определитель равен нулю, то формулу Крамера использовать нельзя.
+\end{remark}
+\begin{note}
+Однородная СЛАУ всегда совместная. 
+\end{note}
+\begin{note}\ \\
+$\bullet$ Если матрица $A$ квадратная и невырожденная и её определитель не равен нулю, то СЛАУ имеет единственное решение: \[
+x_1 = x_2 = \ldots = x_n = 0 \]
+$\bullet$ Если матрица $A$ квадратная и вырожденная, то СЛАУ имеет бесконечное множество решений.
+\end{note}
+\setcounter{equation}{0}
+\subsection{Теорема Кронекера-Капелли}
+\begin{theorem}
+Для того чтобы СЛАУ была совместной, необходимо и достаточно, чтобы ранг матрицы $A$ был равен рангу расширенной матрицы.
+\begin{gather*}
+A \cdot X = B \qquad A|B \qquad \Rg A = \Rg (A|B)
+\end{gather*}
+\end{theorem}
+\begin{proof}[][Необходимость]
+Пусть СЛАУ $A\cdot X = b$ -- совместная и пусть $\Rg A = r$.\\
+Пусть базисный минор состоит из первых $r$ строк и $r$ столбцов матрицы $A$.
+\begin{gather*}
+M = \begin{vmatrix} 
+a_11 & a_12 & \ldots & a_1r \\
+a_21 & a_22 & \ldots & a_2r \\
+\ldots & \ldots & \ldots & \ldots\\
+a_r1 & a_r2 & \ldots & a_rr
+\end{vmatrix} 
+\end{gather*} 
+Если использовать векторную запись СЛАУ, то если СЛАУ имеет решение $x_1, x_2, \ldots, x_n$, тогда любой столбец матрицы $A$ можно представить в виде:
+\begin{gather}
+a_1x_1 + a_2x_2 + \ldots + a_rx_r + a_{r+1}x_{r+1} + \ldots + a_nx_n = b
+\end{gather}
+Согласно теореме \textit{о базисном миноре} (\textbf{С.\pageref{О базисном миноре}, Т.\ref{О базисном миноре}}), любой столбец матрицы $A$, который не входит в базисный минор, можно представить в виде линейной комбинации столбцов базисного минора.\\
+Тогда:
+\begin{align}
+\left\{ \begin{array}{l}
+ a_{r+1} = \lambda_{1,r+1} a_1 + \lambda_{2,r+1}\ a_2 + \ldots + \lambda_{r, r+1}\ a_r \\
+\hdotsfor{1} \\
+ a_n = \lambda_{1n}a_1 + \lambda_{2n}a_2 + \ldots + \lambda_{rn}a_r
+\end{array} \right.
+\end{align}
+Подставим (2) в (1):
+\begin{multline*}
+a_1x_1 + a_2x_2 + \ldots + a_rx_r + (\lambda_{1,r+1} a_1 + \lambda_{2,r+1} a_2 + \ldots + \lambda_{r, r+1}a_r)x_{r+1} + \\
++ \ldots + (\lambda_{1n}a_1 + \lambda_{2n}a_2 + \ldots + \lambda_{rn}a_n)x_n = b
+\end{multline*} \vspace{-3\topsep}
+\begin{multline*}
+\underbrace{(x_1 + \lambda_{1,r+1}x_{r+1} + \ldots + \lambda_{1n}x_n)}_{\beta_1}a_1 + \underbrace{(x_2 + \lambda_{2,r+1}x_{r+1} + \ldots + \lambda_{2n}x_n)}_{\beta_2}a_2 + \ldots + \\
++ \underbrace{(x_r + \lambda_{r,r+1}x_{r+1} + \ldots + \lambda_{rn}x_n)}_{\beta_r}a_r = b
+\end{multline*} \vspace{-2.5\topsep}
+\begin{gather*}
+\Downarrow\\
+\beta_1a_1 + \beta_2a_2 + \ldots + \beta_ra_r = b\\
+\beta_i = const,\ i=1, \ldots, r
+\end{gather*} \par
+В результате столбец свободных членов можно представить в виде линейной комбинации столбцов базисного минора. Отсюда следует, что базисный минор $M$ матрицы $A$ будет и базисным минором расширенной матрицы $A|B$, так как минор $M$ не равен нулю и любой окаймляющий минор $M'$ будет равен нулю.
+\begin{enumerate}
+\item Если в качестве окаймляющего минора будет минор, который входит в столбец матрицы $A$, то этот минор будет равен нулю по определению базисного минора матрицы $A$. 
+\item Если в окаймляющем миноре будет столбец свободных членов, то этот минор будет равен нулю по свойству определителей, так как этот столбец $b$ будет линейной комбинацией остальных столбцов определителя.
+\end{enumerate}
+\[ \underbrace{\Rg A}_{r} = \underbrace{\Rg (A|B)}_{r} \]
+\end{proof}
+\begin{proof}[][Достаточность]
+Пусть $\Rg A = \Rg (A|B)$ и пусть базисный минор состоит из первых $r$ строк и $r$ столбцов матрицы $A$. \vspace{-\topsep}
+\begin{gather*}
+M = \begin{vmatrix} 
+a_11 & a_12 & \ldots & a_1r \\
+a_21 & a_22 & \ldots & a_2r \\
+\ldots & \ldots & \ldots & \ldots\\
+a_r1 & a_r2 & \ldots & a_rr 
+\end{vmatrix} 
+\end{gather*}
+Тогда столбец $b$ можно представить в виде линейной комбинации столбцов базисного минора.
+\begin{align*} 
+&b = x_1^\circ a_2 + x_2^\circ a_2 + \ldots + x_r^\circ a_r + 0\cdot a_{r+1} + 0\cdot a_{r+2} + \ldots + 0\cdot a_n\\
+&x_1^\circ, x_2^\circ,\ldots, x_r^\circ \text{ -- коэффициенты линейной комбинации}\\
+&x_i = const,\quad i=1, \ldots, r
+\end{align*}
+Добавим к этой линейной комбинации вектора:
+\[ a_{r+1},a_{r+2},\ldots,a_n \qquad x_{r+1}^\circ = 0,\ x_{r+2}^\circ = 0,\ldots,x_n^\circ = 0 \] \vspace{-3\topsep}
+\begin{align*}
+x &= (x_1,\ x_2, \ldots, x_r,\ x_{r+1},\ x_{r+2},\ldots,x) = \\
+&= (x_1,\ x_2, \ldots,  x_r,\ 0,\ 0,\ldots, 0)
+\end{align*}
+Этот набор переменных составляет решение СЛАУ, то есть СЛАУ является совместной.
+\end{proof}
+\subsection{Однородные СЛАУ}
+\begin{gather*}
+A \cdot X = \Theta \qquad \Theta_{m\times 1} = \begin{pmatrix}
+0\\
+0\\
+\vdots\\
+0
+\end{pmatrix} = \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix} \quad X_{n\times 1} = \begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots\\
+x_n
+\end{pmatrix} \qquad  A_{m\times n} = \begin{pmatrix}
+a_{11} & a_{22} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{m1} & a_{m2} & \ldots & a_{mn} 
+\end{pmatrix}
+\end{gather*}
+$X$ -- матрица-столбец или столбец неизвестных\\
+$A$ -- матрица
+\begin{theorem}[О свойствах решений однородных СЛАУ]
+Пусть $X^{(1)}, X^{(2)},\ldots, X^{(k)}$ -- решение СЛАУ. Тогда их линейная комбинация тоже является решением СЛАУ.
+\end{theorem} 
+\begin{proof}\ \vspace{-2.5\topsep}
+\begin{gather*} 
+A \cdot X = \Theta\\
+X = \lambda_1 X^{(1)} + \lambda_2 X^{(2)} + \ldots + \lambda_k X^{(k)} = \sum_{i=1}^k \lambda_i \cdot X^{(i)}\\
+\lambda_i = const,\quad i=1,\ldots,k
+\end{gather*} \vspace{-2\topsep}
+\begin{gather*}
+A \cdot X = A \cdot \sum_{i=1}^k \lambda_i \cdot X^{(i)} \xlongequal{\scriptsize \begin{array}{c} 
+\text{исп. св-ва}\\
+\text{действий}\\
+\text{с матрицами}
+\end{array}} \sum_{i=1}^k A \cdot \lambda_i \cdot X^{(i)} = \sum_{i=1}^k \lambda_i \cdot \underbrace{A \cdot X^{(i)}}_{\Theta} = \sum_{i=1}^k \lambda_i \cdot \Theta = \Theta\\
+\text{То есть получили } A\cdot X = \Theta \\
+A\cdot X^{(i)} = \Theta \text{, т.к. } X^{(i)} \text{ -- решение однородной СЛАУ } A\cdot X = \Theta
+\end{gather*}
+В результате получили, что столбец $X$, который является линейной комбинацией решения однородной СЛАУ, является решением однородной СЛАУ.
+\end{proof}
+\begin{definition}
+Набор $k = n-r$ линейно-независимых решений однородной СЛАУ называется \textbf{фундаментальной системой решений} однородной СЛАУ, где\\ $n$ -- количество неизвестных, а $r$ -- ранг матрицы $A$
+\end{definition}
+\newpage
+\begin{theorem}[О существовании фундаментальной системы решений однородной СЛАУ]
+Пусть имеется однородная СЛАУ $A\cdot X = \Theta$ с $n$ неизвестными и $\Rg A = r$. Тогда существует набор $k = n-r$ решений однородной СЛАУ, который образует фундаментальную систему решений.
+\[ X^{(1)},X^{(2)},\ldots,X^{(k)} \]
+\end{theorem}
+\begin{proof}
+\hspace{0.6cm}Пусть базисный минор матрицы $A$ состоит из первых $r$ строк и $r$ столбцов матрицы $A$. Тогда любая строка матрицы $A$ с номерами $r+1,\ldots,m$ будет линейной комбинацией строк базисного минора по теореме \textit{о базисном миноре} (\textbf{С.\pageref{О базисном миноре}, Т.\ref{О базисном миноре}}). \par
+Если решение СЛАУ $x_1, x_2,\ldots, x_n$ удовлетворяет уравнениям СЛАУ, соответствующим строкам базисного минора, то это решение будет удовлетворять и остальным уравнениям СЛАУ (с $r+1$ до $m$). Поэтому исключим из системы уравнения с $r+1$ до $m$. В результате получим следующую систему уравнений:
+\begin{gather}
+\left\{ \begin{array}{l}
+a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r + a_{1, r+1}x_{r+1} + \ldots + a_{1n}x_n = 0\\
+a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r + a_{2, r+1}x_{r+1} + \ldots + a_{2n}x_n = 0\\
+\hdotsfor{1}\\
+a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r + a_{r, r+1}x_{r+1} + \ldots + a_{rn}x_n = 0
+\end{array} \right.
+\end{gather}
+\hspace{0.6cm}Переменные, соответствующие базисным столбцам, называются базисными переменными, а остальные свободными.\\
+В системе (3) базисными переменными являются $x_1, x_2, \ldots, x_r$, а свободными являются $x_{r+1},\ldots, x_n$\\
+В системе (3) оставим в левой части слагаемые, содержащие базисные переменные, а в правой свободные:
+\begin{gather}
+\left\{ \begin{array}{l}
+a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r = - a_{1, r+1}x_{r+1} - \ldots - a_{1n}x_n\\
+a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r = - a_{2, r+1}x_{r+1} - \ldots - a_{2n}x_n\\
+\hdotsfor{1}\\
+a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r = - a_{r, r+1}x_{r+1} - \ldots - a_{rn}x_n
+\end{array} \right.
+\end{gather}
+\hspace{0.6cm}Если свободным переменным $x_1, x_2, \ldots, x_r$ придавать различные значения, то в системе (4) главный определитель левой части будет не равен нулю, так как этот определитель равен базисному минору матрицы $A$ и эта система будет иметь единственное решение.\\
+Возьмём $k$ наборов свободных переменных вида:
+\begin{gather*}
+{\setlength{\arraycolsep}{13pt}
+\begin{array}{cccc}
+x_{r+1}^{(1)} = 1 & x_{r+1}^{(2)} = 0 & \cdots & x_{r+1}^{(k)} = 0 \\[1.5ex]
+x_{r+2}^{(1)} = 0 & x_{r+2}^{(2)} = 1 & \cdots & x_{r+2}^{(k)} = 0 \\
+\cdots& \cdots& \cdots & \cdots \\
+x_{n}^{(1)} = 0 & x_{n}^{(2)} = 0 & \cdots & x_{n}^{(k)} = 1 
+\end{array}} \\
+(1) \text{ -- номер набора} \qquad \begin{aligned}
+x_{r+j}^{(i)} = 1,\ i=j\\
+x_{r+j}^{(i)} = 0,\ i\ne j
+\end{aligned}
+\end{gather*}
+При каждом наборе свободных переменных получаем решение однородной СЛАУ.
+\begin{gather*}
+x^{(i)} = \begin{pmatrix}
+x_1^{(i)}\\
+x_2^{(i)}\\
+\vdots\\
+x_r^{(i)}\\
+x_{r+1}^{(i)}\\
+\vdots\\
+x_n^{(i)}
+\end{pmatrix}\qquad \text{из СЛАУ (4)}\qquad i = 1,\ldots, k 
+\end{gather*}
+В результате получаем $k$ решений однородной СЛАУ. Покажем, что они являются линейно-независимыми. Пусть линейная комбинация этих решений равна нулю.
+\begin{gather*}
+\lambda_1 \underbrace{ \begin{pmatrix}
+x_1^{(1)}\\
+x_2^{(1)}\\
+\vdots\\
+x_r^{(1)}\\
+x_{r+1}^{(1)}\\
+x_{r+2}^{(1)}\\
+\vdots\\
+x_n^{(1)}
+\end{pmatrix} }_{X^{(1)}} + \lambda_2 \underbrace{ \begin{pmatrix}
+x_1^{(2)}\\
+x_2^{(2)}\\
+\vdots\\
+x_r^{(2)}\\
+x_{r+1}^{(2)}\\
+x_{r+2}^{(2)}\\
+\vdots\\
+x_n^{(2)}
+\end{pmatrix}}_{X^{(2)}} + \ldots + \lambda_k \underbrace{ \begin{pmatrix}
+x_1^{(k)}\\
+x_2^{(k)}\\
+\vdots\\
+x_r^{(k)}\\
+x_{r+1}^{(k)}\\
+x_{r+2}^{(k)}\\
+\vdots\\
+x_n^{(k)}
+\end{pmatrix}}_{X^{(k)}}  = \underbrace{ \begin{pmatrix}
+0\\
+0\\
+\vdots\\
+0\\
+0\\
+0\\
+\vdots\\
+0
+\end{pmatrix}}_{\Theta}
+\end{gather*}
+\begin{flalign*}
+r+1\colon \quad &1\cdot \lambda_1 + 0\cdot \lambda_2 + \ldots + 0\cdot \lambda_k = 0\ \Rightarrow\ \lambda_1 = 0&\\
+r+2\colon \quad &0\cdot \lambda_1 + 1\cdot \lambda_2 + \ldots + 0 \cdot \lambda_k = 0\ \Rightarrow\ \lambda_2 = 0&\\
+n \colon \quad &0\cdot \lambda_1 + 0\cdot \lambda_2 + \ldots + 1\cdot \lambda_k = 0\ \Rightarrow\ \lambda_k = 0 &
+\end{flalign*}
+В результате получили тривиальную, равную нулю, линейную комбинацию решений однородной СЛАУ.\\
+Тогда по определению эти решения являются линейно-независимыми.\\
+Тогда по определению они образуют фундаментальную систему решений СЛАУ.
+\end{proof}
+%%%%%
+\end{document}
