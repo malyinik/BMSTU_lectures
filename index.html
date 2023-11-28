@@ -1,13 +1,79 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-  <title>Ссылки на PDF-файлы</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ссылки на pdf файлы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #393939; /* Тёмный цвет фона */
+            color: #fff; /* Цвет текста */
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .folder-btn {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .folder-btn:hover {
+            background-color: #0056b3;
+        }
+        .file-btn {
+            display: block;
+            margin-bottom: 5px;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .file-btn:hover {
+            background-color: #218838;
+        }
+        a {
+            text-decoration: none; /* убираем подчеркивание у ссылок */
+        }
+    </style>
 </head>
 <body>
-  <h1>Ссылки на PDF-файлы</h1>
-  <ul>
-    <li><a href="Аналитическая%20геометрия/Лекции.pdf" target="_blank">Document 1</a></li>
-    <li><a href="Математический%20анализ/Лекции.pdf" target="_blank">Document 2</a></li>
-  </ul>
+    <h1>Ссылки на pdf файлы</h1>
+    <ul id="file-list">
+        <li><button class="folder-btn" onclick="toggleFolder('folder1')">Аналитическая геометрия</button>
+            <ul id="folder1" style="display: none;">
+                <li><a href="Аналитическая%20геометрия/Лекции.pdf" target="_blank"><button class="file-btn">Лекции</button></a></li>
+                <!-- Добавьте кнопки на остальные PDF файлы в папке 1 -->
+            </ul>
+        </li>
+        <li><button class="folder-btn" onclick="toggleFolder('folder2')">Математический анализ</button>
+            <ul id="folder2" style="display: none;">
+                <li><a href="Математический%20анализ/Лекции.pdf" target="_blank"><button class="file-btn">Лекции</button></a></li>
+                <!-- Добавьте кнопки на остальные PDF файлы в папке 2 -->
+            </ul>
+        </li>
+        <!-- Добавьте кнопки на другие папки и файлы -->
+    </ul>
+
+    <script>
+        function toggleFolder(folderId) {
+            var folder = document.getElementById(folderId);
+            if (folder.style.display === "none") {
+                folder.style.display = "block";
+            } else {
+                folder.style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>
