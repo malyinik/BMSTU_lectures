@@ -301,7 +301,7 @@
 Пусть\quad $\begin{aligned}
 		 & f(x) = x^{n},\ n \in \N         \\
 		 & g(x) = a^x,\ a>1                \\
-		 & n(x) = \ln x\qquad 
+		 & h(x) = \ln x\qquad 
 	\end{aligned}\qquad x\to +\infty $
 \begin{flalign*}
 	 & \lim_{x\to +\infty} \frac{f(x)}{g(x)} = \lim_{x\to +\infty} \frac{x^n}{a^x} = \left(\frac{\infty}{\infty}\right) \xlongequal{\text{Л-Б}} \lim_{x\to +\infty}\frac{n\cdot x^{n-1}}{a^x\cdot \ln a} = \left(\frac{\infty}{\infty}\right) \xlongequal{\text{Л-Б}} &\\
@@ -311,7 +311,7 @@ $a^x$ растёт быстрее, чем $x^n$ при $x\to +\infty$ или $x^
 \begin{flalign*}
 	 & \lim_{x\to +\infty}\frac{h(x)}{f(x)}=\lim_{x\to +\infty}\frac{\ln x}{x^n}=\left(\frac{\infty}{\infty}\right) = \lim_{x\to +\infty}\frac{\frac{1}{x}}{n\cdot x^{n-1}} = \frac{1}{x}\cdot \lim_{x\to +\infty} \frac{1}{x^n}=\frac{1}{n}\cdot 0 = 0 &
 \end{flalign*}
-$x^n$ растёт быстрее, чем $\ln x$ при $x\to +\infty$ или $\ln x = O(x^n)$ при $x\to +\infty$\\[1ex]
+$x^n$ растёт быстрее, чем $\ln x$ при $x\to +\infty$ или $\ln x = o(x^n)$ при $x\to +\infty$\\[1ex]
 $\left. \begin{array}{lclll}
 	\text{Вывод:} & 1. & g(x) = a^x & , & a>1\\
 	& 2. & f(x) = x^n & , & n\in \N\\
