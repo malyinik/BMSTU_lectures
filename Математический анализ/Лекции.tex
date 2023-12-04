@@ -423,7 +423,7 @@ $\left. \begin{array}{lclll}
 	Вычислим:
 	\begin{flalign*}
 		\lim_{x\to x_0}\frac{R_n(x)}{(x-x_0)^n} &= \left(\frac{0}{0}\right) \xlongequal{\text{Л-Б}} \lim_{x\to x_0}\frac{R_n'(x)}{n\cdot(x-x_0)^{n-1}} = \left(\frac{0}{0}\right) \xlongequal{\text{Л-Б}}\ldots =&\\
-		& = \lim\limits_{x \to x_0} \frac{R_n^{(n)}(x)}{n\cdot(n-1)\cdot\ldots\cdot 1}= \frac{1}{n'}\cdot R_n^{(n)}(x_0) = \frac{1}{n'} \cdot 0 = 0 &
+		& = \lim\limits_{x \to x_0} \frac{R_n^{(n)}(x)}{n\cdot(n-1)\cdot\ldots\cdot 1}= \frac{1}{n!}\lim\limits_{x \to x_0}R_n^{(n)}(x) = \frac{1}{n!}\cdot R_n^{(n)}(x_0) = \frac{1}{n!} \cdot 0 = 0 &
 	\end{flalign*}
 	Вывод: $R_n(x) = o\big((x-x_0)^n\big)$ при $x \to x_0$
 \end{proof}
