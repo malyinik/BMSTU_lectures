@@ -291,18 +291,18 @@ $y = f(x) = \sin x,\ x_0=0$
 		f^{(n)}(x) &= \sin \left(x + n\cdot \frac{\pi}{2}\right) \\
 	\end{aligned}\right. \ \longrightarrow\ \left\{\begin{aligned}
 		f'(0) &= 1 \\[2.9ex]
-		f''(x) &= 0 \\[2.9ex]
+		f''(0) &= 0 \\[2.9ex]
 		f'''(0) &= -1 \\[2.9ex]
 		f^{(IV)}(0) &= 0 \\[2.9ex]
 		f^{(V)}(0) &= 1 \\
 		\ldots\ldots&\ldots\ldots\ldots \\
 		f^{(n)}(0) &= \sin \frac{\pi n}{2} \\
 	\end{aligned} \right. &\\[1ex]
-	& \sin x = 0 + \frac{1}{1!}\cdot x + \frac{0}{2!}\cdot x^2 - \frac{1}{3!}\cdot x^3 + \frac{0}{4!}\cdot x^4 + \frac{1}{5!}\cdot x^5 + \ldots + \frac{\sin \dfrac{\pi n}{2}}{n!}\cdot x^n + R_n(x)\quad n = 2k,\ k\in \N&\\
+	& \sin x = 0 + \frac{1}{1!}\cdot x + \frac{0}{2!}\cdot x^2 - \frac{1}{3!}\cdot x^3 + \frac{0}{4!}\cdot x^4 + \frac{1}{5!}\cdot x^5 + \ldots + \frac{\sin \dfrac{\pi n}{2}}{n!}\cdot x^n + R_n(x)\quad n = 2k,\ k\in \N&\\[1ex]
 	& \sin \frac{\pi n}{2} = \left\{ \begin{aligned}
 		0,\quad &n = 2k,\ k \in \N \\
 		(-1)^{k+1},\quad &n = 2k -1,\ k \in \N
-	\end{aligned} \right. &\\
+	\end{aligned} \right. &\\[1ex]
 	& \sin x = \frac{1}{1!}\cdot x - \frac{1}{3!}\cdot x^3 + \frac{1}{5!}\cdot x^5 + \ldots + \frac{(-1)^{k+1}}{(2k-1)!}\cdot x^{2k-1} + R_{2k}(x) &\\
 	& R_{2k}(x) = o\left(x^{2k}\right) &
 \end{flalign*}
@@ -339,7 +339,7 @@ $y = f(x) = \cos x,\ x_0=0,\ f(0) = \cos 0 = 1$
 		f^{(n)}(x) &= \cos \left(x + n\cdot \frac{\pi}{2}\right) \\
 	\end{aligned}\right. \ \longrightarrow\ \left\{\begin{aligned}
 		f'(0) &= 0 \\[2.9ex]
-		f''(x) &= -1 \\[2.9ex]
+		f''(0) &= -1 \\[2.9ex]
 		f'''(0) &= 0 \\[2.9ex]
 		f^{(IV)}(0) &= 1 \\[2.9ex]
 		f^{(V)}(0) &= 0 \\
@@ -350,7 +350,7 @@ $y = f(x) = \cos x,\ x_0=0,\ f(0) = \cos 0 = 1$
 	& \cos \frac{\pi n}{2} = \left\{ \begin{aligned}
 		0,\quad &n = 2k-1,\ k \in \N\\
 		(-1)^{k},\quad &n = 2k,\ k \in \N
-	\end{aligned} \right. &\\
+	\end{aligned} \right. &\\[1ex]
 	& \cos x = 1 - \frac{1}{2!}\cdot x^2 + \frac{1}{4!}\cdot x^4 + \ldots + \frac{(-1)^k}{(2k)!}\cdot x^{2k} + R_{2k+1}(x)&\\
 	& R_{2k+1} (x) = o\left(x^{2k+1}\right)&
 \end{flalign*}
