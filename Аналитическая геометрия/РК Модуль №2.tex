@@ -1,0 +1,927 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+\tableofcontents
+\newpage
+
+\section{Базовые теоретические вопросы}
+\subsection{Дать определение единичной, нулевой, верхней треугольной и нижней треугольной матрицы}
+\begin{definition*}
+	\textbf{Единичная матрица} --- матрица, у которой все элементы на главной диагонали равны единице, а остальные равны нулю.
+	\[ E = \begin{pmatrix}
+			1 & 0 & 0 & 0 \\
+			0 & 1 & 0 & 0 \\
+			0 & 0 & 1 & 0 \\
+			0 & 0 & 0 & 1
+		\end{pmatrix} \]
+\end{definition*}
+\begin{definition*}
+	\textbf{Нулевой матрицей} называется матрица, элементы которой равны нулю.
+\end{definition*}
+\begin{definition*}
+	\textbf{Верхней треугольной матрицей} называется квадратная матрица, у которой под главной диагональю все элементы равны нулю.
+	\begin{gather*}
+		A = \begin{pmatrix}
+			2 & 5 & 6 & 11 \\
+			0 & 3 & 7 & 10 \\
+			0 & 0 & 4 & 9  \\
+			0 & 0 & 0 & 8
+		\end{pmatrix}
+	\end{gather*}
+\end{definition*}
+\begin{definition*}
+	\textbf{Нижней треугольной матрицей} называется квадратная матрица, у которой над главной диагональю все элементы равны нулю.
+\end{definition*}
+
+\subsection{Дать определение равенства матриц}
+\begin{definition*}
+	Две матрицы \textbf{равны}, если они имеют одинаковую размерность и их соответствующие элементы равны.
+	\begin{gather*}
+		A_{m\times n},\ B_{m\times n} \\
+		A = B\ \iff\ a_{ij} = b_{ij} \text{, где } \begin{array}{l} i=1,\ \ldots ,\ m \\ j=1,\ \ldots ,\ n \end{array}
+	\end{gather*}
+\end{definition*}
+
+\newpage
+\subsection{Дать определение суммы матриц и произведения матрицы на число}
+\begin{definition*}
+	\textbf{Суммой матриц $A_{m\times n}$ и $B_{m\times n}$} называется матрица $C$, элементы которой являются суммами соответствующих элементов $A$ и $B$.
+	\begin{gather*}
+		A_{m\times n} + B_{m\times n} = C_{m\times n},\ \text{ где } c_{ij} = a_{ij} + b_{ij},\ \begin{array}{l} i=1\ldots m \\ j=1\ldots n \end{array}
+	\end{gather*}
+\end{definition*}
+\begin{remark}
+	Операция сложения матриц вводится только для матриц \underline{одинаковых} размеров.
+\end{remark}
+\begin{definition*}
+	\textbf{Произведением матрицы $A_{m\times n}$ на число $k = const$} называется матрица $C_{m\times n}$, элементы которой равны произведению соответствующего элемента матрицы $a_{ij}$ на число $k$.
+	\begin{gather*}
+		C = k\cdot A \qquad c_{ij} = k\cdot a_{ij} \text{, где } \begin{array}{l} i=1,\ \ldots ,\ m \\ j=1,\ \ldots ,\ n \end{array}
+	\end{gather*}
+\end{definition*}
+
+\subsection{Дать определение операции транспонирования матриц}
+\begin{definition*}
+	\textbf{Транспонированной матрицей} ($A^T_{m\times n}$) называется матрица $A_{n\times m}$, элементы которой равны $a^T_{ij} = a_{ji},\ \begin{array}{l} i = 1, \ldots , m \\ j = 1, \ldots , n \end{array} $
+	\begin{gather*}
+		A_{2\times 3} = \begin{pmatrix}
+			1 & 2 & 3 \\
+			4 & 5 & 6
+		\end{pmatrix}\ \longrightarrow\
+		A^T_{3\times 2} \begin{pmatrix}
+			1 & 4 \\
+			2 & 5 \\
+			3 & 6
+		\end{pmatrix}
+	\end{gather*}
+\end{definition*}
+
+\subsection{Дать определение операции умножения матриц}
+\begin{definition*}
+	\textbf{Произведением матриц $A_{m\times k}$ и $B_{k\times n}$} называется матрица $C_{m\times n}$, которая получается следующим образом:
+	\begin{gather*}
+		c_{ij} = a_{i1} b_{1j} + a_{i2}b_{2j} + \ldots + a_{ik} b_{kj} = \sum^k_{l=1} a_{il} \cdot b_{lj} \qquad \begin{array}{l} i = 1, \ldots , m \\ j = 1, \ldots , n \end{array}
+	\end{gather*}
+\end{definition*}
+\begin{remark}
+	Матрицы можно перемножить, если количество столбцов первой матрицы равно количеству строк второй матрицы. Тогда результирующая матрица будет иметь количество строк первой матрицы и количество столбцов второй матрицы.
+	\[C_{4 \times 5} = A_{4 \times \underline{2}} \cdot B_{\underline{2} \times 5} \]
+\end{remark}
+\newpage
+\begin{eg}
+	\begin{gather*}
+		C_{2\times 2} = \begin{pmatrix}
+			1 & -1 & 2 \\
+			2 & 3  & 0
+		\end{pmatrix} \cdot \begin{pmatrix}
+			4 & 5  \\
+			2 & -1 \\
+			3 & -2
+		\end{pmatrix} = \\
+		= \begin{pmatrix}
+			1\cdot 4 + (-1) \cdot 2 + 2\cdot 3 & 1\cdot 5 + (-1)(-1) + 2(-2)          \\
+			2\cdot 4 + 3\cdot 2 + 0\cdot 3     & 2\cdot 5 + 3\cdot (-1) + 0\cdot (-2)
+		\end{pmatrix} = \begin{pmatrix}
+			8  & 2  \\
+			14 & 17
+		\end{pmatrix}
+	\end{gather*}
+\end{eg}
+
+
+\subsection{Дать определение обратной матрицы}
+\begin{definition*}
+	\textbf{Обратной матрицей} квадратной матрицы $A_{m\times n}$ называется матрица $A^{-1}_{m \times n}$ такая, что \[ A \cdot A^{-1} = A^{-1}\cdot A = E \]
+\end{definition*}
+
+\subsection{Дать определение минора. Какие миноры называются окаймляющими для данного минора матрицы?}
+\begin{definition*}
+	\textbf{Минором $k$-го порядка} матрицы $A$ называется определитель, составленный из пересечения $k$ строк и $k$ столбцов матрицы $A$ с сохранением их порядка.
+\end{definition*}
+\begin{definition*}
+	\textbf{Окаймляющим минором} для минора $M$ матрицы $A$ называется минор $M'$, который получается из минора $M$ путём добавления одной строки одного столбца.
+	Порядок окаймляющего минора на единицу больше минора $M$.
+	\begin{gather*}
+		A = \begin{pmatrix}
+			4 & 5  & 1 & 3 \\
+			3 & 2  & 7 & 5 \\
+			1 & -1 & 0 & 7
+		\end{pmatrix} \quad M_2 = \begin{vmatrix}
+			4 & 5 \\
+			3 & 2
+		\end{vmatrix}\ \longrightarrow\
+		M'_3\begin{vmatrix}
+			4 & 5  & 1 \\
+			3 & 2  & 7 \\
+			1 & -1 & 0
+		\end{vmatrix} \text{ или } M'_3 = \begin{vmatrix}
+			4 & 5  & 3 \\
+			3 & 2  & 5 \\
+			1 & -1 & 7
+		\end{vmatrix}
+	\end{gather*}
+\end{definition*}
+
+\subsection{Дать определение базисного минора и ранга матрицы}
+\begin{definition*}
+	\textbf{Базисным минором} матрицы $A$ называется минор, который удовлетворяет следующим условиям:
+	\begin{enumerate}
+		\item Он не равен нулю
+		\item Его порядок равен рангу матрицы $A$
+	\end{enumerate}
+\end{definition*}
+\begin{definition*}
+	\textbf{Рангом матрицы $A$} называется число, равное наибольшему порядку, отличного от нуля минора матрицы $A$.\\
+	Обозначение: $\Rg A$ или $\rg A$
+\end{definition*}
+
+\newpage
+\subsection{Дать определение однородной и неоднородной СЛАУ}
+\begin{align}
+	\left\{
+	\begin{array}{l}
+		a_{11}x_1 + a_{12}x_2 + \ldots + a_{1n}x_n = b_1 \\
+		a_{21}x_1 + a_{22}x_2 + \ldots + a_{2n}x_n = b_2 \\
+		\hdotsfor{1}                                     \\
+		a_{m1}x_1 + a_{m2}x_2 + \ldots + a_{mn}x_n = b_m
+	\end{array} \right.
+\end{align}
+где:\\
+$a_{ij} = const$ --- коэффициенты при неизвестных в СЛАУ \quad $\begin{aligned}
+		i & =1, \ldots, m \\[-3pt]
+		j & =1, \ldots, n
+	\end{aligned}$\\
+$b_i = const$ --- свободные члены СЛАУ \quad $i=1,\ldots,m$\\
+$x_j$ --- переменные СЛАУ \quad $j=1,\ldots,n$\\
+\begin{definition*}\ \\
+	СЛАУ (1), у которой все члены равны нулю, называется \textbf{однородной}.\\
+	СЛАУ (1), у которой хотя бы один $b_i \ne 0,\ 0 \le i \le m$, называется \textbf{неоднородной}.
+\end{definition*}
+
+\subsection{Дать определение фундаментальной системы решений однородной СЛАУ}
+\begin{definition*}
+	Набор $k = n-r$ линейно-независимых решений однородной СЛАУ называется \textbf{фундаментальной системой решений} однородной СЛАУ, где\\ $n$ -- количество неизвестных, а $r$ -- ранг матрицы $A$.
+\end{definition*}
+
+\subsection{Записать формулы для нахождения обратной матрицы к произведению двух обратимых матриц и для транспонированной матрицы}
+\begin{theorem*}
+	Пусть матрицы $A_{n\times n}$ и $B_{n\times n}$ имеют обратные матрицы $A^{-1}_{n\times n}$ и $B^{-1}_{n\times n}$. Тогда обратная матрица к их произведению равна произведению обратных матриц:
+	\begin{gather*}
+		(A\cdot B)^{-1} = B^{-1} \cdot A^{-1}
+	\end{gather*}
+\end{theorem*}
+\begin{theorem*}
+	Пусть матрица $A_{n\times n}$ имеет обратную матрицу. Тогда:
+	\begin{gather*}
+		\left(A^T\right)^{-1} = \left(A^{-1}\right)^T
+	\end{gather*}
+\end{theorem*}
+
+\newpage
+\subsection{Дать определение присоединённой матрицы и записать формулу для вычисления обратной матрицы}
+\begin{definition*}
+	Матрица $A^*$, являющаяся транспонированной матрицей алгебраических дополнений элементов матрицы $A$, называется \textbf{присоединённой матрицей}.
+	\begin{gather*}
+		A^{*} = \begin{pmatrix}
+			A_{11} & A_{12} & \ldots & A_{1n} \\
+			A_{21} & A_{22} & \ldots & A_{2n} \\
+			\ldots & \ldots & \ldots & \ldots \\
+			A_{n1} & A_{n2} & \ldots & A_{nn} \\
+		\end{pmatrix}^{T} = \begin{pmatrix}
+			A_{11} & A_{21} & \ldots & A_{n1} \\
+			A_{12} & A_{22} & \ldots & A_{n2} \\
+			\ldots & \ldots & \ldots & \ldots \\
+			A_{1n} & A_{2n} & \ldots & A_{nn} \\
+		\end{pmatrix}\\
+		A^{-1} = \frac{1}{\det A} \cdot A^*
+	\end{gather*}
+\end{definition*}
+
+\subsection{Перечислить элементарные преобразования матриц}
+\begin{mdframed}[style=Teal, frametitle={Элементарные преобразования матриц:}]
+	\begin{enumerate}
+		\item Перестановка строк (столбцов) матриц
+		\item Умножение элементов строки (столбца) матрицы на число, отличное от нуля
+		\item Прибавление к элементам одной строки (столбца) соответствующих элементов другой строки (столбца), умноженной на одно и то же число
+	\end{enumerate}
+\end{mdframed}
+
+\subsection{Записать формулы Крамера для решения системы линейных уравнений с обратимой матрицей}
+Пусть задана СЛАУ в координатной форме.
+\begin{align*}
+	\left\{
+	{ \setlength{\arraycolsep}{1.5pt}
+			\begin{array}{lllllllll}
+                a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & b_1 \\
+				a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & b_2 \\
+				\hdotsfor{9}                                                     \\
+				a_{n1}x_1 & + & a_{n2}x_2 & + & \ldots & + & a_{nn}x_n & = & b_n
+			\end{array} } \right.
+\end{align*}
+Запишем эту СЛАУ в матричном виде, где $A$ имеет размерность $n\times n$ (количество уравнений = количество переменных). \vspace{-\topsep}
+\begin{gather*}
+	A \cdot X = B\\
+	A_{n\times n} = \begin{pmatrix}
+		a_{11} & a_{12} & \ldots & a_{1n} \\
+		a_{21} & a_{22} & \ldots & a_{2n} \\
+		\ldots & \ldots & \ldots & \ldots \\
+		a_{n1} & a_{n2} & \ldots & a_{nn} \\
+	\end{pmatrix}, \quad B_{n\times 1} = \begin{pmatrix}
+		b_1    \\
+		b_2    \\
+		\vdots \\
+		b_n
+	\end{pmatrix}\qquad \Delta = \begin{vmatrix}
+		a_{11} & a_{12} & \ldots & a_{1n} \\
+		a_{21} & a_{22} & \ldots & a_{2n} \\
+		\ldots & \ldots & \ldots & \ldots \\
+		a_{n1} & a_{n2} & \ldots & a_{nn} \\
+	\end{vmatrix}
+\end{gather*}
+\begin{gather*}
+	\boxed{x_i = \frac{\Delta_i}{\Delta}},\ i = 1,\ldots,n \textbf{ --- формула Крамера}
+\end{gather*}
+Определитель $\Delta_i$ получается из главного определителя $\Delta$ путём замены $i$-го столбца на столбец свободных членов СЛАУ.
+\begin{remark}
+	Если главный определитель равен нулю, то формулу Крамера использовать нельзя.
+\end{remark}
+
+\subsection{Перечислить различные формы записи системы линейных алгебраических уравнений (СЛАУ). Какая СЛАУ называется совместной?}
+\begin{mdframed}[style=Teal,frametitleaboveskip=8pt,  frametitle={Формы записи СЛАУ:}]
+	\begin{enumerate}
+		\item Координатная
+		\item Матричная
+		\item Векторная
+	\end{enumerate}
+\end{mdframed}
+\begin{definition*}
+	СЛАУ, имеющая решение, называется \textbf{совместной}.
+\end{definition*}
+
+\subsection{Привести пример, показывающий, что умножение матриц некоммутативно}
+\begin{center} $\boxed{A \cdot B \ne B\cdot A}$ \end{center}
+\begin{eg}
+	\begin{gather*}
+	A = \begin{pmatrix}
+	4 & 5\\
+	2 & -1
+	\end{pmatrix} \qquad B = \begin{pmatrix}
+	0 & 3\\
+	1 & -2
+	\end{pmatrix} \\[1ex]
+	\left.
+	\begin{aligned}
+	A \cdot B = \begin{pmatrix}
+	4 & 5\\
+	2 & -1
+	\end{pmatrix} \cdot\begin{pmatrix}
+	0 & 3\\
+	1 & -2
+	\end{pmatrix} = \begin{pmatrix} 5 & 2 \\ -1 & 8 \end{pmatrix}\\
+	B\cdot A = \begin{pmatrix}
+	0 & 3\\
+	1 & -2
+	\end{pmatrix} \cdot \begin{pmatrix}
+	4 & 5 \\
+	2 & -1
+	\end{pmatrix} = \begin{pmatrix} 6 & -3 \\ 0 & 7 \end{pmatrix}
+	\end{aligned} \right\}\ A\cdot B \ne B\cdot A
+	\end{gather*}
+\end{eg}
+
+\subsection{Сформулировать свойства ассоциативности умножения матриц и дистрибутивности умножения относительно сложения}
+\begin{mdframed}[style=Teal, frametitle={Свойства:}]
+	\begin{enumerate}
+		\item $(A \cdot B) \cdot C = A\cdot (B\cdot C)$ --- ассоциативность умножения матриц
+		\item $(A+B)\cdot C = A\cdot C + B\cdot C$ --- дистрибутивность умножения матриц относительно сложения
+	\end{enumerate}
+\end{mdframed}
+
+\subsection{Сформулировать критерий Кронекера — Капелли совместности СЛАУ}
+\begin{theorem*}
+	Для того чтобы СЛАУ была совместной, необходимо и достаточно, чтобы ранг матрицы $A$ был равен рангу расширенной матрицы.
+	\begin{gather*}
+		A \cdot X = B \qquad A|B \qquad \Rg A = \Rg (A|B)
+	\end{gather*}
+\end{theorem*}
+
+\newpage
+\subsection{Сформулировать теорему о базисном миноре}
+\begin{theorem*}[О базисном миноре]\hlabel{О базисном миноре}
+	$\bullet$ Базисные строки (столбцы) матрицы $A$, \underline{входящие} в базисный минор, линейно независимы.\\
+	$\bullet$ Любую строку (столбец), \underline{не входящую} в базисный минор, можно представить в виде линейной комбинации базисных строк (столбцов).
+\end{theorem*}
+
+\subsection{Сформулировать теорему о свойствах решений однородной СЛАУ}
+\begin{theorem*}[О свойствах решений однородных СЛАУ]
+	Пусть $X^{(1)}, X^{(2)},\ldots, X^{(k)}$ -- решение СЛАУ. Тогда их линейная комбинация тоже является решением СЛАУ.
+\end{theorem*} 
+
+\subsection{Сформулировать теорему о структуре общего решения неоднородной СЛАУ}
+\begin{theorem*}[О структуре общего решения неоднородной СЛАУ]
+	Пусть $X^{(0)}$ --- частное решение неоднородной СЛАУ $A\cdot X = B$.\\ Пусть $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ --- некоторая ФСР, соответствующая однородной СЛАУ \\
+	$A\cdot X = \Theta$. Тогда общее решение неоднородной СЛАУ будет иметь вид:
+	\begin{gather*}
+		X_{\text{неод.}} = X^{(0)} + c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)}\qquad c_i \in \R,\ i=1,\ldots,k
+	\end{gather*}
+\end{theorem*}
+
+\subsection{Сформулировать теорему о структуре общего решения однородной СЛАУ}
+\begin{theorem*}[О структуре общего решения однородной СЛАУ]
+	Пусть $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ --- это некоторая ФСР однородной СЛАУ $A\cdot X = \Theta$. \\
+	Тогда любое решение однородной СЛАУ:
+	\begin{gather*}
+		X_{\underset{\text{(оо)}}{\text{однор.}}} = c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)}\qquad c_i = const,\ i=1,\ldots,k
+	\end{gather*}
+\end{theorem*}
+
+\subsection{Сформулировать теорему об инвариантности ранга при элементарных преобразованиях матрицы}
+\begin{theorem*}
+	Ранг матрицы не меняется при элементарных преобразованиях строк (столбцов) матрицы.
+\end{theorem*}
+
+\newpage
+\subsection{Сформулировать критерий существования обратной матрицы}
+\begin{theorem*} 
+	Для того чтобы матрица $A$ имела обратную матрицу, необходимо и достаточно, чтобы  определитель матрицы $A$ был не равен нулю. 
+\end{theorem*}
+
+\section{Теоретические вопросы повышенной сложности}
+\subsection{Доказать теорему о связи решений неоднородной и соответствующей однородной СЛАУ и теорему о структуре общего решения неоднородной СЛАУ}
+\begin{theorem*}[О связи решений неоднородной и соответствующей однородной СЛАУ]
+	Пусть $X^{(0)}$ --- это некоторое решение неоднородной СЛАУ $A\cdot X = B$. Произвольный столбец $X$ является решением СЛАУ $A\cdot X = B$ тогда и только тогда, когда его можно представить в виде:
+	\begin{gather*}
+		X = X^{(0)} + Y, \text{ где $Y$ -- решение соответствующей однородной СЛАУ } A\cdot Y = \Theta
+	\end{gather*}
+\end{theorem*}
+\begin{proof}[][Необходимость]
+	Пусть $X$ -- решение СЛАУ $A\cdot X = B$. Обозначим $Y = X - X^{(0)}$.\\
+	Найдём произведение:
+	\begin{flalign*}
+		& A \cdot Y = A(X - X^{(0)}) = \underbrace{A\cdot X}_{B} - \underbrace{A\cdot X^{(0)}}_{B} = \Theta\ \Rightarrow\ Y \text{ --- } \begin{array}{l}
+		\text{решение соответствующей} \\
+		\text{однородной СЛАУ } A\cdot Y = \Theta \end{array} &
+	\end{flalign*}
+\end{proof}
+\begin{proof}[][Достаточность]
+	Пусть $X$ можно представить в виде $X = X^{(0)} + Y$, где $Y$ --- решение соответствующей однородной СЛАУ $A\cdot Y = \Theta$. Тогда найдём произведение:
+	\begin{flalign*}
+		& A\cdot X = A(X^{(0)} + Y) = \underbrace{A\cdot X^{(0)}}_{B} + \underbrace{A\cdot Y}_{\Theta} = B + \Theta = B\Rightarrow\ X \text{ --- } \begin{array}{l}
+		\text{решение неоднородной} \\
+		\text{СЛАУ } A\cdot X = B \end{array} & \hspace{-10pt}
+	\end{flalign*}
+\end{proof}
+\newpage
+\begin{theorem*}[О структуре общего решения неоднородной СЛАУ]
+	Пусть $X^{(0)}$ --- частное решение неоднородной СЛАУ $A\cdot X = B$.\\ Пусть $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ --- некоторая ФСР, соответствующая однородной СЛАУ \\
+	$A\cdot X = \Theta$. Тогда общее решение неоднородной СЛАУ будет иметь вид:
+	\begin{gather*}
+		X_{\text{неод.}} = X^{(0)} + c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)}\qquad c_i \in \R,\ i=1,\ldots,k
+	\end{gather*}
+\end{theorem*}
+\begin{proof}
+	$X^{(i)},\ i=1,\ldots,k \qquad A\cdot X^{(i)} = \Theta$
+	\begin{flalign*}
+		A\cdot X_{\text{неод.}} &= A\cdot \left(X^{(0)} + c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)} \right) = & \\
+		&= \underbrace{A\cdot X^{(0)}}_{B} + c_1\cdot \underbrace{AX^{(1)}}_{\Theta} + c_2\cdot \underbrace{AX^{(2)}}_{\Theta} + \ldots + c_k\cdot \underbrace{AX^{(k)}}_{\Theta} = &\\
+		&= B + c_1\Theta + c_2\Theta + \ldots + c_k\Theta = B & 
+	\end{flalign*}
+	<<Доказательство аналогично доказательству теоремы \textit{о структуре общего решения однородной СЛАУ}>>.
+\end{proof}
+
+\subsection{Доказать свойства ассоциативности и дистрибутивности умножения матриц}
+\begin{mdframed}[style=Teal, frametitle={Ассоциативность умножения матриц:}]
+	\[ (A \cdot B) \cdot C = A\cdot (B\cdot C) \]
+\end{mdframed}
+\begin{proof}
+	Пусть $A_{m \times n}$, $B_{k \times n}$, $C_{n \times k}$
+	\begin{align*}
+		(A\cdot B)\cdot C = \sum^n_{r = 1}[(A\cdot B)]_{ir} [C]_{rj} = \sum^k_{r=1} \left(\sum^s_{s=1} [A]_{is} \cdot [B]_{sr}\right) \cdot [C]_{rj} &= \\
+		= \sum^n_{r=1} \sum^k_{s=1} [A]_{is} \cdot [B]_{sr} \cdot [C]_{rj} = \sum^k_{s = 1} [A]_{is} \cdot \sum^n_{r=1} [B]_{sr} \cdot [C]_{rj} = \sum^k_{s=1} [A]_{is} \cdot \big[(B\cdot C)\big]_{sj} &= A\cdot (B\cdot C) \hspace{-5pt}
+	\end{align*}
+\end{proof}
+\begin{mdframed}[style=Teal, frametitle={Дистрибутивность умножения матриц относительно сложения:}]
+	\[ (A+B)\cdot C = A\cdot C + B\cdot C \]
+\end{mdframed}
+\begin{proof}
+	Пусть $A_{m \times k},\ B_{m \times n},\ C_{k \times n}$
+	\begin{align*}
+		(A+B)\cdot C = \sum^k_{r=1} [(A+B)]_{ir} \cdot [C]_{rj} = \sum^k_{r=1} ([A]_{ir} + [B]_{ir}) \cdot [C]_{rj} &= \\
+		=\sum^k_{r=1} ([A]_{ir} \cdot [C]_{rj} + [B]_{ir}[C]_{rj}) = \sum^k_{r=1}[A]_{ir} \cdot [C]_{ri} + \sum^k_{r=1} [B]_{ir}\cdot [C]_{ri} &= A\cdot C + B\cdot C
+	\end{align*}
+\end{proof}
+
+\newpage
+\subsection{Доказать теорему о базисном миноре}
+\begin{theorem*}[О базисном миноре]\hlabel{О базисном миноре}
+	$\bullet$ Базисные строки (столбцы) матрицы $A$, \underline{входящие} в базисный минор, линейно независимы.\\
+	$\bullet$ Любую строку (столбец), \underline{не входящую} в базисный минор, можно представить в виде линейной комбинации базисных строк (столбцов).
+\end{theorem*}
+\begin{proof}
+	$\bullet$ Пусть ранг матрицы $A = r$. Предположим, что строки матрицы $A$ линейно зависимы. Тогда одну из них можно выразить как линейную комбинацию остальных базисных строк. Значит, в базисном миноре одна строка будет линейной комбинацией остальных строк и, по свойству определителей, этот минор будет равен нулю, что противоречит определению базисного минора. Следовательно, наше предположение неверно, и базисные строки, входящие в базисный минор, линейно независимы. \\
+	$\bullet$ Пусть базисный минор состоит из первых $r$ строк и $r$ столбцов матрицы $A$. Добавим к этому минору произвольную $i$-ую строку и $j$-й столбец. В результате получаем окаймляющий минор:
+	\begin{align*}
+		M = \begin{vmatrix}
+			a_{11} & a_{12} & \ldots & a_{1r} \\
+			a_{21} & a_{22} & \ldots & a_{2r} \\
+			\ldots & \ldots & \ldots & \ldots \\
+			a_{r1} & a_{r2} & \ldots & a_{rr}
+		\end{vmatrix}\ \longrightarrow\
+		M' = \begin{vmatrix}
+			a_{11} & a_{12} & \ldots & a_{1r} & a_{1j} \\
+			a_{21} & a_{22} & \ldots & a_{2r} & a_{2j} \\
+			\ldots & \ldots & \ldots & \ldots & \ldots \\
+			a_{r1} & a_{r2} & \ldots & a_{rr} & a_{rj} \\
+			a_{i1} & a_{i2} & \ldots & a_{ir} & a_{ij}
+		\end{vmatrix}
+	\end{align*} 
+	Если $j \le r$, то в миноре $M'$ будет два одинаковых столбца и этот минор будет равен нулю.\\
+	Если $j > r$, то минор  $M'$ так же будет равен нулю (\textit{Пояснение: Ранг матрицы $A$ равен $r$, значит, наибольший порядок отличного от нуля минора равен $r$. Минор $M'$ имеет ранг $r+1$, значит, он равен нулю}).\\
+	Определитель можно вычислить путём разложения по какой-либо строке (столбцу), поэтому найдём определитель $M'$ путём его разложения по $j$-ому столбцу.
+	\begin{align*}
+		&\begin{array}{l}a_{1j}A_{ij} + a_{2j}A_{2j} + \ldots + a_{rj}A_{rj} + a_{ij}A_{ij} = 0\\
+		j = r+1,\ i = r+1 \end{array}\ \Rightarrow \\
+		\Rightarrow\ &a_{1, r+1}A_{1, r+1} + a_{2, r+1}A_{2, r+1} + \ldots + a_{r, r+1}A_{r, r+1} + a_{r+1, r+1}A_{r+1, r+1} = 0
+	\end{align*}
+		$A_{ij} = (-1)^{i+j} M_{ij}$ -- алгебраическое дополнение элемента $a_{ij}$\\
+		$A_{r+1, r+1} = M$ -- базисный минор; т.к. $M\ne 0$, то $A_{r+1, r+1} \ne 0$
+	\begin{align*}
+		a_{r+1, r+1} = -\frac{A_{1, r+1}}{A_{r+1, r+1}}a_{1, r+1} - \frac{A_{2, r+1}}{A_{r+1, r+1}}a_{2, r+1} - \ldots - \frac{A_{r, r+1}}{A_{r+1, r+1}}a_{r, r+1}
+	\end{align*}
+	Обозначим:
+	$\lambda_i = -\dfrac{A_{i, r+1}}{A_{r+1, r+1}},\ i=1,\ldots,\ r$
+	\begin{gather*}
+		a_{r+1, r+1} = \lambda_1 a_{1, r+1} + \lambda_2 a_{2, r+1} + \ldots + \lambda_r a_{r, r+1}
+	\end{gather*}
+	Получили, что элементы $i$-й строке можно представить в виде линейной комбинации соответствующих элементов базисных строк, где $j = 1, \ldots,\ r$.\\
+	Аналогично доказывается для столбцов.
+\end{proof}
+
+\subsection{Доказать критерий существования обратной матрицы}
+\begin{theorem*}
+	Для того чтобы матрица $A$ имела обратную матрицу, необходимо и достаточно, чтобы определитель матрицы $A$ был не равен нулю.
+\end{theorem*}
+\begin{proof}[][Необходимость]
+	Пусть матрица $A$ имеет обратную матрицу. Тогда по определению $A \cdot A^{-1} = E$.\\ Значит, $\det (A\cdot A^{-1}) = \det E=1$.\\
+	По свойству определителей (с учётом предыдущего): \vspace{-\topsep}
+	\[ \det (A\cdot A^{-1}) = \det A \cdot \det A^{-1} = 1\ \Rightarrow\ \det A \ne 0 \vspace{-\topsep}\] 
+\end{proof} 
+\begin{proof}[][Достаточность]
+	Пусть определитель матрицы $A$ не равен нулю. Если определитель матрицы разложить по $i$-ой строке:
+	\begin{align*}
+		&\sum^n_{j=1} a_{ij}A_{ij} = a_{i1}A_{i1} + a_{i2}A_{i2} + \ldots + a_{in}A_{in} = \det A\\
+		&\sum^n_{j=1} a_{ij}A_{kj} = a_{i1}A_{k1} + a_{i2}A_{k2} + \ldots + a_{in}A_{kn} = 0
+	\end{align*}
+	Рассмотрим матрицу $B$: $b_{ij} = \dfrac{A_{ji}}{\det A}$ \\ 
+	$A_{ij}$ -- алгебраическое дополнение элемента $a_{ji}$ матрицы $A$.\\ \vspace{-\topsep}
+	\\ Найдём $C=A\cdot B$: \vspace{-\topsep}
+	\begin{gather*}
+		C_{ij} = \sum^n_{k=1} a_{ik} \cdot b_{kj} = \sum^n_{k=1}a_{ik} \cdot \frac{A_{jk}}{\det A} = \frac{1}{\det A} \sum^n_{k=1} a_{ik}A_{jk} = \left\{ \begin{aligned}
+		&\frac{1}{\det A} \cdot \det A = 1 &\text{, если } i=j \\
+		&\frac{1}{\det A} \cdot 0 = 0 &\text{, если } i\ne j
+		\end{aligned} \right.\\
+		\Rightarrow\ C = \begin{pmatrix}
+			1 & 0 & \ldots & 0\\
+			0 & 1 & \ldots & 0\\
+			\ldots & \ldots & \ldots & \ldots \\
+			0 & 0 & \ldots & 1
+		\end{pmatrix}\quad \begin{array}{l}
+			C_{ij} = 1 \text{, если } i = j\\
+			C_{ij} = 0 \text{, если } i \ne j
+		\end{array}
+	\end{gather*}
+	Аналогично $C' = B\cdot A$ \vspace{-\topsep}
+	\begin{gather*}
+		C'_{ij} = \sum^n_{k =1} b_{ik} \cdot a_{kj} = \sum^n_{k=1} \frac{A_{ki}}{\det A} \cdot a_{kj} = \frac{1}{\det A} \sum^n_{k=1} A_{ki}a_{kj} = \left\{ \begin{aligned}
+		&\frac{1}{\det A} \cdot \det A = 1 &\text{, если } i = j\\
+		&\frac{1}{\det A} \cdot 0 = 0 &\text{, если } i\ne j
+		\end{aligned} \right.\\
+		\Rightarrow\ C' = \begin{pmatrix}
+			1 & 0 & \ldots & 0\\
+			0 & 1 & \ldots & 0\\
+			\ldots & \ldots & \ldots & \ldots \\
+			0 & 0 & \ldots & 1
+		\end{pmatrix}\quad \begin{array}{l}
+			C'_{ij} = 1 \text{, если } i = j\\
+			C'_{ij} = 0 \text{, если } i \ne j
+		\end{array}
+	\end{gather*} \vspace{-2\topsep}
+	\begin{flalign*}
+		& \text{Получим } \left. \begin{aligned}
+		A\cdot B = E\\
+		B\cdot A = E
+		\end{aligned} \right\}\Rightarrow \text{ по определению } B = A^{-1} &
+	\end{flalign*} 
+	Таким образом, доказали, что если определитель матрицы не равен нулю, то эта матрица имеет обратную.
+\end{proof}
+
+\subsection{Доказать критерий Кронекера — Капелли совместности СЛАУ}
+\begin{theorem*}
+	Для того чтобы СЛАУ была совместной, необходимо и достаточно, чтобы ранг матрицы $A$ был равен рангу расширенной матрицы.
+	\begin{gather*}
+		A \cdot X = B \qquad A|B \qquad \Rg A = \Rg (A|B)
+	\end{gather*}
+\end{theorem*}
+\begin{proof}[][Необходимость]
+	Пусть СЛАУ $A\cdot X = b$ -- совместная и пусть $\Rg A = r$.\\
+	Пусть базисный минор состоит из первых $r$ строк и $r$ столбцов матрицы $A$.
+	\begin{gather*}
+		M = \begin{vmatrix} 
+			a_11 & a_12 & \ldots & a_1r \\
+			a_21 & a_22 & \ldots & a_2r \\
+			\ldots & \ldots & \ldots & \ldots\\
+			a_r1 & a_r2 & \ldots & a_rr
+		\end{vmatrix} 
+	\end{gather*} 
+	Если использовать векторную запись СЛАУ, то если СЛАУ имеет решение $x_1, x_2, \ldots, x_n$, тогда любой столбец матрицы $A$ можно представить в виде:
+	\begin{gather}
+		a_1x_1 + a_2x_2 + \ldots + a_rx_r + a_{r+1}x_{r+1} + \ldots + a_nx_n = b
+	\end{gather}
+	Согласно теореме \textit{о базисном миноре} (\textbf{С.\pageref{О базисном миноре}}), любой столбец матрицы $A$, который не входит в базисный минор, можно представить в виде линейной комбинации столбцов базисного минора.\\
+	Тогда:
+	\begin{align}
+		\left\{ \begin{array}{l}
+			a_{r+1} = \lambda_{1,r+1} a_1 + \lambda_{2,r+1}\ a_2 + \ldots + \lambda_{r, r+1}\ a_r \\
+			\hdotsfor{1} \\
+			a_n = \lambda_{1n}a_1 + \lambda_{2n}a_2 + \ldots + \lambda_{rn}a_r
+		\end{array} \right.
+	\end{align}
+	Подставим (2) в (1):
+	\begin{multline*}
+		a_1x_1 + a_2x_2 + \ldots + a_rx_r + (\lambda_{1,r+1} a_1 + \lambda_{2,r+1} a_2 + \ldots + \lambda_{r, r+1}a_r)x_{r+1} + \\
+		+ \ldots + (\lambda_{1n}a_1 + \lambda_{2n}a_2 + \ldots + \lambda_{rn}a_n)x_n = b
+	\end{multline*} \vspace{-3\topsep}
+	\begin{multline*}
+		\underbrace{(x_1 + \lambda_{1,r+1}x_{r+1} + \ldots + \lambda_{1n}x_n)}_{\beta_1}a_1 + \underbrace{(x_2 + \lambda_{2,r+1}x_{r+1} + \ldots + \lambda_{2n}x_n)}_{\beta_2}a_2 + \ldots + \\
+		+ \underbrace{(x_r + \lambda_{r,r+1}x_{r+1} + \ldots + \lambda_{rn}x_n)}_{\beta_r}a_r = b
+	\end{multline*} \vspace{-2.5\topsep}
+	\begin{gather*}
+		\Downarrow\\
+		\beta_1a_1 + \beta_2a_2 + \ldots + \beta_ra_r = b\\
+		\beta_i = const,\ i=1, \ldots, r
+	\end{gather*} \par
+	В результате столбец свободных членов можно представить в виде линейной комбинации столбцов базисного минора. Отсюда следует, что базисный минор $M$ матрицы $A$ будет и базисным минором расширенной матрицы $A|B$, так как минор $M$ не равен нулю и любой окаймляющий минор $M'$ будет равен нулю.
+	\begin{enumerate}
+		\item Если в качестве окаймляющего минора будет минор, который входит в столбец матрицы $A$, то этот минор будет равен нулю по определению базисного минора матрицы $A$. 
+		\item Если в окаймляющем миноре будет столбец свободных членов, то этот минор будет равен нулю по свойству определителей, так как этот столбец $b$ будет линейной комбинацией остальных столбцов определителя.
+	\end{enumerate}
+	\[ \underbrace{\Rg A}_{r} = \underbrace{\Rg (A|B)}_{r} \]
+\end{proof}
+\begin{proof}[][Достаточность]
+	Пусть $\Rg A = \Rg (A|B)$ и пусть базисный минор состоит из первых $r$ строк и $r$ столбцов матрицы $A$. \vspace{-\topsep}
+	\begin{gather*}
+		M = \begin{vmatrix} 
+			a_11 & a_12 & \ldots & a_1r \\
+			a_21 & a_22 & \ldots & a_2r \\
+			\ldots & \ldots & \ldots & \ldots\\
+			a_r1 & a_r2 & \ldots & a_rr 
+		\end{vmatrix} 
+	\end{gather*}
+	Тогда столбец $b$ можно представить в виде линейной комбинации столбцов базисного минора.
+	\begin{align*} 
+		&b = x_1^\circ a_2 + x_2^\circ a_2 + \ldots + x_r^\circ a_r + 0\cdot a_{r+1} + 0\cdot a_{r+2} + \ldots + 0\cdot a_n\\
+		&x_1^\circ, x_2^\circ,\ldots, x_r^\circ \text{ -- коэффициенты линейной комбинации}\\
+		&x_i = const,\quad i=1, \ldots, r
+	\end{align*}
+	Добавим к этой линейной комбинации вектора:
+	\[ a_{r+1},a_{r+2},\ldots,a_n \qquad x_{r+1}^\circ = 0,\ x_{r+2}^\circ = 0,\ldots,x_n^\circ = 0 \] \vspace{-3\topsep}
+	\begin{align*}
+		x &= (x_1,\ x_2, \ldots, x_r,\ x_{r+1},\ x_{r+2},\ldots,x) = \\
+		&= (x_1,\ x_2, \ldots,  x_r,\ 0,\ 0,\ldots, 0)
+	\end{align*}
+	Этот набор переменных составляет решение СЛАУ, то есть СЛАУ является совместной.
+\end{proof}
+
+\newpage
+\subsection{Доказать теорему о существовании ФСР однородной СЛАУ}
+\begin{theorem*}[О существовании фундаментальной системы решений однородной СЛАУ]
+	Пусть имеется однородная СЛАУ $A\cdot X = \Theta$ с $n$ неизвестными и $\Rg A = r$. Тогда существует набор $k = n-r$ решений однородной СЛАУ, который образует фундаментальную систему решений.
+	\[ X^{(1)},X^{(2)},\ldots,X^{(k)} \]
+\end{theorem*}
+\begin{proof}
+	\hspace{0.6cm}Пусть базисный минор матрицы $A$ состоит из первых $r$ строк и $r$ столбцов матрицы $A$. Тогда любая строка матрицы $A$ с номерами $r+1,\ldots,m$ будет линейной комбинацией строк базисного минора по теореме \textit{о базисном миноре} (\textbf{С.\pageref{О базисном миноре}}). \par
+	Если решение СЛАУ $x_1, x_2,\ldots, x_n$ удовлетворяет уравнениям СЛАУ, соответствующим строкам базисного минора, то это решение будет удовлетворять и остальным уравнениям СЛАУ (с $r+1$ до $m$). Поэтому исключим из системы уравнения с $r+1$ до $m$. В результате получим следующую систему уравнений:
+	\begin{gather}
+		\left\{ \begin{array}{l}
+			a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r + a_{1, r+1}x_{r+1} + \ldots + a_{1n}x_n = 0\\
+			a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r + a_{2, r+1}x_{r+1} + \ldots + a_{2n}x_n = 0\\
+			\hdotsfor{1}\\
+			a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r + a_{r, r+1}x_{r+1} + \ldots + a_{rn}x_n = 0
+		\end{array} \right.
+	\end{gather}
+	\hspace{0.6cm}Переменные, соответствующие базисным столбцам, называются базисными переменными, а остальные свободными.\\
+	В системе (3) базисными переменными являются $x_1, x_2, \ldots, x_r$, а свободными являются $x_{r+1},\ldots, x_n$\\
+	В системе (3) оставим в левой части слагаемые, содержащие базисные переменные, а в правой свободные:
+	\begin{gather}
+		\left\{ \begin{array}{l}
+			a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r = - a_{1, r+1}x_{r+1} - \ldots - a_{1n}x_n\\
+			a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r = - a_{2, r+1}x_{r+1} - \ldots - a_{2n}x_n\\
+			\hdotsfor{1}\\
+			a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r = - a_{r, r+1}x_{r+1} - \ldots - a_{rn}x_n
+		\end{array} \right.
+	\end{gather}
+	\hspace{0.6cm}Если свободным переменным $x_1, x_2, \ldots, x_r$ придавать различные значения, то в системе (4) главный определитель левой части будет не равен нулю, так как этот определитель равен базисному минору матрицы $A$ и эта система будет иметь единственное решение.\\
+	Возьмём $k$ наборов свободных переменных вида:
+	\begin{gather*}
+		{\setlength{\arraycolsep}{13pt}
+		\begin{array}{cccc}
+			x_{r+1}^{(1)} = 1 & x_{r+1}^{(2)} = 0 & \cdots & x_{r+1}^{(k)} = 0 \\[1.5ex]
+			x_{r+2}^{(1)} = 0 & x_{r+2}^{(2)} = 1 & \cdots & x_{r+2}^{(k)} = 0 \\
+			\cdots& \cdots& \cdots & \cdots \\
+			x_{n}^{(1)} = 0 & x_{n}^{(2)} = 0 & \cdots & x_{n}^{(k)} = 1 
+		\end{array}} \\
+		(1) \text{ -- номер набора} \qquad \begin{aligned}
+			x_{r+j}^{(i)} = 1,\ i=j\\
+			x_{r+j}^{(i)} = 0,\ i\ne j
+		\end{aligned}
+	\end{gather*}
+	При каждом наборе свободных переменных получаем решение однородной СЛАУ.
+	\begin{gather*}
+		x^{(i)} = \begin{pmatrix}
+			x_1^{(i)}\\
+			x_2^{(i)}\\
+			\vdots\\
+			x_r^{(i)}\\
+			x_{r+1}^{(i)}\\
+			\vdots\\
+			x_n^{(i)}
+		\end{pmatrix}\qquad \text{из СЛАУ (4)}\qquad i = 1,\ldots, k 
+	\end{gather*}
+	В результате получаем $k$ решений однородной СЛАУ. Покажем, что они являются линейно-независимыми. Пусть линейная комбинация этих решений равна нулю.
+	\begin{gather*}
+		\lambda_1 \underbrace{ \begin{pmatrix}
+			x_1^{(1)}\\
+			x_2^{(1)}\\
+			\vdots\\
+			x_r^{(1)}\\
+			x_{r+1}^{(1)}\\
+			x_{r+2}^{(1)}\\
+			\vdots\\
+			x_n^{(1)}
+		\end{pmatrix} }_{X^{(1)}} + \lambda_2 \underbrace{ \begin{pmatrix}
+			x_1^{(2)}\\
+			x_2^{(2)}\\
+			\vdots\\
+			x_r^{(2)}\\
+			x_{r+1}^{(2)}\\
+			x_{r+2}^{(2)}\\
+			\vdots\\
+			x_n^{(2)}
+		\end{pmatrix}}_{X^{(2)}} + \ldots + \lambda_k \underbrace{ \begin{pmatrix}
+			x_1^{(k)}\\
+			x_2^{(k)}\\
+			\vdots\\
+			x_r^{(k)}\\
+			x_{r+1}^{(k)}\\
+			x_{r+2}^{(k)}\\
+			\vdots\\
+			x_n^{(k)}
+		\end{pmatrix}}_{X^{(k)}}  = \underbrace{ \begin{pmatrix}
+			0\\
+			0\\
+			\vdots\\
+			0\\
+			0\\
+			0\\
+			\vdots\\
+			0
+		\end{pmatrix}}_{\Theta}
+	\end{gather*}
+	\begin{flalign*}
+		r+1\colon \quad &1\cdot \lambda_1 + 0\cdot \lambda_2 + \ldots + 0\cdot \lambda_k = 0\ \Rightarrow\ \lambda_1 = 0&\\
+		r+2\colon \quad &0\cdot \lambda_1 + 1\cdot \lambda_2 + \ldots + 0 \cdot \lambda_k = 0\ \Rightarrow\ \lambda_2 = 0&\\
+		n \colon \quad &0\cdot \lambda_1 + 0\cdot \lambda_2 + \ldots + 1\cdot \lambda_k = 0\ \Rightarrow\ \lambda_k = 0 &
+	\end{flalign*}
+	В результате получили тривиальную, равную нулю, линейную комбинацию решений однородной СЛАУ.\\
+	Тогда по определению эти решения являются линейно-независимыми.\\
+	Тогда по определению они образуют фундаментальную систему решений СЛАУ.
+\end{proof}
+
+\newpage
+\subsection{Вывести формулы Крамера для решения системы линейных уравнений с обратимой матрицей}
+Пусть задана СЛАУ в координатной форме. Запишем эту СЛАУ в матричном виде, где $A$ имеет размерность $n\times n$ (количество уравнений = количество переменных).
+\begin{gather*}
+A \cdot X = B\\ 
+A_{n\times n} = \begin{pmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{n1} & a_{n2} & \ldots & a_{nn} \\
+\end{pmatrix}, \quad B_{n\times 1} = \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix}
+\end{gather*}
+Пусть матрица $A$ невырожденная, $\det A \ne 0$. Тогда обратная матрица будет иметь вид:
+\begin{gather*}
+A^{-1} = \frac{1}{\det A} \cdot \begin{pmatrix}
+A_{11} & A_{12} & \ldots & A_{1n} \\
+A_{21} & A_{22} & \ldots & A_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+A_{n1} & A_{n2} & \ldots & A_{nn} \\
+\end{pmatrix}^{T} = \begin{pmatrix}
+\frac{A_{11}}{\det A} & \frac{A_{21}}{\det A} & \ldots & \frac{A_{n1}}{\det A} \\[1ex]
+\frac{A_{12}}{\det A} & \frac{A_{22}}{\det A} & \ldots & \frac{A_{n2}}{\det A} \\[1ex]
+\ldots & \ldots & \ldots & \ldots\\[1ex]
+\frac{A_{1n}}{\det A} & \frac{A_{2n}}{\det A} & \ldots & \frac{A_{nn}}{\det A}
+\end{pmatrix}
+\end{gather*}
+Решением уравнения будет $X = A^{-1} \cdot B$
+\begin{gather*}
+\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} = X = \begin{pmatrix}
+\frac{A_{11}}{\det A} & \frac{A_{21}}{\det A} & \ldots & \frac{A_{n1}}{\det A} \\[1ex]
+\frac{A_{12}}{\det A} & \frac{A_{22}}{\det A} & \ldots & \frac{A_{n2}}{\det A} \\[1ex]
+\ldots & \ldots & \ldots & \ldots\\[1ex]
+\frac{A_{1n}}{\det A} & \frac{A_{2n}}{\det A} & \ldots & \frac{A_{nn}}{\det A}
+\end{pmatrix} \cdot \begin{pmatrix}
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{pmatrix}
+\end{gather*}
+\begin{gather*}
+x_1 = \frac{A_{11}}{\det A} \cdot b_1 + \frac{A_{21}}{\det A} \cdot b_2 + \ldots + \frac{A_{n1}}{\det A} \cdot b_n = \frac{A_{11}b_1 + A_{21}b_2 + \ldots + A_{n1}b_n}{\det A}
+\end{gather*}
+Числитель -- разложение определителя $A_1$ по столбцу: 
+\begin{gather*}
+\Delta_1 = \begin{vmatrix}
+b_1 & a_{12} & \ldots & a_{1n} \\
+b_2 & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+b_n & a_{n2} & \ldots & a_{nn} \\
+\end{vmatrix}\qquad \Delta = \begin{vmatrix}
+a_{11} & a_{12} & \ldots & a_{1n} \\
+a_{21} & a_{22} & \ldots & a_{2n} \\
+\ldots & \ldots & \ldots & \ldots \\
+a_{n1} & a_{n2} & \ldots & a_{nn} \\
+\end{vmatrix}\\
+\det A = \Delta\qquad x_1 = \frac{\Delta 1}{\Delta}
+\end{gather*}
+Определитель $\Delta_1$ получается из определителя $\Delta$, если заменить первый столбец этого определителя на столбец свободных членов СЛАУ.
+Определитель $\Delta_1$ называется \textbf{главным}. \vspace{-\topsep}
+\begin{gather*}
+\boxed{x_i = \frac{\Delta_i}{\Delta}},\ i = 1,\ldots,n \textbf{ --- формула Крамера}
+\end{gather*}
+Определитель $\Delta_i$ получается из главного определителя путём замены $i$-го столбца на столбец свободных членов СЛАУ.
+
+\newpage
+\subsection{Доказать теорему о структуре общего решения однородной СЛАУ}
+\begin{theorem*}[О структуре общего решения однородной СЛАУ]
+	Пусть $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ --- это некоторая ФСР однородной СЛАУ $A\cdot X = \Theta$. \\
+	Тогда любое решение однородной СЛАУ:
+	\begin{gather*}
+		X_{\underset{\text{(оо)}}{\text{однор.}}} = c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)}\qquad c_i = const,\ i=1,\ldots,k
+	\end{gather*}
+\end{theorem*}
+\begin{proof}
+	Пусть СЛАУ: \setcounter{equation}{0} \vspace{-\topsep}
+	\begin{align}
+		\left\{
+			{ \setlength{\arraycolsep}{1.5pt}    
+			\begin{array}{lllllllll}
+				a_{11}x_1 & + & a_{12}x_2 & + & \ldots & + & a_{1n}x_n & = & 0 \\
+				a_{21}x_1 & + & a_{22}x_2 & + & \ldots & + & a_{2n}x_n & = & 0 \\
+				\hdotsfor{9}                                     \\
+				a_{m1}x_1 & + & a_{m2}x_2 & + & \ldots & + & a_{mn}x_n & = & 0
+			\end{array} } \right.
+	\end{align}
+	\begin{gather*}
+		\text{Пусть } X = \begin{pmatrix}
+			x_1\\
+			x_2\\
+			\vdots\\
+			x_n
+		\end{pmatrix} \text{ --- решение (1) и матрица $A$ имеет ранг $r$ } (\Rg A = r).
+	\end{gather*}
+	\hspace{0.6cm}Тогда, если $X$ является решением системы (1), то он является решением первых $r$ уравнений, соответствующих базисным строкам матрицы $A$.\\
+	(Пусть базисный минор состоит из первых $r$ строк и $n$ столбцов матрицы $A$, тогда столбец $X$ является и решением уравнений с $r+1$ до $m$, которые являются линейной комбинацией первых $r$ уравнений этой системы, и поэтому эти уравнения можно исключить.)\par
+	Так как базисный минор включает первые $r$ столбцов матрицы $A$, то базисными переменными будут переменные, соответствующие этим столбцам.\\
+	Зависимые переменные: $x_1, x_2, \ldots, x_r$\\
+	Свободные переменные: $x_{r+1}, x_{r+2}, \ldots, x_n$\\
+	После исключения из системы (1) уравнений с $r+1$ до $m$ получаем следующую систему уравнений:
+	\begin{align}
+		\left\{
+		\begin{array}{l}
+			a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r + a_{1, r+1}x_{r+1} + \ldots + a_{1n}x_{n} = 0 \\
+			a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r + a_{2, r+1}x_{r+1} + \ldots + a_{2n}x_{n}= 0 \\
+			\hdotsfor{1} \\
+			a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r + a_{r, r+1}x_{r+1} + \ldots + a_{rn}x_{n}= 0
+		\end{array} \right.
+	\end{align}
+	\hspace{0.6cm}Преобразуем систему (2) так, чтобы в левой части остались слагаемые, содержащие только базисные переменные, а в правой -- свободные.
+	\begin{align}
+		\left\{
+		\begin{array}{l}
+			a_{11}x_1 + a_{12}x_2 + \ldots + a_{1r}x_r = - a_{1, r+1}x_{r+1} - \ldots - a_{1n}x_{n} \\
+			a_{21}x_1 + a_{22}x_2 + \ldots + a_{2r}x_r = - a_{2, r+1}x_{r+1} - \ldots - a_{2n}x_{n} \\
+			\hdotsfor{1} \\
+			a_{r1}x_1 + a_{r2}x_2 + \ldots + a_{rr}x_r = - a_{r, r+1}x_{r+1} - \ldots - a_{rn}x_{n}
+		\end{array} \right.
+	\end{align}
+	\hspace{0.6cm}Задавая различные значения свободных переменных, мы получаем систему (3), которая будет иметь единственное решение, так как главный определитель этой системы будет равен главному минору, который не равен нулю. ($\Delta = M \ne 0$)\\
+	Решаем систему и получаем следующее решение:
+	\begin{gather}
+		\left\{
+			{ \setlength{\arraycolsep}{1.5pt} 
+		\begin{array}{lllllllll}
+			x_1 & = & \lambda_{1, r+1}x_{r+1} & + & \lambda_{1, r+2}x_{r+2} & + & \ldots & + & \lambda_{1n}x_{n}\\
+			x_2 & = & \lambda_{2, r+1}x_{r+1} & + & \lambda_{2, r+2}x_{r+2} & + & \ldots & + & \lambda_{2n}x_{n}\\
+			\hdotsfor{9} \\
+			x_r & = & \lambda_{r, r+1}x_{r+1} & + & \lambda_{r, r+2}x_{r+2} & + & \ldots & + & \lambda_{rn}x_{n}\\
+		\end{array} } \right.
+	\end{gather}
+	Если столбцы $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ образуют ФСР, то они удовлетворяют решению (4).
+	\begin{gather}
+		\left\{ 
+			{ \setlength{\arraycolsep}{1.5pt}  
+		\begin{array}{lllllllll}
+			x_1^{(i)} & = & \lambda_{1, r+1}x_{r+1}^{(i)} & + & \lambda_{1, r+2}x_{r+2}^{(i)} & + & \ldots & + & \lambda_{1n}x_{n}^{(i)}\\
+			x_2^{(i)} & = & \lambda_{2, r+1}x_{r+1}^{(i)} & + & \lambda_{2, r+2}x_{r+2}^{(i)} & + & \ldots & + & \lambda_{2n}x_{n}^{(i)}\\
+			\hdotsfor{9} \\
+			x_r^{(i)} & = & \lambda_{r, r+1}x_{r+1}^{(i)} & + & \lambda_{r, r+2}x_{r+2}^{(i)} & + & \ldots & + & \lambda_{rn}x_{n}^{(i)}\\
+		\end{array} } \right. \qquad i=1,\ldots,k
+	\end{gather} \vspace{-1.5\topsep}
+	\begin{gather*}
+		X^{(i)} = \begin{pmatrix}
+		X_1^{(i)}\\
+		X_2^{(i)}\\
+		\vdots\\
+		X_r^{(i)}\\
+		X_{r+1}^{(i)}\\
+		\vdots\\
+		X_n^{(i)}
+		\end{pmatrix}\qquad \text{$i$ -- номер столбца, входящего в ФСР.}
+	\end{gather*}
+	Составим матрицу, в которой первый столбец --- это столбец $X$, являющийся решением СЛАУ: 
+	\begin{gather*}
+		B=\begin{pNiceMatrix}[last-row]
+			x_1 & x_1^{(1)} & x_1^{(2)} & \ldots & x_1^{(k)}\\
+			x_2 & x_2^{(1)} & x_2^{(2)} & \ldots & x_2^{(k)} \\
+			\ldots & \ldots & \ldots & \ldots & \ldots\\
+			x_r & x_r^{(1)} & x_r^{(2)} & \ldots & x_r^{(k)} \\
+			x_{r+1} & x_{r+1}^{(1)} & x_{r+1}^{(2)} & \ldots & x_{r+1}^{(k)}\\
+			\ldots & \ldots & \ldots & \ldots & \ldots\\
+			x_n & x_n^{(1)} & x_n^{(2)} & \ldots & x_n^{(k)} \\ 
+			X & X^{(1)} & X^{(2)} & \ldots & X^{(k)}
+		\end{pNiceMatrix}
+	\end{gather*}
+	Вычтем из элементов первой строки линейную комбинацию соответствующих элементов строк с $r+1$ до $n$ с коэффициентами $\lambda_{1, r+1}, \lambda_{1, r+2}, \ldots, \lambda_{1n}$ :
+	\begin{gather*}
+		\begin{array}{cr}
+			x_1^{(1)} - \lambda_{1, r+1}x_{r+1}^{(1)} - \lambda_{1, r+2}x_{r+2}^{(1)} - \ldots - \lambda_{1n}x_{n}^{(1)} = 0 & \text{(используя 5)}\\
+			x_2^{(2)} - \lambda_{1, r+1}x_{r+1}^{(2)} - \lambda_{1, r+2}x_{r+2}^{(2)} - \ldots - \lambda_{1n}x_{n}^{(2)} = 0 & \text{(используя 5)}\\
+			\hdotsfor{1} \\
+			x_r^{(k)} - \lambda_{1, r+1}x_{r+1}^{(i)} - \lambda_{1, r+2}x_{r+2}^{(k)} - \ldots - \lambda_{1n}x_{n}^{(k)} = 0 & \text{(используя 5)}\\[1ex]
+			\Downarrow & \\
+			x_1 - \lambda_{1, r+1}x_{r+1} - \lambda_{1, r+2}x_{r+2} - \ldots - \lambda_{1n}x_{n} = 0 & 
+		\end{array}
+	\end{gather*}
+	Получили, что элементы первой строки равны нулю.\\
+	Аналогично вычитаем из элементов второй строки соответствующие элементы строк с $r+1$ до $n$ с коэффициентами $\lambda_{2, r+1}, \lambda_{2, r+2}, \ldots, \lambda_{2n}$.\newpage
+	Используя (5) получаем, что все элементы второй строки тоже равны нулю.
+	Далее продолжаем вычитать из элементов $r$-ой строки соответствующие элементы строк с $r+1$ до $n$ с коэффициентами $\lambda_{r, r+1}, \lambda_{r, r+2}, \ldots, \lambda_{rn}$.\par
+	В результате получаем, что в преобразованной матрице первые $r$ строк будут нулевыми.
+	\begin{gather*}
+		B\sim \begin{pNiceMatrix}[last-row]
+			0 & 0 & 0 & \ldots & 0 \\
+			0 & 0 & 0 & \ldots & 0 \\
+			\ldots & \ldots & \ldots & \ldots & \ldots\\
+			0 & 0 & 0 & \ldots & 0 \\
+			x_{r+1} & x_{r+1}^{(1)} & x_{r+1}^{(2)} & \ldots & x_{r+1}^{(k)}\\
+			\ldots & \ldots & \ldots & \ldots & \ldots\\
+			x_n & x_n^{(1)} & x_n^{(2)} & \ldots & x_n^{(k)} \\ 
+			X & X^{(1)} & X^{(2)} & \ldots & X^{(k)}
+		\end{pNiceMatrix}
+	\end{gather*}\par
+	Поскольку элементарные преобразования не меняют ранг матрицы, то получаем, что $\Rg B = k$, где $k = n-r$. По условию столбцы $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$ образуют ФСР, следовательно, являются линейно независимыми. Значит, первый столбец матрицы $B$ можно представить в виде линейной комбинации столбцов $X^{(1)}, X^{(2)}, \ldots, X^{(k)}$. Получили: 
+	\begin{gather*}
+		X_{} = c_1X^{(1)} + c_2X^{(2)} + \ldots + c_kX^{(k)}
+	\end{gather*} 
+\end{proof}
+
+
+
+\end{document}
