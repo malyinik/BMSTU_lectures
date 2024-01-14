@@ -91,7 +91,7 @@
 
 \section{Сформулируйте и докажите теорему о сохранении функцией знака своего предела.}
 \begin{theorem}[О сохранении функцией знака своего предела]\hlabel{о сохранении функцией знака своего предела}
-  Если $\lim\limits_{x \to x_0} f(x) = a \ne 0$, то $\exists\ \mathring{S}(x_0, \delta)$ такая, что функция в ней сохраняет знак своего предела. \vspace{-\topsep}
+  Если $\lim\limits_{x \to x_0} f(x) = a \ne 0$, то $\exists\ \mathring{S}(x_0; \delta)$ такая, что функция в ней сохраняет знак своего предела. \vspace{-\topsep}
   \begin{gather*}
   \text{Кратко:\quad Если} \lim_{x \to x_0} f(x) = a \ne 0\ \longrightarrow\ 
   \begin{aligned}
@@ -104,7 +104,7 @@
 \begin{proof}
   $\bullet$ Пусть $a > 0$. Выберем  $\varepsilon = a > 0$.
   \begin{gather*}
-    \lim_{x \to x_0} f(x) = a \iff \big(\forall \varepsilon = a\big)\big(\exists \delta(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta)\ \Rightarrow\
+    \lim_{x \to x_0} f(x) = a \iff \big(\forall \varepsilon = a > 0\big)\big(\exists \delta(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta)\ \Rightarrow\
     |f(x)- a| < \varepsilon = a \big) 
   \end{gather*}
   Распишем: \vspace{-\topsep}
@@ -164,22 +164,22 @@
 \end{theorem}
 \begin{proof}
   По условию: 
-  \begin{gather*}
-    \lim_{x \to x_0} f(x) = a \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_1(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta)\ \Rightarrow\ |f(x) - a| < \varepsilon\big) \tag{1} \\
-    \lim_{x \to x_0} g(x) = a \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_2(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta)\ \Rightarrow\ |g(x) - a| < \varepsilon\big) \tag{2}
-  \end{gather*}
-  Выберем $\delta_0 = \min \{\delta_1; \delta_2, \delta\}$, тогда (1), (2) и $f(x) \le h(x) \le g(x)$ верны одновременно $\forall x \in \mathring{S}(x_0; \delta_0)$.
+  \begin{align*}
+    &\lim_{x \to x_0} f(x) = a \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_1(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta_1)\ \Rightarrow\ |f(x) - a| < \varepsilon\big) \tag{1} \\
+    &\lim_{x \to x_0} g(x) = a \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_2(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta_2)\ \Rightarrow\ |g(x) - a| < \varepsilon\big) \tag{2}
+  \end{align*}
+  Выберем $\delta_0 = \min \{\delta_1; \delta_2; \delta\}$, тогда (1), (2) и $f(x) \le h(x) \le g(x)$ верны одновременно $\forall x \in \mathring{S}(x_0; \delta_0)$.
   \begin{align*}
     \left. \begin{aligned}
     (1) \quad a - \varepsilon < &f(x) < a + \varepsilon \\
     (2) \quad a - \varepsilon < &g(x) < a + \varepsilon \\
     f(x) \le &h(x) \le g(x)
-    \end{aligned}\right\} &\Rightarrow\ a - \varepsilon_1 < f(x) \le h(x) \le g(x) < a + \varepsilon_2\ \Rightarrow \\
+    \end{aligned}\right\} &\Rightarrow\ a - \varepsilon < f(x) \le h(x) \le g(x) < a + \varepsilon\ \Rightarrow \\
     &\Rightarrow\ \forall x \in \mathring{S}(x_0; \delta_0) \quad a - \varepsilon < h(x) < a + \varepsilon
   \end{align*} 
   В итоге: \vspace{-\topsep}
   \begin{gather*}
-    \big(\forall \varepsilon > 0\big)\big(\exists \delta_0(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta_0\ \Rightarrow\ |h(x) - a| < \varepsilon\big) \\
+    \big(\forall \varepsilon > 0\big)\big(\exists \delta_0(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta_0)\ \Rightarrow\ |h(x) - a| < \varepsilon\big) \\
     \Downarrow \\
     \text{По определению предела } (\textbf{\ref{sec: предел функции}})\colon \lim_{x \to x_0} h(x) = a
   \end{gather*}
@@ -210,7 +210,7 @@
     b \cdot \alpha(x) &= \text{б.м.ф. при } x \to x_0\qquad (\textbf{сл.\ref{сл: произведение б.м.ф и константы}}) \\ 
     \alpha(x) \cdot \beta(x) &= \text{б.м.ф. при } x \to x_0\qquad (\textbf{сл.\ref{сл: произведение б.м.ф}})
   \end{align*}
-  По теореме \textit{о сумме конечного числа с б.м.ф.} (\textbf{Т.\ref{о сумме конечного числа б.м.ф.}}):
+  По теореме \textit{о сумме конечного числа б.м.ф.} (\textbf{Т.\ref{о сумме конечного числа б.м.ф.}}):
   \begin{gather*}
     \gamma(x) = \text{б.м.ф. при } x \to x_0
   \end{gather*}
@@ -236,7 +236,7 @@
 \begin{proof}
   По условию: \vspace{-4pt}
   \begin{gather*}
-    \lim_{y \to a} \varphi(y) = c \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_1 > 0\big)\colon \big(\forall y\colon 0 < |y-a| < \delta_1\ \Rightarrow\ |\varphi(y) - a| < \varepsilon\big) \tag{1}
+    \lim_{y \to a} \varphi(y) = c \iff \big(\forall \varepsilon > 0\big)\big(\exists \delta_1 > 0\big)\colon \big(\forall y\colon 0 < |y-a| < \delta_1\ \Rightarrow\ |\varphi(y) - c| < \varepsilon\big) \tag{1}
   \end{gather*}
   Выберем в качестве $\varepsilon$ в пределе найденное $\delta_1\ (\varepsilon = \delta_1)$: \[
     \lim_{x \to x_0} f(x) = a \iff \big(\forall \delta_1 > 0\big) \big(\exists \delta_2 > 0\big)\colon \big(\forall x\colon 0 < |x - x_0| < \delta_2\ \Rightarrow\ |f(x) - a| < \delta_1\big) \tag{2} 
@@ -402,7 +402,7 @@
   \]
   Обозначим $\varepsilon = \dfrac{1}{M}$.
   \begin{gather*}
-    |\alpha(x) > M|\ \Rightarrow\ \frac{1}{|\alpha(x)|} < \frac{1}{M}
+    |\alpha(x)| > M\ \Rightarrow\ \frac{1}{|\alpha(x)|} < \frac{1}{M}
    \ \Rightarrow\ \left| \frac{1}{\alpha(x)} \right| < \varepsilon
   \end{gather*}
   По определению б.м.ф. (\textbf{опр.\ref{опр: б.м.ф.}}):
@@ -420,7 +420,7 @@
     \alpha(x) \sim \alpha_0(x) \\
     \beta(x) \sim \beta_0(x)
   \end{rcases}\ \Rightarrow\ 
-  \lim_{x \to x_0} \frac{\alpha(x)}{\beta(x)} = \frac{\alpha_0(x)}{\beta_0(x)} 
+  \lim_{x \to x_0} \frac{\alpha(x)}{\beta(x)} = \lim\limits_{x \to x_0}  \frac{\alpha_0(x)}{\beta_0(x)} 
   \] 
 \end{theorem}
 \begin{proof}
@@ -467,30 +467,26 @@
 \newpage
 \section{Сформулируйте и докажите теорему о сумме конечного числа бесконечно малых разных порядков.}
 
-\begin{theorem}[О сумме конечного числа бесконечно малых функций] \hlabel{о сумме конечного числа б.м.ф.}
-  Конечная сумма бесконечно малых функции есть бесконечно малая функция.
+\begin{theorem}[О сумме бесконечно малых разного порядка] \hlabel{Сумма бмф разного порядка}
+  Сумма бесконечно малых функций разных порядков малости эквивалентна слагаемому низшего порядка малости.
+  \begin{gather*}
+    \begin{rcases}
+      \alpha(x), \beta(x) \text{ --- б.м.ф при } x \to x_0 \\
+      \alpha(x) = o\big(\beta(x)\big) \text{ при } x \to x_0
+    \end{rcases} 
+    \implies \alpha(x) + \beta(x) \sim \beta(x) \text{, при } x \to x_0
+  \end{gather*}
 \end{theorem}
 \begin{proof}
-  Пусть дано конечное число бесконечно малых функций, например: $\alpha(x), \beta(x), x\to x_0$.
-  Тогда по определению бесконечно малой функции (\textbf{опр.\ref{опр: б.м.ф.}}): 
-  \[
-  \lim_{x \to x_0} \alpha(x) = 0 \qquad \lim_{x \to x_0} \beta(x) = 0
-  \]
-  Нужно доказать, что: $\lim\limits_{x \to x_0} \big(\alpha(x) + \beta(x)\big) = 0$ \\
-  Распишем: 
-  \begin{gather*}
-    \lim_{x \to x_0} \alpha(x) = 0 \iff \left(\forall \varepsilon_1 = \frac{\varepsilon}{2} > 0\right)\big(\exists \delta_1 > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta_1) \Rightarrow\ |\alpha(x)| < \varepsilon_1 = \frac{\varepsilon}{2}\right) \tag{1}\\
-    \lim_{x \to x_0} \beta(x) = 0 \iff \left(\forall \varepsilon_2 = \frac{\varepsilon}{2} > 0\right)\big(\exists \delta_2 > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta_2) \Rightarrow\ |\beta(x)| <  \varepsilon_2 = \frac{\varepsilon}{2}\right) \tag{2}
-  \end{gather*}
-  Выберем $\delta = \min \{\delta_1; \delta_2\}$. Тогда (1) и (2) верны одновременно. Получаем:
-  \begin{gather*}
-    \big(\forall \varepsilon > 0\big)\big(\exists \delta > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta) \Rightarrow\ |\alpha(x) + \beta(x)| \le |\alpha(x)| + |\beta(x)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon\right) 
-  \end{gather*}
-  Тогда по определению бесконечно малой функции:
-  \[
-  \lim_{x \to x_0} \big(\alpha(x) + \beta(x)\big) = 0
-  \] 
+  Рассмотрим предел:
+  \begin{align*}
+    \lim_{x \to x_0} \frac{\alpha(x) + \beta(x)}{\beta(x)} &= \lim_{x \to x_0} \left( \frac{\alpha(x)}{\beta(x)} + 1 \right) = \lim_{x \to x_0} \left( \frac{\alpha(x)}{\beta(x)}\right) + 1 = 0 + 1 = 1
+  \end{align*} 
 \end{proof}
+
+\begin{corollary}
+  Сумма б.б.ф. разного порядка роста эквивалентна слагаемому высшего порядка роста. 
+\end{corollary}
 
 \section{Сформулируйте и докажите теорему о непрерывности суммы, произведения и частного непрерывных функций.}
 
@@ -569,7 +565,7 @@
   \] 
 \end{note}
 \begin{theorem}
-  Основные элементарные функции непрерывны в области определения
+  Основные элементарные функции непрерывны в области определения.
 \end{theorem}
 \begin{proof}
   $\bullet$ Докажем её для функций $y = \sin x$ и $y=\cos x$. \\
@@ -582,11 +578,11 @@
     \Delta y &= f(x) - f(x_0) = y(x_0 + \Delta x) - y(x_0) = \sin(x_0 + \Delta x) - \sin(x_0) = \\
     &= 2\cdot \sin \frac{x_0 + \Delta x - x_0}{2}\cdot \cos \frac{x_0 + \Delta x + x_0}{2} = 2\cdot \sin \frac{\Delta x}{2}\cdot \cos \left( x_0 + \frac{\Delta x}{2} \right)
   \end{align*}
-  4. По теореме \textit{о произведении б.м.ф на ограниченную} (\textbf{Т.\ref{о произведении б.м.ф. на ограниченную}}):
+  4. По теореме \textit{о произведении б.м.ф. на ограниченную} (\textbf{Т.\ref{о произведении б.м.ф. на ограниченную}}):
   \begin{gather*}
     \lim\limits_{\Delta x \to 0} \Delta y = \lim\limits_{\Delta x \to 0} \left( 2\cdot \sin \frac{\Delta x}{2}\cdot \cos \left(x_0 + \frac{\Delta x}{2} \right) \right) = 0
   \end{gather*}
-  5. $\sin \dfrac{\Delta x}{2}$ --- б.м.ф при $\Delta x \to 0$ ?
+  5. $\sin \dfrac{\Delta x}{2}$ --- б.м.ф. при $\Delta x \to 0$ ?
   \[ \lim\limits_{\Delta x \to 0} \sin \frac{\Delta x}{2} = \sin 0 = 0\ \Rightarrow\ \sin \frac{\Delta x}{2} \text{ --- б.м.ф при } \Delta x \to 0 \]
   6. $\cos \left( x_0 + \dfrac{\Delta x }{2} \right)$ --- огр. функция?
     \[ \frac{\Delta x}{2} \to 0,\ \cos(x_0) \text{ --- огр.}\ \Rightarrow\ \left| \cos \left( x_0 + \frac{\Delta x}{2} \right) \right| \le 1 \text{ --- огр. функция} \]
@@ -630,7 +626,7 @@
     \draw[dotted] (5, 0) node[below]{$x_*$} -- (5,1);
     \draw[dotted] (6.5, 0) node[below]{$b$} -- (6.5, 3) node[above]{$y = f(x)$};
     \end{tikzpicture}
-  \caption{Теорема №20}
+  \caption{Теорема №21}
   \end{subfigure}
   \begin{subfigure}{0.3\textwidth}
     \begin{tikzpicture}[>=latex, very thick, scale = 0.5]
@@ -643,7 +639,7 @@
     \draw[dotted] (0, -2) node[left] {$f(a)$} -- (1, -2);
     \draw[dotted] (0, 2) node[left] {$f(b)$} -- (5, 2) node[above]{$y=f(x)$} -- (5,0) node[below]{$b$};
     \end{tikzpicture}
-  \caption{Теорема №21}
+  \caption{Теорема №22}
   \end{subfigure}
   \begin{subfigure}{0.3\textwidth}
     \begin{tikzpicture}[>=latex, very thick, scale = 0.5]
@@ -657,7 +653,7 @@
     \draw[dotted] (1.5, 0) node[below]{$c$} |- (0, 2.75) node[left]{$C$};
     \draw[dotted] (1,0) node[below]{$a$} |- (0, 1) node[left]{$A=f(a)$};
     \end{tikzpicture}
-  \caption{Теорема №22}
+  \caption{Теорема №23}
   \end{subfigure}
 \end{figure}
   
@@ -971,7 +967,7 @@ skipbelow = 20pt,
   В итоге получаем: \[ \Delta F = f'(b) \cdot g'(a) \cdot \Delta x + \gamma ( \Delta x) \cdot \Delta x \]
   $f'(b)\cdot \alpha(\Delta x)$ -- б.м.ф. при $\Delta x \to 0$ (как произведение постоянной на б.м.ф)\\
   Так как $u=g(x)$ дифференцируема в точке $x=a$, то по теореме \textit{о связи дифференцируемости и непрерывности функции} (\textbf{Т.\ref{Связь диф. и непр. функции}}) $\Rightarrow\ u=g(x)$ непрерывна в точке $x=a\ \Rightarrow$\\
-  $\Rightarrow$ по определению непрерывности (\textbf{опр.\ref{опр: функция непрерывная в точке}}) $\lim\limits_{\Delta x \to 0} \Delta u = 0$ или при $\Delta x \to 0,\ \Delta u \to 0$ \vspace{-\topsep}
+  $\Rightarrow$ по определению непрерывности (\textbf{опр.\ref{опр: функция непрерывная в точке (приращение)}}) $\lim\limits_{\Delta x \to 0} \Delta u = 0$ или при $\Delta x \to 0,\ \Delta u \to 0$ \vspace{-\topsep}
   \begin{align*}
     &\left. \begin{aligned}
     g'(a)\cdot \beta(\Delta u) &\text{ -- б.м.ф. при } \Delta x \to 0 \text{ (как произведение постоянной на б.м.ф.)}\\
@@ -1013,7 +1009,7 @@ $x$ -- неизвестная переменная\\
 \begin{proof}
   Пусть $\begin{aligned}
     &y=f(x)\\
-    &y=\varphi (t)
+    &x=\varphi (t)
   \end{aligned}$, тогда можно задать сложную функцию $F(t) = y = f(\varphi (t))$\\
   По определению дифференциала функции (\textbf{опр.\ref{опр: дифференциал}}):
   \begin{gather}
@@ -1025,11 +1021,11 @@ $x$ -- неизвестная переменная\\
   \end{gather} 
   Подставим (2) в (1): \vspace{-\topsep}
   \begin{gather}
-    dy = f'(x) \cdot \varphi(t)dt
+    dy = f'(x) \cdot \varphi'(t)dt
   \end{gather}
   По определению дифференцируемой функции (\textbf{опр.\ref{опр: дифференцируемая функция}}):
   \begin{gather}
-    dx = x \varphi'(t)dt
+    dx = \varphi'(t)dt
   \end{gather}
   Подставим (4) в (3): \vspace{-1.5\topsep}
   \begin{gather*}
@@ -1110,9 +1106,9 @@ $x$ -- неизвестная переменная\\
 	$F(x)$ непрерывна на $[a;b]$ как сумма непрерывных функций.\\
 	Существует конечная производная функции $F(x)$. \vspace{-\topsep}
 	\begin{flalign*}
-    & F'(x) = f'(x) - \frac{f(b) - f(a)}{b-a} \Rightarrow\ \begin{aligned}  & \textit{    необходимому и достаточному} \\
-    & \textit{условию дифференцируемости }\end{aligned}\ (\textbf{Т.\ref{Услов    дифференцируемости}}) \Rightarrow & \\
-    & \Rightarrow\ F(x) \text{ -- дифференцируема на } (a;b)&
+    & F'(x) = f'(x) - \frac{f(b) - f(a)}{b-a} \Rightarrow\ \begin{aligned}  & \textit{необходимому и достаточному} \\
+    & \textit{условию дифференцируемости }\end{aligned}\ (\textbf{Т.\ref{Условие дифференцируемости}}) \Rightarrow & \\
+    & \Rightarrow\ F(x) \text{ --- дифференцируема на } (a;b)&
 	\end{flalign*}
 	Покажем, что $F(a) = F(b)$:
 	\begin{flalign*}
@@ -1191,7 +1187,7 @@ $x$ -- неизвестная переменная\\
 		 & \text{По условию 2) } \Rightarrow\ \left. 
 			\begin{aligned}
 				& \lim_{x \to x_0} f(x) = 0 = f(x_0) \\
-				& \lim_{x \to x_0} \varphi(x) = 0 = \varphi(x)
+				& \lim_{x \to x_0} \varphi(x) = 0 = \varphi(x_0)
 			\end{aligned} \right\}\ \Rightarrow\ \begin{aligned}
 				&\text{по определению непрерывной}\\
 				&\text{функции в точке } (\textbf{опр.\ref{опр: функция непрерывная в точке}})\ f(x) \text{ и } \varphi(x) \hspace{-1cm} \\
@@ -1211,7 +1207,7 @@ $x$ -- неизвестная переменная\\
 		\draw (2.5,0.5) to [out=-70, in=70] (2.5, -0.5);
 	\end{tikzpicture}\qquad $ \forall x \in S(x_0) \qquad [x_0; x] \text{ или } [x; x_0] $
 	\end{center}
-	функции $f(x)$ или $\varphi(x)$ удовлетворяют условию теоремы \textit{Коши} (\textbf{Т.\ref{Коши}}) на $[x_0; x]$.\\
+	Функции $f(x)$ или $\varphi(x)$ удовлетворяют условию теоремы \textit{Коши} (\textbf{Т.\ref{Коши}}) на $[x_0; x]$.\\
 	По теореме \textit{Коши} $\exists\ c \in (x_0; x)\colon$
 	\begin{gather*}
 		\frac{f(x) - f(x_0)}{\varphi(x)-\varphi(x_0)}=\frac{f'(c)}{\varphi'(c)} \tag{$*$}
@@ -1268,7 +1264,7 @@ $\left. \begin{array}{lclll}
 	Пусть функция $y=f(x)$ $(n+1)$ раз дифференцируема в $S(x_0)$,\\
 	$\forall x \in S(x_0)\colon f^{(n+1)}(x)\ne0$. Тогда: 
 	\begin{gather*}
-		\underset{\text{форма Лагранжа}}{\boxed{R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)'}\cdot (x- x_0)^{n+1}}, \text{ где } c \in S(x_0)}
+		\underset{\text{форма Лагранжа}}{\boxed{R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}\cdot (x- x_0)^{n+1}}, \text{ где } c \in S(x_0)}
 	\end{gather*}
 \end{theorem}
 \begin{proof}
@@ -1293,7 +1289,7 @@ $\left. \begin{array}{lclll}
 		\draw[thin, <->] (0.05, 0.1) -- (1.45, 0.1) node[midway, above]{$t$};
 		\node[above = 8pt] at (0, 0) {$S(x_0)$};
 	\end{tikzpicture} \qquad
-	\begin{tikzpicture}[very thick]
+	\begin{tikzpicture}[very thick, >=latex]
 		\tkzInit[xmin=-2.5, xmax=2.5, ymin=0, ymax=1]
 		\tkzDrawX[thick]
 		\draw (-2,0.35) to [out=-110, in=110] (-2, -0.35);
@@ -1305,14 +1301,14 @@ $\left. \begin{array}{lclll}
 	\end{tikzpicture}\\
 	Функция $F(t)$ удовлетворяет условию теоремы \textit{Ролля} (\textbf{Т.\ref{Ролль}}) на $[x_0; x]\ |\ [x; x_0]$
 	\begin{enumerate}
-		\item $F(t)$ -- непрерывна на $[x_0; x]\ |\ [x; x_0]$.\\
+		\item $F(t)$ --- непрерывна на $[x_0; x]\ |\ [x; x_0]$.\\
 		По условию функция $f(x)$ $(n+1)$ раз дифференцируема в $S(x_0)\ \Rightarrow$ по теореме \textit{о связи дифференцируемости и непрерывности} (\textbf{Т.\ref{Связь диф. и непр. функции}}):\\
-		 $f(t), f'(t), \ldots, f^{(n)}(t)$ -- непрерывны на $[x_0; x]\ |\ [x; x_0]$\\
-		$F(t)$ -- непрерывна на $[x_0; x]\ |\ [x; x_0]$ как сумма непрерывных функций
+		 $f(t), f'(t), \ldots, f^{(n)}(t)$ --- непрерывны на $[x_0; x]\ |\ [x; x_0]$.\\
+		$F(t)$ --- непрерывна на $[x_0; x]\ |\ [x; x_0]$ как сумма непрерывных функций.
 		\item $F(t)$ -- дифференцируема на $(x_0; x)\ |\ (x; x_0)$\\
 		По условию $y=f(x)$ $(n+1)$ раз дифференцируема в $S(x_0)\ \Rightarrow$\\
-		$f(t), f'(t), \ldots, f^{(n)}(t)$ -- дифференцируемы на $(x_0; x)\ |\ (x; x_0)$.\\
-		$F(t)$ -- дифференцируема как сумма дифференцируемых функций.
+		$f(t), f'(t), \ldots, f^{(n)}(t)$ --- дифференцируемы на $(x_0; x)\ |\ (x; x_0)$.\\
+		$F(t)$ --- дифференцируема как сумма дифференцируемых функций.
 		\item $F(x) = f(x) - f(x) = 0$  
 		\begin{flalign*}
 			F(x_0) = f(x_0) &+ \frac{f'(x_0)}{1!}\cdot(x-x_0) + \ldots + \frac{f^{(n)}(x_0)}{n!}\cdot(x-x_0)^{n} + &\\
@@ -1972,7 +1968,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 \subsection{Бесконечно малая и бесконечно большая функции}
 
 \begin{definition}\hlabel{опр: б.м.ф.}
-  Функция называется \textbf{бесконечно малой} при $x \to x_0$, если предел функции в этой точке равен $0$. Кратко --- \textbf{б.м.ф.} или \textbf{б.м.в}.
+  Функция называется \textbf{бесконечно малой} при $x \to x_0$, если предел функции в этой точке равен $0$. Кратко --- \textbf{б.м.ф.} или \textbf{б.м.в.}
   \begin{gather*}
     \lim_{x \to x_0} f(x) = 0 \iff \big(\forall \varepsilon > 0\big)\big(\exists\ \delta(\varepsilon) > 0\big)\colon \big(\forall x \in \mathring{S}(x_0; \delta)\ \Rightarrow\ |f(x)| < \varepsilon \big)
   \end{gather*}
@@ -2001,14 +1997,14 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 \end{definition}
 
 \begin{definition}
-  Две б.м.ф. $\alpha(x)$ и $\beta(x)$ называются \textbf{несравнимыми} , если:
+  Две б.м.ф. $\alpha(x)$ и $\beta(x)$ называются \textbf{несравнимыми}, если:
   \[
   \nexists \lim_{x \to x_0} \frac{\alpha(x)}{\beta(x)}
   \] 
 \end{definition}
 
 \begin{definition}
-  Две б.м.ф. $\alpha(x)$ и $\beta(x)$ называются \textbf{эквивалентными} , если:
+  Две б.м.ф. $\alpha(x)$ и $\beta(x)$ называются \textbf{эквивалентными}, если:
   \[
   \lim_{x \to x_0} \frac{\alpha(x)}{\beta(x)} = 1 \qquad \alpha(x) \sim \beta(x)\quad x\to x_0
   \] 
@@ -2072,7 +2068,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
   \end{gather*}
 \end{definition}
 
-\begin{definition}
+\begin{definition} \hlabel{опр: функция непрерывная в точке (приращение)}
   Функция $y = f(x)$ называется \textbf{непрерывной в точке} $x_0$, если бесконечно малому приращению аргумента соответствует бесконечно малое приращение функции. \[ \lim_{\Delta x \to 0} \Delta y = 0 \] 
 \end{definition}
 
@@ -2364,35 +2360,6 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
     При этом точка $\big(x_0, f(x_0)\big)$ называется \textbf{точкой перегиба \underline{графика функции}} $f(x)$.
 \end{definition}
 
-
-
-
-
-% предела последовательности [Л. 4]; 
-% предела функции (определения по Коши и по Гейне) [Л. 5];
-% окрестности и ε-окрестности точки x ∈ R [Л. 2];
-% окрестностей +∞, −∞ и ∞ [Л. 2];
-% сходящейся, ограниченной, возрастающей, убывающей, невозрастающей, неубывающей, монотонной, фундаментальной последовательностей [Л. 3, 4];
-% бесконечно малой и бесконечно большой функций [Л. 7];
-% бесконечно малых одного порядка, несравнимых, эквивалентных [Л. 8];
-% порядка малости и роста функции [Л. 8]
-% приращения функции [Л. 9];
-% функции, непрерывной в точке, на интервале, на отрезке [Л. 9];
-% точек разрыва: устранимого, I-го рода, II-го рода [Л. 9];
-% асимптоты [Л. 10];
-% производной функции в точке [Л. 11];
-% односторонней производной функции [Л. 11];
-% дифференцируемой функции [Л. 11];
-% дифференциала первого порядка [Л. 12];
-% производной и дифференциала n-го порядка [Л. 12]
-% возрастающей, невозрастающей, убывающей, неубывающей, монотонной, строго монотонной функций [Л. 15];
-% строгого и нестрогого локальных минимума, максимума, экстремума [Л. 15];
-% стационарной и критической точек [Л. 15];
-% выпуклости (вверх или вниз) графика функции на промежутке [Л. 16];
-% точки перегиба графика функции [Л. 16].
-
-
-
 \newpage
 \section{Используемые теоремы}
 
@@ -2402,6 +2369,31 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
     \lim_{x \to x_0} f(x) = \lim_{x \to x_0+} f(x) = \lim_{x \to x_0-} f(x) 
   \end{gather*}
 \end{theorem}
+
+\begin{theorem}[О сумме конечного числа бесконечно малых функций] \hlabel{о сумме конечного числа б.м.ф.}
+  Конечная сумма бесконечно малых функции есть бесконечно малая функция.
+\end{theorem}
+% \begin{proof}
+%   Пусть дано конечное число бесконечно малых функций, например: $\alpha(x), \beta(x), x\to x_0$.
+%   Тогда по определению бесконечно малой функции (\textbf{опр.\ref{опр: б.м.ф.}}): 
+%   \[
+%   \lim_{x \to x_0} \alpha(x) = 0 \qquad \lim_{x \to x_0} \beta(x) = 0
+%   \]
+%   Нужно доказать, что: $\lim\limits_{x \to x_0} \big(\alpha(x) + \beta(x)\big) = 0$ \\
+%   Распишем: 
+%   \begin{gather*}
+%     \lim_{x \to x_0} \alpha(x) = 0 \iff \left(\forall \varepsilon_1 = \frac{\varepsilon}{2} > 0\right)\big(\exists \delta_1 > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta_1) \Rightarrow\ |\alpha(x)| < \varepsilon_1 = \frac{\varepsilon}{2}\right) \tag{1}\\
+%     \lim_{x \to x_0} \beta(x) = 0 \iff \left(\forall \varepsilon_2 = \frac{\varepsilon}{2} > 0\right)\big(\exists \delta_2 > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta_2) \Rightarrow\ |\beta(x)| <  \varepsilon_2 = \frac{\varepsilon}{2}\right) \tag{2}
+%   \end{gather*}
+%   Выберем $\delta = \min \{\delta_1; \delta_2\}$. Тогда (1) и (2) верны одновременно. Получаем:
+%   \begin{gather*}
+%     \big(\forall \varepsilon > 0\big)\big(\exists \delta > 0\big)\colon \left(\forall x \in \mathring{S}(x_0; \delta) \Rightarrow\ |\alpha(x) + \beta(x)| \le |\alpha(x)| + |\beta(x)| < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon\right) 
+%   \end{gather*}
+%   Тогда по определению бесконечно малой функции:
+%   \[
+%   \lim_{x \to x_0} \big(\alpha(x) + \beta(x)\big) = 0
+%   \] 
+% \end{proof}
 
 \begin{theorem}\hlabel{для непрерывности сложной функции}
   Пусть функция $g(y)$ непрерывна в точке $y_0$, $y_0 = \lim\limits_{x\to x_0}f(x)$.\\
@@ -2473,19 +2465,3 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 \end{table}
 
 \end{document}
-
-
-
-
-
-% предел функции
-% б.м.ф
-% наклонная асимптота
-% производная в точке
-% непрерывная функция
-% дифференцируемость
-% дифференциал
-% не возрастающая не убывающая
-% строгий максимум минимум
-% выпуклая функция
-% точка перегиба
