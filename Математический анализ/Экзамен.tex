@@ -505,7 +505,7 @@
   \end{enumerate}
 \end{theorem}
 \begin{proof}
-  По определению непрерывной функции (\textbf{Т.\ref{опр: функция непрерывная в точке}}): 
+  По определению непрерывной функции (\textbf{опр.\ref{опр: функция непрерывная в точке}}): 
   \begin{gather*} 
     \lim_{x \to x_0} f(x) = f(x_0) \\
     \lim_{x \to x_0} g(x) = g(x_0) 
@@ -1268,6 +1268,7 @@ $\left. \begin{array}{lclll}
 	\end{gather*}
 \end{theorem}
 \begin{proof}
+  Формула Тейлора (\textbf{Т.\ref{формула Тейлора}}): \\
 	$f(x) = P_n(x) + R_n(x)$\\
 	Будем искать:
 	\begin{gather*}
@@ -1517,7 +1518,7 @@ $ y= f(x) = \ln (1+x) \qquad x_0 = 0 \qquad f(0) = \ln 1 = 0$
 		f^{(n)}(x) &= (-1)^{n+1} \cdot (n-1)! \cdot (1+x)^{-n} \\
 	\end{aligned}\right. \ \longrightarrow\ \left\{\begin{aligned}
 		f'(0) &= 1 = 0! \\[1.2ex]
-		f''(0) &= -1 \cdot (-1)\cdot 1! \\
+		f''(0) &= -1 = (-1)\cdot 1! \\
 		f'''(0) &= 2 = 2! \\
 		f^{(IV)}(0) &= (-1) \cdot 3! \\
 		\ldots\ldots&\ldots\ldots\ldots \\
@@ -1715,7 +1716,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 		\item дифференцируема на $(x_0; x)$\\
 		      По условию $y=f(x)$ дифференцируема в $\mathring{S}(x_0)\ \Rightarrow\ y=f(x)$ дифференцируема на $(x_0; x)$.
 	\end{enumerate}
-	По теореме \textit{Лагранжа} $\displaystyle \exists\ c \in (x_0; x)\colon f(c) = \frac{f(x) - f(x_0)}{x - x_0}$\\
+	По теореме \textit{Лагранжа} $\displaystyle \exists\ c \in (x_0; x)\colon f'(c) = \frac{f(x) - f(x_0)}{x - x_0}$\\
 	Так как $x > x_0$, то $x - x_0 > 0$.\\
 	По условию 1) при $x > x_0\colon f'(x) \overset{\scriptsize{\big(>\big)}}{<} 0\ \Rightarrow$
 	\begin{gather*}
