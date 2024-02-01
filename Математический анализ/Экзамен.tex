@@ -3,6 +3,21 @@
 \setlength{\cftsubsecnumwidth}{2.8em}
 \begin{document}
 
+\begin{titlepage}
+  \vspace*{0pt}
+  \vfill
+  \centering
+  \Huge\textbf{Математический анализ} \\[7pt]
+  \Large\textbf{Экзамен} \\
+  \large 1 семестр \\ 
+  \vfill
+  \begin{flushright}
+      \normalsize GitHub: \href{https://github.com/malyinik}{malyinik} \\
+  \end{flushright}
+  \normalsize 2024 г.
+\end{titlepage}
+\newpage
+
 \tableofcontents
 \newpage
 
@@ -11,7 +26,7 @@
 \begin{theorem}[О единственности предела сходящейся последовательности]
   Любая сходящаяся последовательность имеет единственный предел.
 \end{theorem}
-\begin{proof}[][Аналитическое доказательство]
+\begin{proof}[][Аналитическое]
   Пусть $\{x_{n}\} $ --- сходящаяся последовательность (\textbf{опр.\ref{опр: сходящаяся последовательность}}) . \\
   Рассуждаем методом от противного. Пусть последовательность $\{x_{n}\} $ имеет более одного предела. \vspace{-\topsep}
   \begin{gather*}
@@ -32,7 +47,7 @@
   Противоречие. Значит, предположение не является верным $\implies$ последовательность $\{x_{n}\}$ имеет единственный предел, то есть $a=b\ \lim\limits_{n \to \infty} x_n = a$.
 \end{proof}
 
-\begin{proof}[][Геометрическое доказательство]
+\begin{proof}[][Геометрическое]
   Нельзя уложить бесконечное число членов последовательности $\{x_{n}\}$ в две непересекающиеся окрестности.\\[2ex]
   \begin{tikzpicture}[>=latex, scale=0.4, thick]
     \tkzInit[xmin=0, xmax=14, ymin=0, ymax=0]
@@ -204,7 +219,7 @@
   \begin{align*}
     f(x) \cdot g(x) = \big(a + \alpha(x)\big)\cdot \big(b + \beta(x)\big) = ab + \underbrace{a \cdot \beta(x) + \alpha (x)\cdot b + \alpha(x) \cdot \beta(x)}_{\gamma(x)} = ab + \gamma(x) 
   \end{align*}
-  По следствиям из теоремы \textbf{Т.\ref{О связи функции, её предела и б.м.ф.}}:
+  По следствиям из теоремы (\textbf{Т.\ref{О связи функции, её предела и б.м.ф.}}):
   \begin{align*}
     a \cdot \beta(x) &= \text{б.м.ф. при } x \to x_0\qquad (\textbf{сл.\ref{сл: произведение б.м.ф и константы}}) \\ 
     b \cdot \alpha(x) &= \text{б.м.ф. при } x \to x_0\qquad (\textbf{сл.\ref{сл: произведение б.м.ф и константы}}) \\ 
@@ -259,7 +274,6 @@
 \begin{proof}
   1. Рассмотрим $\lim\limits_{x \to 0+} \dfrac{\sin x}{x} = 1$, $\lim\limits_{x \to 0-} \dfrac{\sin x}{x} = 1\ \Rightarrow\ \lim\limits_{x \to 0} \dfrac{\sin x}{x} = 1$  \\[1ex]
   2. Пусть $x$ --- угол в радианах, $x \to 0+,\ x \in \left(0; \dfrac{\pi}{2}\right)$.\\
-% рисунок
   Окружность $R = 1$.\\[1ex]
   3. Отложим $\angle x\colon$ вершина совпадает с точкой $O(0;0)$, 1 сторона --- с положительным направлением $OX$, $A(1;0)$.\\
   $K$ --- точка пересечения $\angle x$ и окружности. \\
@@ -607,7 +621,7 @@
   Если функция $y = f(x)$ непрерывна на $[a, b]$, то она достигает на этом отрезке своего наибольшего и наименьшего значений.\\
   Кратко:\vspace{-\topsep}
   \begin{gather*}
-    \big(f(x) \in C[a, b]\big)\ \Rightarrow\ \big(\exists\ x_{*},\ x^{*} \in [a, b]\colon (\forall x \in [a, b]\ \Rightarrow\ m = f(x_{*}) \le f(x) \le f(x^{*}) = M\big)
+    \big(f(x) \in C[a, b]\big)\ \Rightarrow\ \big(\exists\ x_{*},\ x^{*} \in [a, b]\big)\colon (\forall x \in [a, b]\ \Rightarrow\ m = f(x_{*}) \le f(x) \le f(x^{*}) = M\big)
   \end{gather*}
 \end{theorem} \vspace{-\topsep}
 \begin{figure}[h]
@@ -664,7 +678,7 @@
     \big(f(x) \in C[a, b]\big) \wedge \big(f(x) \cdot f(b)< 0\big)\ \Rightarrow\ \big(\exists\ c \in (a, b)\big)\colon f(x) = 0
   \end{gather*}
 \end{theorem}
-  \begin{theorem}[о промежуточном значении непрерывной функции (\textbf{Вторая теорема Больцана-Коши})]
+\begin{theorem}[о промежуточном значении непрерывной функции (\textbf{Вторая теорема Больцана-Коши})]
   Если функция $y = f(x)$ непрерывна на $[a, b]$ и принимает на границах отрезка различные значения ($f(a) = A \ne f(b) = B$), то $\forall C$, лежащего между $A$ и $B$, $\exists\ c \in (a, b),\ f(c) = C$\\
   Кратко: \vspace{-\topsep}
   \begin{gather*}
@@ -807,7 +821,7 @@
   \textbf{Дано}: $\exists\ y'(x_0)$ -- конечное число\\
   \textbf{Доказать}: $y=f(x)$ дифференцируема в точке $x_0$\\
   Т.к. $\exists\ y'(x_0)$, то по определению производной: $y'(x_0) = \lim\limits_{\Delta x \to 0} \dfrac{\Delta y}{\Delta x}$\\\\
-  По теореме \textit{о связи функции, её предела и б.м.ф.} (\textbf{c.\pageref{О связи функции, её предела и б.м.ф.}, Т.\ref{О связи функции, её предела и б.м.ф.}}) $\Rightarrow\ \dfrac{\Delta y}{\Delta x} = y'(x_0) + \alpha (\Delta x)$,\\\\ где $\alpha (\Delta x)$ -- б.м.ф. при $\Delta x \to 0$ \\
+  По теореме \textit{о связи функции, её предела и б.м.ф.} (\textbf{С.\pageref{О связи функции, её предела и б.м.ф.}, Т.\ref{О связи функции, её предела и б.м.ф.}}) $\Rightarrow\ \dfrac{\Delta y}{\Delta x} = y'(x_0) + \alpha (\Delta x)$,\\\\ где $\alpha (\Delta x)$ -- б.м.ф. при $\Delta x \to 0$ \\
   $\Delta y = y'(x_0)\cdot \Delta x + \alpha (\Delta x) \cdot \Delta x$, где $\underbrace{y'(x_0)}_{A}$ -- $const\ \Rightarrow$\\
   $\Rightarrow\ y=f(x)$ дифференцируема в точке $x_0$
 \end{proof}
@@ -830,7 +844,7 @@
   \lim\limits_{\Delta x \to 0} \Delta y &= \lim\limits_{\Delta x \to 0} \big(y'(x_0)\cdot \Delta x + \alpha (\Delta x) \cdot \Delta x\big) = \\
   &= y'(x_0)\cdot \lim\limits_{\Delta x \to 0} \Delta x + \lim\limits_{\Delta x \to 0} \alpha(\Delta x)\cdot \lim\limits_{\Delta x \to 0} \Delta x = y'(x_0) \cdot 0 + 0\cdot 0 = 0
   \end{align*}
-  По определению непрерывной функции (\textbf{опр.\ref{опр: функция непрерывная в точке}}) $y=f(x)$ непрерывна в точке $x_0$.
+  По определению непрерывной функции (\textbf{опр.\ref{опр: функция непрерывная в точке (приращение)}}) $y=f(x)$ непрерывна в точке $x_0$.
 \end{proof}
 \begin{center}
   \fbox{\pbox[c][20pt]{5cm}{дифференцируемость}} $\begin{aligned} \Longrightarrow\\ \cancel{\Longleftarrow} \end{aligned}$ \fbox{\pbox[c][20pt]{5cm}{непрерывность}}
@@ -1213,7 +1227,7 @@ $x$ -- неизвестная переменная\\
 		\frac{f(x) - f(x_0)}{\varphi(x)-\varphi(x_0)}=\frac{f'(c)}{\varphi'(c)} \tag{$*$}
 	\end{gather*}
 	\begin{flalign*}
-	& \text{Так как } f(x_0) = 0,\ f(x_0) = 0\ \Rightarrow\ \boxed{\displaystyle\frac{f(x)}{\varphi(x)} = \displaystyle\frac{f'(c)}{\varphi'(c)}} \tag{$*$} &\\
+	& \text{Так как } f(x_0) = 0,\ \varphi(x_0) = 0\ \Rightarrow\ \boxed{\displaystyle\frac{f(x)}{\varphi(x)} = \displaystyle\frac{f'(c)}{\varphi'(c)}} \tag{$*$} &\\
 	& \text{Так как } \exists \lim\limits_{x \to x_0} \frac{f'(x)}{\varphi'(x)} = A\colon &
 	\end{flalign*}
 	\begin{minipage}{16cm}
@@ -1886,7 +1900,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 \end{definition}
 
 \begin{definition}
-  \textbf{Окрестностью} $\bm{-\infty}$ называется любой интеграл вида:
+  \textbf{Окрестностью} $\bm{-\infty}$ называется любой интервал вида:
   \[
   S(-\infty) = (-\infty; -a),\ a\in \R,\ a > 0
   .\] 
@@ -1959,7 +1973,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
 \end{definition}
 
 \begin{definition}
-Если $\nexists M \in \R, M > 0$, то функция $f(x)$ называется \textbf{неограниченной}.
+  Если $\nexists M \in \R, M > 0$, то функция $f(x)$ называется \textbf{неограниченной}.
 \end{definition}
 
 \begin{definition}\hlabel{опр: локально ограниченная функция}
@@ -2439,7 +2453,7 @@ $x_0 = 0$ \hspace{10.4cm} $f(0)=1$ \vspace*{-\topsep}
     3. $\arcsin x \sim x\ (x \to 0)$; &\quad 8. $\ln(1 + x) \sim x\ (x \to 0)$;\\
     4. $\arctg x \sim x\ (x \to 0)$; &\quad 9. $\log_a (1 + x) \sim x\cdot \log_a e\ (x \to 0)$;\\
     5. $1 - \cos x \sim \dfrac{x^2}{2}\ (x \to 0)$; &\quad 10. $(1 + x)^k - 1 \sim k\cdot x,\ k>0\ (x \to 0)$;\\
-    \multicolumn{2}{|l|}{11. $a_0 + a_1x + a_2x^2 + \ldots + a_nx^2 \sim a_nx^2\ (x \to \infty)$} \\
+    \multicolumn{2}{|l|}{11. $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n \sim a_nx^n\ (x \to \infty)$} \\
     \multicolumn{2}{|l|}{12. $a_1x + a_2x^2 + \ldots + a_nx^n \sim a_1x\ (x \to 0)$} \\
     \hline
   \end{tabular}
