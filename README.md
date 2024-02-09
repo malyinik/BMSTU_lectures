@@ -12,3 +12,6 @@
 - [РК Модуль №2](https://malyinik.github.io/Lectures_1st_course/Аналитическая%20геометрия/РК%20Модуль%20№2.pdf)
 
 Конспекты за первый модуль взяты у [zhikh23](https://github.com/zhikh23).
+
+## Интегралы и дифференциальные уравнения
+- [Лекции](https://malyinik.github.io/Lectures_1st_course/Интегралы%20и%20дифференциальные%20уравнения/Лекции.pdf)
