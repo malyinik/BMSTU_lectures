@@ -19,245 +19,233 @@
 
 \tableofcontents
 \newpage
+\input{Первообразная и неопределённый интеграл.tex}
+\newpage
+\zerocounter
+\input{Правильные и неправильные рациональные дроби.tex}
+\zerocounter
+\newpage
+
 
 %%%%%%%%
 
-\section{Первообразная и неопределённый интеграл}
+\section{Определённый интеграл. Криволинейная трапеция}
 
-\subsection{Первообразная}
-\begin{definition}\hlabel{опр: первообразная}
-    Функция $F(x)$ называется \textbf{первообразной} функции $f(x)$ на интервале $(a;b)$, если $F(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon$
-    \begin{gather}
-        \boxed{F'(x) = f(x)}
-    \end{gather}
-\end{definition}
-\begin{eg}
-    \begin{flalign*}
-        & f(x) = \frac{1}{2\sqrt{x}},\ D_f = (0; +\infty) &\\
-        & F(x) = \sqrt{x} \text{ --- первообразная } f(x) = \frac{1}{2\sqrt{x}} &\\
-        & F'(x) = (\sqrt{x})' = \frac{1}{2\sqrt{x}} = f(x) &\\
-        & F(x) = \sqrt{x} + 3 \text{ --- первообразная } f(x) = \frac{1}{2\sqrt{x}} &
-    \end{flalign*}
-\end{eg}
+\subsection{Определённый интеграл}
 
-\subsubsection{Свойства первообразной}
-
-    \begin{property}
-        Если $F(x)$ --- первообразная функции $f(x)$ на $(a;b)$, то $F(x) + C$ --- первообразная функции $f(x)$ на $(a;b)$, где $\forall C$ --- $const$.
-    \end{property}
-    \begin{property}
-        \sloppy Если $\varPhi(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon \varPhi'(x) = 0$, то $\varPhi (x) = const$, ${\forall x \in (a;b)}$.
-    \end{property}
-    \begin{property}[Существование первообразной]
-        Любая непрерывная функция на $(a;b)$ имеет множество первообразных на этом интервале, причём любые две из них отличаются друг от друга на константу.
-        \begin{gather*}
-            \varPhi(x),\ F(x) \text{ --- первообразные функции } f(x) \text{ на } (a;b) \\
-            \varPhi(x) - F(x) = const
-        \end{gather*}
-    \end{property}
-
-\newpage
-\subsection{Неопределённый интеграл}
-
-\begin{definition}\hlabel{опр: неопределённый интеграл}
-    Множество первообразных функции $f(x)$ на $(a;b)$ называется \textbf{неопределённым интегралом}.
-    \begin{gather}
-        \boxed{\int f(x)dx = F(x) + C}
-    \end{gather}
-    $\int$ --- знак интеграла\\
-    $f(x)$ --- подынтегральная функция\\
-    $f(x)dx$ --- подынтегральное выражение\\
-    $x$ --- переменная\\
-    $F(x) + C$ --- множество первообразных\\
-    $C$ --- произвольная константа
-\end{definition}
+\subsubsection*{Пусть функция $y = f(x)$ определена на $[a;b]$}
 
 \begin{definition}
-    \textbf{Интегрирование} --- нахождение неопределённого интеграла.
+    Множество точек $a = x_0 < x_1 < \ldots < x_i < \ldots < x_n = b$ называется \textbf{разбиением отрезка} $\bm{[a;b]}$, при этом отрезки $[x_{i-1}; x_i]$ называются \textbf{отрезками разбиения}. \\[2ex]
+    $i = 1,\ldots,n\quad i = \overline{1, n}$\\
+    $\Delta x_i = x_i - x_{i-1}$ --- длина $i$-го отрезка разбиения\quad $i = \overline{1, n}$\\
+    $\lambda = \underset{i}{\max}\, \Delta x_i$ --- диаметр разбиения\\
 \end{definition}
+Рассмотрим произвольное разбиение $[a;b]$. В каждом из отрезков разбиения $[x_{i-1}; x_i]$ выберем точку $\xi_i,\ i = \overline{1, n}$. Составим сумму
+\begin{gather}\hlabel{ф: интегральная сумма}
+    \boxed{S_n = \sum_{i=1}^{n}f(\xi_i)\cdot \Delta x_i}
+\end{gather}
+(\ref{ф: интегральная сумма}) --- интегральная сумма для функции $y=f(x)$ на $[a;b]$.
 
-\subsubsection{Свойства неопределённого интеграла}
-\setcounter{property}{0}
+% рисунок
 
-\begin{property}
-    Производная от неопределённого интеграла равна подынтегральной функции.
-    \begin{gather*}
-        \boxed{\left(\int{f(x)dx}\right)' = f(x)}
-    \end{gather*}
-\end{property}
-\begin{proof}
-    \begin{gather*}
-        \left(\int f(x)dx\right)' \xlongequal{(\ref{опр: неопределённый интеграл})} \big(F(x) + C\big)' = F'(x) + C' = F'(x) \xlongequal{(\ref{опр: первообразная})} f(x)
-    \end{gather*}
-\end{proof}
-
-\begin{property}
-    Дифференциал от неопределённого интеграла равен подынтегральному выражению.
-    \begin{gather*}
-        \boxed{d\left(\int f(x)dx\right) =  f(x)dx}
-    \end{gather*}
-\end{property}
-\begin{proof}[Докво]
-    \begin{gather*}
-        d\left(\int f(x)dx\right) \xlongequal{(\ref{опр: неопределённый интеграл})} d\big(F(x) + C\big) = \big(F(x) + C\big)'dx = \big(F'(x) + C'\big)dx = F'(x)dx \xlongequal{(\ref{опр: первообразная})} f(x)dx
-    \end{gather*}
-\end{proof}
-
-\newpage
-\begin{property}\hlabel{св: неопределённый интеграл 3}
-    Неопределённый интеграл от дифференциала от некоторой функции равен сумме этой функции и константы.
-    \begin{gather*}
-        \boxed{\int d\big(F(x)\big) = F(x) + C},\quad \forall C \text{ --- } const
-    \end{gather*}
-\end{property}
-\begin{proof}
-    \begin{gather*}
-        \int d\big(F(x)\big) = \int F'(x)dx \xlongequal{(\ref{опр: первообразная})} \int f(x)dx \xlongequal{\text{(\ref{опр: неопределённый интеграл})}} F(x) + C,\quad \forall C \text{ --- } const
-    \end{gather*}
-\end{proof}
-
-\begin{property}
-    Константу можно выносить за знак неопределённого интеграла.
-    \begin{gather*}
-        \boxed{\int \lambda\cdot f(x)dx = \lambda \int f(x)dx},\quad \lambda \ne 0
-    \end{gather*}
-\end{property}
-\begin{proof}
-    Пусть $F(x)$ --- первообразная $f(x)$
-    \begin{gather*}
-        \lambda \int f(x)dx \xlongequal{(\ref{опр: неопределённый интеграл})} \lambda \cdot \big(F(x) + C\big),\quad \forall C \text{ --- } const
-    \end{gather*}
-    Функция $\lambda \cdot F(x)$ --- первообразная $\lambda \cdot f(x)\colon$
-    \begin{gather*}
-        \big(\lambda \cdot F(x)\big)' = \lambda\cdot F'(x) \xlongequal{(\ref{опр: первообразная})} \lambda\cdot f(x)\\
-        \int \lambda\cdot f(x)dx \xlongequal{(\ref{опр: неопределённый интеграл})} \lambda\cdot F(x) + C_1,\quad \forall C_1 \text{ --- } const
-    \end{gather*}
-    Так как константы $C_1,\ C$ --- произвольные, $\lambda \ne 0$, то их всегда можно выбрать так, чтобы $C_1 = \lambda C$. Тогда множества $\lambda\cdot\big(F(x) + C\big)$ и $\lambda\cdot F(x) + C_1$ совпадают.
-\end{proof}
-
-\begin{property}
-    Если функции $f_1(x)$ и $f_2(x)$ на $(a;b)$ имеют первообразные $F_1(x)$ и $F_2(x)$ соответственно, то функция $\lambda_1 f_1(x) + \lambda_2 f_2(x)$, где $\lambda_1, \lambda_2 \in \R$, имеет первообразную на $(a;b)$, причём $\lambda_1^2 + \lambda_2^2 > 0\colon$
-    \begin{gather*}
-        \int\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)dx = \lambda_1 \int f_1(x)dx + \lambda_2 \int f_2(x)dx
-    \end{gather*}
-\end{property}
-\begin{proof}
-    $F_1(x)$ --- первообразная $f_1(x)$\\
-    $F_2(x)$ --- первообразная $f_2(x)$\\
-    \begin{align*}
-        \lambda_1 \int f_1(x)dx + \lambda_2 \int f_2(x)dx &\xlongequal{(\ref{опр: неопределённый интеграл})} \lambda_1 (F_1(x) + C_1) + \lambda_2 \big(F_2(x) + C_2\big) = \\
-        &= \lambda_1 F_1(x) + \lambda_2 F_2(x) + \lambda_1 C_1 + \lambda_2 C_2,\quad \forall C_1, C_2 \text{ --- } const
-    \end{align*}
-    Функция $F(x) = \lambda_1 F_1(x) + \lambda_2 F_2(x)$ --- первообразная функции $\lambda_1 f_1(x) + \lambda_2 f_2 (x)$.
-    \begin{gather*}
-        F'(x) = \big(\lambda_1 F_1(x) + \lambda_2 F_2 (x)\big)' = \lambda_1 F_1'(x) + \lambda_2 F_2'(x) \xlongequal{(\ref{опр: первообразная})} \lambda_1 f_1(x) + \lambda_2 f_2(x)\\
-        \int \Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)dx \xlongequal{(\ref{опр: неопределённый интеграл})} \lambda_1 f_1(x) + \lambda_2 f_2(x) + C,\quad \forall C \text{ --- } const
-    \end{gather*}
-    Так как константы $C_1,\ C_2,\ C$ --- произвольные, то всегда можно добиться выполнения равенства $C = \lambda_1 C_1 + \lambda_2 C_2$. \\
-    Тогда множества $\lambda_1 F_1(x) + \lambda_2 F_2(x) + \lambda_1 C_1 + \lambda_2 C_2$ и $\lambda_1 F_1(x) + \lambda_2 F_2(x) + C$ совпадают.
-\end{proof}
-
-\begin{property}[Инвариантность формы интегрирования]
-    Если $\int f(x)dx = F(x) + C$, где $C$ --- $const$, то $\int f(u)du = F(u) + C$, где $C$ --- $const$, ${u = \varphi (x)}$ --- непрерывно-дифференцируемая функция.
-\end{property}
-\begin{proof}
-    $x$ --- независимая переменная\\
-    $f(x)$ --- непрерывная функция\\
-    $F(x)$ --- первообразная $f(x)$\\[1ex]
-    $\displaystyle \int f(x)dx = F(x) + C,\ \forall C$ --- $const$\\[1ex]
-    Рассмотрим сложную функцию $F(u) = F\big(\varphi(x)\big)$. Найдём дифференциал $F(u)$:
-    \begin{gather*}
-        d\big(F(u)\big) = F'(u)\cdot \underbrace{\varphi'(x)dx}_{du} = \left|\begin{aligned} u &= \varphi (x)\\ du &= \varphi'(x)dx \end{aligned}\right| = F'(u)du \xlongequal{(\ref{опр: первообразная})} f(u)du
-    \end{gather*}
-    Неопределённый интеграл:
-    \begin{gather*}
-        \int f(u)du = \int d\big(F(u)\big) \xlongequal{\textbf{(св. \ref{св: неопределённый интеграл 3})}} F(u) + C,\quad \forall C \text{ --- } const
-    \end{gather*}
-\end{proof}
-
-\begin{eg}
-    \begin{flalign*}
-        & \int \sin x dx = -\cos x + C\qquad \sin (2x) d(2x) = -\cos(2x) + C &
-    \end{flalign*}
-\end{eg}
-
-\subsubsection{Геометрический смысл}
-Неопределённый интеграл геометрически представляет собой семейство интегральных кривых (графиков функций) вида $y = F(x) + C,\ \forall C$ --- $const$.
 \begin{figure}[h]
     \centering
-    \begin{tikzpicture}[very thick, scale=0.65]
-        \tkzInit[xmin=-1, xmax=7, ymin=-1, ymax=3]
-        \tkzDrawX[thick] \tkzDrawY[thick]
+    \begin{tikzpicture}
+        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
+        \tkzDrawX \tkzDrawY
+        \tkzDefPoint(3, 1.45){f}
+        \tkzDrawPoint[fill=black, size = 3pt](f)
         \node[below left] at (0, 0) {$0$};
-        
-        \draw (1, 1) .. controls (2.25, 1.5) and (2.75, 1.5) .. (4, 1) .. controls (5.25, 0.5) and (5.75, 0.5).. (7, 1) node[right]{$y=F(x) + C_2$};
-        \draw (1, 2) .. controls (2.25, 2.5) and (2.75, 2.5) .. (4, 2) .. controls (5.25, 1.5) and (5.75, 1.5).. (7, 2) node[right]{$y=F(x)$};
-        \draw (1, 3) .. controls (2.25, 3.5) and (2.75, 3.5) .. (4, 3) .. controls (5.25, 2.5) and (5.75, 2.5).. (7, 3) node[right]{$y=F(x) + C_1$};
+        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
+        \draw[thick, dotted] (1, 0) node[below]{$\underset{x_0}{a}$} -- (1, 1);
+        \draw[thick, dotted] (1.5, 0) node[below]{$x_1$} -- (1.5, 1.45);
+        \draw[thick, dotted] (2, 0) -- (2, 1.6);
+        \draw[thick, dotted] (2.5, 0) node[below]{\scriptsize{$x_{i-1}$}} -- (2.5, 1.5);
+        \draw[thick, dotted] (3, 0) node[below]{$\xi_i$} -- (3, 1.45) node[above]{$f(\xi_i)$};
+        \draw[thick, dotted] (3.5, 0) node[below]{$x_i$} -- (3.5, 1.3);
+        \draw[thick, dotted] (4, 0) -- (4, 1.2);
+        \draw[thick, dotted] (4.5, 0) -- (4.5, 1.25);
+        \draw[thick, dotted] (5, 0) node[below]{$\underset{x_n}{b}$} -- (5, 1.5);
     \end{tikzpicture}
-    \caption{Геометрический смысл неопределённого интеграла}
 \end{figure}
-    
-\subsubsection{Таблица основных интегралов}
 
-\begin{table}[h]
-    \caption{Таблица основных интегралов}
+\begin{definition}\hlabel{опр: определённый интеграл}
+    \textbf{Определённым интегралом} от функции $y=f(x)$ на $[a;b]$ называется \underline{конечный} предел интегральной суммы (\ref{ф: интегральная сумма}), когда число отрезков разбиения растёт, а их длины стремятся к нулю.
+    \begin{gather}\hlabel{ф: определённый интеграл}
+        \boxed{\int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x}
+    \end{gather}
+    Предел (\ref{опр: неопределённый интеграл}) не зависит от способа разбиения отрезка $[a;b]$ и выбора точек $\xi_i,\ \overline{1, n}$.\\
+    $f(x)$ --- подынтегральная функция\\
+    $f(x)\, dx$ --- подынтегральное выражение\\
+    $\displaystyle\int_{a}^{b}$ --- знак определённого интеграла\\
+    $a$ --- нижний предел интегрирования\\
+    $b$ --- верхний предел интегрирования
+\end{definition}
+
+\newpage
+\subsection{Криволинейная трапеция}
+
+\begin{definition}
+    \textbf{Криволинейной трапецией} называется фигура, ограниченная графиком функции $y=f(x)$, отрезком $[a;b]$ на $Ox$, прямыми $x = a$ и $x = b$ параллельными оси $Oy$.
+\end{definition}
+
+\subsubsection{Геометрический смысл}
+
+% рисунок 
+
+\begin{figure}[h]
     \centering
-    \begin{tabular}{|ll|}
-        \hline
-         & \\[-8pt]
-        1. $\displaystyle \int x^n dx = \frac{x^{n+1}}{n+1} + C,\ \forall C \text{ --- } const$ & 11. $\displaystyle \int \frac{dx}{a^2 - x^2} = \frac{1}{2a}\ln \left| \frac{a+x}{a-x} \right| + C$ \\[2ex]
-        2. $\displaystyle \int dx = x + C$ & 12. $\displaystyle \int \frac{dx}{x^2 - a^2} = \frac{1}{2a}\ln \left| \frac{a-x}{a+x} \right| + C$ \\[2ex]
-        3. $\displaystyle \int \frac{dx}{x} = \ln |x| + C$ & 13. $\displaystyle \int \frac{dx}{\sqrt{a^2 - x^2}} = \arcsin \frac{x}{a} + C$ \\[2ex]
-        4. $\displaystyle \int e^x dx = e^x + C$ & 14. $\displaystyle \int \frac{dx}{\sqrt{x^2 \pm a^2}} = \ln \left|x + \sqrt{x^2 \pm a^2}\right| + C$ \\[2ex]
-        5. $\displaystyle \int a^xdx = \frac{a^x}{\ln a} + C$ & 15. $\displaystyle \int \sh x\ dx = \ch x + C$\\[2ex]
-        6. $\displaystyle \int \sin x\ dx = -\cos x + C$ & 16. $\displaystyle \int \ch x\ dx = \sh x + C$ \\[2ex]
-        7. $\displaystyle \int \cos x\ dx = \sin x + C$ & 17. $\displaystyle \int \frac{dx}{\ch^2x} = \th x + C$ \\[2ex]
-        8. $\displaystyle \int \frac{dx}{\cos^2x} = \tg x + C$ & 18. $\displaystyle \int \frac{dx}{\sh^2x} = - \cth x + C$\\[2ex]
-        9. $\displaystyle \int \frac{dx}{\sin^2x} = -\ctg x + C$ & 19. $\displaystyle \int \frac{dx}{\sin x} = \ln \left| \tg \frac{x}{2} \right| + C$ \\[2ex]
-        10. $\displaystyle \int \frac{dx}{a^2 + x^2} = \frac{1}{a}\arcctg \frac{x}{a} + C$ & 20. $\displaystyle \int \frac{dx}{\cos x} = \ln \left| \tg \left(\frac{x}{2} + \frac{\pi}{4}\right) \right| + C$ \\[2ex]
-        \hline
-    \end{tabular}
-\end{table}
-\vspace{20pt}
-\begin{proof}[][19]
-    \begin{flalign*}
-        \int \frac{dx}{\sin x} &= \int \frac{dx}{2 \sin \dfrac{x}{2} \cos \dfrac{x}{2}} = \frac{1}{2}  \int \frac{\dfrac{1}{\cos^2 \frac{x}{2}}}{\dfrac{\sin \frac{x}{2} \cancel{\cos \frac{x}{2}}}{\cos^{\cancel{2}} \frac{x}{2}}}dx = \int \frac{\dfrac{1}{2\cos^2 \frac{x}{2}}}{\tg \frac{x}{2}}dx = \int \frac{d\left(\tg \frac{x}{2}\right)}{\tg \frac{x}{2}} = &\\
-        &= \left| \tg \frac{x}{2} t \right| = \int \frac{dt}{t} = \ln |t| + C = \ln \left| \tg \frac{x}{2} \right| + C &
-    \end{flalign*}
+    \begin{tikzpicture}
+        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
+        \tkzDrawX \tkzDrawY
+        \node[below left] at (0, 0) {$0$};
+        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
+        \draw[thick] (1, 0) -- (1, 1);
+        \draw[thick] (5, 0) -- (5, 1.5);
+
+        \filldraw[pattern=north east lines, pattern color=gray] (1, 0) -- (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) -- (5, 0) -- cycle;
+
+        \node at (3, 0.5) {$\bm S_{\textbf{кр. тр.}}$};
+    \end{tikzpicture}
+\end{figure}
+
+Определённый интеграл численно равен площади криволинейной трапеции.
+\begin{gather*}
+    S_{\text{кр. тр.}} = \int_{a}^{b} f(x)\, dx
+\end{gather*}
+
+\begin{definition}
+    Функция $y=f(x)$ называется \textbf{интегрируемой} на $[a;b]$, если существует конечный предел интегральной суммы (\ref{ф: интегральная сумма}) на $[a;b]$.
+\end{definition}
+
+\begin{theorem}[Существование определённого интеграла]
+    Если функция $y=f(x)$ непрерывна на $[a;b]$, то она на этом отрезке интегрируема.
+\end{theorem}
+
+\subsection{Свойства определённого интеграла}
+
+\begin{theorem}
+    Если функция $y=f(x)$ интегрируема на отрезке $[a;b]$, то имеет место равенство
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x) dx = - \int_{b}^{a} f(x) dx}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    По определению определённого интеграла (\textbf{опр. \ref{опр: определённый интеграл}})
+    \begin{align*}
+        \int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)(x_i - x_{i-1}) &= - \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) (x_{i-1} - x_i) \\
+        & = - \int_{b}^{a} f(x)\, dx
+    \end{align*}
 \end{proof}
 
 \newpage
-\subsection{Основные методы интегрирования}
-\begin{enumerate}
-    \item Непосредственное интегрирование (свойства + таблица)
-    \begin{eg}
-        \begin{flalign*}
-            \int\left(3e^x + \sin x - \frac{1}{1 + x^2}\right)dx &= 3\int e^xdx + \int \sin x\ dx - \int \frac{dx}{1+x^2} = &\\
-            &= 3e^x - \cos x - \arctg x + C,\ \forall C \text{ --- } const &
-        \end{flalign*}
-    \end{eg}
-    \item Метод подстановки
-    \begin{enumerate}
-        \item Занесение под знак дифференциала
-        \begin{eg}
-            \begin{flalign*}
-                & \int \frac{e^{\arcsin x} \cdot 1}{\sqrt{1 - x^2}}dx = \int e^{\arcsin x} d (\arcsin x) = e^{\arcsin x} + C,\ \forall C \text{ --- } const
-            \end{flalign*}
-        \end{eg}
-        \item Замена переменной\\
-        Пусть функция $x = \varphi (t)$ определена и дифференцируема на $T$, а множество $X$ --- множество значений этой функции, на котором определена $f(x)$. Тогда, если существует первообразная функции $f(x)$ на $X$, то на множестве $T$ верно равенство:
-        \begin{gather*}
-            \boxed{\int f(x) dx = \left|\begin{aligned} x &= \varphi (t) \\ dx &= \varphi'(t) \end{aligned}\right| = \int f\big(\varphi(t)\big)\varphi'(t)dt}
-        \end{gather*}
-        \begin{eg}
-            \begin{flalign*}
-                & \int x(3x - 1)^{2024}dx = \left| \begin{aligned} & 3x - 1 = t\quad 3x = t + 1 \\ & x = \frac{1}{3}\big(t + 1\big) \\ & dx = \left(\frac{1}{3}t + \frac{1}{3}\right)'dt = \frac{1}{3}dt \end{aligned} \right| = \int \frac{1}{3}\big(t + 1\big) \cdot t^{2024}\frac{1}{3}dt&
-            \end{flalign*}
-        \end{eg}
-    \end{enumerate} 
-\end{enumerate}
+\begin{theorem}[Аддитивность определённого интеграла]
+    Если функция $y=f(x)$ интегрируема на каждом из отрезков $[a;c],\ [c;b]\ (a < c < b)$, то она интегрируема на $[a;b]$ и верно равенство
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx = \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Рассмотрим произвольное разбиение $[a;b]$ такое, что одна из точек разбиения совпадает с точкой $c$:
+    \begin{gather*}
+        a = x_0 < x_1 < \ldots < x_m = c < x_{m+1} < \ldots < x_n = b
+    \end{gather*}
+    Данное разбиение определяет ещё два разбиения:
+    \begin{gather*}
+        \begin{aligned}
+            a = x_0 < x_1 &< \ldots < x_{m-1} < x_m = c\\
+            c = x_m < x_{m+1} &< \ldots < x_{n-1} < x_n = b
+        \end{aligned}\qquad
+        \begin{aligned}
+            &\lambda_1 = \underset{i}{\max}\, \Delta x_i,\ i = \overline{1, m} \\
+            &\lambda_2 = \underset{i}{\max}\, \Delta x_i,\ i = \overline{m+1, n}
+        \end{aligned}
+    \end{gather*}
+    Так как функция $y=f(x)$ интегрируема на $[a;c]$ и на $[c;b]$, то
+    \begin{gather*}
+        \int_{a}^{c} f(x)\, dx = \lim_{\lambda_1 \to 0} \sum_{i = 1}^{m} f(\xi_i) \cdot \Delta x_i\\
+        \int_{c}^{b} f(x)\, dx = \lim_{\lambda_2 \to 0} \sum_{i = m + 1}^{n} f(\xi_i) \cdot \Delta x_i
+    \end{gather*}
+    $\lambda = \max \{\lambda_1; \lambda_2\}\quad \lambda \to 0$\\
+    Суммируем интегральные суммы:
+    \begin{gather*}
+        \sum_{i = 1}^{m} f(\xi_i) \cdot \Delta x_i + \sum_{i = m + 1}^{n} f(\xi_i) \cdot \Delta x_i = \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
+    \end{gather*}
+    Вычислим предел:
+    \begin{align*}
+        &\lim_{\lambda \to 0} \left( \sum_{i=1}^{m} f(\xi_i)\cdot \Delta x_i + \sum_{i=m+1}^{n} f(\xi_i) \cdot \Delta x_i \right) = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \cdot \Delta x_i \\
+        &\lim_{\lambda \to 0} \sum_{i=1}^{m} f(\xi_i) \cdot \Delta x_i + \lim_{\lambda\to 0} \sum_{i = m+1}^{n} f(\xi_i)\cdot \Delta x_i = \lim_{\lambda \to 0}\sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i \\
+        &\lim_{\lambda_1 \to 0} \sum_{i=1}^{m} f(\xi_i) \cdot \Delta x_i + \lim_{\lambda_2 \to 0} \sum_{i = m+1}^{n} f(\xi_i)\cdot \Delta x_i = \lim_{\lambda \to 0}\sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
+    \end{align*}
+    Из последнего равенства следует, что $f(x)$ --- интегрируема на $[a;b]$ и верно равенство
+    \begin{gather*}
+        \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx = \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{proof}
 
+\begin{theorem}
+    Если $C$ --- $const$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} c\, dx = c\cdot (b-a)}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \int_{a}^{b} c\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} c \cdot \Delta x_i = c \cdot \lim_{\lambda \to 0} \sum_{i=1}^{n} x_i - x_{i-1} = c\cdot (b - a)
+    \end{gather*}    
+\end{proof}
 
+\begin{theorem}
+    Если функции $f_1(x),\ f_2(x)$ интегрируемы на $[a;b]$, то их линейная комбинация
+    \begin{gather*}
+        \lambda_1 f_1(x) + \lambda_2 f_2(x),\ \text{где } \lambda_1,\ \lambda_2 \in \R
+    \end{gather*}
+    интегрируема на $[a;b]$ и верно равенство:
+    \begin{gather*}
+        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \cdot \int_{a}^{b} f_2(x)\, dx
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    \begin{align*}
+        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \Big(\lambda_1 f_1(\xi_i) + \lambda_2 f_2(\xi_i)\Big)\cdot \Delta x_i = \\
+        &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \Big(\lambda_1 f_1(\xi_i) \cdot \Delta x_i + \lambda_2 f_2(\xi_i)\cdot \Delta x_i\Big) = \\
+        &= \lim_{\lambda \to 0} \left(\sum_{i=1}^{n} \lambda_1 f_1(\xi_i) \cdot \Delta x_i + \sum_{i=1}^{n} \lambda_2 f_2(\xi_i)\cdot \Delta x_i\right) = \\
+        &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \lambda_1 f_1(\xi_i) \cdot \Delta x_i + \lim_{\lambda \to 0} \sum_{i=1}^{n} \lambda_2 f_2(\xi_i)\cdot \Delta x_i = \\
+        &= \lambda_1 \lim_{\lambda \to 0} \sum_{i=1}^{n} f_1(\xi_i) \cdot \Delta x_i + \lambda_2 \lim_{\lambda \to 0} \sum_{i=1}^{n} f_2(\xi_i)\cdot \Delta x_i = \\
+        & = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \int_{a}^{b} f_2(x)\, dx = \\
+        & = \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx
+    \end{align*}
+\end{proof}
+
+\newpage
+\begin{corollary}
+    \begin{gather*}
+        \int_{a}^{a} f(x)\, dx = 0
+    \end{gather*}
+\end{corollary}
+
+\begin{theorem}[О сохраненини определённым интегралом знака подынтегральной функции]
+    Если $f(x)$ интегрируема и неотрицательна на $[a;b]$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx \geqslant 0}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \int_{a}^{b} f(x)\, dx = \lim_{\lambda\to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
+    \end{gather*}
+    $\Delta x_i$ --- длины отрезков разбиения\qquad $\Delta x_i > 0$ \\
+    $f(\xi_i) \geqslant 0$\quad по условию
+    \begin{gather*}
+        f(\xi_i)\cdot \Delta x_i \geqslant 0,\ i = \overline{i, n}\\
+        \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i \geqslant 0\quad \text{как сумма неотрицательных чисел}\\
+        \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \cdot \Delta x_i \geqslant 0\quad \begin{aligned} &\text{по следствию из теоремы } \textit{о сохранении} \\ &\textit{функцией знака своего предела} \end{aligned}\\
+        \Downarrow\\
+        \int_{a}^{b} f(x)\, dx \geqslant 0
+    \end{gather*}
+\end{proof}
 
 %%%%%%
 \end{document}
