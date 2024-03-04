@@ -1,0 +1,240 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+
+\begin{titlepage}
+    \vspace*{0pt}
+    \vfill
+    \centering
+    \Huge\textbf{Физика} \\[7pt]
+    \Large\textbf{Лекции} \\
+    \small (конспект по учебнику) \\
+    \large 2 семестр\\ 
+    \vfill
+    \begin{flushright}
+        \normalsize GitHub: \href{https://github.com/malyinik}{malyinik} \\
+    \end{flushright}
+    \normalsize 2024 г.
+\end{titlepage}
+\newpage
+
+\tableofcontents
+\newpage
+
+%%%%%%%%%%%
+
+% Угловые скорость и ускорение твёрдого тела. 
+% Классический закон сложения скоростей и ускорений при поступательном движении системы отсчета.
+
+\section{Кинематика}
+
+\subsection{Механическое движение}
+
+\begin{definition}
+    Совокупность тел, выделенная для рассмотрения, называется \textbf{механической системой}
+\end{definition}
+
+\begin{definition}
+    Совокупность неподвижных друг относительно друга тел, по отношению к которым рассматривается движение, и отсчитывающих время часов образует \textbf{систему отсчёта}.
+\end{definition}
+
+\begin{note}
+    Движение одного и того же тела относительно различных систем отсчёта может иметь разных характер.
+\end{note}
+
+\begin{definition}
+    Тело, размерами которого в условиях данной задачи можно пренебречь, можно пренебречь, называется \textbf{материальной точкой}.
+\end{definition}
+
+\begin{definition}
+    \textbf{Абсолютно твёрдым телом} называется тело, деформациями которого в условиях данной задачи можно пренебречь.
+\end{definition}
+
+\subsubsection{Виды движения}
+
+\begin{definition}
+    \textbf{Поступательное движение} --- это такое движение, при котором любая прямая, связанная с движущимся телом, остаётся параллельной самой себе.
+\end{definition}
+
+\begin{definition}
+    При \textbf{вращательном движении} все точки тела движутся по окружностям, центры которых лежат на одной и той же прямой, называемой \textbf{осью вращения}. Ось вращения может находиться вне тела.
+\end{definition}
+
+% рисунок на с. 19
+
+\subsubsection{Некоторые сведения о векторах}
+
+\begin{definition}
+    \textbf{Радиусом-вектором} $\bv{r}$ некоторой точки называется вектор, проведённый из начала координат в данную точку. Его проекции на координатные оси равны декартовым координатам данной точки:
+    \begin{gather*}
+        r_x = x,\quad r_y = y,\quad r_z = z
+    \end{gather*}
+    Радиус-вектор представим в виде линейной комбинации ортов $\bv{e_x,\ e_y,\ y_z}$:
+    \begin{align*}
+        \bv{r} &= x\bv{e_x} + y\bv{e_y} + z\bv{e_z} \\
+        r^2 &= x^2 + y^2 + z^2
+    \end{align*}
+\end{definition}
+
+\newpage
+\subsubsection{Производная вектора}
+
+\hspace{\parindent}Рассмотрим вектор, который изменяется со временем по закону $\bv{a} (t)$. Проекции этого вектора на координатные оси представляют собой заданные функции. Следовательно:
+\begin{align}
+    \bv{a} (t) = \bv{e_x} a_x (t) + \bv{e_y} a_y (t) + \bv{e_z} a_z (t)
+\end{align}
+
+Пусть за промежуток времени $\Delta t$ проекции вектора получают приращения $\Delta a_x,\ \Delta a_y,\ \Delta a_z$. Тогда вектор получит приращение $\Delta \bv{a} = \bv{e_x}\Delta a_x,\ \bv{e_y}\Delta a_y,\ \bv{e_z}\Delta a_z$. Скорость изменения вектора $\bv{a}$ со времени можно охарактеризовать отношением $\Delta \bv{a}$ к $\Delta t$:
+\begin{align}
+    \frac{\Delta \bv{a}}{\Delta t} = \bv{e_x}\frac{\Delta a_x}{\Delta t} + \bv{e_y}\frac{\Delta a_y}{\Delta t} + \bv{e_z}\frac{\Delta a_z}{\Delta t}
+\end{align}
+Это отношение даёт среднюю скорость изменения $\bv{a}$ в течение промежутка времени $\Delta t$.
+\begin{definition}
+    \textbf{Скорость изменения вектора} $\bv{a}$ в момент времени $t$ равна пределу отношения (2), получающемуся при неограниченном уменьшении $\Delta t$:
+    \begin{gather*}
+        \bv{a} = \lim_{\Delta t \to 0} \frac{\Delta \bv{a}}{\Delta t} = \bv{e_x} \lim_{\Delta t \to 0} \frac{\Delta a_x}{\Delta t} + \bv{e_y} \lim_{\Delta t \to 0} \frac{\Delta a_y}{\Delta t} + \bv{e_z} \lim_{\Delta t \to 0} \frac{\Delta a_z}{\Delta t}
+    \end{gather*}
+\end{definition}
+Если есть некоторая функция $f(t)$ аргумента $t$, то предел отношения приращения функции $\Delta f$ к приращению аргумента $\Delta t$, получающийся при стремлении $\Delta t$  к нулю, называется производной функции $f$ по $t$ и обозначается символом $df/dt$.
+\begin{gather}
+    \frac{d \bv{a}}{d t} = \bv{e_x} \frac{d a_x}{d t} + \bv{e_y} \frac{d a_y}{d t} + \bv{e_z} \frac{d a_z}{d t}
+\end{gather}
+
+В физике принято производные по времени обозначать символом соответствующей величины с точкой над ним, например,
+\begin{gather*}
+    \frac{d \varphi}{dt} = \dot{\varphi},\quad \frac{d^2 \varphi}{dt^2} = \ddot{\varphi},\quad \frac{d \bv{a}}{dt} = \dot{\bv{a}},\quad \frac{d^2 \bv{a}}{dt^2} = \ddot{\bv{a}}
+\end{gather*}
+Воспользовавшись таким обозначением формуле (3) можно придать вид
+\begin{gather}
+    \dot{\bv{a}} = \bv{e_x} \dot{a}_x + \bv{e_y} \dot{a}_y + \bv{e_z} \dot{a}_z
+\end{gather}
+Если в качестве $\bv{a}(t)$ взять радиус-вектор $\bv{r} (t)$ движущейся точки, то:
+\begin{gather}
+    \dot{\bv{r}} = \bv{e_x} \dot{x} + \bv{e_y} \dot{y} + \bv{e_z} \dot{z},
+\end{gather}
+где $x$, $y$, $z$ суть функции от $t$: $x = x(t),\ y = y(t),\ z = z(t)$.
+
+\zerocounter
+\subsection{Скорость}
+
+\begin{definition}
+    Материальная точка при своём движении описывает некоторую линию. Эта линия называется \textbf{траекторией}. 
+\end{definition}
+В зависимости от формы траектории различают прямолинейное движение, движение по окружности, криволинейное движение и т. п.
+\newpage
+\noindent Пусть материальная точка переместилась вдоль некоторой траектории из точки $1$ в точку $2$.\\
+\begin{definition}
+    Расстояние между точками $1$ и $2$, отсчитанное вдоль траектории, называется \textbf{путём} $s$, пройденным материальной точкой.
+\end{definition}
+\begin{definition}
+    Прямолинейный отрезок, проведённый из точки $1$ в точку $2$, называется \textbf{перемещением} материальной точки. Перемещение $\bv{r}$ --- это вектор.
+\end{definition}
+
+\begin{definition}
+    Если за равные, сколь угодно малые промежутки времени частица проходит одинаковые пути, движение частицы называют \textbf{равномерным}.
+\end{definition}
+
+Разобьём траекторию на бесконечно малые участки длины $ds$. Каждому из участков сопоставим бесконечно малое перемещение $d\bv{r}$. Разделив это перемещение на соответствующий промежуток времени $dt$, получим \textbf{мгновенную скорость} в данной точке траектории.
+\begin{gather}
+    \boxed{\bv{v} = \lim_{\Delta t \to 0} \frac{\Delta \bv{r}}{\Delta t} = \frac{d\bv{r}}{dt} = \dot{\bv{r}}}
+\end{gather}
+\textbf{Вывод:} \textit{скорость} есть производная радиуса вектора материальной точки по времени.
+\begin{gather}
+    \begin{aligned}
+        \upsilon = |\bv{v}| = \left| \lim_{\Delta t \to 0} \frac{\Delta \bv{r}}{\Delta t} \right| = \lim_{\Delta t \to 0} \frac{|\Delta \bv{r}|}{\Delta t} & \\
+        \lim_{\Delta t \to 0} \frac{\Delta s}{|\Delta \bv{r}|} = 1 &
+    \end{aligned}\ \Rightarrow\ \boxed{\upsilon = \lim_{\Delta t \to} \frac{\Delta s}{\Delta t} = \frac{ds}{dt}}
+\end{gather}
+\textbf{Вывод:} \textit{модуль скорости} равен производной пути по времени. 
+\begin{gather*}
+    \begin{aligned}
+        \bv{v} &= \upsilon_x \bv{e}_x + \upsilon_y \bv{e}_y + \upsilon_z \bv{e}_z \\
+        \dot{\bv{r}} &= \dot{x} \bv{e}_x + \dot{y} \bv{e}_y + \dot{z} \bv{e}_z
+    \end{aligned}\ \Rightarrow\ \boxed{
+        \begin{aligned}
+            \upsilon_x = \dot{x},\quad \upsilon_y = \dot{y},\quad \upsilon_z = \dot{z} \\ 
+            \upsilon = \sqrt{\dot{x}^2 + \dot{y}^2 + \dot{z}^2}\qquad
+        \end{aligned}}
+\end{gather*}
+\textbf{Вывод:} проекция вектора скорости на координатную ось равна производной по времени соответствующей координаты движущейся материальной точки. \\[1ex]
+Вектор скорости можно представить в виде $\bv{v} = \upsilon\bv{e_\upsilon}$. Введём орт касательной к траектории $\bm{\tau}$, направив его в ту же сторону, что и $\bv{v}$. Орты $\bv{e_\upsilon}$ и $\bm{\tau}$ совпадут, поэтому:
+\begin{gather}
+    \bv{v} = \upsilon \bv{e_\upsilon} = \upsilon \bm{\tau}
+\end{gather}
+\textbf{Путь}, проходимый материальной точкой за промежуток времени от $t_1$ до $t_2$ равен
+\begin{gather}
+    \boxed{s = \lim\limits_{\Delta t_i \to 0} \sum_{i=1}^{N} \upsilon_i \Delta t_i = \int_{t_1}^{t_2} \upsilon (t)\, dt}
+\end{gather}
+Если взять интеграл не от модуля скорости, а от самой скорости $\bv{v}(t)$, то получится \textbf{вектор перемещения} материальной точки из точки, в которой она была в момент $t_1$, в точку, в которой она оказалась в момент $t_2$:
+\begin{gather}
+    \boxed{\int_{t_1}^{t_2}\bv{v}(t)\, dt = \int_{t_1}^{t_2} d\bv{r} = \bv{r_{12}}}
+\end{gather}
+\textbf{Среднее значение модуля скорости} за время от $t_1$ до $t_2$ по определению равно
+\begin{gather}
+    \boxed{\langle\upsilon\rangle  = \frac{s}{t_2 - t_1} = \int_{t_1}^{t_2} \upsilon (t)\, dt}
+\end{gather}
+Аналогично вычисляются средние значения любых скалярных или векторных функций. Например, \textbf{среднее значение скорости} равно
+\begin{gather}
+    \boxed{\langle \bv{v} \rangle = \frac{1}{t_2 - t_1} \int_{t_1}^{t_2} \bv{v} (t)\, dt = \frac{\bv{r_{12}}}{t_2 - t_1}}
+\end{gather}
+
+\zerocounter
+\subsection{Ускорение}
+
+\begin{definition}
+    Быстрота изменения вектора $\bv{v}$, как и быстрота изменения любой функции времени, определяется производной вектора $\bv{v}$ по $t$.
+    \begin{gather}
+        \boxed{\bv{a} = \lim_{\Delta t \to 0} \frac{\Delta \bv{v}}{\Delta t} = \frac{d\bv{v}}{dt} = \dot{\bv{v}} = \ddot{\bv{r}}}
+    \end{gather}
+    Эта величина называется \textbf{ускорением}.
+\end{definition}
+Ускорение $\bv{a}$ играет по отношению к $\bv{v}$ такую же роль, какую вектор $\bv{v}$ играет по отношению к радиусу-вектору $\bv{r}$.
+\begin{gather*}
+    \begin{aligned}
+        a_x &= \frac{d\upsilon_x}{dt} = \dot{\upsilon}_x \\
+        \upsilon_x &= \dot{x} = \frac{dx}{dt}
+    \end{aligned}\ \Rightarrow\ a_x = \frac{d\upsilon_x}{dt} = \frac{d}{dt} \left(\frac{dx}{dt}\right) = \frac{d^2x}{dt^2} = \ddot{x}\ \Rightarrow\ \boxed{a_x = \ddot{x},\quad a_y = \ddot{y},\quad a_z = \ddot{z}}
+\end{gather*}
+Подставим в формулу (1) выражение для $\bv{v}$:
+\begin{gather}
+    \boxed{\bv{a} = \dot{\upsilon} \bm{\tau} + \upsilon \dot{\bm{\tau}}}
+\end{gather}
+Следовательно, вектор $\bv{a}$ можно представить в виде суммы двух составляющих.
+
+\begin{definition}
+    Первая из составляющих ускорения коллинеарна с $\bm{\tau}$, то есть направлена по касательной к траектории, и поэтому обозначается $\bv{a_\tau}$ и называется \textbf{тангенциальным ускорением}.
+    \begin{gather}
+        \boxed{\bv{a_\tau} = \dot{\upsilon}\bm{\tau}}
+    \end{gather}
+\end{definition}
+
+\begin{definition}
+    Вторая из составляющих ускорения направлена по нормали к траектории и поэтому обозначается $\bv{a_n}$ и называется \textbf{нормальным ускорением}.
+    \begin{gather}
+        \boxed{\bv{a_n} = \upsilon \dot{\bm{\tau}} = \frac{\upsilon^2}{R}\bv{n}}
+    \end{gather}
+    где $\bv{n}$ --- орт нормали к траектории, направленный в ту сторону, в которую поворачивается вектор $\bm{\tau}$ при движении материальной точки по траектории.
+\end{definition}
+\newpage
+\begin{definition}
+    Степень искривлённости плоской кривой характеризуется \textbf{кривизной} $\bm{C}$, которая определяется выражением:
+    \begin{gather}
+        C = \lim_{\Delta s \to 0} \frac{\Delta \varphi}{\Delta s} = \frac{d\varphi}{ds}
+    \end{gather}
+    где $\Delta \varphi$ --- угол между касательными к кривой в точках, отстоящих друг от друга на $\Delta s$. Кривизна определяется скорость поворота касательной при перемещении вдоль кривой.
+\end{definition}
+
+\begin{definition}
+    Величина, обратная кривизне $C$, называется \textbf{радиусом кривизны} $\bm{R}$.
+    \begin{gather}
+        R = \frac{1}{C} = \lim_{\Delta \varphi \to 0} \frac{\Delta s}{\Delta \varphi} = \frac{ds}{d\varphi}
+    \end{gather}
+\end{definition}
+
+\begin{definition}
+    Радиус кривизны представляет собой радиус окружности, которая сливается в данном месте с кривой на бесконечно малом её участке. Центр такой окружности называется \textbf{центром кривизны} для данной точки кривой.
+\end{definition}
+
+%%%%%%%%%%%
+
+\end{document}
