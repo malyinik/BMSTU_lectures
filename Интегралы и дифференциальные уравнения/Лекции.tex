@@ -25,227 +25,47 @@
 \input{Правильные и неправильные рациональные дроби.tex}
 \zerocounter
 \newpage
+\input{Определённый интеграл и криволинейная трапеция.tex}
+\zerocounter
+\newpage
 
 
 %%%%%%%%
 
-\section{Определённый интеграл. Криволинейная трапеция}
+\zerocounter
+\subsection{Методы вычисления определённого интеграла}
 
-\subsection{Определённый интеграл}
-
-\subsubsection*{Пусть функция $y = f(x)$ определена на $[a;b]$}
-
-\begin{definition}
-    Множество точек $a = x_0 < x_1 < \ldots < x_i < \ldots < x_n = b$ называется \textbf{разбиением отрезка} $\bm{[a;b]}$, при этом отрезки $[x_{i-1}; x_i]$ называются \textbf{отрезками разбиения}. \\[2ex]
-    $i = 1,\ldots,n\quad i = \overline{1, n}$\\
-    $\Delta x_i = x_i - x_{i-1}$ --- длина $i$-го отрезка разбиения\quad $i = \overline{1, n}$\\
-    $\lambda = \underset{i}{\max}\, \Delta x_i$ --- диаметр разбиения\\
-\end{definition}
-Рассмотрим произвольное разбиение $[a;b]$. В каждом из отрезков разбиения $[x_{i-1}; x_i]$ выберем точку $\xi_i,\ i = \overline{1, n}$. Составим сумму
-\begin{gather}\hlabel{ф: интегральная сумма}
-    \boxed{S_n = \sum_{i=1}^{n}f(\xi_i)\cdot \Delta x_i}
-\end{gather}
-(\ref{ф: интегральная сумма}) --- интегральная сумма для функции $y=f(x)$ на $[a;b]$.
-
-% рисунок
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
-        \tkzDrawX \tkzDrawY
-        \tkzDefPoint(3, 1.45){f}
-        \tkzDrawPoint[fill=black, size = 3pt](f)
-        \node[below left] at (0, 0) {$0$};
-        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
-        \draw[thick, dotted] (1, 0) node[below]{$\underset{x_0}{a}$} -- (1, 1);
-        \draw[thick, dotted] (1.5, 0) node[below]{$x_1$} -- (1.5, 1.45);
-        \draw[thick, dotted] (2, 0) -- (2, 1.6);
-        \draw[thick, dotted] (2.5, 0) node[below]{\scriptsize{$x_{i-1}$}} -- (2.5, 1.5);
-        \draw[thick, dotted] (3, 0) node[below]{$\xi_i$} -- (3, 1.45) node[above]{$f(\xi_i)$};
-        \draw[thick, dotted] (3.5, 0) node[below]{$x_i$} -- (3.5, 1.3);
-        \draw[thick, dotted] (4, 0) -- (4, 1.2);
-        \draw[thick, dotted] (4.5, 0) -- (4.5, 1.25);
-        \draw[thick, dotted] (5, 0) node[below]{$\underset{x_n}{b}$} -- (5, 1.5);
-    \end{tikzpicture}
-\end{figure}
-
-\begin{definition}\hlabel{опр: определённый интеграл}
-    \textbf{Определённым интегралом} от функции $y=f(x)$ на $[a;b]$ называется \underline{конечный} предел интегральной суммы (\ref{ф: интегральная сумма}), когда число отрезков разбиения растёт, а их длины стремятся к нулю.
-    \begin{gather}\hlabel{ф: определённый интеграл}
-        \boxed{\int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x}
-    \end{gather}
-    Предел (\ref{опр: неопределённый интеграл}) не зависит от способа разбиения отрезка $[a;b]$ и выбора точек $\xi_i,\ \overline{1, n}$.\\
-    $f(x)$ --- подынтегральная функция\\
-    $f(x)\, dx$ --- подынтегральное выражение\\
-    $\displaystyle\int_{a}^{b}$ --- знак определённого интеграла\\
-    $a$ --- нижний предел интегрирования\\
-    $b$ --- верхний предел интегрирования
-\end{definition}
-
-\newpage
-\subsection{Криволинейная трапеция}
-
-\begin{definition}
-    \textbf{Криволинейной трапецией} называется фигура, ограниченная графиком функции $y=f(x)$, отрезком $[a;b]$ на $Ox$, прямыми $x = a$ и $x = b$ параллельными оси $Oy$.
-\end{definition}
-
-\subsubsection{Геометрический смысл}
-
-% рисунок 
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}
-        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
-        \tkzDrawX \tkzDrawY
-        \node[below left] at (0, 0) {$0$};
-        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
-        \draw[thick] (1, 0) -- (1, 1);
-        \draw[thick] (5, 0) -- (5, 1.5);
-
-        \filldraw[pattern=north east lines, pattern color=gray] (1, 0) -- (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) -- (5, 0) -- cycle;
-
-        \node at (3, 0.5) {$\bm S_{\textbf{кр. тр.}}$};
-    \end{tikzpicture}
-\end{figure}
-
-Определённый интеграл численно равен площади криволинейной трапеции.
-\begin{gather*}
-    S_{\text{кр. тр.}} = \int_{a}^{b} f(x)\, dx
-\end{gather*}
-
-\begin{definition}
-    Функция $y=f(x)$ называется \textbf{интегрируемой} на $[a;b]$, если существует конечный предел интегральной суммы (\ref{ф: интегральная сумма}) на $[a;b]$.
-\end{definition}
-
-\begin{theorem}[Существование определённого интеграла]
-    Если функция $y=f(x)$ непрерывна на $[a;b]$, то она на этом отрезке интегрируема.
-\end{theorem}
-
-\subsection{Свойства определённого интеграла}
+\subsubsection{Метод интегрирования по частям}
 
 \begin{theorem}
-    Если функция $y=f(x)$ интегрируема на отрезке $[a;b]$, то имеет место равенство
+    Пусть функции $u = u(x)$ и $\upsilon = \upsilon(x)$ непрерывно дифференцируемы на $[a;b]$. Тогда имеет место равенство
     \begin{gather*}
-        \boxed{\int_{a}^{b} f(x) dx = - \int_{b}^{a} f(x) dx}
+        \boxed{\int_{a}^{b} u\, d\upsilon = u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du}
     \end{gather*}
 \end{theorem}
 \begin{proof}
-    По определению определённого интеграла (\textbf{опр. \ref{опр: определённый интеграл}})
+    Рассмотрим произведение функций $u\cdot \upsilon$. \\
+    Дифференцируем: \vspace{-\topsep}
     \begin{align*}
-        \int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)(x_i - x_{i-1}) &= - \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) (x_{i-1} - x_i) \\
-        & = - \int_{b}^{a} f(x)\, dx
+        d(u\cdot \upsilon) &=  \upsilon\, du + u\, d\upsilon \\ 
+        u\, d\upsilon &= d(u \upsilon) - \upsilon\, du
+    \end{align*}
+    Интегрируем:
+    \begin{align*}
+        \int_{a}^{b} u\, d\upsilon = \int_{a}^{b} \big(d(u\upsilon) - \upsilon\, du\big) = \int_{a}^{b} d(u\upsilon) - \int_{a}^{b} \upsilon\, du - u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du
     \end{align*}
 \end{proof}
+\begin{eg}
+    \begin{flalign*}
+        & \int_{1}^{e} \ln x \dd{x} = \left| \begin{aligned}
+            & u = \ln x\quad \dd{u} = \frac{1}{x}\dd{x} \\
+            & \dd{\upsilon} = \dd{x}\quad \upsilon = x
+        \end{aligned}\right| = x\eval{\ln x}_{1}^{e} - \int_{1}^{e}x \cdot \frac{1}{x}\dd{x} = (e \ln e - 1\cdot \ln 1) - \eval{x}_{1}^{e} = & \\
+        & = e - (e - 1) = \cancel{e} - \cancel{e} + 1 = 1 &
+    \end{flalign*}
+\end{eg}
 
-\newpage
-\begin{theorem}[Аддитивность определённого интеграла]
-    Если функция $y=f(x)$ интегрируема на каждом из отрезков $[a;c],\ [c;b]\ (a < c < b)$, то она интегрируема на $[a;b]$ и верно равенство
-    \begin{gather*}
-        \boxed{\int_{a}^{b} f(x)\, dx = \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx}
-    \end{gather*}
-\end{theorem}
-\begin{proof}
-    Рассмотрим произвольное разбиение $[a;b]$ такое, что одна из точек разбиения совпадает с точкой $c$:
-    \begin{gather*}
-        a = x_0 < x_1 < \ldots < x_m = c < x_{m+1} < \ldots < x_n = b
-    \end{gather*}
-    Данное разбиение определяет ещё два разбиения:
-    \begin{gather*}
-        \begin{aligned}
-            a = x_0 < x_1 &< \ldots < x_{m-1} < x_m = c\\
-            c = x_m < x_{m+1} &< \ldots < x_{n-1} < x_n = b
-        \end{aligned}\qquad
-        \begin{aligned}
-            &\lambda_1 = \underset{i}{\max}\, \Delta x_i,\ i = \overline{1, m} \\
-            &\lambda_2 = \underset{i}{\max}\, \Delta x_i,\ i = \overline{m+1, n}
-        \end{aligned}
-    \end{gather*}
-    Так как функция $y=f(x)$ интегрируема на $[a;c]$ и на $[c;b]$, то
-    \begin{gather*}
-        \int_{a}^{c} f(x)\, dx = \lim_{\lambda_1 \to 0} \sum_{i = 1}^{m} f(\xi_i) \cdot \Delta x_i\\
-        \int_{c}^{b} f(x)\, dx = \lim_{\lambda_2 \to 0} \sum_{i = m + 1}^{n} f(\xi_i) \cdot \Delta x_i
-    \end{gather*}
-    $\lambda = \max \{\lambda_1; \lambda_2\}\quad \lambda \to 0$\\
-    Суммируем интегральные суммы:
-    \begin{gather*}
-        \sum_{i = 1}^{m} f(\xi_i) \cdot \Delta x_i + \sum_{i = m + 1}^{n} f(\xi_i) \cdot \Delta x_i = \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
-    \end{gather*}
-    Вычислим предел:
-    \begin{align*}
-        &\lim_{\lambda \to 0} \left( \sum_{i=1}^{m} f(\xi_i)\cdot \Delta x_i + \sum_{i=m+1}^{n} f(\xi_i) \cdot \Delta x_i \right) = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \cdot \Delta x_i \\
-        &\lim_{\lambda \to 0} \sum_{i=1}^{m} f(\xi_i) \cdot \Delta x_i + \lim_{\lambda\to 0} \sum_{i = m+1}^{n} f(\xi_i)\cdot \Delta x_i = \lim_{\lambda \to 0}\sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i \\
-        &\lim_{\lambda_1 \to 0} \sum_{i=1}^{m} f(\xi_i) \cdot \Delta x_i + \lim_{\lambda_2 \to 0} \sum_{i = m+1}^{n} f(\xi_i)\cdot \Delta x_i = \lim_{\lambda \to 0}\sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
-    \end{align*}
-    Из последнего равенства следует, что $f(x)$ --- интегрируема на $[a;b]$ и верно равенство
-    \begin{gather*}
-        \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx = \int_{a}^{b} f(x)\, dx
-    \end{gather*}
-\end{proof}
-
-\begin{theorem}
-    Если $C$ --- $const$, то 
-    \begin{gather*}
-        \boxed{\int_{a}^{b} c\, dx = c\cdot (b-a)}
-    \end{gather*}
-\end{theorem}
-\begin{proof}
-    \begin{gather*}
-        \int_{a}^{b} c\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} c \cdot \Delta x_i = c \cdot \lim_{\lambda \to 0} \sum_{i=1}^{n} x_i - x_{i-1} = c\cdot (b - a)
-    \end{gather*}    
-\end{proof}
-
-\begin{theorem}
-    Если функции $f_1(x),\ f_2(x)$ интегрируемы на $[a;b]$, то их линейная комбинация
-    \begin{gather*}
-        \lambda_1 f_1(x) + \lambda_2 f_2(x),\ \text{где } \lambda_1,\ \lambda_2 \in \R
-    \end{gather*}
-    интегрируема на $[a;b]$ и верно равенство:
-    \begin{gather*}
-        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \cdot \int_{a}^{b} f_2(x)\, dx
-    \end{gather*}
-\end{theorem}
-
-\begin{proof}
-    \begin{align*}
-        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \Big(\lambda_1 f_1(\xi_i) + \lambda_2 f_2(\xi_i)\Big)\cdot \Delta x_i = \\
-        &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \Big(\lambda_1 f_1(\xi_i) \cdot \Delta x_i + \lambda_2 f_2(\xi_i)\cdot \Delta x_i\Big) = \\
-        &= \lim_{\lambda \to 0} \left(\sum_{i=1}^{n} \lambda_1 f_1(\xi_i) \cdot \Delta x_i + \sum_{i=1}^{n} \lambda_2 f_2(\xi_i)\cdot \Delta x_i\right) = \\
-        &= \lim_{\lambda \to 0} \sum_{i=1}^{n} \lambda_1 f_1(\xi_i) \cdot \Delta x_i + \lim_{\lambda \to 0} \sum_{i=1}^{n} \lambda_2 f_2(\xi_i)\cdot \Delta x_i = \\
-        &= \lambda_1 \lim_{\lambda \to 0} \sum_{i=1}^{n} f_1(\xi_i) \cdot \Delta x_i + \lambda_2 \lim_{\lambda \to 0} \sum_{i=1}^{n} f_2(\xi_i)\cdot \Delta x_i = \\
-        & = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \int_{a}^{b} f_2(x)\, dx = \\
-        & = \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx
-    \end{align*}
-\end{proof}
-
-\newpage
-\begin{corollary}
-    \begin{gather*}
-        \int_{a}^{a} f(x)\, dx = 0
-    \end{gather*}
-\end{corollary}
-
-\begin{theorem}[О сохранении определённым интегралом знака подынтегральной функции]
-    Если $f(x)$ интегрируема и неотрицательна на $[a;b]$, то 
-    \begin{gather*}
-        \boxed{\int_{a}^{b} f(x)\, dx \geqslant 0}
-    \end{gather*}
-\end{theorem}
-\begin{proof}
-    \begin{gather*}
-        \int_{a}^{b} f(x)\, dx = \lim_{\lambda\to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
-    \end{gather*}
-    $\Delta x_i$ --- длины отрезков разбиения\qquad $\Delta x_i > 0$ \\
-    $f(\xi_i) \geqslant 0$\quad по условию
-    \begin{gather*}
-        f(\xi_i)\cdot \Delta x_i \geqslant 0,\ i = \overline{i, n}\\
-        \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i \geqslant 0\quad \text{как сумма неотрицательных чисел}\\
-        \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \cdot \Delta x_i \geqslant 0\quad \begin{aligned} &\text{по следствию из теоремы } \textit{о сохранении} \\ &\textit{функцией знака своего предела} \end{aligned}\\
-        \Downarrow\\
-        \int_{a}^{b} f(x)\, dx \geqslant 0
-    \end{gather*}
-\end{proof}
 
 %%%%%%
+
 \end{document}
