@@ -28,44 +28,14 @@
 \input{Определённый интеграл и криволинейная трапеция.tex}
 \zerocounter
 \newpage
-
+\input{Приложения определённого интеграла.tex}
+\newpage
+\zerocounter
+\input{Несобственные интегралы.tex}
 
 %%%%%%%%
 
-\zerocounter
-\subsection{Методы вычисления определённого интеграла}
 
-\subsubsection{Метод интегрирования по частям}
-
-\begin{theorem}
-    Пусть функции $u = u(x)$ и $\upsilon = \upsilon(x)$ непрерывно дифференцируемы на $[a;b]$. Тогда имеет место равенство
-    \begin{gather*}
-        \boxed{\int_{a}^{b} u\, d\upsilon = u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du}
-    \end{gather*}
-\end{theorem}
-\begin{proof}
-    Рассмотрим произведение функций $u\cdot \upsilon$. \\
-    Дифференцируем: \vspace{-\topsep}
-    \begin{align*}
-        d(u\cdot \upsilon) &=  \upsilon\, du + u\, d\upsilon \\ 
-        u\, d\upsilon &= d(u \upsilon) - \upsilon\, du
-    \end{align*}
-    Интегрируем:
-    \begin{align*}
-        \int_{a}^{b} u\, d\upsilon = \int_{a}^{b} \big(d(u\upsilon) - \upsilon\, du\big) = \int_{a}^{b} d(u\upsilon) - \int_{a}^{b} \upsilon\, du - u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du
-    \end{align*}
-\end{proof}
-\begin{eg}
-    \begin{flalign*}
-        & \int_{1}^{e} \ln x \dd{x} = \left| \begin{aligned}
-            & u = \ln x\quad \dd{u} = \frac{1}{x}\dd{x} \\
-            & \dd{\upsilon} = \dd{x}\quad \upsilon = x
-        \end{aligned}\right| = x\eval{\ln x}_{1}^{e} - \int_{1}^{e}x \cdot \frac{1}{x}\dd{x} = (e \ln e - 1\cdot \ln 1) - \eval{x}_{1}^{e} = & \\
-        & = e - (e - 1) = \cancel{e} - \cancel{e} + 1 = 1 &
-    \end{flalign*}
-\end{eg}
-
-
-%%%%%%
+%%%%%%%%
 
 \end{document}
