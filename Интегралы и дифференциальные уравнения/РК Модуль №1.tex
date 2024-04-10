@@ -1,0 +1,547 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+
+\begin{titlepage}
+    \vspace*{0pt}
+    \vfill
+    \centering
+    \Huge\textbf{Интегралы и дифференциальные уравнения} \\[7pt]
+    \Large\textbf{Рубежный контроль} \\
+    \large 2 семестр | Модуль №1 \\ 
+    \vfill
+    \begin{flushright}
+        \normalsize GitHub: \href{https://github.com/malyinik}{malyinik} \\
+    \end{flushright}
+    \normalsize 2024 г.
+\end{titlepage}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Вопросы, оцениваемые в 1 балл}
+
+\subsection{Сформулировать определение первообразной}
+
+\begin{definition}\hlabel{опр: первообразная}
+    Функция $F(x)$ называется \textbf{первообразной} функции $f(x)$ на интервале $(a;b)$, если $F(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon$
+    \begin{gather}
+        \boxed{F'(x) = f(x)}
+    \end{gather}
+\end{definition}
+
+\subsection{Сформулировать определение неопределённого интеграла}
+
+\begin{definition}\hlabel{опр: неопределённый интеграл}
+    Множество первообразных функции $f(x)$ на $(a;b)$ называется \textbf{неопределённым интегралом}.
+    \begin{gather}
+        \boxed{\int f(x)\, dx = F(x) + C}
+    \end{gather}
+    $\int$ --- знак интеграла\\
+    $f(x)$ --- подынтегральная функция\\
+    $f(x)\, dx$ --- подынтегральное выражение\\
+    $x$ --- переменная\\
+    $F(x) + C$ --- множество первообразных\\
+    $C$ --- произвольная константа
+\end{definition}
+
+\subsection{Сформулировать определение определённого интеграла}
+Пусть функция $y = f(x)$ определена на $[a;b]$.\\
+Рассмотрим произвольное разбиение $[a;b]$. В каждом из отрезков разбиения $[x_{i-1}; x_i]$ выберем точку $\xi_i,\ i = \overline{1, n}$. Составим сумму
+\begin{gather}\hlabel{ф: интегральная сумма}
+    \boxed{S_n = \sum_{i=1}^{n}f(\xi_i)\cdot \Delta x_i}
+\end{gather}
+
+\begin{definition}\hlabel{опр: определённый интеграл}
+    \textbf{Определённым интегралом} от функции $y=f(x)$ на $[a;b]$ называется \underline{конечный} предел интегральной суммы (\ref{ф: интегральная сумма}), когда число отрезков разбиения растёт, а их длины стремятся к нулю.
+    \begin{gather}\hlabel{ф: определённый интеграл}
+        \boxed{\int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x}
+    \end{gather}
+    Предел (\ref{ф: определённый интеграл}) не зависит от способа разбиения отрезка $[a;b]$ и выбора точек $\xi_i,\ \overline{1, n}$.\\
+    $f(x)$ --- подынтегральная функция\\
+    $f(x)\, dx$ --- подынтегральное выражение\\
+    $\displaystyle\int_{a}^{b}$ --- знак определённого интеграла\\
+    $a$ --- нижний предел интегрирования\\
+    $b$ --- верхний предел интегрирования
+\end{definition}
+
+\subsection{Сформулировать определение интеграла с переменным верхним пределом}
+
+Пусть $f(x)$ непрерывна на $[a;b]$. Рассмотрим $\int_{a}^{b} f(x)\, dx$. Закрепим нижний предел интегрирования $a$. Изменяем верхний предел интегрирования $b$, чтобы подчеркнуть изменение верхнего предела интегрирования. \\
+$\displaystyle b \longrightarrow x\quad x \in [a;b]\quad [a;x] \subset [a;b]\quad I(x) = \int_{a}^{x} f(t)\, dt$. \\
+\begin{definition}
+    \textbf{Определённым интегралом с переменным верхним пределом интегрирования} от непрерывной функции $f(x)$ на $[a;b]$ называется интеграл вида
+    \begin{gather*}
+        \boxed{I(x) = \int_{a}^{x} f(t)\, dt},\ \text{где } x\in [a;b]
+    \end{gather*}
+\end{definition}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
+        \tkzDrawX[label={t}] \tkzDrawY
+        \node[below left] at (0, 0) {$0$};
+        \filldraw[pattern=north east lines, pattern color=gray] (1, 0) -- (1, 1) .. controls (1.9, 2.1) and (3, 1.3) .. (3, 1.45) -- (3, 0) -- cycle;
+        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(t)$};
+        \draw[thick] (1, 0) node[below]{$a$} -- (1, 1);
+        \draw[thick, dashed] (3, 0) node[below]{$x$} -- (3, 1.45);
+        \draw[thick, dashed] (5, 0) node[below]{$b$} -- (5, 1.5);
+    \end{tikzpicture}
+\end{figure}
+$I(x)$ --- переменная площадь криволинейной трапеции с основанием $[a;x] \subset [a;b]$.
+
+\subsection{Сформулировать определение несобственного интеграла 1-го рода}
+Пусть $y = f(x)$ определена на $[a; +\infty)$, интегрируема на $[a;b]\subset [a; +\infty)$. Тогда определена функция
+\begin{gather}
+    \boxed{\Phi (b) = \int_{a}^{b} f(x)\dd{x}} \text{ на } [a; +\infty)
+\end{gather}
+как определённый интеграл с переменным верхним пределом интегрирования.\\
+\begin{definition}\hlabel{опр: несобственный интеграл 1 рода}
+    Предел функции $\Phi(b)$ при $b\to +\infty$ называется \textbf{несобственным интегралом} от функции $f(x)$ по бесконечному промежутку $[a; +\infty)$ или \textbf{несобственным интегралом 1-го рода} и обозначается
+    \begin{gather}
+        \boxed{\int_{a}^{+\infty} f(x)\dd{x} = \lim_{b \to +\infty} \Phi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x}} 
+    \end{gather}
+    Если предел в правой части равенства (6) существует и конечен, то несобственный интеграл в левой части равенства (6) \textbf{сходится}.\\
+    Если предел в правой части равенства (6) не существует или равен бесконечности, то несобственный интеграл в левой части равенства (6) \textbf{расходится}.
+\end{definition}
+
+\subsection{Сформулировать определение несобственного интеграла 2-го рода}
+Пусть функция $f(x)$ определена на полуинтервале $[a;b)$, а в точке $x = b$ терпит разрыв 2-го рода. Предположим, что функция $f(x)$ интегрируема на $[a; \eta] \subset [a;b)$. Тогда на $[a; b)$ определена функция
+\begin{gather}
+    \Phi (\eta) = \int_{a}^{\eta} f(x)\dd{x}
+\end{gather}
+как интеграл с переменным верхним пределом. \\
+\begin{definition}
+    Предел функции $\Phi (\eta)$ при $\eta \to b-$ называется несобственным интегралом от неограниченной функции $f(x)$ на $[a;b)$ или \textbf{несобственным интегралом 2-го рода} и обозначается
+    \begin{gather}
+        \boxed{\int_{a}^{b} f(x)\dd{x} = \lim\limits_{\eta \to b-} \Phi (\eta) = \lim\limits_{\eta \to b-} \int_{a}^{\eta} f(x)\dd{x}}
+    \end{gather}
+    Если предел в правой части равенства (8) существует и конечен, то несобственный интеграл от неограниченной функции $f(x)$ по $[a;b)$ \textbf{сходится}.\\
+    Если предел в правой части равенства (8) не существует или равен $\infty$, то несобственный интеграл от неограниченной функции $f(x)$ по $[a;b)$ \textbf{расходится}.
+\end{definition}
+
+\subsection{Сформулировать определение сходящегося несобственного интеграла 1-го рода}
+
+\begin{definition}
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} = \lim_{b \to +\infty} \Phi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x}
+    \]
+    Если предел в правой части равенства существует и конечен, то несобственный интеграл в левой части равенства \textbf{сходится}.
+\end{definition}
+
+\subsection{Сформулировать определение абсолютно сходящегося несобственного интеграла 1-го рода}
+
+\begin{definition}
+    Если наряду с несобственным интегралом от функции $f(x)$ по бесконечному промежутку $[a;+\infty)$ сходится и несобственный интеграл от функции $|f(x)|$ по этому же промежутку, то первый несобственный интеграл называется \textbf{сходящимся абсолютно}.
+    \begin{gather*}
+        \boxed{\begin{aligned}
+            &\text{несобственный интеграл} \\
+            &\text{от $f(x)$ сходится абсолютно} 
+        \end{aligned}} = \boxed{\begin{aligned}
+            &\text{несобственный интеграл}  \\
+            &\text{от $f(x)$ сходится}
+        \end{aligned}} + \boxed{\begin{aligned}
+            &\text{несобственный интеграл} \\
+            &\text{от $|f(x)|$ сходится}
+        \end{aligned}}
+    \end{gather*}
+\end{definition}
+
+\newpage
+\subsection{Сформулировать определение условно сходящегося несобственного интеграла 1-го рода}
+
+\begin{definition}
+    Если несобственный интеграл от функции $f(x)$ по бесконечному промежутку $[a;+\infty)$ сходится, а несобственный интеграл от функции $|f(x)|$ по этому же промежутку расходится, то первый несобственный интеграл называется \textbf{сходящимся условно}.
+    \begin{gather*}
+        \boxed{\begin{aligned}
+                &\text{несобственный интеграл} \\
+                &\text{от $f(x)$ сходится условно} 
+            \end{aligned}} = \boxed{\begin{aligned}
+                &\text{несобственный интеграл}  \\
+                &\text{от $f(x)$ сходится}
+            \end{aligned}} + \boxed{\begin{aligned}
+                &\text{несобственный интеграл} \\
+                &\text{от $|f(x)|$ расходится}
+            \end{aligned}}
+    \end{gather*}
+\end{definition}
+
+\subsection{Сформулировать определение сходящегося несобственного интеграла 2-го рода}
+
+\begin{definition}
+    \[
+        \int_{a}^{b} f(x)\dd{x} = \lim\limits_{\eta \to b-} \Phi (\eta) = \lim\limits_{\eta \to b-} \int_{a}^{\eta} f(x)\dd{x}
+    \]
+    Если предел в правой части равенства существует и конечен, то несобственный интеграл от неограниченной функции $f(x)$ по $[a;b)$ \textbf{сходится}.
+\end{definition}
+
+\subsection{Сформулировать определение абсолютно сходящегося несобственного интеграла 2-го рода}
+
+\begin{definition}
+    Если несобственный интеграл от неограниченной функции $f(x)$ при $x \to b-$ по промежутку $[a;b)$ сходится и несобственный интеграл функции $|f(x)|$ по этому же промежутку сходится, то первый из несобственных интегралов \textbf{сходится абсолютно}.
+\end{definition}
+
+\subsection{Сформулировать определение условно сходящегося несобственного интеграла 2-го рода}
+
+\begin{definition}
+    Если несобственный интеграл от неограниченной функции $f(x)$ при $x\to b-$ по промежутку $[a;b)$, сходится, а несобственный интеграл от функции $|f(x)|$ по этому же промежутку расходится, то первый из несобственных интегралов \textbf{сходится условно}.
+\end{definition}
+
+\newpage
+\section{Вопросы, оцениваемые в 3 балла}
+
+\subsection{Сформулировать и доказать теорему об оценке определённого интеграла}
+
+\begin{theorem}[Об оценке определённого интеграла]
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant N,\ {g(x) \geqslant 0}$. Тогда
+    \begin{gather*}
+        \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Так как $\forall x \in [a;b]$ верны неравенства
+    \begin{gather*}
+        \begin{aligned}
+            m \leqslant f(x) &\leqslant M\quad | \cdot g(x) \\
+            g(x) &\geqslant 0\qquad m, M \in \R
+        \end{aligned} \\[1ex]
+        m\cdot g(x) \leqslant f(x)\cdot g(x) \leqslant M \cdot g(x)
+    \end{gather*}
+    По теореме \ref{т: интегрирование неравенства} и \ref{т: линейная комбинация интегрируемых}:
+    \begin{gather*}
+        m \int_{a}^{b} g(x) \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx
+    \end{gather*}
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему о среднем}
+
+\begin{theorem}[О среднем значении для определённого интеграла]\hlabel{т: среднее значение опр. интеграла}
+    Если $f(x)$ непрерывна на $[a;b]$, то
+    \begin{gather*}
+        \exists\, c \in [a;b]\colon f(c) = \frac{1}{b-a} \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Так как функция $y=f(x)$ непрерывна на $[a;b]$, то по теореме \textit{Вейерштрасса} она достигает своего наибольшего и наименьшего значения. \\
+    То есть $\exists\, m, M \in \R,\ \forall x \in [a;b]\colon m \leqslant f(x) \leqslant M$ \\
+    По теореме \ref{т: интегрирование неравенства}:
+    \begin{gather*}
+        \int_{a}^{b} m\, dx \leqslant \int_{a}^{b} f(x)\, dx \leqslant \int_{a}^{b} M\, dx
+    \end{gather*}
+    По теореме \ref{т: линейная комбинация интегрируемых}:
+    \begin{gather*}
+        m \int_{a}^{b} dx \leqslant \int_{a}^{b} f(x)\, dx \leqslant M \int_{a}^{b} dx
+    \end{gather*}
+    По теореме \ref{т: опр. интеграл и константа}:
+    \begin{gather*}
+        m(b-a) \leqslant \int_{a}^{b} f(x)\, dx \leqslant M(b-a)\quad | : (b-a)
+    \end{gather*}
+    Так как функция $y=f(x)$ непрерывна на $[a;b]$, то по теореме \textit{Больцано-Коши} она принимает все свои значения между наибольшим и наименьшим значением.
+    \begin{gather*}
+        m \leqslant \frac{1}{b-a} \int_{a}^{b} f(x)\, dx \leqslant M
+    \end{gather*}
+    По теореме \textit{Больцано-Коши} $\exists\, c \in [a;b]\colon$
+    \begin{gather*}
+        f(c) = \frac{1}{b-a} \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему о производной интеграла с переменным верхним пределом}
+
+\begin{theorem}[О производной $I(x)$]\hlabel{т: производная I(x)}
+    Если функция $y=f(x)$ непрерывна на $[a;b]$, то $\forall x \in [a;b]$ верно равенство
+    \begin{gather*}
+        \boxed{\big(I(x)\big)' = \left(\int_{a}^{x} f(t)\, dt\right)' = f(x)}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \big(I(x)\big)' = \lim\limits_{\Delta x \to 0} \frac{\Delta I(x)}{\Delta x} \xlongequal{\text{\text{Т\ref{т: непрерывность I(x)}}}} \lim\limits_{\Delta x \to 0} \frac{f(c)\cdot \Delta x}{\Delta x} = \lim\limits_{\Delta x \to 0} f(c) \xlongequal{\text{$*$}} f(x)
+    \end{gather*}
+    \begin{tikzpicture}[thick, >=latex]
+        \node[] at (-2.5, 0) {$*\colon$};
+        \draw (-2, 0.1) -- (-2, -0.1) node[below]{$a$};
+        \draw (2, 0.1) -- (2, -0.1) node[below]{$b$};
+        \draw (-2, 0) -- (2, 0);
+        \draw[->] (0.65, 0) node[below]{\scriptsize${x + \Delta x}$} .. controls (0.40, 0.5) and (-0.3, 0.5) .. (-0.65, 0) node[below]{\scriptsize$x$};
+        \draw (0, 0.1) -- (0, -0.1);
+        \node[below] at (0, 0) {\scriptsize$c$};
+        \node[] at (6, 0) {при $\Delta x \to 0\quad x + \Delta x \to x\quad c \to x$};
+    \end{tikzpicture} 
+\end{proof}
+\begin{corollary}
+    Функция $I(x)$ --- первообразная функции $f(x)$ на $[a;b]$, так как по теореме \ref{т: производная I(x)} $\big(I(x)\big)' = f(x)$.
+\end{corollary}
+
+\newpage
+\subsection{Сформулировать и доказать теорему Ньютона - Лейбница}
+
+\begin{theorem}
+    Пусть функция $f(x)$ --- непрерывна на $[a;b]$. Тогда
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx = \eval{F(x)}_{a}^{b} =  F(b) - F(a)}
+    \end{gather*}
+    где $F(x)$ --- первообразная $f(x)$.
+\end{theorem}
+\begin{proof}
+    Пусть $F(x)$ первообразная $f(x)$ на $[a;b]$. По следствию из теоремы \ref{т: производная I(x)} $I(x)$ --- первообразная $f(x)$ на $[a;b]$. \\
+    По свойству первообразной: 
+    \begin{gather*}
+        \begin{aligned}
+            & I(x) - F(x) = C \\ 
+            & I(x) = F(x) + C,\ \text{где } C \text{ --- } const
+        \end{aligned} \\[1ex]
+        \int_{a}^{x} f(t)\, dt = F(x) + C,\ \text{где } C \text{ --- } const \tag{$\vee$}
+    \end{gather*}
+    $\bullet\ x = a\colon$
+    \begin{align*}
+        \int_{a}^{a} f(t)\, dt &= F(a) + C \\
+        0 &= F(a) + C \\
+        C &= -F(a)
+    \end{align*}
+    $C = -F(a)$ подставим в $(\vee)\colon$
+    \begin{gather*}
+        \int_{a}^{x} f(t)\, dt = F(x) - F(a)
+    \end{gather*}
+    $\bullet\ x = b\colon$
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(t)\, dt = F(b) - F(a)}
+    \end{gather*}
+\end{proof}
+
+\newpage
+\subsection{Сформулировать и доказать теорему об интегрировании по частям в определённом интеграле}
+
+\begin{theorem}
+    Пусть функции $u = u(x)$ и $\upsilon = \upsilon(x)$ непрерывно дифференцируемы на $[a;b]$. Тогда имеет место равенство
+    \begin{gather*}
+        \boxed{\int_{a}^{b} u\, d\upsilon = u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Рассмотрим произведение функций $u\cdot \upsilon$. \\
+    Дифференцируем: \vspace{-\topsep}
+    \begin{align*}
+        d(u\cdot \upsilon) &=  \upsilon\, du + u\, d\upsilon \\ 
+        u\, d\upsilon &= d(u \upsilon) - \upsilon\, du
+    \end{align*}
+    Интегрируем:
+    \begin{align*}
+        \int_{a}^{b} u\, d\upsilon = \int_{a}^{b} \big(d(u\upsilon) - \upsilon\, du\big) = \int_{a}^{b} d(u\upsilon) - \int_{a}^{b} \upsilon\, du - u\eval{\upsilon}_{a}^{b} - \int_{a}^{b} \upsilon\, du
+    \end{align*}
+\end{proof}
+
+\newpage
+\subsection{Сформулировать и доказать признак сходимости по неравенству для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Признак сходимости по неравенству]\hlabel{т: сходимость по неравенству}
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]\subset [a; +\infty)$, причём \[ \forall x \geqslant a\colon 0 \leqslant f(x) \leqslant g(x) \] Тогда:
+    \begin{enumerate}
+        \item Если $\int_{a}^{+\infty} g(x)\dd{x}$ сходится, то $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится
+        \item Если $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, то $\int_{a}^{+\infty} g(x)\dd{x}$ --- расходится
+    \end{enumerate}
+    %рисунок
+\end{theorem}
+\begin{proof}
+    $\int_{a}^{+\infty} g(x)\dd{x}$ --- сходится $\Rightarrow$ по \stackon{определению}{\footnotesize{(\textbf{опр. \ref{опр: несобственный интеграл 1 рода}})}} несобственного интеграла 1-го рода
+    \[
+        \int_{a}^{+\infty} g(x)\dd{x} = \lim\limits_{b \to +\infty} \int_{a}^{b} g(x)\dd{x} = C\quad C \text{ --- число}
+    \]
+    Так как $\forall x \geqslant a\colon g(x) \geqslant 0$
+    \[
+        \Phi (b) = \int_{a}^{b} g(x)\dd{x} \leqslant C,\quad b > a
+    \]
+    По условию: $\forall x \geqslant a\colon 0 \leqslant f(x) \leqslant g(x)$\\
+    Интегрируем:
+    \[
+        \int_{a}^{b} f(x)\dd{x} \leqslant \int_{a}^{b} g(x)\dd{x} \leqslant C
+    \]
+    Так как $f(x) \geqslant 0,\ \forall x \geqslant a$ и $b > a$, то функция
+    \[
+        \Psi (b) = \int_{a}^{b} f(x)\dd{x} \text{ монотонно возрастает и ограничена сверху}
+    \]
+    \textbf{Утверждение:} монотонная и ограниченная сверху функция при $x \to +\infty$ имеет конечный предел.\\
+    По утверждению функция $\Psi(b)$ имеет конечный предел при $x\to +\infty$, то есть
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} = \lim\limits_{b \to +\infty}  \Psi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x} \text{ --- конечный предел}
+    \]
+\end{proof}
+\begin{proof}[Метод от противного]
+    \textbf{Дано:} $\int_{a}^{+\infty}f(x)\dd{x}$ --- расходится\\
+    Предположим, что $\int_{a}^{+\infty}g(x)\dd{x}$ --- сходится\\
+    Тогда по первой части теоремы: \vspace{-0.5\topsep}
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} \text{ --- сходится} 
+    \]
+    А это противоречит условию теоремы $\Rightarrow \int_{a}^{+\infty} g(x)\dd{x}$ --- расходится
+\end{proof}
+
+\subsection{Сформулировать и доказать предельный признак сравнения для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Предельный признак сходимости]
+    Пусть $f(x)$ и $g(x)$ интегрируемы на $[a;b] \subset [a; +\infty)$ и $\forall x \geqslant a\colon f(x) \geqslant 0,\ g(x) > 0$. Если существует конечный предел:
+    \begin{gather}
+        \lim\limits_{x \to +\infty} \frac{f(x)}{g(x)} = \lambda > 0
+    \end{gather}
+    то $\displaystyle\int_{a}^{+\infty} f(x)\dd{x}$ и $\displaystyle\int_{a}^{+\infty} g(x)\dd{x}$ сходятся или расходятся одновременно.
+\end{theorem}
+\begin{proof}
+    Из (5) $\Rightarrow$ по определению предела:
+    \[ \forall \varepsilon > 0,\ \exists\, M(\varepsilon) > 0\colon \forall x > M\ \Rightarrow \left| \frac{f(x)}{g(x)} - \lambda \right| < \varepsilon \] \vspace{-\topsep}
+    \begin{gather*}
+        -\varepsilon < \frac{f(x)}{g(x)} - \lambda < \varepsilon\\
+        \lambda - \varepsilon < \frac{f(x)}{g(x)} < \lambda + \varepsilon\\
+        (\lambda - \varepsilon)\cdot g(x) < f(x) < (\lambda + \varepsilon)\cdot g(x)\quad \forall x > M \tag{$*$}
+    \end{gather*}
+    \fbox{1 шаг} Рассмотрим $f(x) < (\lambda + \varepsilon) g(x)$\\
+    Интегрируем:
+    \[ 
+        \int_{a}^{+\infty} f(x)\dd{x} < (\lambda + \varepsilon) \int_{a}^{+\infty} g(x)\dd{x}
+    \]
+    Число $(\lambda + \varepsilon)$ не влияет на сходимость/расходимость несобственного интеграла.\\[1ex]
+    Пусть $\int_{a}^{+\infty} g(x)\dd{x}$ --- сходится, тогда:
+    \[
+        (\lambda + \varepsilon) \int_{a}^{+\infty}g(x)\dd{x} \text{ --- сходится}
+    \]
+    По теореме \ref{т: сходимость по неравенству} $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится.\\[1ex]
+    Пусть $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, тогда по теореме \ref{т: сходимость по неравенству}
+    \[
+        (\lambda + \varepsilon) \int_{a}^{+\infty}g(x)\dd{x} \text{ --- расходится}\ \Rightarrow\ \int_{a}^{+\infty} g(x)\dd{x} \text{ --- расходится}
+    \]
+    \fbox{2 шаг} Рассмотрим $(\lambda - \varepsilon)\cdot g(x) < f(x)$\\
+    Интегрируем:
+    \[
+        (\lambda - \varepsilon) \int_{a}^{+\infty} g(x)\dd{x} < \int_{a}^{+\infty} f(x)\dd{x}
+    \]
+    $(\lambda - \varepsilon)$ не влияет на сходимость/расходимость несобственного интеграла\\[1ex]
+    Пусть $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится, тогда по теореме \ref{т: сходимость по неравенству} \[
+        (\lambda - \varepsilon)\int_{a}^{+\infty} g(x)\dd{x} \text{ --- сходится}\ \Rightarrow\ \int_{a}^{+\infty} g(x)\dd{x} \text{ --- сходится}
+    \]
+    Пусть $(\lambda - \varepsilon) \int_{a}^{+\infty} g(x)\dd{x}$ --- расходится, тогда $\int_{a}^{+\infty} g(x)\dd{x}$ --- расходится\\[1ex]
+    По теореме \ref{т: сходимость по неравенству} $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, тогда
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} \text{ и } \int_{a}^{+\infty} g(x)\dd{x} \text{ сходятся и расходятся одновременно}
+    \]
+\end{proof}
+
+\subsection{Сформулировать и доказать признак абсолютной сходимости для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Признак абсолютной сходимости]
+    Пусть функция $f(x)$ знакопеременна на $[a;+\infty)$. Если функции $f(x)$ и $|f(x)|$ интегрируемы на любом отрезке $[a;b] \subset [a; +\infty)$ и несобственный интеграл от функции $|f(x)|$ по бесконечному промежутку $[a; +\infty)$ сходится, то сходится и несобственный интеграл от функции $f(x)$ по $[a; +\infty)$, причём абсолютно.
+\end{theorem}
+\begin{proof}
+    Так как $\forall x \in [a; +\infty)$ верно неравенство
+\begin{align*}
+    -|f(x)| \leqslant f(x) &\leqslant |f(x)|\quad \Big| + |f(x)| \\
+    0 \leqslant f(x) + |f(x)| &\leqslant 2|f(x)|
+\end{align*}
+По условию $\int_{a}^{+\infty} |f(x)| \dd{x}$ сходится $\Rightarrow\ 2\int_{a}^{+\infty} |f(x)|\dd{x}$ сходится.\\[1ex]
+По теореме \ref{т: сходимость по неравенству} (\textit{признак сходимости по неравенству}):
+\[
+    \int_{a}^{+\infty} \big(f(x) + |f(x)|\big)\dd{x} \text{ --- сходится}
+\]
+Рассмотрим
+\[
+    \int_{a}^{+\infty} f(x)\dd{x} = \underbrace{\int_{a}^{+\infty} \big(f(x) + |f(x)|\big)\dd{x}}_{\text{сх-ся по Т\ref{т: сходимость по неравенству}}} - \underbrace{\int_{a}^{+\infty} |f(x)|\dd{x}}_{\text{сх-ся по условию}}
+\]
+По определению сходящегося несобственного интеграла $\Rightarrow\ \int_{a}^{+\infty} f(x)\dd{x}$ сходится\\
+По определению абсолютной сходимости $\Rightarrow\ \int_{a}^{+\infty} f(x)\dd{x}$ сходится абсолютно
+\end{proof}
+
+\newpage
+\subsection{Вывести формулу для вычисления площади криволинейного сектора, ограниченного лучами $\varphi = \alpha,\ \varphi = \beta$ и кривой $\rho = \rho(\varphi)$}
+
+\begin{enumerate}
+    \item Разбиваем сектор $A_0 O A_n$ лучами $\alpha = \varphi_0 < \varphi_1 < \ldots < \varphi_n = \beta$ на углы $\angle A_0 O A_1$, $\angle A_1 O A_2$, $\ldots$, $\angle A_{n-1} O A_n$\\
+    $\Delta \varphi_i = \varphi_i - \varphi_{i-1}$ --- величина $\angle A_{i-1} O A_1$ в радианах\\
+    $\lambda = \underset{i}{\max} \Delta \varphi_i,\ i = \overline{1, n}$ % рисунок
+    \item $\forall$ выберем и проведём $\Psi_i$, $\Psi_i \in \angle A_{i-1} O A_i$\\
+    Находим $\rho = \rho(\Psi_i)$\\
+    $M_i \big(\Psi_i,\ r(\Psi_i)\big)$,\quad $M_i \in \angle A_{i-1} O A_i$,\quad $M_i \in r = r(\varphi)$ % рисунок
+    \item Заменяем каждый $i$-ый криволинейный сектор на круговой сектор $R = \rho(\Psi_i),\ i = \overline{1, n}$ % рисунок -> рисунок
+    $\displaystyle S_i = \frac{1}{2} R^2\cdot \Delta \varphi_i$ --- площадь $i$-го кругового сектора\\
+    $R = \rho(\Psi_i)$ \\[1ex]
+    $\displaystyle \sum_{i=1}^{n} S_i = \sum_{i=1}^{n} \frac{1}{2} \rho^2 (\Psi_i) \cdot \Delta \varphi_i = \frac{1}{2} \sum_{i=1}^{n} \rho^2(\Psi_i)\cdot \Delta \varphi_i$
+    \item Вычисляем предел
+    \begin{flalign*}
+        & \lim_{\lambda \to 0} \frac{1}{2} \sum_{i=1}^{n} \rho^2 (\Psi_i)\cdot \Delta \varphi_i = \boxed{\frac{1}{2} \int_{\alpha}^{\beta} \rho^2 \dd{\varphi} = S} &
+    \end{flalign*}
+\end{enumerate}
+
+\subsection{Вывести формулу для вычисления длины дуги графика функции $y = f(x)$, отсечённой прямыми $x = a$ и $x = b$}
+
+Пусть $y=f(x)$ непрерывна на $[a;b]$.\\
+% рисунок
+$M_0 (x_0, y_0)\quad M(x, y)$\\
+$\Delta x$ --- приращение $x$\quad $\Delta y$ --- приращение $y$\\[1ex]
+$\begin{aligned}
+    x &\to x + \Delta x\\
+    y &\to x + \Delta y
+\end{aligned}\quad M(x, y) \to M_1(x + \Delta x, y + \Delta y)$\\[1ex]
+$l_0$ --- $\wideparen{M_0M}$ --- дуга кривой\quad $\Delta l$ --- приращение дуги кривой\quad $\Delta l = \wideparen{MM_1}$\\[1ex]
+Найдём $l'_x$ --- ?\\
+$\displaystyle l'_x = \lim_{\Delta x \to 0} \frac{\Delta l}{\Delta x} $\\[1ex]
+$\triangle MM_1A\quad MA = \Delta x\quad AM_1 = \Delta y $
+\begin{flalign*}
+    & MM_1^2 = \Delta x ^2 + \Delta y^2\quad |\cdot \Delta l^2\ | : \Delta l^2 &\\
+    & \left(\frac{MM_1}{\Delta l}\right)^2 \cdot (\Delta l)^2 = \Delta x^2 + \Delta y^2\quad | : \Delta x^2 &\\
+    & \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = 1 + \left(\frac{\Delta y}{\Delta x}\right)^2 &
+\end{flalign*}
+Вычислим предел при $\Delta x \to 0$.\\
+Левая часть:
+\begin{flalign*}
+    & \lim\limits_{\Delta \to 0} \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = \left| \begin{aligned}
+        &\text{при } \Delta x \to 0\quad M\to M_1 \\
+        &\Delta l \to MM_1\quad \text{дуга } \to \text{ хорде}
+    \end{aligned} \right| = \lim\limits_{\Delta x \to 0} 1^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = (l'_x)^2 &
+\end{flalign*}
+Правая часть:
+\begin{flalign*}
+    & \lim\limits_{\Delta x \to 0}  \left(1 + \left(\frac{\Delta y}{\Delta x}\right)^2\right) = 1 + \lim\limits_{\Delta x \to 0} \left(\frac{\Delta y}{\Delta x}\right)^2 = 1 + (y'_x)^2 &
+\end{flalign*}
+Получаем:
+\begin{align*}
+    (l'_x)^2 &= 1 + (y'_x)^2 \\
+    l'_x &= \sqrt{1 + (y'_x)^2}\quad |\cdot \dd{x}\\
+    l'_x\dd{x} &= \sqrt{1 + (y'_x)^2}\dd{x}\\
+    \dd{l} &= \sqrt{1 + (y'_x)^2}\dd{x} \tag{$\vee$} 
+\end{align*}
+\begin{gather}
+    \boxed{l = \int_{a}^{b} \sqrt{1 + (y'_x)^2} \dd{x}}
+\end{gather}
+
+\newpage
+\section{Используемые теоремы}
+
+\begin{theorem}\hlabel{т: опр. интеграл и константа}
+    Если $C$ --- $const$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} c\, dx = c\cdot (b-a)}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}\hlabel{т: линейная комбинация интегрируемых}
+    Если функции $f_1(x),\ f_2(x)$ интегрируемы на $[a;b]$, то их линейная комбинация
+    \begin{gather*}
+        \lambda_1 f_1(x) + \lambda_2 f_2(x),\ \text{где } \lambda_1,\ \lambda_2 \in \R
+    \end{gather*}
+    интегрируема на $[a;b]$ и верно равенство:
+    \begin{gather*}
+        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \cdot \int_{a}^{b} f_2(x)\, dx
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Об интегрировании неравенства]\hlabel{т: интегрирование неравенства}
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon f(x) \geqslant g(x)$, то
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx \geqslant \int_{a}^{b}g(x)\, dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Непрерывность $I(x)$]\hlabel{т: непрерывность I(x)}
+    Если функция $f(x)$ на $[a;b]$ непрерывна, то $I(x) = \int_{a}^{x} f(x)\, dt$ --- непрерывна на $[a;b]$.
+\end{theorem}
+
+\end{document}
