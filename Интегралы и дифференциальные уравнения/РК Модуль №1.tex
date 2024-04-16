@@ -192,7 +192,7 @@ $I(x)$ --- переменная площадь криволинейной тра
 \subsection{Сформулировать и доказать теорему об оценке определённого интеграла}
 
 \begin{theorem}[Об оценке определённого интеграла]
-    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant N,\ {g(x) \geqslant 0}$. Тогда
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0}$. Тогда
     \begin{gather*}
         \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
     \end{gather*}
@@ -475,7 +475,7 @@ $M_0 (x_0, y_0)\quad M(x, y)$\\
 $\Delta x$ --- приращение $x$\quad $\Delta y$ --- приращение $y$\\[1ex]
 $\begin{aligned}
     x &\to x + \Delta x\\
-    y &\to x + \Delta y
+    y &\to y + \Delta y
 \end{aligned}\quad M(x, y) \to M_1(x + \Delta x, y + \Delta y)$\\[1ex]
 $l_0$ --- $\wideparen{M_0M}$ --- дуга кривой\quad $\Delta l$ --- приращение дуги кривой\quad $\Delta l = \wideparen{MM_1}$\\[1ex]
 Найдём $l'_x$ --- ?\\
@@ -538,7 +538,7 @@ $\triangle MM_1A\quad MA = \Delta x\quad AM_1 = \Delta y $
 \end{theorem}
 
 \begin{theorem}[Непрерывность $I(x)$]\hlabel{т: непрерывность I(x)}
-    Если функция $f(x)$ на $[a;b]$ непрерывна, то $I(x) = \int_{a}^{x} f(x)\, dt$ --- непрерывна на $[a;b]$.
+    Если функция $f(x)$ на $[a;b]$ непрерывна, то $I(x) = \int_{a}^{x} f(t)\, dt$ --- непрерывна на $[a;b]$.
 \end{theorem}
 
 \end{document}
