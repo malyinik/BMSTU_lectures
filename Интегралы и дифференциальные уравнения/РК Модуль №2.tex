@@ -1,0 +1,766 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+
+\begin{titlepage}
+    \vspace*{0pt}
+    \vfill
+    \centering
+    \Huge\textbf{Интегралы и дифференциальные уравнения} \\[7pt]
+    \Large\textbf{Рубежный контроль} \\
+    \large 2 семестр | Модуль №2 \\[1ex]
+    \Large\textcolor{red}{\textsf{непроверенная версия}}\\
+    \vfill
+    \begin{flushright}
+        \normalsize GitHub: \href{https://github.com/malyinik}{malyinik} \\
+    \end{flushright}
+    \normalsize 2024 г.
+\end{titlepage}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Теоретические вопросы, оцениваемые в 1 балл}
+
+\subsection{Сформулировать определение общего решения ОДУ n-го порядка}
+
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y(x_0) &= y_0 \\
+        y'(x_0) &= y_{10} \\
+        y''(x_0) &= y_{20} \\
+        \ldots\ldots\ldots&\ldots\ldots \\
+        y^{(n-1)}(x_0) &= y_{n\cdot 10} \\
+    \end{aligned} \right. \quad \text{--- начальное условие}
+\end{gather*}
+
+\begin{definition*}
+    \textbf{Общим решением} ДУ n-го порядка называется функция \break$y = \varphi(x,\, C_1,\, C_2,\, \ldots,\, C_n)$ удовлетворяющая условиям:
+    \begin{enumerate}
+        \item $y = \varphi(x,\, C_1,\, C_2,\, \ldots,\, C_n)$ --- решение ДУ n-го порядка при любых $C_1, C_2, \ldots, C_n$\nobreak --- $const$
+        \item Какого бы ни было начальное условие, можно найти точки $C_1^0, C_2^0, \ldots, C_n^0$, что функция $y = \varphi(x,\, C_1^0,\, C_2^0,\, \ldots,\, C_n^0)$ будет удовлетворять начальным условиям.
+    \end{enumerate}
+\end{definition*}
+
+\subsection{Сформулировать определение задачи Коши для ОДУ n-го порядка}
+
+\begin{definition*}
+    \textbf{Задача Коши} для ДУ n-го порядка заключается в отыскании решения ДУ, удовлетворяющего начальному условию:
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            y(x_0) &= y_0 \\
+            y'(x_0) &= y_{10} \\
+            y''(x_0) &= y_{20} \\
+            \ldots\ldots\ldots \\
+            y^{(n-1)}(x_0) &= y_{n\cdot 10} \\
+        \end{aligned} \right.
+    \end{gather*}
+    \[
+        \text{Задача Коши} = \text{ДУ} + \text{начальное условие}
+    \]
+\end{definition*}
+
+\subsection{Сформулировать определение линейного ОДУ n-го порядка}
+
+\begin{definition*}
+    ДУ n-го порядка называется \textbf{линейным}, если неизвестная функция $y(x)$ и её производные до n-го порядка включительно входят в уравнение в первой степени, не перемножаясь между собой.
+    \begin{gather}
+        \boxed{y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = f(x)}
+    \end{gather}
+    Если $f(x) = 0,\ \forall x \in I$, то ДУ (1) называется \textbf{линейным однородным ДУ} (ЛОДУ).
+    \begin{gather}
+        \boxed{y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0}
+    \end{gather}
+    (2) ЛОДУ n-го порядка
+\end{definition*}
+
+\subsection{Сформулировать определение линейной зависимости и линейной независимости системы функций на промежутке}
+
+\begin{definition*}
+    Система функций $y_1(x),\ \ldots,\ y_n(x)$ называется \textbf{линейно зависимой} на некотором промежутке $I$, если их линейная комбинация равна нулю, то есть 
+    \[
+        C_1y_1(x) + \ldots + C_n y_n = 0
+    \]
+    при этом существует хотя бы один $C_i \ne 0,\ i = \overline{1,n},\ C_1,\ \ldots,\ C_n$ --- $const$
+\end{definition*}
+
+\begin{definition*}
+    Система функций $y_1(x),\ \ldots,\ y_n(x)$ называется \textbf{линейно независимой} на некотором промежутке $I$, если их линейная комбинация равна нулю, то есть 
+    \[
+        C_1y_1(x) + \ldots + C_n y_n = 0
+    \]
+    где все $C_1 = 0,\ i = \overline{1,n}$
+\end{definition*}
+
+\subsection{Сформулировать определение определителя Вронского системы функций}
+
+\begin{definition*}
+    \textbf{Определитель Вронского (вронскианом)} системы $(n - 1)$ раз дифференцируемых функций $y_1 (x),\ \ldots,\ y_n(x)$ называется определитель вида:
+    \begin{gather*}
+        W (x) = \begin{vmatrix}
+            y_1(x) & y_2(x) & \ldots & y_n(x) \\
+            y_1'(x) & y_2'(x) & \ldots & y_n'(x) \\
+            \ldots & \ldots & \ldots & \ldots \\
+            y_1^{(n-1)}(x) & y_2^{(n-1)}(x) & \ldots & y_n^{(n-1)}(x) \\
+        \end{vmatrix}
+    \end{gather*}
+\end{definition*}
+
+\setcounter{equation}{0}
+\subsection{Сформулировать определение фундаментальной системы решений линейного однородного ОДУ}
+
+Пусть дано ЛОДУ n-го порядка
+\begin{align}
+    y^{(n)} + p_1(x) y^{(n-1)} + \ldots + p_{n-1} y' + p_n (x) y = 0
+\end{align}
+
+\begin{definition*}
+    \textbf{Фундаментальной системой решений ЛОДУ n-го порядка} (1) называется любой набор \underline{линейно независимых} частных решений ЛОДУ n-го порядка.
+\end{definition*}
+
+\newpage
+\subsection{Сформулировать определение характеристического уравнения линейного ОДУ с постоянными коэффициентами}
+
+\begin{definition*}
+    Рассмотрим линейное однородное дифференциальное уравнение с постоянными коэффициентами
+    \[ 
+        y^{(n)} + a_1 y^{(n-1)} + \ldots + a_n y = 0
+    \]
+    где $a_1,\, \ldots,\, a_n$ --- вещественные числа. \\
+    Уравнение
+    \[
+        \lambda^n + a_1 \lambda^{n-1} + \ldots + a_{n-1} \lambda + a_n = 0    
+    \]
+    называется \textbf{характеристическим уравнением} дифференциального уравнения.
+\end{definition*}
+
+\section{Теоретические вопросы, оцениваемые в 3 балла}
+
+\subsection{Сформулировать и доказать теорему о вронскиане системы линейно зависимых функций}
+
+\begin{theorem}
+    Если $(n-1)$ раз дифференцируемые функции $y_1(x),\ \ldots,\ y_n(x)$ линейно зависимы на некотором промежутке $I$, то
+    \[
+        W(x) = 0,\ \forall x \in I
+    \]
+\end{theorem}
+\begin{proof}
+    Так как $y_1(x),\ \ldots,\ y_n(x)$ линейно зависимы на $I$, то
+    \begin{gather*}
+        \boxed{C_1 y_1(x),\ \ldots,\ C_n y_n(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$*$}
+    \end{gather*}
+    Продифференцируем $(*)\ (n-1)$ раз:
+    \begin{gather*}
+        \boxed{C_1 y_1'(x),\ \ldots,\ C_n y_n'(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$**$}
+    \end{gather*}
+    По определению линейной зависимости $\Rightarrow$ $y_1'(x),\ \ldots,\ y_n'(x)$ --- линейно зависимы \\
+    \ldots\ldots\ldots \\
+    \begin{gather*}
+        \boxed{C_1 y_1^{(n-1)}(x),\ \ldots,\ C_n y_n^{(n-1)}(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$***$}
+    \end{gather*}    
+    По определению линейной зависимости $\Rightarrow$ $y_1^{(n-1)}(x),\ \ldots,\ y_n^{(n-1)}(x)$ --- линейно зависимы \\
+    Составим систему из $(*),\ (**)$ и $(***)$:
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            C_1 y_1(x),\ \ldots,\ C_n y_n(x) &= 0 \\
+            C_1 y_1'(x),\ \ldots,\ C_n y_n'(x) &= 0 \\
+            \ldots\ldots\ldots\ldots&\ldots \\
+            C_1 y_1^{(n-1)}(x),\ \ldots,\ C_n y_n^{(n-1)}(x) &= 0
+        \end{aligned} \right.
+    \end{gather*}
+    Это однородная СЛАУ относительно $C_1,\ \ldots,\ C_n$. \\
+    Определитель этой СЛАУ:
+    \begin{gather*}
+        \begin{vmatrix}
+            y_1(x) & \ldots & y_n(x) \\
+            y_1'(x) & \ldots & y_n'(x) \\
+            \ldots & \ldots & \ldots \\
+            y_1^{(n-1)}(x) & \ldots & y_n^{(n-1)}(x) \\
+        \end{vmatrix} = W(X) \text{ --- это определитель Вронского}
+    \end{gather*}
+    $W(x) = 0$, так как все строки определителя линейно зависимы.
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему о вронскиане системы линейно независимых частных решений линейного однородного ОДУ}
+
+\begin{theorem*}[О вронскиане линейно независимых частных решений ЛОДУ n-го порядка]
+    Если функции $y_1(x),\ \ldots,\ y_n(x)$ линейно независимы  на некотором промежутке $I$ и являются частными решениями ЛОДУ n-го порядка
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0
+    \]
+    с непрерывными на промежутке $I$ коэффициентами $p_1(x),\ \ldots,\ p_n(x)$, то $W(x) \ne 0,\ \forall x \in I$
+\end{theorem*}
+\begin{proof}[Метод от противного]
+    Предположим, что $\exists\, x_0 \in I\colon W(x_0) \ne 0$
+    \begin{gather*}
+        W (x_0) = \begin{vmatrix}
+            y_1(x_0) & y_2(x_0) & \ldots & y_n(x_0) \\
+            y_1'(x_0) & y_2'(x_0) & \ldots & y_n'(x_0) \\
+            \ldots & \ldots & \ldots & \ldots \\
+            y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \ldots & y_n^{(n-1)}(x_0)c\\
+        \end{vmatrix} = 0
+    \end{gather*}
+    Построим СЛАУ по определителю
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            C_1 y_1(x_0) + C_2 y_2(x_0) + \ldots + C_n y_n(x_0) = 0\\
+            C_1 y_1'(x_0) + C_2 y_2'(x_0) + \ldots + C_n y_n'(x_0) = 0\\
+            \ldots \ldots \ldots \ldots \\
+            C_1 y_1^{(n-1)}(x_0) + C_2 y_2^{(n-1)}(x_0) + \ldots + C_n y_n^{(n-1)}(x_0) = 0 \\
+        \end{aligned} \right.
+    \end{gather*}
+    Данная СЛАУ имеет ненулевое решение, так как $W(x_0) = 0$\\
+    Рассмотрим функцию $y = C_1y_1 + \ldots + C_ny_n$ \\
+    Так как $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ n-го порядка, то по Т2:
+    \[
+        y = C_1y_1 + \ldots + C_ny_n \text{ --- решение ЛОДУ n-го порядка}
+    \]
+    Найдём $y(x_0)$:
+    \[
+        y(x_0) = C_1y_1(x_0) + \ldots + C_ny_n(x_0) = 0
+    \]
+    Дифференцируем $(n-1)$ раз функцию $y = C_1y_1 + \ldots + C_ny_n$:
+    \begin{align*}
+        y'(x_0) = C_1y_1'(x_0) + \ldots + C_ny_n'(x_0) = 0 \\
+        y''(x_0) = C_1y_1''(x_0) + \ldots + C_ny_n''(x_0) = 0 \\
+        \ldots\ldots\ldots \\
+        y^{(n-1)}(x_0) = C_1y_1^{(n-1)}(x_0) + \ldots + C_ny_n^{(n-1)}(x_0) = 0 \\
+    \end{align*}
+    Получили, что $y = C_1y_1 + \ldots + C_ny_n$ --- решение ЛОДУ n-го порядка (2), удовлетворяющего начальному условию:
+    \begin{gather}
+        \left\{ \begin{aligned}
+            y(x_0) &= 0 \\
+            y'(x_0) &= 0 \\
+            \ldots\ldots&\ldots \\
+            y^{(n-1)}(x_0) &= 0 \\
+        \end{aligned}\right.
+    \end{gather}
+    Но $y=0$ -- решение ЛОДУ (2), удовлетворяющего начальному условию (3) \\
+    По теореме $\exists!$ решения задачи Коши для линейного дифференциального уравнения n-го порядка $\Rightarrow$
+    \[
+        y = C_1y_1 + \ldots + C_ny_n = 0
+    \]
+    при этом $C_1,\ \ldots,\ C_n$ -- ненулевые константы $\Rightarrow$
+    \[
+        y_1,\ \ldots,\ y_n \text{ --- линейно зависимы по определению линейной зависимости}
+    \]
+    Это противоречит условию $\Rightarrow$ предположение не является верным $\forall x \in I\colon W(x) \ne 0$
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему о существовании фундаментальной системы решений линейного однородного ОДУ n-го порядка}
+
+\begin{theorem*}[О существовании ФСР ЛОДУ n-го порядка]
+    Любые ЛОДУ n-го порядка (2) с непрерывными на промежутке $I$ коэффициентами $p_1(x),\ \ldots,\ p_n(x)$ имеет ФСР, то есть системы из n линейно зависимых функций.
+\end{theorem*}
+\begin{proof}
+    Рассмотрим ЛОДУ n-го порядка
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0
+    \]
+    $p_1(x),\ \ldots,\ p_n(x)$ --- непрерывны на $I$. \\
+    Рассмотрим произвольный числовой определитель, отличный от нуля:
+    \[
+        \begin{vmatrix}
+            \gamma_{11} & \gamma_{12} & \ldots & \gamma_{1n} \\
+            \gamma_{21} & \gamma_{22} & \ldots & \gamma_{2n} \\
+            \ldots & \ldots & \ldots & \ldots \\
+            \gamma_{n1} & \gamma_{n2} & \ldots & \gamma_{nn}
+        \end{vmatrix} \ne 0\qquad \gamma_{ij} \in \R,\ (ij) = \overline{1,n}
+    \]
+    Возьмём $\forall x_0 \in I$ и сформулируем для ЛОДУ n-го порядка задачи Коши, причём начальное условие в точке $x_0$ для $i$-ой ЗК возьмём из $i$-го столбца определителя.\\
+    \fbox{1 ЗК}:
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0\text{ --- ДУ}\\
+        \left\{ \begin{aligned}
+            y(x_0) &= \gamma_{11} \\
+            y'(x_0) &= \gamma_{21}\\
+            \ldots\ldots&\ldots \\
+            y^{(n-1)}(x_0) &= \gamma_{n1} 
+        \end{aligned}\right.\text{ --- начальное условие}
+    \end{gather*}
+    По теореме о существовании и единственности решения 1-ая задача Коши имеет единственное решение $y_1(x)$. \\
+    \ldots\ldots\ldots\ldots\ldots\ldots\ldots\ldots \\
+    \fbox{n ЗК}:
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0\text{ --- ДУ}\\
+        \left\{ \begin{aligned}
+            y(x_0) &= \gamma_{1n} \\
+            y'(x_0) &= \gamma_{2n}\\
+            \ldots\ldots&\ldots \\
+            y^{(n-1)}(x_0) &= \gamma_{nn} 
+        \end{aligned}\right.\text{ --- начальное условие}
+    \end{gather*}
+    По теореме о существовании и единственности решения n-ая задача Коши имеет единственное решение $y_n(x)$. \\
+    Рассмотрим функции:
+    \begin{align*}
+        &y_1 \text{ --- решение 1-ой ЗК} \\
+        &y_2 \text{ --- решение 2-ой ЗК} \\
+        &\ldots \\
+        &y_n \text{ --- решение n-ой ЗК} 
+    \end{align*}
+    Определитель Вронского функций $y_1,\ \ldots,\ y_n\colon$
+    \begin{gather*}
+        \begin{vmatrix}
+            \gamma_{1}(x_0) & \gamma_{2}(x_0) & \ldots & \gamma_{n}(x_0) \\
+            \gamma_{2}'(x_0) & \gamma_{2}'(x_0) & \ldots & \gamma_{n}'(x_0) \\
+            \ldots & \ldots & \ldots & \ldots \\
+            \gamma_{1}^{(n-1)}(x_0) & \gamma_{2}^{(n-1)}(x_0) & \ldots & \gamma_{n}^{(n-1)}(x_0)
+        \end{vmatrix} = \begin{vmatrix}
+            \gamma_{11} & \gamma_{12} & \ldots & \gamma_{1n} \\
+            \gamma_{21} & \gamma_{22} & \ldots & \gamma_{2n} \\
+            \ldots & \ldots & \ldots & \ldots \\
+            \gamma_{n1} & \gamma_{n2} & \ldots & \gamma_{nn}
+        \end{vmatrix} \ne 0
+    \end{gather*}
+    По утверждению 1: $\exists\, x_0\colon W(x_0) \ne 0\ \Rightarrow\ y_1,\ldots, y_n$ --- линейно зависимы $\Rightarrow$ образуют ФСР.
+\end{proof}
+
+\newpage
+\subsection{Сформулировать и доказать теорему о структуре общего решения линейного однородного ОДУ n-го порядка}
+
+\begin{theorem*}[О структуре общего решения ЛОДУ n-го порядка]
+    Общим решением ЛОДУ n-го порядка
+    \begin{gather}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0
+    \end{gather}
+    с непрерывными коэффициентами $p_1(x),\ \ldots,\ p_n(x)$ на промежутке $I$ является линейной комбинацией частных решений, входящих в ФСР.
+    \begin{align}
+        y_{\text{оо}} = C_1y_1 + \ldots + C_ny_n \tag{5}
+    \end{align}
+    <<оо>> --- общее решение однородного уравнения
+    \begin{align}
+        y_1, \ldots, y_n\qquad \text{ --- ФСР ЛОДУ},\quad C_1, \ldots, C_n \text{ --- } const
+    \end{align}
+\end{theorem*}
+\begin{proof}\,
+    \begin{enumerate}
+        \item Покажем, что (5) решение ЛОДУ (2), но не общее. Для этого подставим (5) в (2):
+        \begin{align*}
+            \left(C_1y_1 + \ldots + C_ny_n\right)^{(n)} & + p_1(x) \left(C_1y_1 + \ldots + C_ny_n\right)^{(n-1)} + \ldots + \\
+            & + p_{n-1}(x) \left(C_1y_1 + \ldots + C_ny_n\right)' + \ldots + \\
+            & + p_n(x) \left(C_1y_1 + \ldots + C_ny_n\right) = 0
+        \end{align*}
+        Вычислим производные:
+        \begin{align*}
+            C_1y_1^{(n)} + \ldots + C_ny_n^{(n)} & + p_1(x) C_1y_1^{(n-1)} + \ldots + \\ 
+            & + p_1(x)C_ny_n^{(n-1)} + \ldots + p_{n-1}(x) C_1y_1' + \ldots + \\
+            & + p_{n-1}(x)C_ny_n' + p_{n}(x) C_1y_1 + \ldots + p_{n}(x)C_ny_n = 0
+        \end{align*}
+        Группируем:
+        \begin{align*}
+            & C_1\left(y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1}(x)y_1' + p_n(x) y_1\right) + \ldots + \\
+            +\, & C_n\left(y_n^{(n)} + p_1(x)y_n^{(n-1)} + \ldots + p_{n-1}(x)y_n' + p_n(x) y_n\right) = 0
+        \end{align*}
+        Так как $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ (2), то:
+        \begin{align*}
+            C_1\cdot 0 + \ldots + C_n \cdot 0 &= 0 \\
+            0 &= 0\ \Rightarrow\ (5)\text{ --- решение } (2)
+        \end{align*}
+        \item Покажем, что (5) --- это общее решение (2), то есть из него можно выделить единственное частное решение, удовлетворяющее начальному условию:
+        \begin{gather}
+            \left\{ \begin{aligned}
+                y(x_0) &= y_0 \\
+                y'(x_0) &= y_{10}\\
+                y''(x_0) &= y_{20} \\
+                \ldots\ldots&\ldots \\
+                y^{(n-1)}(x_0) &= y_{n\cdot 10}
+            \end{aligned}\right.\quad x_0 \in I
+        \end{gather}
+        Подставим (5) в (6):
+        \begin{gather*}
+            \left\{ \begin{aligned}
+                y(x_0) &= C_1y_1(x_0) + \ldots + C_ny_n (x_0) = y_0 \\
+                y'(x_0) &=  C_1y_1'(x_0) + \ldots + C_ny_n' (x_0) = y_{10} \\
+                y''(x_0) &=  C_1y_1''(x_0) + \ldots + C_ny_n'' (x_0) = y_{20} \\
+                \ldots\ldots&\ldots \\
+                y^{(n-1)}(x_0) &=  C_1y_1^{(n-1)}(x_0) + \ldots + C_ny_n^{(n-1)} (x_0) = y_{n\cdot 10}
+            \end{aligned}\right. \text{ --- СЛАУ}
+        \end{gather*}
+        СЛАУ относительно $C_1,\ \ldots,\ C_n$. Определитель этой системы --- это определитель Вронского.
+        \begin{gather*}
+            W (x_0) = \begin{vmatrix}
+                y_1(x_0) & y_2(x_0) & \ldots & y_n(x_0) \\
+                y_1'(x_0) & y_2'(x_0) & \ldots & y_n'(x_0) \\
+                \ldots & \ldots & \ldots & \ldots \\
+                y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x) & \ldots & y_n^{(n-1)}(x_0) 
+            \end{vmatrix}
+        \end{gather*}
+        так как $y_1,\ \ldots,\ y_n$ ФСР $\Rightarrow\ y_1,\ \ldots,\ y_n$ линейно независимы $\Rightarrow\ W(x_0) \ne 0\ \Rightarrow$ ранг расширенной матрицы СЛАУ совпадает с рангом основной матрицы $\Rightarrow$ число неизвестных совпадает с числом уравнений $\Rightarrow$ СЛАУ имеет единственное решение:
+        \[
+            C_1^{0},\ \ldots,\ C_n^{0}
+        \]
+        В силу теоремы о существовании и единственности решения задачи Коши:
+        \[
+            y = C_1^0y_1 + \ldots + C_n^0y_n\text{ --- единственное решение ЗК (2), (6)}
+        \]
+        То есть получилось из (5) выделить частное решение, удовлетворяющее начальному условию (6) $\Rightarrow$ по определению общего решения (5) --- общее решение ЛОДУ (2).
+    \end{enumerate}
+\end{proof}
+
+\newpage
+\subsection{Сформулировать и доказать теорему о структуре общего решения линейного неоднородного ОДУ n-го порядка}
+
+\begin{theorem*}[О структуре общего решения ЛНДУ]
+    Общее решение ЛНДУ (1) с непрерывными на промежутке $I$ функциями\break $p_1(x),\ \ldots,\ p_n(x),\ f(x)$ равно сумме общего решения соответствующего ЛОДУ (2) и некоторого частного решения ЛНДУ (1).
+    \begin{gather}
+        \boxed{y_{\text{он}} = y_{\text{оо}} + y_{\text{чн}}}
+    \end{gather}
+    \begin{itemize}
+        \item <<о>> --- общее решение
+        \item <<ч>> --- частное решение
+        \item <<о>> --- однородного уравнения
+        \item <<н>> --- неоднородного уравнения
+    \end{itemize}
+\end{theorem*}
+\begin{proof}
+    Сначала покажем, что (4) решение ЛНДУ (1), но не общее. Подставим (4) в (1):
+    \begin{align*}
+        \Big(y_{\text{оо}} + y_{\text{чн}}\Big)^{(n)} + p_1(x) \Big(y_{\text{оо}} + y_{\text{чн}}\Big)^{(n-1)} + \ldots &+ p_{n-1}(x) \Big(y_{\text{оо}} + y_{\text{чн}}\Big)' + \\
+        &+ p_n(x) \Big(y_{\text{оо}} + y_{\text{чн}}\Big) = f
+    \end{align*}
+    Вычислим производные:
+    \begin{align*}
+        y_{\text{оо}}^{(n)} + y_{\text{чн}}^{(n)} + p_1(x)y_{\text{оо}}^{(n-1)} + p_1(x) y_{\text{чн}}^{(n-1)} + \ldots + p_{n-1}(x)y_{\text{оо}}' + p_{n-1}(x) y_{\text{чн}}' &+ p_{n}(x)y_{\text{оо}} + \\
+        &+ p_{n}(x) y_{\text{чн}} = f
+    \end{align*}
+    Группируем $y_{\text{оо}},\ y_{\text{чн}}\colon$
+    \begin{align*}
+        y_{\text{оо}}^{(n)} + p_1(x)y_{\text{оо}}^{(n-1)} + \ldots + + p_{n-1}(x)y_{\text{оо}}' + p_{n}(x)y_{\text{оо}} + y_{\text{чн}}^{(n)} + p_1(x) y_{\text{чн}}^{(n-1)} + \ldots &+ p_{n-1}(x) y_{\text{чн}}' + \\
+        &+ p_{n}(x) y_{\text{чн}} = f
+    \end{align*}
+    Так как $y_{\text{оо}}$ --- общее решение ЛОДУ (2)
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему о наложении (суперпозиции) частных решений линейного неоднородного ОДУ}
+
+\begin{theorem*}[О наложении (суперпозиции) частных решений ЛНДУ]
+    Пусть имеются два линейных неоднородных уравнения
+    \begin{align*}
+        y^{(n)} + a_1y^{(n-1)} + \ldots + a_{n-1} y' + a_n y &= f_1(x) \\
+        y^{(n)} + a_1y^{(n-1)} + \ldots + a_{n-1} y' + a_n y &= f_2(x)
+    \end{align*}
+    и пусть $y_1 = y_1(x)$ и $y_2 = y_2 (x)$ --- решения этих уравнений. \\
+    Тогда $y_1(x) + y_2(x)$ будет решением уравнения
+    \[
+        y^{(n)} + a_1y^{(n-1)} + \ldots + a_{n-1} y' + a_n y = f_1(x) + f_2(x)
+    \]
+\end{theorem*}
+
+\subsection{Сформулировать и доказать свойства частных решений линейного однородного ОДУ}
+
+\begin{theorem*}
+    Множество частных решений ЛОДУ n-го порядка (2) с непрерывными функциями $p_1(x),\ \ldots,\ p_n(x)$ на промежутке $I$ образует линейное пространство.
+\end{theorem*}
+\begin{proof}
+    Пусть $y_1$ и $y_2$ --- частные решения ЛОДУ n-го порядка (2). Тогда:
+    \begin{align*}
+        y_1^{(n)} + p_1(x)y_1^{(n-1)}  + p_2(x)y_1^{(n-2)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 &= 0 \\ 
+        y_2^{(n)} + p_1(x)y_2^{(n-1)}  + p_2(x)y_2^{(n-2)} + \ldots + p_{n-1}(x)y_2' + p_n(x)y_2 &= 0
+    \end{align*}
+    Складываем уравнения:
+    \[
+        \left(y_1^{(n)} + y_2^{(n)}\right) + p_1(x)\left(y_1^{(n-1)} + y_2^{(n-1)}\right) + \ldots + p_{n-1} (x) \left(y_1' + y_2'\right) + p_n(x)\left(y_1 + y_2\right)= 0
+    \]
+    По свойству производной:
+    \[
+        (y_1 + y_2)^{(n)} + p_1(x) (y_1 + y_2)^{(n-1)} + \ldots + p_{n-1}(y_1 + y_2)' + p_n(x)(y_1 + y_2) = 0
+    \]
+    Обозначим $y = y_1 + y_2$:
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0
+    \]
+    $y = y_1 + y_2$ --- частное решение ЛОДУ (2). \\
+    Пусть $y_1$ --- частное решение ЛОДУ n-го порядка (2)
+    Тогда:
+    \begin{align*}
+        y_1^{(n)} + p_1(x)y_1^{(n-1)}  + p_2(x)y_1^{(n-2)} + \ldots + p_{n-1}(x)&y_1' + p_n(x)y_1 = 0\quad \Big| \cdot C = const,\ C \ne 0 \\
+        C\cdot y_1^{(n)} + C\cdot p_1(x)y_1^{(n-1)}  + C\cdot p_2(x) y_1^{(n-2)} &+ \ldots + C\cdot p_{n-1}(x) y_1' + C\cdot p_n(x) y_1 = 0 \\
+        (C y_1)^{(n)} + p_1(x)(Cy_1)^{(n-1)}  + p_2(x)(Cy_1)^{(n-2)} &+ \ldots + p_{n-1}(x)C\cdot y_1' + p_n(x)(C y_1) = 0
+    \end{align*}
+    Обозначим $y = Cy_2,\quad C \text{ --- } const,\ C \ne 0$:
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0 \\
+        \Downarrow \\
+        y = C\cdot y_1, \text{ где } C \text{ --- } const\quad \text{ --- решение ЛОДУ (2)} 
+    \end{gather*}
+    По определению линейного пространства $\Rightarrow$ частные решения ЛОДУ n-го порядка образуют линейное пространство.
+\end{proof}
+
+\newpage
+\begin{theorem*}
+    Если $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ (2), то их линейная комбинация, то есть $y = C_1y_1 + \ldots + C_ny_n$, где $C_1,\ \ldots,\ C_n$ --- $const$ являются решением ЛОДУ (2).
+\end{theorem*}
+\begin{proof}
+    \begin{align*}
+        y_1^{(n)} + p_1(x)y_1^{(n-1)}  + p_2(x)y_1^{(n-2)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 &= 0\quad \Big| \cdot C_1 \\ 
+        y_2^{(n)} + p_1(x)y_2^{(n-1)}  + p_2(x)y_2^{(n-2)} + \ldots + p_{n-1}(x)y_2' + p_n(x)y_2 &= 0\quad \Big| \cdot C_2 \\
+        \ldots \\
+        y_n^{(n)} + p_1(x)y_n^{(n-1)}  + p_2(x)y_n^{(n-2)} + \ldots + p_{n-1}(x)y_n' + p_n(x)y_n &= 0\quad \Big| \cdot C_n
+    \end{align*}
+    Умножим каждое уравнение на константу $C_1,\ C_2,\ \ldots,\ C_n$, где $C_i \ne 0,\ i = \overline{1,n}$.
+    \begin{align*}
+        \left(C_1y_1^{(n)} + C_2y_2^{(n)} + \ldots + C_ny^{(n)}\right) &+ p_1(x)\left(C_1y_1^{(n-1)} + C_2y_2^{(n-1)} + \ldots + C_ny^{(n-1)}\right) + \ldots + \\
+        &+ p_{n-1}(x) \left(C_1y_1' + C_2y_2' + \ldots + C_ny'\right) + \\
+        &+ p_{n}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny\right) = 0
+    \end{align*}
+    По свойству производной:
+    \begin{align*}
+        \left(C_1y_1 + C_2y_2 + \ldots + C_ny\right)^{(n)} &+ p_1(x)\left(C_1y_1 + C_2y_2 + \ldots + C_ny\right)^{(n-1)} + \ldots + \\
+        &+ p_{n-1}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny\right)' + \\
+        &+ p_{n}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny\right) = 0
+    \end{align*}
+    Обозначим $y' = C_1y_1 + C_2y_2 + \ldots + C_ny_n$:
+    \begin{gather*}
+        y^{(n)} + p_1(x) y^{(n-1)} + \ldots + p_{n-1} (x)y' + p_n(x) y = 0 \\
+        \Downarrow \\
+        y = C_1y_1 + C_2y_2 + \ldots + C_ny_n \text{ --- решение ЛОДУ n-го порядка}
+    \end{gather*}
+\end{proof}
+
+\subsection{Вывести формулу Остроградского - Лиувилля для линейного ОДУ 2-го порядка}
+
+Рассмотрим ЛОДУ 2-го порядка
+\begin{gather}
+    y'' + p_1(x)y' + p_2(x)y = 0
+\end{gather}
+Пусть $y_1$ и $y_2$ --- два частных решения ЛОДУ (1). Для $y_1$ и $y_2$ верны равенства:
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y_1'' + p_1(x)y_1' + p_2(x)y_1 = 0 \\
+        y_2'' + p_1(x)y_2' + p_2(x)y_2 = 0 
+    \end{aligned}\quad \right| \begin{aligned}
+        &\cdot (-y_2) \\
+        &\cdot y_1
+    \end{aligned}\ "+"
+\end{gather*}
+\begin{align}
+    y_1y_2'' - y_2y_1'' + p_1(x) \left(y_1y_2' - y_2 y_1'\right) = 0
+\end{align}
+Введём обозначение:
+\[
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} = y_1 y_2' - y_1' y_2
+\]
+\begin{align*}
+    \Big(W(x)\Big)' = \Big(y_1y_2' - y_2 y_1'\Big)' = y_1'y_2' + y_1y_2'' - y_1''y_2 - y_1'y_2' = y_1y_2'' - y_1''y_2
+\end{align*}
+(2) примет вид:
+\begin{align*}
+    W' + p_1(x)\cdot W &= 0 \text{ ДУ с разделяющимися переменными} \\
+    W' &= -p_1(x) \cdot W \\
+    \dv{W}{x} &= -p_1(x) \cdot W\quad \Big|\ : W \ne 0\quad \Big| \cdot dx \\
+    \frac{dW}{W} &= -p_1(x)\dd{x} \\
+    \ln |W| &= - \int p_1(x)\dd{x} + C,\ \forall C \text{ --- } const \\
+    e^{\ln |W|} &= e^{-\int p_1(x)\dd{x}} \cdot e^C \\
+    |W| &= e^{-\int p_1(x)\dd{x}} \cdot C_1,\ \forall C_1 = e^C > 0 \\
+    W &= C_2 \cdot e^{-\int p_1(x)\dd{x}}, \forall C_2 = \pm C_1 \ne 0
+\end{align*}
+$W = 0$ --- особое решение
+\[
+    \stackunder{\boxed{W = C_3 \cdot e^{-\int p_1(x)\dd{x}},\ \forall C_3 \text{ --- } const}}{\text{Формула Остроградского-Лиувилля}}
+\]
+\begin{remark}
+    Формула Остроградского-Лиувилля для ЛОДУ n-го порядка имеет тот же вид, что и для ЛОДУ 2-го порядка, где $p_1(x)$ --- коэффициент при $(n-1)$-ой производной при условии, что коэффициент при n-ой производной равен 1.
+\end{remark}
+
+\subsection{Вывести формулу для общего решения линейного однородного ОДУ 2-го порядка с постоянными коэффициентами в случае простых действительных корней характеристического уравнения}
+
+\fbox{1 случай} $D > 0\ \Rightarrow$ характеристическое уравнение имеет два действительных различных корней\\
+$k_1 \ne k_2 \in \R$\\
+ФСР ЛОДУ (1):
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y_1 = e^{k_1x} \\
+        y_2 = e^{k_2x} \\
+    \end{aligned} \right.
+\end{gather*}
+Покажем, что $y_1$ и $y_2$ линейно зависимы, то есть образуют ФСР ЛОДУ (1):
+\begin{gather*}
+    W(X) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2' 
+    \end{vmatrix} = \begin{vmatrix}
+        e^{k_1x} & e^{k_2x} \\
+        k_1e^{k_1x} & k_2e^{k_2x} 
+    \end{vmatrix} = e^{(k_1 + k_2) x} (k_2 - k_1) \\
+    \left. \begin{aligned}
+        e^{(k_1 + k_2) x} \ne 0,\ \forall x \in I \\
+        k_2 - k_1 \ne 0, \text{ т.к. } k_2 \ne k_1
+    \end{aligned} \right\} \Rightarrow W(x) \ne 0\ \Rightarrow\ \text{функции } y_1 = e^{k_1x},\ y_2  = e^{k_2x} \text{ лин. зависимы } \Rightarrow \\
+    \Rightarrow \text{ ФСР ЛОДУ (1)}
+\end{gather*}
+По теореме \textit{о структуре общего решения ЛОДУ}:
+\[
+    y_{\text{оо}} = C_1y_1 + C_2y_2 = C_1 e^{k_1x} + C_2 e^{k_2x}
+\]
+
+
+\subsection{Вывести формулу для общего решения линейного однородного ОДУ 2-го порядка с постоянными коэффициентами в случае комплексных корней характеристического уравнения}
+
+\fbox{2 случай} $D = 0\ \Rightarrow$ характеристическое уравнение имеет два действительных равных между собой корней / один корень кратности два\\
+$k_1 = k_2 = k \in \R$\\
+$y_1 = e^{kx}\qquad k = -\frac{a}{2}$\\
+Найдём $y_2$ --- частное решение ЛОДУ (1) по известному частному решению $y_1$, причём $y_1$ и $y_2$ линейно зависимы:
+\begin{align*}
+    y_2 &= y_1 \int \frac{1}{y^2_2} e^{-\int p_1(x_0) \dd{x}}\dd{x} = \left| \begin{aligned}
+    p_1(x) = a_1 \text{ --- } const \\
+    y_1 = e^{kx},\ k\in \R
+    \end{aligned} \right| = e^{kx} \int \frac{1}{e^{2kx}} \cdot e^{-\int a_1\dd{x}} = \\
+    &= e^{-\tfrac{a}{2}x} \int \frac{1}{e^{-ax}}\cdot e^{-a_1x}\dd{x} = e^{-\tfrac{a_1}{2}x} \int dx = e^{-\tfrac{a_1}{2}x}x
+\end{align*}
+\begin{gather*}
+    \left.\begin{aligned}
+        y_1 &= e^{-\tfrac{a_1}{2}x} \\
+        y_2 &= xe^{-\tfrac{a_1}{2}x}
+    \end{aligned}\right\}\ \text{два частных решения ЛОДУ (1)}
+\end{gather*}
+Покажем, что $y_1$ и $y_2$ линейно зависимы:
+\begin{align*}
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} = \begin{vmatrix}
+        e^{-\tfrac{a_1}{2}x} & xe^{-\tfrac{a}{2}x} \\
+        -\frac{a_1}{2} e^{-\tfrac{a_1}{2}x} & e^{-\tfrac{a_1}{2}x} - \frac{a_1}{2} x e^{-\tfrac{a_1}{2}x}
+    \end{vmatrix} = & e^{-a_1x} - \frac{a_1}{2}x e^{-a_1x} + \frac{a_1}{2} x e^{-a_1x} = e^{-a_1x} \ne 0,\\
+    & \forall x \in I\ \Rightarrow\ y_1, y_2 \text{ лн. з } \Rightarrow \text{ образуют ФСР } 
+\end{align*}
+ФСР ЛОДУ (1):
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y_1 = e^{-\tfrac{a_1}{2}x} \\
+        y_2 = xe^{-\tfrac{a_1}{2}x} \\
+    \end{aligned} \right.
+\end{gather*}
+По теореме \textit{о структуре общего решения ЛОДУ}:
+\[
+    y_{\text{оо}} = C_1y_1 + C_2y_2 = C_1 e^{-\tfrac{a_1}{2}x} + C_2 xe^{-\tfrac{a_1}{2}x}
+\]
+
+
+\subsection{Вывести формулу для общего решения линейного однородного ОДУ 2-го порядка с постоянными коэффициентами в случае кратных корней характеристического уравнения}
+
+\fbox{3 случай} $D< 0\ \Rightarrow$ характеристическое уравнение имеет комплексные корни\\
+$k_{1,2} = \alpha \pm \beta \cdot i$\qquad $i$ --- мнимая единица,\ $\sqrt{-1} = i$ \\
+$\alpha$ --- действительная часть\qquad $\beta$ --- мнимая часть \\
+Формула Эйлера:
+\begin{gather*}
+    \left\{ \begin{aligned}
+        e^{i\varphi} &= \cos \varphi + i \sin \varphi \\
+        e^{-i \varphi} &= \cos \varphi - i \sin \varphi
+    \end{aligned} \right.
+\end{gather*}
+По корням характеристического уравнения находим частные решения ЛОДУ (1). \\
+$k_1 = \alpha + \beta i\colon$
+\begin{align*}
+    y_1 = e^{k_1x} = e^{(\alpha + \beta i)x} = e^{\alpha x}\cdot e^{\beta i x} = \boxed{e^{\alpha x} \left(\cos \beta x + i\cdot \sin \beta x\right)}
+\end{align*}
+$k_2 = \alpha - \beta i\colon$
+\begin{align*}
+    y_2 = e^{(\alpha - \beta i)x} = e^{\alpha x} \cdot e^{-\beta x} = \boxed{e^{\alpha x} \left(\cos \beta x = i\cdot \sin \beta x\right)}
+\end{align*}
+Найдём действительные решения ЛОДУ (1). Составим линейные комбинации:
+\begin{align*}
+    \widetilde{y_1} = \frac{y_1 + y_2}{2} = e^{\alpha x} \cos \beta x \\
+    \widetilde{y_2} = \frac{y_1 - y_2}{2i} = e^{\alpha x} \sin \beta x
+\end{align*}
+По свойству частных решений ЛОДУ следует, что $\widetilde{y_1}$ и $\widetilde{y_2}$ --- тоже решения ЛОДУ (как линейная комбинация). \\
+Покажем, что $\widetilde{y_1}$ и $\widetilde{y_2}$ линейно зависимы:
+\begin{align*}
+    W(x) = \begin{vmatrix}
+        \widetilde{y_1} & \widetilde{y_2} \\
+        \widetilde{y_1}' & \widetilde{y_2}'
+    \end{vmatrix} &= \begin{vmatrix}
+        e^{\alpha x} \cos \beta x & e^{\alpha x} \sin \beta x \\
+        \alpha e^{\alpha x} \cos \beta x - \beta e^{\alpha x} \sin \beta x & \alpha e^{\alpha x} \sin \beta x + \beta e^{\alpha x} \cos \beta x
+    \end{vmatrix} = \\
+    &= \alpha e^{2 \alpha x} \cos \beta x \sin \beta x - \beta e^{2 \alpha x} \cos^2 \beta x - \alpha e^{2 \alpha x} \cos \beta x \sin \beta x + \beta e^{2 \alpha x} \sin^2 \beta x = \\
+    &= e^{2 \alpha x} \beta \cdot 1 \ne 0\qquad \text{т.к } e^{2 \alpha x} \ne 0\ \forall x \in I
+\end{align*}
+$\beta \ne 0$, так как если $\beta = 0$, то $k_1 = k_2 = \alpha$ --- действительные корни\\
+\begin{gather*}
+    \Rightarrow\ \left. \begin{aligned}
+        \widetilde{y_1} &= e^{\alpha x} \cos \beta x \\
+        \widetilde{y_2} &= e^{\alpha x} \sin \beta x
+    \end{aligned} \right\}\ \text{линейно зависимы } \Rightarrow \text{ ФСР}
+\end{gather*}
+По теореме \textit{о структуре решений ЛОДУ}
+\[
+    y_{\text{оо}} = C_1 y_1 + C_2 y  _2 = e^{\alpha x} \left(C_1 \cos \beta x + C_2 \sin \beta x\right)
+\]
+
+\subsection{Описать метод Лагранжа вариации произвольных постоянных для линейного неоднородного ОДУ 2-го порядка и вывести систему соотношений для варьируемых переменных}
+
+Рассмотрим ЛНДУ 2-го порядка
+\begin{align}
+    y'' + p_1(x)y' + p_2(x)y &= f(x) \\
+    y_1'' + p_1(x)y' + p_2(x)y &= 0\qquad \text{ЛОДУ}
+\end{align}
+$p_1(x),\, \ldots,\, p_n(x)$ --- функции\\
+Пусть $y_1$ и $y_2$ --- это ФСР ЛОДУ (2). Тогда по теореме \textit{о структуре общего решения ЛОДУ}:
+\[
+    y_\text{оо} = \underbrace{C_1y_1 + C_2y_2}_{\text{ФСР ЛОДУ}}
+\]
+$C_1,\, C_2$ --- $\forall const$ \\
+Метод Лагранжа: предполагаемый вид решения ЛНДУ (1):
+\begin{gather}
+    y_{\text{он}} = C_1(x)y_1 + C_2(x)y_2
+\end{gather}
+$C_1(x),\, C_2(x)$ --- некоторые функции. \\
+Вычислим:
+\begin{align*}
+    y_{\text{он}}' = C_1'y_1 + C_1y_1' + C_2'y_2 + C_2y_2' = \underbrace{C_1'y_1 + C_2'y_2}_0 + C_1y_1' + C_2y_2'
+\end{align*}
+\textbf{Первое дополнительное условие Лагранжа}:
+\[
+    \boxed{C_1'y_1 + C_2'y_2 = 0}
+\]
+\begin{align*}
+    y_{\text{он}}' &= C_1y_1' + C_2y_2' \\
+    y_{\text{он}}'' &= C_1'y_1' C_1y_1' + C_2'y_2' + C_2y_2''
+\end{align*}
+$y_{\text{он}},\, y_{\text{он}}',\, y_{\text{он}}''$ в (1):
+\begin{align*}
+    C_1'y_1' C_1y_1' + C_2'y_2' + C_2y_2'' + p_1(x) \cdot \Big(C_1y_1' + C_2y_2'\Big) + p_2(x) \Big(C_1y_1 + C_2y_2\Big) = f
+\end{align*}
+Группируем:
+\begin{align*}
+    C_1'y_1' + c_2'y_2' + C_1 \underbrace{\Big(y_1'' + p_1(x)y_1' + p_2(x)y_1\Big)}_0 + C_2 \underbrace{\Big(y_2'' + p_1(x)y_2' + p_2(x)y_2\Big)}_0 = f
+\end{align*}
+Так как $y_1,y_2$ --- решения ЛОДУ (2), то
+\[
+    \stackunder{\boxed{C_1'y_1' + C_2'y_2' = f}}{\textbf{Второе условие Лагранжа}}
+\]
+Предполагаемое решение (3) будет являться решением ЛНДУ (1), если функции $C_1(x)$ и $C_2(x)$ удовлетворяют условиям:
+\begin{align*}
+    \left\{ \begin{aligned}
+        C_1' y_1 + C_2y_2 &= 0 \\
+        C_1'y_1' + C_2'y_2' &= f
+    \end{aligned}\right.\text{ --- система варьируемых переменных}
+\end{align*}
+Определяем из системы варьируемых переменных $C_1'(x)$ и $C_2'(x)$.
+\[
+    C_1'(x) = \varphi(x)\qquad C_2'(x) = \Psi (x)
+\]
+Интегрируем:
+\begin{align*}
+    C_1(x) &= \int \varphi(x)\dd{x} + k_1,\quad \forall k_1 \text{ --- } const \\
+    C_2(x) &= \int \Psi(x)\dd{x} + k_2,\quad \forall k_2 \text{ --- } const
+\end{align*}
+Подставляем $C_1(x),\ C_2(x)$ в (3):
+\begin{align*}
+    y_{\text{он}} &= C_1(x) y_1 + C_2(x) y_2 = \left(\int \varphi(x)\dd{x} + k_1\right) y_1 + \left(\int \Psi (x)\dd{x} + k_2\right) y_2 = \\
+    &= \underbrace{k_1y_1 + k_2y_2}_{y_{\text{оо}}} + \underbrace{y_1 \int \varphi(x) \dd{x} + y_2 \int \Psi(x)\dd{x}}_{y_{\text{чн}}}
+\end{align*}
+Система варьируемых переменных имеет единственное решение, так как определитель --- это определитель Вронского.
+\begin{gather*}
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} \ne 0\text{ т.к. } y_1 \text{ и } y_2 \text{ ФСР ЛОДУ}
+\end{gather*}
+
+\end{document}
