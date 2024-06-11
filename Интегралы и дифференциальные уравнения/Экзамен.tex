@@ -1,0 +1,2335 @@
+\input{../../preamble2.tex}
+
+\begin{document}
+
+\begin{titlepage}
+    \vspace*{0pt}
+    \vfill
+    \centering
+    \Huge\textbf{Интегралы и дифференциальные уравнения} \\[7pt]
+    \Large\textbf{Экзамен} \\
+    \large 2 семестр \\ 
+    \vfill
+    \begin{flushright}
+        \normalsize GitHub: \href{https://github.com/malyinik}{malyinik} \\
+    \end{flushright}
+    \normalsize 2024 г.
+\end{titlepage}
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Сформулировать определение первообразной. Сформулировать свойства первообразной и неопределённого интеграла. Сформулировать и доказать теорему об интегрировании по частям для неопределённого интеграла} 
+
+\subsection*{Первообразная}
+\begin{definition}\hlabel{опр: первообразная}
+    Функция $F(x)$ называется \textbf{первообразной} функции $f(x)$ на интервале $(a;b)$, если $F(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon$
+    \begin{gather}
+        \boxed{F'(x) = f(x)}
+    \end{gather}
+\end{definition}
+
+\subsection*{Свойства первообразной}
+
+\begin{property}
+    Если $F(x)$ --- первообразная функции $f(x)$ на $(a;b)$, то $F(x) + C$ --- первообразная функции $f(x)$ на $(a;b)$, где $\forall C$ --- $const$.
+\end{property}
+\begin{property}
+    \sloppy Если $\varPhi(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon \varPhi'(x) = 0$, то $\varPhi (x) = const$, ${\forall x \in (a;b)}$.
+\end{property}
+\begin{property}[Существование первообразной]\hlabel{св: существование первообразной}
+    Любая непрерывная функция на $(a;b)$ имеет множество первообразных на этом интервале, причём любые две из них отличаются друг от друга на константу.
+    \begin{gather*}
+        \varPhi(x),\ F(x) \text{ --- первообразные функции } f(x) \text{ на } (a;b) \\
+        \varPhi(x) - F(x) = const
+    \end{gather*}
+\end{property}
+
+\subsection*{Свойства неопределённого интеграла}
+\setcounter{property}{0}
+
+\begin{property}
+    Производная от неопределённого интеграла равна подынтегральной функции.
+    \begin{gather*}
+        \boxed{\left(\int{f(x)\, dx}\right)' = f(x)}
+    \end{gather*}
+\end{property}
+
+\begin{property}
+    Дифференциал от неопределённого интеграла равен подынтегральному выражению.
+    \begin{gather*}
+        \boxed{d\left(\int f(x)\, dx\right) =  f(x)\, dx}
+    \end{gather*}
+\end{property}
+
+\begin{property}\hlabel{св: неопределённый интеграл 3}
+    Неопределённый интеграл от дифференциала от некоторой функции равен сумме этой функции и константы.
+    \begin{gather*}
+        \boxed{\int d\big(F(x)\big) = F(x) + C},\quad \forall C \text{ --- } const
+    \end{gather*}
+\end{property}
+
+\begin{property}
+    Константу можно выносить за знак неопределённого интеграла.
+    \begin{gather*}
+        \boxed{\int \lambda\cdot f(x)\, dx = \lambda \int f(x)\, dx},\quad \lambda \ne 0
+    \end{gather*}
+\end{property}
+
+\begin{property}\hlabel{св: неопределённый интеграл 5}
+    Если функции $f_1(x)$ и $f_2(x)$ на $(a;b)$ имеют первообразные $F_1(x)$ и $F_2(x)$ соответственно, то функция $\lambda_1 f_1(x) + \lambda_2 f_2(x)$, где $\lambda_1, \lambda_2 \in \R$, имеет первообразную на $(a;b)$, причём $\lambda_1^2 + \lambda_2^2 > 0\colon$
+    \begin{gather*}
+        \int\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx = \lambda_1 \int f_1(x)\, dx + \lambda_2 \int f_2(x)\, dx
+    \end{gather*}
+\end{property}
+
+\begin{property}[Инвариантность формы интегрирования]
+    Если $\int f(x)\, dx = F(x) + C$, где $C$ --- $const$, то $\int f(u)\, du = F(u) + C$, где $C$ --- $const$, ${u = \varphi (x)}$ --- непрерывно-дифференцируемая функция.
+\end{property}
+
+\newpage
+\subsection*{Теорема об интегрировании по частям}
+\begin{theorem}
+    Пусть функции $u = u(x)$ и $v = v(x)$ непрерывно-дифференцируемые, тогда справедлива формула интегрирования по частям:
+    \begin{gather*}
+        \boxed{\int u\, dv = u\cdot v - \int v\, du}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Рассмотрим произведение $u\cdot v = u(x)\cdot v(x)$\\
+    Дифференциал:
+    \[
+        d(u\cdot v) = u\cdot dv + v\cdot du
+    \]
+    Выразим $u\cdot dv$:
+    \[
+        u\cdot dv = d(u\cdot v) - v\cdot du
+    \]
+    Интегрируем:
+    \[
+        \int u\, dv = \int \Big(d(uv) - v\, du\Big)
+    \]
+    По свойству неопределённого интеграла (\ref{св: неопределённый интеграл 5}):
+    \[
+        \int u\, dv = \int d(uv) - \int v\, du
+    \]
+    По свойству неопределённого интеграла (\ref{св: неопределённый интеграл 3}):
+    \[
+        \int u\, dv = u\cdot v - \int v\, du
+    \]
+\end{proof}
+
+\newpage
+\section{Разложение правильной рациональной дроби на простейшие. Интегрирование простейших дробей}
+
+\begin{theorem}[О разложении правильной рациональной дроби на простейшие]\hlabel{т: о разложении прав. рац. дроби}
+    Любая правильная рациональная дробь $\dfrac{P(x)}{Q(x)}$, знаменатель которой можно разложить на множители:
+    \begin{align*}
+        Q(x) = (x - x_1)^{k_1} \cdot (x - x_2)^{k_2}\cdot \ldots \cdot (x - x_n)^{k_n} \cdot (x^2 + p_1x + q_1)^{s_1}\cdot \ldots \cdot (x^2 + p_m + q_m)^{s_m},
+    \end{align*}
+    может быть представлена и при том единственным образом в виде суммы простейших рациональных дробей:
+    \begin{align*}
+        \frac{P(x)}{Q(x)} = \frac{A_1}{x - x_1} &+ \frac{B_1}{(x - x_1)^2} + \ldots + \frac{C_1}{(x - x_1)^{k_1}} + \ldots + \frac{A_n}{(x - x_n)} + \frac{B_n}{(x - x_n)^2} + \ldots + \\
+        &+ \frac{C_n}{(x - x_n)^{k_n}} + \frac{M_1x + N_1}{x^2 + p_1x + q_1} + \ldots + \frac{M_{s_1}x + N_{s_1}}{(x^2 + p_1x + q_1)^{s_1}} + \ldots + \\
+        &+ \frac{E_1x + F_1}{x^2 + p_mx + q_m} + \ldots + \frac{E_{s_m}x + F_{s_m}}{(x^2 + p_mx + q_m)^{s_m}} 
+    \end{align*}
+    \begin{gather*}
+        \begin{aligned}
+            \left. \begin{aligned}
+                & A_1,\ B_1,\ \ldots,\ C_1 \\
+                & A_n,\ B_n,\ \ldots,\ C_n \\ 
+                & M_1,\ N_1,\ \ldots,\ M_{s_1},\ N_{s_1} \\
+                & E_1,\ F_1,\ \ldotp,\ E_{s_m},\ F_{s_m}
+            \end{aligned} \right\}\ \in \R \\
+            k_1,\ k_2,\ \ldots,\ k_n,\ s_1,\ \ldots,\ s_m \in \N
+        \end{aligned}\qquad
+        \begin{aligned}
+            \begin{array}{l}
+                x^2 + p_1x + q_1 \\
+                \cdots\cdots\cdots\cdots \\
+                x^2 + p_mx + q_m
+            \end{array}\quad \begin{aligned} &\text{не имеют} \\ &\text{действительных корней} \end{aligned}
+        \end{aligned}
+    \end{gather*}
+\end{theorem}
+
+\subsection{Интегрирование простейших рациональных дробей}
+\subsubsection{$\frac{A}{x - a}$}
+
+\begin{align*}
+    \int \frac{A}{x - a}\, dx = A \int \frac{dx}{x - 1} = A \int \frac{d(x - a)}{x - 1} = A \cdot \ln |x - a| + C,\quad \forall C \text{ --- } const
+\end{align*}
+
+\subsubsection{$\frac{A}{(x-a)^k}$}
+
+\begin{align*}
+    \int \frac{A}{(x - a)^k}\, dx = A \int \frac{dx}{(x-a)^k} = A \int \frac{d(x-a)}{(x-a)^k} = A \int (x - a)^{-k}\, d(x-a) &= A\cdot \frac{(x - a)^{-k + 1}}{-k + 1} + C, \\
+    & \forall C \text{ --- } const
+\end{align*}
+
+\newpage
+\subsubsection{$\frac{Mx + N}{x^k + px + q}$}
+
+\begin{align*}
+    \int \frac{Mx + N}{x^2 + px + q}\, dx &= \left| \begin{aligned}
+        & x^2 + px + q = x^2 + 2\cdot \frac{p}{2}x + \frac{p^2}{4} - \frac{p^2}{4} + q = \\
+        & = \left(x + \frac{p}{2}\right)^2 + \left(q - \frac{p^2}{4}\right) \xlongequal{\text{$(*)$}} \left(x + \frac{p}{2}\right)^2  + b^2
+    \end{aligned} \right| = \int \frac{Mx + N}{\left(x + \frac{p}{2}\right)^2 + b^2}\, dx = \\
+     &= \left| x + \frac{p}{2} = t\quad x = t - \frac{p}{2}\quad dx = dt \right| = \int \frac{M \left(t - \dfrac{p}{2}\right) + N}{t^2 + b^2}\, dt = \\
+     &=M \int \frac{t}{t^2 + b^2}\, dt + \left(N - \frac{p}{2}M\right) \int \frac{dt}{t^2 + b^2} = \\
+     &= \frac{M}{2} \int \frac{d(t^2 + b^2)}{t^2 + b^2} + \left(N - \frac{p}{2}M\right) \frac{1}{b}\arctg \frac{t}{b} = \\
+     &= \frac{M}{2} \ln |t^2 + b^2| + \frac{\left(N - \dfrac{p}{2}M\right)}{b} \arctg \frac{t}{b} + C = \\[0.5ex]
+     &= \frac{M}{2} \ln |x^2 + px + q| + \frac{\left( N - \dfrac{p}{2}M\right)}{\sqrt{q - \dfrac{p^2}{4}}}\arctg \frac{x + \dfrac{p}{2}}{\sqrt{q - \dfrac{p^2}{4}}} + C,\quad \forall C \text{ --- } const
+\end{align*}
+
+\section{Сформулировать свойства определенного интеграла} 
+
+\subsection{Свойства определённого интеграла}
+
+\begin{theorem}
+    Если функция $y=f(x)$ интегрируема на отрезке $[a;b]$, то имеет место равенство
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x) dx = - \int_{b}^{a} f(x) dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Аддитивность определённого интеграла]\hlabel{т: аддитивность опр. интеграла}
+    Если функция $y=f(x)$ интегрируема на каждом из отрезков $[a;c],\ [c;b]\ (a < c < b)$, то она интегрируема на $[a;b]$ и верно равенство
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx = \int_{a}^{c} f(x)\, dx + \int_{c}^{b} f(x)\, dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}\hlabel{т: опр. интеграл и константа}
+    Если $C$ --- $const$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} c\, dx = c\cdot (b-a)}
+    \end{gather*}
+\end{theorem}
+
+\newpage
+\begin{theorem}\hlabel{т: линейная комбинация интегрируемых}
+    Если функции $f_1(x),\ f_2(x)$ интегрируемы на $[a;b]$, то их линейная комбинация
+    \begin{gather*}
+        \lambda_1 f_1(x) + \lambda_2 f_2(x),\ \text{где } \lambda_1,\ \lambda_2 \in \R
+    \end{gather*}
+    интегрируема на $[a;b]$ и верно равенство:
+    \begin{gather*}
+        \int_{a}^{b}\Big(\lambda_1 f_1(x) + \lambda_2 f_2(x)\Big)\, dx = \lambda_1 \int_{a}^{b} f_1(x)\, dx + \lambda_2 \int_{a}^{b} f_2(x)\, dx
+    \end{gather*}
+\end{theorem}
+
+\begin{corollary}
+    \begin{gather*}
+        \int_{a}^{a} f(x)\, dx = 0
+    \end{gather*}
+\end{corollary}
+
+\begin{theorem}[О сохранении определённым интегралом знака подынтегральной функции]
+    Если $f(x)$ интегрируема и неотрицательна на $[a;b]$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx \geqslant 0}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Об интегрировании неравенства]\hlabel{т: интегрирование неравенства}
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon f(x) \geqslant g(x)$, то
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx \geqslant \int_{a}^{b}g(x)\, dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[Об оценке модуля определённого интеграла]
+    Если функция $f(x)$ и $|f(x)|$ интегрируемы на $[a;b]$, то справедливо неравенство
+    \begin{gather*}
+        \boxed{\left| \int_{a}^{b} f(x)\, dx \right| \leqslant \int_{a}^{b} \big|f(x)\big| dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{theorem}[О среднем значении для определённого интеграла]
+    Если $f(x)$ непрерывна на $[a;b]$, то
+    \begin{gather*}
+        \exists\, c \in [a;b]\colon f(c) = \frac{1}{b-a} \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{theorem}
+
+\newpage
+\begin{theorem}[Об оценке определённого интеграла]
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0}$. Тогда
+    \begin{gather*}
+        \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
+    \end{gather*}
+\end{theorem}
+
+\begin{corollary}
+    $g(x) \equiv  1,\ \forall x \in [a;b]$
+    \begin{gather*}
+        m(b-a) \leqslant \int_{a}^{b} f(x)\, dx \leqslant M(b-a)
+    \end{gather*}
+\end{corollary}
+
+\subsection{Доказать теорему о сохранении определенным интегралом знака подынтегральной функции}
+\setcounter{theorem}{6}
+\begin{theorem}[О сохранении определённым интегралом знака подынтегральной функции]\hlabel{т: сохранение опр. интегралом знака}
+    Если $f(x)$ интегрируема и неотрицательна на $[a;b]$, то 
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx \geqslant 0}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \phantom{a} \vspace{-2\topsep}
+    \begin{gather*}
+        \int_{a}^{b} f(x)\, dx = \lim_{\lambda\to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i
+    \end{gather*}
+    $\Delta x_i$ --- длины отрезков разбиения\qquad $\Delta x_i > 0$ \\
+    $f(\xi_i) \geqslant 0$\quad по условию
+    \begin{gather*}
+        f(\xi_i)\cdot \Delta x_i \geqslant 0,\ i = \overline{i, n}\\
+        \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i \geqslant 0\quad \text{как сумма неотрицательных чисел}\\
+        \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i) \cdot \Delta x_i \geqslant 0\quad \begin{aligned} &\text{по следствию из теоремы } \textit{о сохранении} \\ &\textit{функцией знака своего предела} \end{aligned}\\
+        \Downarrow\\
+        \int_{a}^{b} f(x)\, dx \geqslant 0
+    \end{gather*}
+\end{proof}
+
+\newpage
+\subsection{Доказать теорему об оценке определенного интеграла}
+\setcounter{theorem}{10}
+\begin{theorem}[Об оценке определённого интеграла]
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0}$. Тогда
+    \begin{gather*}
+        \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Так как $\forall x \in [a;b]$ верны неравенства
+    \begin{gather*}
+        \begin{aligned}
+            m \leqslant f(x) &\leqslant M\quad | \cdot g(x) \\
+            g(x) &\geqslant 0\qquad m, M \in \R
+        \end{aligned} \\[1ex]
+        m\cdot g(x) \leqslant f(x)\cdot g(x) \leqslant M \cdot g(x)
+    \end{gather*}
+    По теореме \ref{т: интегрирование неравенства} и \ref{т: линейная комбинация интегрируемых}:
+    \begin{gather*}
+        m \int_{a}^{b} g(x) \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx
+    \end{gather*}
+\end{proof}
+
+\subsection{Доказать теорему об оценке модуля определенного интеграла}
+\setcounter{theorem}{8}
+\begin{theorem}[Об оценке модуля определённого интеграла]
+    Если функция $f(x)$ и $|f(x)|$ интегрируемы на $[a;b]$, то справедливо неравенство
+    \begin{gather*}
+        \boxed{\left| \int_{a}^{b} f(x)\, dx \right| \leqslant \int_{a}^{b} \big|f(x)\big| dx}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    $\forall x \in [a;b]$ справедливо неравенство
+    \begin{gather*}
+        -\big|f(x)\big| \leqslant f(x) \leqslant \big|f(x)\big|
+    \end{gather*}
+    По теореме \ref{т: линейная комбинация интегрируемых} и \ref{т: интегрирование неравенства}:
+    \begin{gather*}
+        - \int_{a}^{b} \big|f(x)\big|\, dx \leqslant \int_{a}^{b} f(x)\, dx \leqslant \int_{a}^{b} \big|f(x)\big|\, dx
+    \end{gather*}
+    Сворачиваем двойное неравенство:
+    \begin{gather*}
+        \left| \int_{a}^{b} f(x)\, dx \right| \leqslant \int_{a}^{b} \big|f(x)\big| dx
+    \end{gather*}
+\end{proof}
+
+\newpage
+\subsection{Доказать теорему о среднем для определенного интеграла}
+
+\begin{theorem}[О среднем значении для определённого интеграла]\hlabel{т: среднее значение опр. интеграла}
+    Если $f(x)$ непрерывна на $[a;b]$, то
+    \begin{gather*}
+        \exists\, c \in [a;b]\colon f(c) = \frac{1}{b-a} \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    Так как функция $y=f(x)$ непрерывна на $[a;b]$, то по теореме \textit{Вейерштрасса} она достигает своего наибольшего и наименьшего значения. \\
+    То есть $\exists\, m, M \in \R,\ \forall x \in [a;b]\colon m \leqslant f(x) \leqslant M$ \\
+    По теореме \ref{т: интегрирование неравенства}:
+    \begin{gather*}
+        \int_{a}^{b} m\, dx \leqslant \int_{a}^{b} f(x)\, dx \leqslant \int_{a}^{b} M\, dx
+    \end{gather*}
+    По теореме \ref{т: линейная комбинация интегрируемых}:
+    \begin{gather*}
+        m \int_{a}^{b} dx \leqslant \int_{a}^{b} f(x)\, dx \leqslant M \int_{a}^{b} dx
+    \end{gather*}
+    По теореме \ref{т: опр. интеграл и константа}:
+    \begin{gather*}
+        m(b-a) \leqslant \int_{a}^{b} f(x)\, dx \leqslant M(b-a)\quad | : (b-a)
+    \end{gather*}
+    Так как функция $y=f(x)$ непрерывна на $[a;b]$, то по теореме \textit{Больцано-Коши} она принимает все свои значения между наибольшим и наименьшим значением.
+    \begin{gather*}
+        m \leqslant \frac{1}{b-a} \int_{a}^{b} f(x)\, dx \leqslant M
+    \end{gather*}
+    По теореме \textit{Больцано-Коши} $\exists\, c \in [a;b]\colon$
+    \begin{gather*}
+        f(c) = \frac{1}{b-a} \int_{a}^{b} f(x)\, dx
+    \end{gather*}
+\end{proof}
+
+\newpage
+\subsection{Вывести формулу Ньютона-Лейбница}
+\setcounter{theorem}{11}
+\begin{theorem}\hlabel{ф: Ньютона-Лейбница}
+    Пусть функция $f(x)$ --- непрерывна на $[a;b]$. Тогда
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(x)\, dx = \eval{F(x)}_{a}^{b} =  F(b) - F(a)}
+    \end{gather*}
+    где $F(x)$ --- первообразная $f(x)$.
+\end{theorem}
+\begin{proof}
+    Пусть $F(x)$ первообразная $f(x)$ на $[a;b]$. По следствию из теоремы \ref{т: производная I(x)} $I(x)$ --- первообразная $f(x)$ на $[a;b]$. \\
+    По свойству первообразной (\textbf{св.\ref{св: существование первообразной}}): 
+    \begin{gather*}
+        \begin{aligned}
+            & I(x) - F(x) = C \\ 
+            & I(x) = F(x) + C,\ \text{где } C \text{ --- } const
+        \end{aligned} \\[1ex]
+        \int_{a}^{x} f(t)\, dt = F(x) + C,\ \text{где } C \text{ --- } const \tag{$\vee$}
+    \end{gather*}
+    $\bullet\ x = a\colon$
+    \begin{align*}
+        \int_{a}^{a} f(t)\, dt &= F(a) + C \\
+        0 &= F(a) + C \\
+        C &= -F(a)
+    \end{align*}
+    $C = -F(a)$ подставим в $(\vee)\colon$
+    \begin{gather*}
+        \int_{a}^{x} f(t)\, dt = F(x) - F(a)
+    \end{gather*}
+    $\bullet\ x = b\colon$
+    \begin{gather*}
+        \boxed{\int_{a}^{b} f(t)\, dt = F(b) - F(a)}
+    \end{gather*}
+\end{proof}
+
+\newpage
+\subsection{Интегрирование периодических функций. Интегрирование четных и нечетных функций на отрезке, симметричном относительно начала координат}
+\begin{theorem}
+    Пусть $f(x)$ непрерывная периодическая функция с периодом $T$. Тогда \vspace{-\topsep}
+    \[
+        \int_{a}^{a + T} f(x)\, dx = \int_{0}^{T} f(x)\, dx,\quad \forall a \in \R
+    \]
+\end{theorem}
+
+\begin{proof}
+    \phantom{asd} \vspace{-2\topsep}
+    \begin{flalign*}
+        & \int_{a}^{a + T} f(x)\, dx = \int_{a}^{0} f(x)\, dx + \int_{0}^{T} f(x)\, dx + \int_{T}^{T + a} f(x)\, dx & \\[1ex]
+        & \int_{T}^{T+a} f(x)\, dx = \left| \begin{aligned}
+            t &= x - T,\ &x &= t + T,\ dx = dt \\
+            x_{\text{н}} &= T,\ &t_{\text{н}} &= 0\\
+            x_{\text{в}} &= T + a,\ &t_{\text{в}} &= a
+        \end{aligned} \right| = \int_{0}^{a} f(t + T)\, dt \xlongequal{\text{период.}} \int_{0}^{a} f(t)\, dt \hspace{-4pt}& \\
+        & \int_{a}^{a + T} f(x)\, dx = \int_{a}^{0} f(x)\, dx + \int_{0}^{T} f(x)\, dx + \int_{0}^{a} f(x)\, dx & \\
+        & \int_{a}^{a + T} f(x)\, dx = \cancel{- \int_{0}^{a} f(x)\, dx} + \int_{0}^{T} f(x)\, dx + \cancel{\int_{0}^{a} f(x)\, dx} & \\ 
+        & \int_{a}^{a + T} f(x)\, dx = \int_{0}^{T} f(x)\, dx,\quad \forall x \in \R & 
+    \end{flalign*}
+\end{proof}
+
+\begin{theorem}
+    Пусть функция $y = f(x)$ непрерывна на $[-a; a]$, где $a \in \R,\ a > 0$. Тогда \vspace{-\topsep}
+    \begin{gather*}
+        \int_{-a}^{a} f(x)\, dx = \left\{ \begin{aligned}
+            2\int_{0}^{a} f(x)\, dx,\quad &f \text{ --- чётная} \\
+            0,\quad &f \text{ --- нечётная}
+        \end{aligned}\right.
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \phantom{asd} \vspace{-2\topsep}
+    \begin{flalign*}
+        & \int_{-a}^{a} f(x)\, dx = \int_{-a}^{0} f(x)\, dx + \int_{0}^{a} f(x)\, dx\ \textcircled{$=$} & \\
+        & \begin{aligned}
+            \int_{-a}^{0} f(x)\, dx = \left| \begin{aligned}
+                x &= -t,\ &dx &= -dt \\
+                x_{\text{н}} &= -a,\ &t_{\text{н}} &= a\\
+                x_{\text{в}} &= 0,\ &t_{\text{в}} &= 0 
+            \end{aligned}\right| &= \int_{a}^{0} f(-t)\, (-dt) = \int_{0}^{a} f(-t)\, dt = &\\
+            & = \left\{ \begin{aligned}
+                \int_{0}^{a} f(t)\, dt,\ &f \text{ --- чётная} \\
+                -\int_{0}^{a} f(t)\, dt,\ &f \text{ --- нечётная}
+            \end{aligned}\right.
+        \end{aligned} & \\
+        & \textcircled{$=$} \int_{0}^{a} f(x)\, dx + \left\{ \begin{aligned}
+            \int_{0}^{a} f(x)\, dx,\quad &f \text{ --- чётная} \\
+            -\int_{0}^{a} f(x)\, dx,\quad &f \text{ --- нечётная}
+        \end{aligned}\right. = \left\{ \begin{aligned}
+            2 \int_{0}^{a} f(x)\, dx,\quad &f \text{ --- чётная} \\
+            0,\quad &f \text{ --- нечётная}
+        \end{aligned}\right. &
+    \end{flalign*}
+\end{proof}
+
+\subsection{Сформулировать и доказать теорему об интегрировании по частям для определённого интеграла}
+
+\begin{theorem}
+    Пусть функции $u = u(x)$ и $v = v(x)$ непрерывно дифференцируемы на $[a;b]$. Тогда имеет место равенство
+    \[
+        \boxed{\int_{a}^{b} u\, dv = \eval{uv}_{a}^{b} - \int_{a}^{b} v\, du}
+    \]
+\end{theorem}
+\begin{proof}
+    Рассмотрим произведение функций $u\cdot v$. \\
+    Дифференцируем: \vspace{-\topsep}
+    \begin{align*}
+        d(u\cdot v) &=  v\, du + u\, dv \\ 
+        u\, dv &= d(u v) - v\, du
+    \end{align*}
+    Интегрируем:
+    \begin{align*}
+        \int_{a}^{b} u\, dv = \int_{a}^{b} \big(d(uv) - v\, du\big) = \int_{a}^{b} d(uv) - \int_{a}^{b} v\, du = \eval{uv}_{a}^{b} - \int_{a}^{b} v\, du
+    \end{align*}
+\end{proof}
+
+\newpage
+\section{Дать определение интеграла с переменным верхним пределом. Сформулировать и доказать теорему о производной от интеграла с переменным верхним пределом} 
+
+\begin{definition}
+    \textbf{Определённым интегралом с переменным верхним пределом интегрирования} от непрерывной функции $f(x)$ на $[a;b]$ называется интеграл вида
+    \begin{gather*}
+        \boxed{I(x) = \int_{a}^{x} f(t)\, dt},\ \text{где } x\in [a;b]
+    \end{gather*}
+\end{definition}
+
+\begin{theorem}[О производной $I(x)$]\hlabel{т: производная I(x)}
+    Если функция $y=f(x)$ непрерывна на $[a;b]$, то $\forall x \in [a;b]$ верно равенство
+    \begin{gather*}
+        \boxed{\big(I(x)\big)' = \left(\int_{a}^{x} f(t)\, dt\right)' = f(x)}
+    \end{gather*}
+\end{theorem}
+\begin{proof}
+    \begin{gather*}
+        \big(I(x)\big)' = \lim\limits_{\Delta x \to 0} \frac{\Delta I(x)}{\Delta x} \xlongequal{\text{Т\ref{т: непрерывность I(x)}}} \lim\limits_{\Delta x \to 0} \frac{f(c)\cdot \Delta x}{\Delta x} = \lim\limits_{\Delta x \to 0} f(c) \xlongequal{\text{$*$}} f(x)
+    \end{gather*}
+    \begin{tikzpicture}[thick, >=latex]
+        \node[] at (-2.5, 0) {$*\colon$};
+        \draw (-2, 0.1) -- (-2, -0.1) node[below]{$a$};
+        \draw (2, 0.1) -- (2, -0.1) node[below]{$b$};
+        \draw (-2, 0) -- (2, 0);
+        \draw[->] (0.65, 0) node[below]{\scriptsize${x + \Delta x}$} .. controls (0.40, 0.5) and (-0.3, 0.5) .. (-0.65, 0) node[below]{\scriptsize$x$};
+        \draw (0, 0.1) -- (0, -0.1);
+        \node[below] at (0, 0) {\scriptsize$c$};
+        \node[] at (6, 0) {при $\Delta x \to 0\quad x + \Delta x \to x\quad c \to x$};
+    \end{tikzpicture} 
+\end{proof}
+\begin{corollary}
+    Функция $I(x)$ --- первообразная функции $f(x)$ на $[a;b]$, так как по теореме \ref{т: производная I(x)} $\big(I(x)\big)' = f(x)$.
+\end{corollary}
+
+\newpage
+\section{Дать геометрическую интерпретацию определенного интеграла. Сформулировать и доказать теорему об интегрировании подстановкой для определенного интеграла} 
+
+\subsection*{Геометрический смысл}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
+        \tkzDrawX \tkzDrawY
+        \node[below left] at (0, 0) {$0$};
+        \filldraw[pattern=north east lines, pattern color=gray] (1, 0) -- (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) -- (5, 0) -- cycle;
+        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
+        \draw[thick] (1, 0) -- (1, 1);
+        \draw[thick] (5, 0) -- (5, 1.5);
+
+        \node at (3, 0.5) {$\bm S_{\textbf{кр. тр.}}$};
+    \end{tikzpicture}
+\end{figure}
+
+\noindentОпределённый интеграл численно равен площади криволинейной трапеции.
+\begin{gather*}
+    S_{\text{кр. тр.}} = \int_{a}^{b} f(x)\, dx
+\end{gather*}
+
+\subsection*{Теорема об интегрировании подстановкой}
+\begin{theorem}
+    Пусть \begin{enumerate}
+        \item $y=f(x)$ непрерывна на $[a;b]$
+        \item $x = \varphi(t)$ непрерывно дифференцируема при $t\in [t_1;t_2]$
+        \item при $t\in [t_1; t_2]$ значения функции $\varphi (t)$ не выходят за пределы $[a;b]$
+        \item $\varphi(t_1) = a,\ \varphi(t_2) = b$
+    \end{enumerate}
+    Тогда $\displaystyle\int_{a}^{b} f(x)\, dx = \left| \begin{aligned}
+        x &= \varphi (t),\ &x_{\text{н}} &= a,\ &t_{\text{н}} &= t_1 \\
+        dx &= \varphi'(t)\, dt,\ &x_{\text{в}} &= b,\ &t_\text{в} &= t_2
+    \end{aligned} \right| = \int_{t_1}^{t_2} f\big(\varphi(t)\big) \varphi'(t)\, dt$
+\end{theorem}
+\begin{proof}
+    Так как
+    \begin{enumerate}
+        \item $y=f(x)$ непрерывна на $[a;b]$, а
+        \item $x = \varphi(t)$ непрерывна на $[t_1;t_2]$,
+    \end{enumerate}
+    то сложная $y=f\big(\varphi(t)\big)$ непрерывна на $[t_1;t_2]$ по теореме \textit{о непрерывности сложной функции}.\\[1ex]
+    Так как $y=f(x)$ непрерывна на $[a;b]$, а функция $f\big(\varphi(t)\big)\cdot \varphi'(t)$ --- непрерывна на $[t_1;t_2]$, то существует определённый и неопределённый интеграл от этих функций.\\[1ex]
+    Пусть $F(x)$ --- первообразная функции $f(x)$ на $[a;b]$. В силу инвариантности неопределённого интеграла $F\big(\varphi(t)\big)$ --- первообразная функции $f\big(\varphi(t)\big)$ на $[t_1;t_2]$. \\
+    Тогда 
+    \begin{gather*}
+        \int_{a}^{b} f(x)\, dx = F(x)\Big|_a^b \xlongequal{\text{\hyperref[ф: Ньютона-Лейбница]{Н-Л}}} \boxed{F(b) - F(a)} \\
+        \int_{t_1}^{t_2} f\big(\varphi(t)\big)\varphi'(t)\, dt = F\big(\varphi(t)\big)\Big|_{t_1}^{t_2} \xlongequal{\text{\hyperref[ф: Ньютона-Лейбница]{Н-Л}}} F\big(\varphi(t_2)\big) - F\big(\varphi(t_1)\big) = \boxed{F(b) - F(a)}
+    \end{gather*}
+\end{proof}
+\begin{remark}\ \\
+    \textcircled{$+$} При замене переменной в определённом интеграле обратную замену не делают. \\
+    \textcircled{$-$} Нужно не забыть изменить пределы интегрирования.
+\end{remark}
+
+\section{Сформулировать определение несобственного интеграла 1-го рода} 
+\setcounter{equation}{0}
+Пусть $y = f(x)$ определена на $[a; +\infty)$, интегрируема на $[a;b]\subset [a; +\infty)$. Тогда определена функция
+\begin{gather}
+    \boxed{\Phi (b) = \int_{a}^{b} f(x)\dd{x}} \text{ на } [a; +\infty)
+\end{gather}
+как определённый интеграл с переменным верхним пределом интегрирования.\\
+\begin{definition}\hlabel{опр: несобственный интеграл 1 рода}
+    Предел функции $\Phi(b)$ при $b\to +\infty$ называется несобственным интегралом от функции $f(x)$ по бесконечному промежутку $[a; +\infty)$ или \textbf{несобственным интегралом 1-го рода} и обозначается
+    \begin{gather}
+        \boxed{\int_{a}^{+\infty} f(x)\dd{x} = \lim_{b \to +\infty} \Phi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x}} 
+    \end{gather}
+    Если предел в правой части равенства (2) существует и конечен, то несобственный интеграл в левой части равенства (2) \textbf{сходится}.\\
+    Если предел в правой части равенства (2) не существует или равен бесконечности, то несобственный интеграл в левой части равенства (2) \textbf{расходится}.
+\end{definition}
+
+\newpage
+\subsection{Сформулировать и доказать признак сходимости по неравенству для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Признак сходимости по неравенству]\hlabel{т: сходимость по неравенству}
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]\subset [a; +\infty)$, причём \[ \forall x \geqslant a\colon 0 \leqslant f(x) \leqslant g(x) \] Тогда:
+    \begin{enumerate}
+        \item Если $\int_{a}^{+\infty} g(x)\dd{x}$ сходится, то $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится
+        \item Если $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, то $\int_{a}^{+\infty} g(x)\dd{x}$ --- расходится
+    \end{enumerate}
+    %рисунок
+\end{theorem}
+\begin{proof}
+    $\int_{a}^{+\infty} g(x)\dd{x}$ --- сходится $\Rightarrow$ по \stackon{определению}{\footnotesize{(\textbf{опр. \ref{опр: несобственный интеграл 1 рода}})}} несобственного интеграла 1-го рода
+    \[
+        \int_{a}^{+\infty} g(x)\dd{x} = \lim\limits_{b \to +\infty} \int_{a}^{b} g(x)\dd{x} = C\quad C \text{ --- число}
+    \]
+    Так как $\forall x \geqslant a\colon g(x) \geqslant 0$ \vspace{-\topsep}
+    \[
+        \Phi (b) = \int_{a}^{b} g(x)\dd{x} \leqslant C,\quad b > a
+    \]
+    По условию: $\forall x \geqslant a\colon 0 \leqslant f(x) \leqslant g(x)$\\
+    Интегрируем:
+    \[
+        \int_{a}^{b} f(x)\dd{x} \leqslant \int_{a}^{b} g(x)\dd{x} \leqslant C
+    \]
+    Так как $f(x) \geqslant 0,\ \forall x \geqslant a$ и $b > a$, то функция
+    \[
+        \Psi (b) = \int_{a}^{b} f(x)\dd{x} \text{ монотонно возрастает и ограничена сверху}
+    \]
+    \textbf{Утверждение:} монотонная и ограниченная сверху функция при $x \to +\infty$ имеет конечный предел.\\
+    По утверждению функция $\Psi(b)$ имеет конечный предел при $x\to +\infty$, то есть
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} = \lim\limits_{b \to +\infty}  \Psi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x} \text{ --- конечный предел}
+    \]
+\end{proof}
+\begin{proof}[Метод от противного]
+    \textbf{Дано:} $\int_{a}^{+\infty}f(x)\dd{x}$ --- расходится\\
+    Предположим, что $\int_{a}^{+\infty}g(x)\dd{x}$ --- сходится\\
+    Тогда по первой части теоремы:
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} \text{ --- сходится} 
+    \]
+    А это противоречит условию теоремы $\Rightarrow \int_{a}^{+\infty} g(x)\dd{x}$ --- расходится
+\end{proof}
+
+\subsection{Сформулировать и доказать предельный признак сравнения для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Предельный признак сходимости]
+    Пусть $f(x)$ и $g(x)$ интегрируемы на $[a;b] \subset [a; +\infty)$ и $\forall x \geqslant a\colon f(x) \geqslant 0,\ g(x) > 0$. Если существует конечный предел:
+    \begin{gather}
+        \lim\limits_{x \to +\infty} \frac{f(x)}{g(x)} = \lambda > 0
+    \end{gather}
+    то $\displaystyle\int_{a}^{+\infty} f(x)\dd{x}$ и $\displaystyle\int_{a}^{+\infty} g(x)\dd{x}$ сходятся или расходятся одновременно.
+\end{theorem}
+\begin{proof}
+    Из (3) $\Rightarrow$ по определению предела:
+    \[ \forall \varepsilon > 0,\ \exists\, M(\varepsilon) > 0\colon \forall x > M\ \Rightarrow \left| \frac{f(x)}{g(x)} - \lambda \right| < \varepsilon \] \vspace{-\topsep}
+    \begin{gather*}
+        -\varepsilon < \frac{f(x)}{g(x)} - \lambda < \varepsilon\\
+        \lambda - \varepsilon < \frac{f(x)}{g(x)} < \lambda + \varepsilon\\
+        (\lambda - \varepsilon)\cdot g(x) < f(x) < (\lambda + \varepsilon)\cdot g(x)\quad \forall x > M \tag{$*$}
+    \end{gather*}
+    \fbox{1 шаг} Рассмотрим $f(x) < (\lambda + \varepsilon) g(x)$\\
+    Интегрируем:
+    \[ 
+        \int_{a}^{+\infty} f(x)\dd{x} < (\lambda + \varepsilon) \int_{a}^{+\infty} g(x)\dd{x}
+    \]
+    Число $(\lambda + \varepsilon)$ не влияет на сходимость/расходимость несобственного интеграла.\\[1ex]
+    Пусть $\int_{a}^{+\infty} g(x)\dd{x}$ --- сходится, тогда:
+    \[
+        (\lambda + \varepsilon) \int_{a}^{+\infty}g(x)\dd{x} \text{ --- сходится}
+    \]
+    По теореме \ref{т: сходимость по неравенству} $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится.\\[1ex]
+    Пусть $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, тогда по теореме \ref{т: сходимость по неравенству}
+    \[
+        (\lambda + \varepsilon) \int_{a}^{+\infty}g(x)\dd{x} \text{ --- расходится}\ \Rightarrow\ \int_{a}^{+\infty} g(x)\dd{x} \text{ --- расходится}
+    \]
+    \fbox{2 шаг} Рассмотрим $(\lambda - \varepsilon)\cdot g(x) < f(x)$\\
+    Интегрируем:
+    \[
+        (\lambda - \varepsilon) \int_{a}^{+\infty} g(x)\dd{x} < \int_{a}^{+\infty} f(x)\dd{x}
+    \]
+    $(\lambda - \varepsilon)$ не влияет на сходимость/расходимость несобственного интеграла\\[1ex]
+    Пусть $\int_{a}^{+\infty} f(x)\dd{x}$ --- сходится, тогда по теореме \ref{т: сходимость по неравенству} \[
+        (\lambda - \varepsilon)\int_{a}^{+\infty} g(x)\dd{x} \text{ --- сходится}\ \Rightarrow\ \int_{a}^{+\infty} g(x)\dd{x} \text{ --- сходится}
+    \]
+    Пусть $(\lambda - \varepsilon) \int_{a}^{+\infty} g(x)\dd{x}$ --- расходится, тогда $\int_{a}^{+\infty} g(x)\dd{x}$ --- расходится\\[1ex]
+    По теореме \ref{т: сходимость по неравенству} $\int_{a}^{+\infty} f(x)\dd{x}$ расходится, тогда
+    \[
+        \int_{a}^{+\infty} f(x)\dd{x} \text{ и } \int_{a}^{+\infty} g(x)\dd{x} \text{ сходятся и расходятся одновременно}
+    \]
+\end{proof}
+
+\subsection{Сформулировать и доказать признак абсолютной сходимости для несобственных интегралов 1-го рода}
+
+\begin{theorem}[Признак абсолютной сходимости]
+    Пусть функция $f(x)$ знакопеременна на $[a;+\infty)$. Если функции $f(x)$ и $|f(x)|$ интегрируемы на любом отрезке $[a;b] \subset [a; +\infty)$ и несобственный интеграл от функции $|f(x)|$ по бесконечному промежутку $[a; +\infty)$ сходится, то сходится и несобственный интеграл от функции $f(x)$ по $[a; +\infty)$, причём абсолютно.
+\end{theorem}
+\begin{proof}
+    Так как $\forall x \in [a; +\infty)$ верно неравенство
+\begin{align*}
+    -|f(x)| \leqslant f(x) &\leqslant |f(x)|\quad \Big| + |f(x)| \\
+    0 \leqslant f(x) + |f(x)| &\leqslant 2|f(x)|
+\end{align*}
+По условию $\int_{a}^{+\infty} |f(x)| \dd{x}$ сходится $\Rightarrow\ 2\int_{a}^{+\infty} |f(x)|\dd{x}$ сходится.\\[1ex]
+По теореме \ref{т: сходимость по неравенству} (\textit{признак сходимости по неравенству}):
+\[
+    \int_{a}^{+\infty} \big(f(x) + |f(x)|\big)\dd{x} \text{ --- сходится}
+\]
+Рассмотрим
+\[
+    \int_{a}^{+\infty} f(x)\dd{x} = \underbrace{\int_{a}^{+\infty} \big(f(x) + |f(x)|\big)\dd{x}}_{\text{сх-ся по Т\ref{т: сходимость по неравенству}}} - \underbrace{\int_{a}^{+\infty} |f(x)|\dd{x}}_{\text{сх-ся по условию}}
+\]
+По определению сходящегося несобственного интеграла $\Rightarrow\ \int_{a}^{+\infty} f(x)\dd{x}$ сходится\\
+По \stackunder{определению}{\footnotesize{(\textbf{опр.\ref{опр: абсолютная сходимость}})}} абсолютной сходимости $\Rightarrow\ \int_{a}^{+\infty} f(x)\dd{x}$ сходится абсолютно
+\end{proof}
+
+\newpage
+\section{Сформулировать определение несобственного интеграла 2-го рода и признаки сходимости таких интегралов} 
+\setcounter{equation}{0}
+Пусть функция $f(x)$ определена на полуинтервале $[a;b)$, а в точке $x = b$ терпит разрыв 2-го рода. Предположим, что функция $f(x)$ интегрируема на $[a; \eta] \subset [a;b)$. Тогда на $[a; b)$ определена функция
+\begin{gather}
+    \Phi (\eta) = \int_{a}^{\eta} f(x)\dd{x}
+\end{gather}
+как интеграл с переменным верхним пределом. 
+\begin{definition}
+    Предел функции $\Phi (\eta)$ при $\eta \to b-$ называется несобственным интегралом от неограниченной функции $f(x)$ на $[a;b)$ или \textbf{несобственным интегралом 2-го рода} и обозначается
+    \begin{gather}
+        \boxed{\int_{a}^{b} f(x)\dd{x} = \lim\limits_{\eta \to b-} \Phi (\eta) = \lim\limits_{\eta \to b-} \int_{a}^{\eta} f(x)\dd{x}}
+    \end{gather}
+    Если предел в правой части равенства (2) существует и конечен, то несобственный интеграл от неограниченной функции $f(x)$ по $[a;b)$ \textbf{сходится}.\\
+    Если предел в правой части равенства (2) не существует или равен $\infty$, то несобственный интеграл от неограниченной функции $f(x)$ по $[a;b)$ \textbf{расходится}.
+\end{definition}
+
+\begin{theorem}[Признак сходимости по неравенству]
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $\forall$ отрезке $[a; \eta] \subset [a; b)$, являются неотрицательными $\forall x \in [a;b)$ и в точке $x = b$ терпят разрыв 2-го рода, причём выполнено неравенство $0 \leqslant f(x) \leqslant g(x)$. Тогда
+    \begin{enumerate}
+        \item Если несобственный интеграл $\int_{a}^{b} g(x)\dd{x}$ сходится, то несобственный интеграл $\int_{a}^{b} f(x)\dd{x}$ сходится.
+        \item Если собственный интеграл $\int_{a}^{b} f(x)\dd{x}$ расходится, то несобственный интеграл $\int_{a}^{b} g(x)\dd{x}$ расходится.
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Предельный признак сходимости]
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $\forall$ отрезке $[a; \eta] \subset [a; b)$, являются неотрицательными $\forall x \in [a;b)$ и в точке $x = b$ терпят разрыв 2-го рода. Если существует конечный положительный предел
+    \[
+        \lim\limits_{x \to b-} \frac{f(x)}{g(x)} = \lambda > 0
+    \]
+    то $\int_{a}^{b} f(x)\dd{x}$ и $\int_{a}^{b} g(x)\dd{x}$ сходятся или расходятся одновременно.
+\end{theorem}
+
+\begin{theorem}[Признак абсолютной сходимости]
+    Пусть функция $f(x)$ знакопеременна на $[a;b)$. Если $f(x)$ и $|f(x)|$ интегрируемы на $\forall [a; \eta] \subset [a;b)$ и несобственный интеграл от функции $|f(x)|$ сходится по этому промежутку, то несобственный интеграл от функции $f(x)$ сходится, причём абсолютно.
+\end{theorem}
+
+\section{Фигура ограничена кривой $y=f(x) \geqslant 0$, прямыми $x=a,\, x=b$ и ${y=0\ (a<b)}$. Вывести формулу для вычисления с помощью определенного интеграла площади этой фигуры} 
+\setcounter{equation}{0}
+Пусть функция $y = f(x)$ непрерывна на $[a;b]$ и $\forall x  \in [a;b]\colon f(x) \geqslant 0$. Из геометрического смысла определённого интеграла:
+\begin{gather}
+     \boxed{S = \int_{a}^{b} f(x)\, dx}
+\end{gather}
+\textbf{Этапы вывода формулы:}
+\begin{enumerate}
+    \item Разбиваем $[a;b]$ точками $a = x_0 < x_1 < \ldots < x_i < \ldots < x_n = b$
+    \item $[x_{i-1}; x_i],\ i = \overline{1, n}$ --- отрезки разбиения \\
+    $\Delta x_i = x_i - x_{i-1}$ --- длины отрезков разбиения
+    \item $\forall \xi_i \in [x_{i-1}; x_i],\ i = \overline{1, n}\qquad f(\xi_i)$ \\
+    Криволинейную трапецию с основанием $\Delta x_i$ заменяем прямоугольником длины $f(\xi_i)$. \\ 
+    Криволинейная трапеция с основанием $[a;b]$ заменяется на ступенчатую фигуру.
+    \item $\lambda = \underset{i}{\max}\, \Delta x_i$ \\
+    $\displaystyle\sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i$ --- интегральная сумма
+    \item $\displaystyle\lim\limits_{\lambda \to 0} \sum_{i=1}^{n} f(\xi)\cdot \Delta x_i = \boxed{\int_{a}^{b} f(x)\, dx = S}$
+\end{enumerate}
+% рисунок к этапам вывода
+
+\newpage
+\section{Фигура ограничена лучами $\varphi=\alpha,\, \varphi=\beta$ и кривой $r=f(\varphi)$. Здесь $r$ и $\varphi$ --- полярные координаты точки, $0 \leqslant \alpha<\beta \leqslant 2 \pi$, где $r$ и $\varphi$ --- полярные координаты точки. Вывести формулу для вычисления с помощью определенного интеграла площади этой фигуры} 
+
+\begin{definition}
+    \textbf{Криволинейный сектор} --- это фигура, ограниченная лучами\break$\varphi = \alpha,\ \varphi = \beta$ и графиком непрерывной кривой $r = r(\varphi),\ \varphi \in [\alpha; \beta]$
+\end{definition}
+% рисунок
+\textbf{Этапы вывода формулы:}
+\begin{enumerate}
+    \item Разбиваем сектор $A_0 O A_n$ лучами $\alpha = \varphi_0 < \varphi_1 < \ldots < \varphi_n = \beta$ на углы $\angle A_0 O A_1$, $\angle A_1 O A_2$, $\ldots$, $\angle A_{n-1} O A_n$\\
+    $\Delta \varphi_i = \varphi_i - \varphi_{i-1}$ --- величина $\angle A_{i-1} O A_1$ в радианах\\
+    $\lambda = \underset{i}{\max} \Delta \varphi_i,\ i = \overline{1, n}$ % рисунок
+    \item $\forall$ выберем и проведём $\Psi_i$, $\Psi_i \in \angle A_{i-1} O A_i$\\
+    Находим $r = r(\Psi_i)$\\
+    $M_i \big(\Psi_i,\ r(\Psi_i)\big)$,\quad $M_i \in \angle A_{i-1} O A_i$,\quad $M_i \in r = r(\varphi)$ % рисунок
+    \item Заменяем каждый $i$-ый криволинейный сектор на круговой сектор $R = r(\Psi_i),\ i = \overline{1, n}$ % рисунок -> рисунок
+    $\displaystyle S_i = \frac{1}{2} R^2\cdot \Delta \varphi_i$ --- площадь $i$-го кругового сектора\\
+    $R = r(\Psi_i)$ \\[1ex]
+    $\displaystyle \sum_{i=1}^{n} S_i = \sum_{i=1}^{n} \frac{1}{2} r^2 (\Psi_i) \cdot \Delta \varphi_i = \frac{1}{2} \sum_{i=1}^{n} r^2(\Psi_i)\cdot \Delta \varphi_i$
+    \item Вычисляем предел
+    \begin{flalign}
+        & \lim_{\lambda \to 0} \frac{1}{2} \sum_{i=1}^{n} r^2 (\Psi_i)\cdot \Delta \varphi_i = \boxed{\frac{1}{2} \int_{\alpha}^{\beta} r^2 \dd{\varphi} = S} &
+    \end{flalign}
+\end{enumerate}
+
+\newpage
+\section{Тело образовано вращением вокруг оси $Ox$ криволинейной трапеции, ограниченной кривой $y=f(x) \geqslant 0$, прямыми $x=a,\, x=b$ и $y=0\ (a<b)$. Вывести формулу для вычисления с помощью определенного интеграла объема тела вращения}
+
+Пусть $T$ --- тело, $S$ --- площадь сечения тела плоскостью перпендикулярной $Ox$ или площадь поперечного сечения.\\
+$S = S(x)$ --- непрерывная функция на $[a;b]$
+% рисунок
+\begin{enumerate}
+    \item Разбиваем отрезок $[a;b]$ точками $a = x_0 < x_1 < \ldots < x_{i-1} < x_i < \ldots < x_n = b$\\
+    Отрезки разбиения $[x_{i-1}; x_i]$ \\
+    $\Delta x_i = x_i - x_{i-1}$ --- длина отрезка разбиения \\
+    $a = \underset{i}{\max}\, \Delta x_i,\ i = \overline{1, n}$ %рисунок
+    \item Проводим плоскости
+    \begin{flalign*}
+        & \left\{ \begin{aligned}
+            &x = x_0 = a \\
+            &\cdots\cdots\cdots \\
+            &x = x_{i-1} \\
+            &x = x_i \\
+            &\cdots\cdots\cdots \\
+            & x = x_n = b
+        \end{aligned} \right. \text{ --- эти плоскости разбивают тело $T$ на слои} &
+    \end{flalign*}
+    \item $\forall \xi_i \in [x_{i-1}; x_i],\ i = \overline{1, n}$\\
+    Проводим плоскость $x = \xi_i$. Находим $S(\xi_i)$. \\
+    Каждый слой заменяем цилиндром с основанием $S(\xi_i)$ и высотой $\Delta x_i,\ i = \overline{1, n}$ 
+    % рисунок
+    \item $V_{\text{ц}} = S(\xi_i)\cdot \Delta x_i$ --- объём $i$-го цилиндра \\
+    $\displaystyle \sum_{i=1}^{n} S(\xi_i) \cdot \Delta x_i$ --- интегральная сумма
+    \item Вычисляем предел
+    \begin{flalign}
+        & \lim_{\lambda \to 0} \sum_{i=1}^{n} S(\xi_i)\cdot \Delta x_i = \boxed{\int_{a}^{b} S(x)\dd{x} = V_{T}} &
+    \end{flalign}
+\end{enumerate}
+Рассмотрим криволинейную трапецию, ограниченную графиком непрерывной функции $y = f(x)$, $x = a$, $x = b$ и осью $Ox$. Пусть $\forall x \in [a;b]\colon f(x) \geqslant 0$ \\
+%рисунок
+Поперечное сечение --- круг\\
+$S_{\text{круга}} = \pi R^2 = (R = y) = \pi y^2$
+\begin{gather}
+    \boxed{V_{Ox} = \pi \int_{a}^{b} y^2 \dd{x}}
+\end{gather}
+Пусть криволинейная трапеция ограничена графиками непрерывных функций $y_1 = f_1(x)$ и $y_2 = f_2(x)$, прямыми $x=a$, $x=b$ % рисунок
+\begin{align}
+    V_{Ox} = V_{Ox}^1 - V_{Ox}^2 = \pi \int_{a}^{b} y^2_1\dd{x} - \pi \int_{a}^{b} y^2_2\dd{x} = \boxed{\pi \int_{a}^{b} \left(y_1^2 - y_2^2\right) \dd{x} = V_{Ox}}
+\end{align}
+
+\newpage
+\section{Кривая задана в декартовых координатах уравнением $y=f(x)$, где $x$ и $y$ --- декартовые координаты точки, $a \leqslant x \leqslant b$. Вывести формулу для вычисления длины дуги этой кривой}
+
+Пусть $y=f(x)$ непрерывна на $[a;b]$.\\
+% рисунок
+$M_0 (x_0, y_0)\quad M(x, y)$\\
+$\Delta x$ --- приращение $x$\quad $\Delta y$ --- приращение $y$\\[1ex]
+$\begin{aligned}
+    x &\to x + \Delta x\\
+    y &\to y + \Delta y
+\end{aligned}\quad M(x, y) \to M_1(x + \Delta x, y + \Delta y)$\\[1ex]
+$l_0$ --- $\wideparen{M_0M}$ --- дуга кривой\quad $\Delta l$ --- приращение дуги кривой\quad $\Delta l = \wideparen{MM_1}$\\[1ex]
+Найдём $l'_x$ --- ?\\
+$\displaystyle l'_x = \lim_{\Delta x \to 0} \frac{\Delta l}{\Delta x} $\\[1ex]
+$\triangle MM_1A\quad MA = \Delta x\quad AM_1 = \Delta y $
+\begin{flalign*}
+    & MM_1^2 = \Delta x ^2 + \Delta y^2\quad |\cdot \Delta l^2\ | : \Delta l^2 &\\
+    & \left(\frac{MM_1}{\Delta l}\right)^2 \cdot (\Delta l)^2 = \Delta x^2 + \Delta y^2\quad | : \Delta x^2 &\\
+    & \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = 1 + \left(\frac{\Delta y}{\Delta x}\right)^2 &
+\end{flalign*}
+Вычислим предел при $\Delta x \to 0$.\\
+Левая часть:
+\begin{flalign*}
+    & \lim\limits_{\Delta \to 0} \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = \left| \begin{aligned}
+        &\text{при } \Delta x \to 0\quad M\to M_1 \\
+        &\Delta l \to MM_1\quad \text{дуга } \to \text{ хорде}
+    \end{aligned} \right| = \lim\limits_{\Delta x \to 0} 1^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = (l'_x)^2 &
+\end{flalign*}
+Правая часть:
+\begin{flalign*}
+    & \lim\limits_{\Delta x \to 0}  \left(1 + \left(\frac{\Delta y}{\Delta x}\right)^2\right) = 1 + \lim\limits_{\Delta x \to 0} \left(\frac{\Delta y}{\Delta x}\right)^2 = 1 + (y'_x)^2 &
+\end{flalign*}
+Получаем:
+\begin{align*}
+    (l'_x)^2 &= 1 + (y'_x)^2 \\
+    l'_x &= \sqrt{1 + (y'_x)^2}\quad |\cdot \dd{x}\\
+    l'_x\dd{x} &= \sqrt{1 + (y'_x)^2}\dd{x}\\
+    \dd{l} &= \sqrt{1 + (y'_x)^2}\dd{x} \tag{$\vee$} 
+\end{align*}
+\begin{gather}
+    \boxed{l = \int_{a}^{b} \sqrt{1 + (y'_x)^2} \dd{x}}
+\end{gather}
+
+\newpage
+\section{Кривая задана в полярных координатах уравнением $r=f(\varphi) \geqslant 0$, где $r$ и $\varphi$ --- полярные координаты точки, $\alpha \leqslant \varphi \leqslant \beta$. Вывести формулу для вычисления длины дуги этой кривой}
+
+\begin{align*}
+    (\vee) = \dd{l} = \sqrt{1 + (y'_x)^2} \dd{x} = \sqrt{1 + \left(\frac{\dd{y}}{\dd{x}}\right)^2}\dd{x} = \sqrt{\frac{(\dd{x})^2 + (\dd{y})^2}{(\dd{x})^2}}\dd{x} = \sqrt{(\dd{x})^2 + (\dd{y})^2} = \dd{l} \tag{$\vee\vee$}
+\end{align*}
+Пусть $r = r(\varphi)$ --- непрерывная на $[\alpha; \beta]$ функция.
+\begin{flalign*}
+    & (\vee\vee) = \dd{l} = \sqrt{(dx)^2 + (dy)^2}\ \textcircled{$=$}& \\
+    & x = r\cos \varphi\quad y = r \sin \varphi & \\
+    & dx = (r\cos \varphi)'_\varphi \dd{\varphi} = (r'\cos \varphi - r\sin \varphi)\dd{\varphi} & \\
+    & dy = (r\sin \varphi)'_\varphi \dd{\varphi} = (r'\sin \varphi + r\cos \varphi)\dd{\varphi} & \\ 
+    & \begin{aligned}
+        (dx)^2 + (dy)^2 &= \left[(r'\cos \varphi - r\sin \varphi)^2 + (r'\sin \varphi + r\cos \varphi)^2\right] (d\varphi)^2 = \\
+        &= \left[\begin{aligned}
+            (r')^2 \cos^2 \varphi &- \cancel{2r'r\cos\varphi \sin\varphi} + r^2 \sin^2 \varphi\, + \\
+            +\, (r')^2 \sin^2\varphi &+ \cancel{2r'r\cos\varphi\sin\varphi} + r^2\cos^2\varphi
+        \end{aligned}\right] (\dd{\varphi})^2 = \\
+    & = \left[(r')^2 (\cos^2 \varphi + \sin^2\varphi) + r^2 (\cos^2 \varphi + \sin^2\varphi)\right](\dd{\varphi})^2 = \left[(r')^2 + r^2\right] (\dd{\varphi})^2
+    \end{aligned} & \\
+    & \textcircled{$=$}\ \sqrt{(r')^2 + r^2}\dd{\varphi} = dl &
+\end{flalign*}
+\begin{gather}
+    \boxed{l = \int_{\alpha}^{\beta} \sqrt{(r')^2 + r^2}\dd{\varphi}}
+\end{gather}
+
+\newpage
+\section{Линейные дифференциальные уравнения первого порядка. Интегрирование линейных неоднородных дифференциальных уравнений первого порядка методом Бернулли (метод <<$u \cdot v$>>) и методом Лагранжа (вариации произвольной постоянной)}
+
+\subsection*{Линейные ДУ 1-го порядка}
+\begin{definition}
+    \textbf{Дифференциальным уравнением 1-го порядка} называется уравнение, которое зависит от одной независимой переменной $x$, неизвестной функции $y(x)$ и её производной:
+    \[
+        F\left(x,\, y(x),\, y'(x)\right)
+    \]
+    $F$ --- известная функция 3-х переменных
+\end{definition}
+
+\begin{definition}
+    ДУ 1-го порядка называется \textbf{линейным}, если неизвестная функция $y(x)$ и её производная $y'$ входят в уравнение в первой степени, не перемножаясь между собой.
+    \[
+        \boxed{y' + p(x)\cdot y = f(x)}
+    \]
+    $p(x),\ f(x)$ --- непрерывны на $I \subset \R$
+\end{definition}
+
+\subsection*{Метод Бернулли (метод подстановки)}
+Рассмотрим ЛНДУ:
+\[
+    y' + p(x)\cdot y = f(x)
+\]
+$p(x),\ f(x)$ --- непрерывные функции $I \subset \R$.\\[1ex]
+Метод подстановки: $\boxed{y(x) = u(x)\cdot v(x)}$ \\[1ex]
+Подставим $y(x) = u(x)\cdot v(x)$ в ЛНДУ:
+\begin{align*}
+    u'(x)\cdot v (x) + u(x) \cdot v'(x) + p(x)\cdot u(x) \cdot v(x) &= f(x) \\
+    v(x)\Big(u'(x) + p(x)\cdot u(x)\Big) + u(x) \cdot v'(x) &= f(x) \\
+    v(x)\Big(\underbrace{u'(x) + p(x)\cdot u(x)}_{0}\Big) &= f(x) - u(x) \cdot v'(x) 
+\end{align*}
+Так как одну неизвестную переменную $y(x)$ заменили на две функции $u(x)$ и $v(x)$, то одну из этих двух функций можно выбрать так, как удобно. Произвольная постоянная будет учтена при нахождении второй неизвестной функции.
+\begin{align*}
+    u'(x) + p(x)\cdot u(x) &= 0\ \text{ --- ДУ с разделяющимися переменными} \\
+    u' &= -p(x) \cdot u \\
+    \dv{u}{x} &= -p(x)\cdot u\quad \Big|\ \cdot dx\ \Big|\ : u\ne 0 \\
+    \frac{du}{u} &= -p(x)\dd{x}
+\end{align*}
+Интегрируем:
+\begin{align*}
+    \int \frac{du}{u} &= -\int p(x)\dd{x} \\
+    \ln |u| &= -\int p(x)\dd{x} + C,\quad \forall C \text{ --- } const \\
+    e^{\ln |u|} &= e^{-\int p(x)\dd{x} + C},\quad \forall C \text{ --- } const \\
+    |u| &= C_1 \cdot e^{-\int p(x)\dd{x}},\quad \forall C_1 = e^{C} > 0 \\
+    u &= C_2 \cdot e^{-\int p(x)\dd{x}},\quad C_2 \ne \pm C_1\quad C_2 \ne 0
+\end{align*}
+$C_2 = 1$ для удобства вычислений \\
+\[
+    u = e^{-\int p(x)\dd{x}}
+\]
+$C_2 \ne 0$, так как $u(x) = 0,\ y(x) = 0$, а $y(x) = 0$ не является решением ЛНДУ. \\
+Конкретизировать данное решение можно, так имеется произвольный выбор по одной из переменных. Произвольная постоянная будет учтена при нахождении второй неизвестной функции.
+\[
+    v(x)\Big(\underbrace{u'(x) + p(x)\cdot u(x)}_0\Big) = f(x) - u(x) \cdot v'(x)
+\]
+\[
+    \boxed{f(x) - u(x)v'(x) = 0}\qquad u(x) = e^{-\int p(x)\dd{x}}
+\]
+\begin{align*}
+    f(x) - v'\cdot e^{-\int p(x)\dd{x}} &= 0 \text{ --- ДУ с разделяющимися переменными} \\
+    v'\cdot e^{-\int p(x)\dd{x}} &= f(x) \\
+    v' &= f(x) \cdot e^{\int p(x)\dd{x}} \\
+    \dv{v}{x} &= f(x)\cdot e^{\int p(x)\dd{x}} \\
+    dv &= f(x)\cdot e^{\int p(x)\dd{x}}\dd{x}
+\end{align*}
+Интегрируем:
+\begin{align*}
+    \int dv &= \int f(x)\cdot e^{-\int p(x)\dd{x}}\dd{x} \\
+    v &= \int f(x)\cdot e^{-\int p(x)\dd{x}}\dd{x} + k,\quad \forall k \text{ --- } const
+\end{align*}
+Подставим $u(x)$ и $v(x)$ в подстановку $y(x) = u(x) \cdot v(x)$:
+\[
+    y(x) = e^{-\int p(x)\dd{x}} \left(\int f(x) \cdot e^{\int p(x)\dd{x}}\dd{x} + k\right),\quad \forall k \text{ --- } const \\
+\]
+Общее решение ЛНДУ:
+\[
+    y_{\text{он}}(x) = e^{-\int p(x)\dd{x}} \left(\int f(x) \cdot e^{\int p(x)\dd{x}}\dd{x} + k\right),\quad \forall k \text{ --- } const
+\]
+
+\subsection*{Метод Лагранжа (метод вариации произвольной постоянной)}
+Рассмотрим ЛНДУ 1-го порядка:
+\[
+    y' + p(x) \cdot y = f(x) \text{ --- ЛНДУ}
+\]
+$p(x),\ f(x)$ --- непрерывны на $I \subset \R$ \\[1ex]
+\fbox{1 этап} Решение соответствующего ЛОДУ
+\begin{align*}
+    y' + p(x) \cdot y &= 0\quad \text{ЛОДУ} \\
+    y' &= -p(x) \cdot y\quad \text{ДУ с разделяющимися переменными} \\
+    \dv{y}{x} &= -p(x) \cdot y\quad \Big|\ \cdot dx\ \Big|\ : y\ne 0  \\
+    \frac{dy}{y} &= -p(x)\dd{x}
+\end{align*}
+Интегрируем:
+\begin{align*}
+    \int \frac{dy}{y} &= -\int p(x)\dd{x} \\
+    \ln |y| &= - \int p(x)\dd{x} + C,\ \forall C \text{ --- } const \\
+    e^{\ln |y|} &= e^{-\int p(x)\dd{x} + C},\ \forall C \text{ --- } const \\
+    e^{\ln |y|} &= e^{-\int p(x)\dd{x}} \cdot e^{C},\ \forall C \text{ --- } const \\
+    \left| y \right| &= C_1 \cdot e^{-\int p(x)\dd{x}},\ \forall C_1 = e^{C} > 0 \\ 
+    y &= C_2 \cdot e^{-\int p(x)\dd{x}},\ C_2 = \pm C_1,\ C_2 \ne 0 
+\end{align*}
+Особые решения: $y = 0$
+\begin{align*}
+    (0)' + p(x) \cdot 0 &= 0 \\
+    0 &= 0
+\end{align*}
+$y = 0$ --- особое решение
+\[
+    \left\{ \begin{aligned}
+        y &= C_2\cdot e^{-\int p(x)\dd{x}} \\
+        y &= 0
+    \end{aligned}\right.\quad C_2 \ne 0
+\]
+\[
+    y = k\cdot e^{-\int p(x)\dd{x}},\quad \forall k \text{ --- } const
+\]
+Общее решение ЛОДУ:
+\[
+    y_{\text{оо}} = k\cdot e^{-\int p(x)\dd{x}},\quad \forall k \text{ --- } const
+\]
+\fbox{2 этап} Предполагаемый вид решения ЛНДУ
+\[
+    y_{\text{он}} = k(x) \cdot e^{-\int p(x)\dd{x}}
+\]
+Представим предполагаемый вид решения ЛНДУ $y_{\text{он}}$ в ЛНДУ:
+\begin{align*}
+    \left(k(x) \cdot e^{-\int p(x)\dd{x}}\right)' + p(x)\cdot k(x) \cdot e^{-\int p(x)\dd{x}} &= f(x) \\
+    k'(x) \cdot e^{-\int p(x)\dd{x}} + \cancel{k(x) \cdot e^{-\int p(x)\dd{x}} \cdot \big(-p(x)\big)} + \cancel{p(x)\cdot k(x) \cdot e^{-\int p(x)\dd{x}}} &= f(x) \\
+    k'(x) \cdot e^{-\int p(x)\dd{x}} &= f(x) \text{ --- ДУ с разд. перем.}\\
+    k'(x) &= f(x) \cdot e^{\int p(x)\dd{x}} \\
+    \dv{k}{x} &= f(x) \cdot e^{\int p(x)\dd{x}} \\
+    dk &= f(x) \cdot e^{\int p(x)\dd{x}}\dd{x}
+\end{align*}
+Интегрируем:
+\[
+    k(x) = \int f(x)\cdot e^{\int p(x)\dd{x}}\dd{x} + k,\quad k \text{ --- } const
+\]
+Подставляем $k(x)$ в предполагаемое решение ЛНДУ:
+\[
+    y_{\text{он}} = k(x) \cdot e^{-\int p(x)\dd{x}} = e^{-\int p(x)\dd{x}} \left(\int f(x) e^{\int p(x)\dd{x}}dx + k\right),\ \forall k \text{ --- } const
+\]
+
+\section{Сформулировать теорему Коши о существовании и единственности решения дифференциального уравнения n-го порядка. Интегрирование дифференциальных уравнений n-го порядка, допускающих понижение порядка}
+\setcounter{equation}{0}
+\begin{definition}
+    \textbf{ДУ n-го порядка} называется уравнение вида:
+    \begin{gather}
+        \boxed{F\left(x,\, y,\, y',\, \ldots,\, y^{(n)}\right) = 0}
+    \end{gather}
+    $F$ --- известная функция от $n+2$ переменных
+\end{definition}
+
+\begin{definition}
+    ДУ n-го порядка, \textbf{разрешённым относительно старшей производной}, называется уравнение вида:
+    \begin{gather}
+        y^{(n)} = f\left(x,\, y,\, y',\, \ldots,\, y^{(n-1)}\right)
+    \end{gather}
+\end{definition}
+
+\begin{definition}
+    \textbf{Задача Коши} для ДУ n-го порядка заключается в отыскании решения ДУ (2), удовлетворяющего начальному условию:
+    \begin{gather}
+        \left\{ \begin{aligned}
+            y(x_0) &= y_0 \\
+            y'(x_0) &= y_{10} \\
+            y''(x_0) &= y_{20} \\
+            \cdots\cdots&\cdots\cdots \\
+            y^{(n-1)}(x_0) &= y_{n\cdot 10} \\
+        \end{aligned} \right.
+    \end{gather}
+    \[
+        \text{Задача Коши} = \text{ДУ (2)} + \text{начальное условие (3)}
+    \]
+\end{definition}
+
+\begin{theorem}[О существовании и единственности решения ЗК для ДУ n-го порядка]\hlabel{т: о существовании и единственности решения ЗК ДУ}
+    Если функция $f\left(x,\, y,\, y',\, \ldots,\, y^{(n-1)}\right)$ и её частные производные по переменным\break$y,\,\ y',\,\ \ldots,\,\ y^{(n-1)}$, то есть функции $f'_y\left(x,\, y,\, y',\, \ldots,\, y^{(n-1)}\right)$, $f'_{y'}\left(x,\, y,\, y',\, \ldots,\, y^{(n-1)}\right)$, \ldots , $f'_{y^{(n-1)}}\left(x,\, y,\, y',\, \ldots,\, y^{(n-1)}\right)$, непрерывны в некоторой области $D \subset \R^{n+1}$, содержщаей точку $M_0(x_0, y_0, y_{10}, y_{20}, \ldots, y_{n\cdot 10})$, то существует и при том единственное решение ЗК (2), (3).
+\end{theorem}
+
+\subsection*{ДУ, допускающие понижение порядка}
+\subsubsection*{1 тип}
+
+Уравнения вида 
+\[
+    \boxed{y^{(n)} = f(x)} 
+\]
+Метод решения: n-кратное интегрирование \\
+
+\begin{eg}
+    \begin{align*}
+        y'' &= \sin x \\
+        y' &= \int \sin \dd{x} = -\cos x + C_1,\quad \forall C_1 \text{ --- } const \\
+        y &= - \int \cos \dd{x} + C_1 \int \dd{x} + C_2,\quad \forall C_2 \text{ --- } const \\
+        y &= - \sin x + C_1 x + C_2,\quad \forall C_1, C_2 \text{ --- } const
+    \end{align*}
+\end{eg}
+
+\subsubsection*{2 тип}
+Уравнения, которые не содержат переменную $x$, то есть
+\[
+    \boxed{F\left(y,\, y',\, \ldots,\, y^{(n)}\right) = 0}
+\]
+Замена: \vspace{-\topsep}
+\begin{align*}
+    y' &= p(y) \\
+    y'' &= p'\cdot y' = p' \cdot p \\
+    \ldots&\ldots\ldots\ldots\ldots\ldots
+\end{align*}
+Для ДУ 2-го порядка: $\boxed{F(y,\, p,\, p'\cdot p) = 0}$ \\[1ex]
+Замена:
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y' &= p(y) \\
+        y'' &= p'\cdot p
+    \end{aligned} \right. \tag{$*$} \\
+    \Downarrow \\
+    \boxed{F(y,\, p,\, p'\cdot p) = 0}
+\end{gather*} 
+Замена $(*)$ позволяет понизить порядок ДУ на единицу. \\[1ex]
+\fbox{1 шаг} Решаем ДУ $F(y,\, p,\, p'\cdot p) = 0$. Интегрируем. Находим функцию $P = \Psi(y,\, C_1)$,\break$C_1$ --- $const$. \\[1ex]
+\fbox{2 шаг} Обратная замена $p = y'$ \\[1ex]
+\fbox{3 шаг} $y' = \Psi (y, C_1), \forall C_1$ --- $const$ \\[1ex]
+Решаем ДУ 1-го порядка. Интегрируем:
+\[
+    y = \varphi (x,\, C_1,\, C_2)
+\]
+
+\subsubsection*{3 тип}
+Уравнения, в которых в явном виде отсутствует $y$, то есть
+\[
+    \boxed{F\left(x,\, y',\, y'',\, \ldots,\, y^{(n)}\right) = 0}
+\]
+Замена: 
+\begin{align*}
+    \left\{ \begin{aligned}
+        y' &= p(x) \\
+        y'' &= p'
+    \end{aligned} \right. \tag{$*$}
+\end{align*}
+С помощью $(*)$ понижаем порядок ДУ на единицу. \\ 
+Для ДУ 2-го порядка:
+\[
+    F(x,\, y',\, y'') = 0
+\]
+Замена:
+\begin{align*}
+    & \left\{ \begin{aligned}
+        y' &= p(x) \\
+        y'' &= p'
+    \end{aligned} \right. \tag{$*$} \\
+    & F(x,\, p,\, p') = 0
+\end{align*}
+\fbox{1 шаг} Решаем ДУ 1-го порядка $F(x,\, p,\, p') = 0$. Интегрируем. Находим функцию\break$P = \Psi (x, C_1),\ \forall C_1$ --- $const$ \\[1ex]
+\fbox{2 шаг} Обратная замена $p = y'$ \\[1ex]
+\fbox{3 шаг} $y' = \Psi (x, C_1)$ --- ДУ 1-го порядка. Решаем ДУ 1-го порядка. Интегрируем. Находим $y = \varphi (x,\, C_1,\, C_2),\ \forall C_1, C_2$ --- $const$
+
+\newpage
+\section{Сформулировать теорему Коши о существовании и единственности решения линейного дифференциального уравнения n-го порядка. Доказать свойства частных решений линейного однородного дифференциального уравнения n-го порядка}
+\setcounter{equation}{0}
+\subsection*{Линейные ДУ высшего порядка}
+\begin{definition}
+    ДУ n-го порядка называется \textbf{линейным}, если неизвестная функция $y(x)$ и её производные до n-го порядка включительно входят в уравнение в первой степени, не перемножаясь между собой.
+    \begin{gather}
+        \boxed{y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = f(x)}
+    \end{gather}
+    $p_1(x),\ \ldots,\ p_n (x)$ --- функции, заданные на некотором промежутке $I$.\\
+    $p_1(x),\ \ldots,\ p_n (x)$ --- коэффициенты \\
+    $f(x)$ --- функция, определена на промежутке $I$ \\
+    $f(x)$ --- свободный член
+\end{definition}
+
+\begin{definition}\ \\
+    Если $f(x) = 0,\ \forall x \in I$, то ДУ (1) называется \textbf{линейным однородным ДУ} (ЛОДУ).
+    \begin{align*}
+        \boxed{y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = f(x)} \tag{1}
+    \end{align*}
+    (1) ЛНДУ n-го порядка \\[1ex]
+    Если $f(x) \ne 0$ хотя бы для одного $x \in I$, то ДУ (1) называется \textbf{линейным неоднородным ДУ} n-го порядка (ЛНДУ). 
+    \begin{gather}
+        \boxed{y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0}
+    \end{gather}
+    (2) ЛОДУ n-го порядка
+\end{definition}
+
+\begin{definition}
+    \textbf{Задача Коши} для линейного дифференциального уравнения\break n-го порядка заключается в отыскании решения ДУ (1), удовлетворяющего начальному условию:
+    \begin{gather}
+        \left\{ \begin{aligned}
+            y(x_0) &= y_0 \\
+            y'(x_0) &= y_{10} \\
+            y''(x_0) &= y_{20} \\
+            \cdots\cdots&\cdots\cdots \\
+            y^{(n-1)}(x_0) &= y_{n\cdot10} \\
+        \end{aligned} \right. \\
+        \text{Задача Коши} = \text{ДУ (1)} + \text{начальное условие (3)}
+    \end{gather}
+\end{definition}
+
+\newpage
+\begin{theorem}[О существовании и единственности решения ЗК (1), (3)]\hlabel{т: о существовании и единственности решения ЗК ЛНДУ}
+    Если в ЛНДУ (1) функции $p_1(x),\ \ldots,\ p_n(x),\ f(x)$ непрерывны на некотором промежутке $I$, то задача Коши для ЛНДУ (1) имеет единственное решение удовлетворяющее начальному условию (3).
+\end{theorem}
+
+\subsection*{Свойства частных решений ЛОДУ n-го порядка}\hlabel{sec: свойства частных решений ЛОДУ n-го порядка}
+
+\begin{theorem}
+    Множество частных решений ЛОДУ n-го порядка (2) с непрерывными функциями $p_1(x),\ \ldots,\ p_n(x)$ на промежутке $I$ образует линейное пространство.
+\end{theorem}
+\begin{proof}
+    Пусть $y_1$ и $y_2$ --- частные решения ЛОДУ n-го порядка (2). Тогда:
+    \begin{align*}
+        +\ \begin{aligned}
+            y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 &= 0 \\ 
+            y_2^{(n)} + p_1(x)y_2^{(n-1)} + \ldots + p_{n-1}(x)y_2' + p_n(x)y_2 &= 0
+        \end{aligned}
+    \end{align*}
+    Складываем уравнения:
+    \[
+        \left(y_1^{(n)} + y_2^{(n)}\right) + p_1(x)\left(y_1^{(n-1)} + y_2^{(n-1)}\right) + \ldots + p_{n-1} (x) \left(y_1' + y_2'\right) + p_n(x)\left(y_1 + y_2\right)= 0
+    \]
+    По свойству производной:
+    \[
+        (y_1 + y_2)^{(n)} + p_1(x) (y_1 + y_2)^{(n-1)} + \ldots + p_{n-1}(x)(y_1 + y_2)' + p_n(x)(y_1 + y_2) = 0
+    \]
+    Обозначим $y = y_1 + y_2$:
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)}  + p_2(x)y^{(n-2)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0
+    \]
+    $y = y_1 + y_2$ --- частное решение ЛОДУ (2). \\
+    Пусть $y_1$ --- частное решение ЛОДУ n-го порядка (2)
+    Тогда:
+    \begin{gather*}
+        y_1^{(n)} + p_1(x)y_1^{(n-1)}  + p_2(x)y_1^{(n-2)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 = 0\quad \Big| \cdot C = const,\ C \ne 0 \\
+        \begin{aligned}
+            C\cdot y_1^{(n)} + C\cdot p_1(x)y_1^{(n-1)} + \ldots + C\cdot p_{n-1}(x) y_1' + C\cdot p_n(x) y_1 &= 0 \\
+            (C y_1)^{(n)} + p_1(x)(Cy_1)^{(n-1)} + \ldots + p_{n-1}(x)(C y_1)' + p_n(x)(C y_1) &= 0
+        \end{aligned}
+    \end{gather*}
+    Обозначим $y = Cy_1,\quad C \text{ --- } const,\ C \ne 0$:
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0 \\
+        \Downarrow \\
+        y = C\cdot y_1, \text{ где } C \text{ --- } const,\ C \ne 0\quad \text{ --- решение ЛОДУ (2)} 
+    \end{gather*}
+    По определению линейного пространства $\Rightarrow$ частные решения ЛОДУ n-го порядка образуют линейное пространство.
+\end{proof}
+
+\newpage
+\begin{theorem}\hlabel{т: частные решения ЛОДУ n-го порядка}
+    Если $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ (2), то их линейная комбинация, то есть $y = C_1y_1 + \ldots + C_ny_n$, где $C_1,\ \ldots,\ C_n$ --- $const$ являются решением ЛОДУ (2).
+\end{theorem}
+\begin{proof}
+    Пусть $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ (2).
+    \begin{align*}
+        + \left|\quad\begin{aligned}
+            y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 &= 0\quad \Big| \cdot C_1 \\ 
+            y_2^{(n)} + p_1(x)y_2^{(n-1)} + \ldots + p_{n-1}(x)y_2' + p_n(x)y_2 &= 0\quad \Big| \cdot C_2 \\
+            \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots&\cdots\cdot \\
+            y_n^{(n)} + p_1(x)y_n^{(n-1)} + \ldots + p_{n-1}(x)y_n' + p_n(x)y_n &= 0\quad \Big| \cdot C_n
+        \end{aligned}\right.
+    \end{align*}
+    Умножим каждое уравнение на константу $C_1,\ C_2,\ \ldots,\ C_n$, где $C_i \ne 0,\ i = \overline{1,n}$.
+    \begin{align*}
+        \left(C_1y_1^{(n)} + C_2y_2^{(n)} + \ldots + C_ny_n^{(n)}\right) &+ p_1(x)\left(C_1y_1^{(n-1)} + C_2y_2^{(n-1)} + \ldots + C_ny_n^{(n-1)}\right) + \\ 
+        &+ \ldots + \\ 
+        &+ p_{n-1}(x) \left(C_1y_1' + C_2y_2' + \ldots + C_ny_n'\right) + \\ 
+        &+ p_{n}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny_n\right) = 0
+    \end{align*}
+    По свойству производной:
+    \begin{align*}
+        \left(C_1y_1 + C_2y_2 + \ldots + C_ny_n\right)^{(n)} &+ p_1(x)\left(C_1y_1 + C_2y_2 + \ldots + C_ny_n\right)^{(n-1)} + \\ 
+        &+ \ldots + \\ 
+        &+ p_{n-1}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny_n\right)' + \\ 
+        &+ p_{n}(x) \left(C_1y_1 + C_2y_2 + \ldots + C_ny_n\right) = 0
+    \end{align*}
+    Обозначим $y' = C_1y_1 + C_2y_2 + \ldots + C_ny_n$:
+    \begin{gather*}
+        y^{(n)} + p_1(x) y^{(n-1)} + \ldots + p_{n-1} (x)y' + p_n(x) y = 0 \\
+        \Downarrow \\
+        y = C_1y_1 + C_2y_2 + \ldots + C_ny_n \text{ --- решение ЛОДУ n-го порядка}
+    \end{gather*}
+\end{proof}
+
+\newpage
+\section{Сформулировать определения линейно зависимой и линейно независимой систем функций}
+
+\begin{definition}\hlabel{опр: линейная зависимость}
+    Система функций $y_1(x),\ \ldots,\ y_n(x)$ называется \textbf{линейно зависимой} на некотором промежутке $I$, если их линейная комбинация равна нулю, то есть 
+    \[
+        C_1y_1(x) + \ldots + C_n y_n = 0
+    \]
+    при этом существует хотя бы один $C_i \ne 0,\ i = \overline{1,n},\ C_1,\ \ldots,\ C_n$ --- $const$
+\end{definition}
+
+\begin{definition}\hlabel{опр: линейная независимость}
+    Система функций $y_1(x),\ \ldots,\ y_n(x)$ называется \textbf{линейно независимой} на некотором промежутке $I$, если их линейная комбинация равна нулю, то есть 
+    \[
+        C_1y_1(x) + \ldots + C_n y_n = 0
+    \]
+    где все $C_i = 0,\ i = \overline{1,n}$
+\end{definition}
+
+\subsection{Сформулировать и доказать теорему о вронскиане линейно зависимых функций}
+
+\begin{theorem}[О вронскиане линейно зависимых функций]
+    Если $(n-1)$ раз дифференцируемые функции $y_1(x),\ \ldots,\ y_n(x)$ линейно зависимы на некотором промежутке $I$, то
+    \[
+        W(x) = 0,\ \forall x \in I
+    \]
+\end{theorem}
+\begin{proof}
+    Так как $y_1(x),\ \ldots,\ y_n(x)$ линейно зависимы на $I$, то
+    \begin{gather*}
+        \boxed{C_1 y_1(x),\ \ldots,\ C_n y_n(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$*$}
+    \end{gather*}
+    Продифференцируем $(*)\ (n-1)$ раз:
+    \begin{gather*}
+        \boxed{C_1 y_1'(x),\ \ldots,\ C_n y_n'(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$**$}
+    \end{gather*}
+    По определению линейной зависимости (\textbf{опр.\ref{опр: линейная зависимость}}) $\Rightarrow$ $y_1'(x),\ \ldots,\ y_n'(x)$ --- линейно зависимы
+    \begin{gather*}
+        \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+        \boxed{C_1 y_1^{(n-1)}(x),\ \ldots,\ C_n y_n^{(n-1)}(x) = 0}\qquad \exists\, C_i \ne 0,\ i = \overline{1,n} \tag{$***$}
+    \end{gather*}    
+    По определению линейной зависимости $\Rightarrow$ $y_1^{(n-1)}(x),\ \ldots,\ y_n^{(n-1)}(x)$ --- линейно зависимы \\
+    Составим систему из $(*),\ (**)$ и $(***)$:
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            C_1 y_1(x),\, \ldots,\, C_n y_n(x) &= 0 \\
+            C_1 y_1'(x),\, \ldots,\, C_n y_n'(x) &= 0 \\
+            \cdots\cdots\cdots\cdots\cdots\cdots\cdots&\cdots\cdot \\
+            C_1 y_1^{(n-1)}(x),\, \ldots,\, C_n y_n^{(n-1)}(x) &= 0
+        \end{aligned} \right.
+    \end{gather*}
+    Это однородная СЛАУ относительно $C_1,\, \ldots,\, C_n$. \\
+    Определитель этой СЛАУ:
+    \begin{gather*}
+        \begin{vmatrix}
+            y_1(x) & \cdots & y_n(x) \\
+            y_1'(x) & \cdots & y_n'(x) \\
+            \cdots & \cdots & \cdots \\
+            y_1^{(n-1)}(x) & \cdots & y_n^{(n-1)}(x) \\
+        \end{vmatrix} = W(x) \text{ --- это определитель Вронского}
+    \end{gather*}
+    $W(x) = 0$, так как все строки определителя линейно зависимы.
+\end{proof}
+
+\begin{assertion}\hlabel{утв: 1}
+    Если существует хотя бы одна точка $x_0 \in I,\ W(x_0) \ne 0$, то система функций \break$y_1(x), \ldots,\ y_n(x)$ линейно независима.    
+\end{assertion}
+
+\subsection{Сформулировать и доказать теорему о вронскиане системы линейно независимых частных решений линейного однородного дифференциального уравнения n-го порядка}
+
+\begin{theorem}[О вронскиане линейно независимых частных решений ЛОДУ n-го порядка]
+    Если функции $y_1(x),\, \ldots,\, y_n(x)$ линейно независимы  на некотором промежутке $I$ и являются частными решениями ЛОДУ n-го порядка
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0
+    \]
+    с непрерывными на промежутке $I$ коэффициентами $p_1(x),\, \ldots,\, p_n(x)$, то $W(x) \ne 0,$\break $\forall x \in I$
+\end{theorem}
+\begin{proof}[Метод от противного]
+    Предположим, что $\exists\, x_0 \in I\colon W(x_0) \ne 0$
+    \begin{gather*}
+        W (x_0) = \begin{vmatrix}
+            y_1(x_0) & y_2(x_0) & \cdots & y_n(x_0) \\
+            y_1'(x_0) & y_2'(x_0) & \cdots & y_n'(x_0) \\
+            \cdots & \cdots & \cdots & \cdots \\
+            y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \cdots & y_n^{(n-1)}(x_0)\\
+        \end{vmatrix} = 0
+    \end{gather*}
+    Построим СЛАУ по определителю
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            C_1 y_1(x_0) + C_2 y_2(x_0) + \ldots + C_n y_n(x_0) &= 0\\
+            C_1 y_1'(x_0) + C_2 y_2'(x_0) + \ldots + C_n y_n'(x_0) &= 0\\
+            \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots&\cdots\cdot \\
+            C_1 y_1^{(n-1)}(x_0) + C_2 y_2^{(n-1)}(x_0) + \ldots + C_n y_n^{(n-1)}(x_0) &= 0 \\
+        \end{aligned} \right.
+    \end{gather*}
+    Данная СЛАУ имеет ненулевое решение, так как $W(x_0) = 0$\\
+    Рассмотрим функцию 
+    \[
+    y = C_1y_1 + \ldots + C_ny_n
+    \]
+    Так как $y_1,\ \ldots,\ y_n$ --- частные решения ЛОДУ n-го порядка, то по \textbf{Т.\ref{т: частные решения ЛОДУ n-го порядка}}:
+    \[
+        y = C_1y_1 + \ldots + C_ny_n \text{ --- решение ЛОДУ n-го порядка}
+    \]
+    Найдём $y(x_0)$:
+    \[
+        y(x_0) = C_1y_1(x_0) + \ldots + C_ny_n(x_0) = 0
+    \]
+    Дифференцируем $(n-1)$ раз функцию $y = C_1y_1 + \ldots + C_ny_n$:
+    \begin{align*}
+        y'(x_0) &= C_1y_1'(x_0) + \ldots + C_ny_n'(x_0) = 0 \\
+        y''(x_0) &= C_1y_1''(x_0) + \ldots + C_ny_n''(x_0) = 0 \\
+        \cdots\cdots&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+        y^{(n-1)}(x_0) &= C_1y_1^{(n-1)}(x_0) + \ldots + C_ny_n^{(n-1)}(x_0) = 0
+    \end{align*}
+    \newpage
+    \noindentПолучили, что $y = C_1y_1 + \ldots + C_ny_n$ --- решение ЛОДУ n-го порядка (2), удовлетворяющее начальному условию:
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            y(x_0) &= 0 \\
+            y'(x_0) &= 0 \\
+            \cdots\cdots&\cdots \\
+            y^{(n-1)}(x_0) &= 0 \\
+        \end{aligned}\right.
+    \end{gather*}
+    Но $y=0$ -- решение ЛОДУ (2), удовлетворяющее начальному условию (3) \\
+    По теореме $\exists!$ \textit{решения задачи Коши для линейного дифференциального уравнения n-го порядка} (\textbf{Т.\ref{т: о существовании и единственности решения ЗК ЛНДУ}}) $\Rightarrow$
+    \[
+        y = C_1y_1 + \ldots + C_ny_n = 0
+    \]
+    при этом $C_1,\, \ldots,\, C_n$ -- ненулевые константы $\Rightarrow$ $y_1,\, \ldots,\, y_n$ --- линейно зависимы по определению линейной зависимости (\textbf{опр.\ref{опр: линейная зависимость}}).
+    Это противоречит условию $\Rightarrow$ предположение не является верным $\forall x \in I\colon W(x) \ne 0$
+\end{proof}
+
+\section{Сформулировать и доказать теорему о существовании фундаментальной системы решений линейного однородного дифференциального уравнения n-го порядка}
+
+Пусть дано ЛОДУ n-го порядка
+\begin{align*}
+    y^{(n)} + p_1(x) y^{(n-1)} + \ldots + p_{n-1}(x)y' + p_n(x)y = 0 \tag{1}
+\end{align*}
+    
+\begin{definition}
+    \textbf{Фундаментальной системой решений ЛОДУ n-го порядка} (1) называется любая система \underline{линейно независимых} частных решений ЛОДУ n-го порядка.
+\end{definition}
+
+\setcounter{assertion}{1}
+\begin{assertion}
+    Если имеем ФСР на промежутке, то $W(x) \ne 0$ на этом промежутке.
+    \[
+    \text{ФСР} \rightarrow \text{лин. нез.} \rightarrow W(x) \ne 0
+    \]
+\end{assertion}
+
+\newpage
+\begin{theorem}[О существовании ФСР ЛОДУ n-го порядка]
+    Любое ЛОДУ n-го порядка (1) с непрерывными на промежутке $I$ коэффициентами $p_1(x),\, \ldots,\, p_n(x)$ имеет ФСР, то есть системы из $n$ линейно независимых функций.
+\end{theorem}
+\begin{proof}
+    Рассмотрим ЛОДУ n-го порядка
+    \[
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0
+    \]
+    $p_1(x),\, \ldots,\, p_n(x)$ --- непрерывны на $I$. \\
+    Рассмотрим произвольный числовой определитель, отличный от нуля:
+    \[
+        \begin{vmatrix}
+            \gamma_{11} & \gamma_{12} & \cdots & \gamma_{1n} \\
+            \gamma_{21} & \gamma_{22} & \cdots & \gamma_{2n} \\
+            \cdots & \cdots & \cdots & \cdots \\
+            \gamma_{n1} & \gamma_{n2} & \cdots & \gamma_{nn}
+        \end{vmatrix} \ne 0\qquad \gamma_{ij} \in \R,\ (ij) = \overline{1,n}
+    \]
+    Возьмём $\forall x_0 \in I$ и сформулируем для ЛОДУ n-го порядка задачи Коши, причём начальное условие в точке $x_0$ для $i$-ой ЗК возьмём из $i$-го столбца определителя.\\[1ex]
+    \fbox{1 ЗК}: \vspace{-\topsep}
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0\text{ --- ДУ}\\
+        \left\{ \begin{aligned}
+            y(x_0) &= \gamma_{11} \\
+            y'(x_0) &= \gamma_{21}\\
+            \cdots\cdots&\cdots\cdots \\
+            y^{(n-1)}(x_0) &= \gamma_{n1} 
+        \end{aligned}\right.\text{ --- начальное условие}
+    \end{gather*}
+    По теореме \textit{о существовании и единственности решения} (\textbf{Т.\ref{т: о существовании и единственности решения ЗК ДУ}}) 1-ая задача Коши имеет единственное решение $y_1(x)$. \\
+    \[
+        \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots
+    \]
+    \fbox{n ЗК}:
+    \begin{gather*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0\text{ --- ДУ}\\
+        \left\{ \begin{aligned}
+            y(x_0) &= \gamma_{1n} \\
+            y'(x_0) &= \gamma_{2n}\\
+            \cdots\cdots&\cdots\cdots \\
+            y^{(n-1)}(x_0) &= \gamma_{nn} 
+        \end{aligned}\right.\text{ --- начальное условие}
+    \end{gather*}
+    По теореме \textit{о существовании и единственности решения} n-ая задача Коши имеет единственное решение $y_n(x)$. \\
+    Рассмотрим функции:
+    \begin{align*}
+        &y_1 \text{ --- решение 1-ой ЗК} \\
+        &y_2 \text{ --- решение 2-ой ЗК} \\
+        &\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdot \\
+        &y_n \text{ --- решение n-ой ЗК} 
+    \end{align*}
+    Определитель Вронского функций $y_1,\ \ldots,\ y_n\colon$
+    \begin{gather*}
+        \begin{vmatrix}
+            \gamma_{1}(x_0) & \gamma_{2}(x_0) & \cdots & \gamma_{n}(x_0) \\
+            \gamma_{2}'(x_0) & \gamma_{2}'(x_0) & \cdots & \gamma_{n}'(x_0) \\
+            \cdots & \cdots & \cdots & \cdots \\
+            \gamma_{1}^{(n-1)}(x_0) & \gamma_{2}^{(n-1)}(x_0) & \cdots & \gamma_{n}^{(n-1)}(x_0)
+        \end{vmatrix} = \begin{vmatrix}
+            \gamma_{11} & \gamma_{12} & \cdots & \gamma_{1n} \\
+            \gamma_{21} & \gamma_{22} & \cdots & \gamma_{2n} \\
+            \cdots & \cdots & \cdots & \cdots \\
+            \gamma_{n1} & \gamma_{n2} & \cdots & \gamma_{nn}
+        \end{vmatrix} \ne 0
+    \end{gather*}
+    По утверждению 1 (\textbf{c.\pageref{утв: 1}}): $\exists\, x_0 \in I\colon W(x_0) \ne 0\ \Rightarrow\ y_1,\,\ldots,\, y_n$ --- линейно независимы $\Rightarrow$ $y_1,\,\ldots,\, y_n$ образуют ФСР.
+\end{proof}
+
+\section{Сформулировать и доказать теорему о структуре общего решения линейного однородного дифференциального уравнения n-го порядка}
+
+\begin{theorem}[О структуре общего решения ЛОДУ n-го порядка]\hlabel{т: структура общего решения ЛОДУ n-го порядка}
+    Общим решением ЛОДУ n-го порядка
+    \begin{align*}
+        y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0 \tag{1}
+    \end{align*}
+    с непрерывными коэффициентами $p_1(x),\, \ldots,\, p_n(x)$ на промежутке $I$ является линейной комбинацией частных решений, входящих в ФСР.
+    \begin{align*}
+        y_{\text{оо}} = C_1y_1 + \ldots + C_ny_n \tag{2}
+    \end{align*}
+    <<оо>> --- общее решение однородного уравнения
+    \[
+        y_1,\, \ldots,\, y_n \text{ --- ФСР ЛОДУ (1)},\quad C_1,\, \ldots,\, C_n \text{ --- } const
+    \]
+\end{theorem}
+\begin{proof}
+    1) Покажем, что (2) решение ЛОДУ (1), но не общее. Для этого подставим (2) в (1):
+    \begin{align*}
+        \left(C_1y_1 + \ldots + C_ny_n\right)^{(n)} &+ p_1(x)\left(C_1y_1 + \ldots + C_ny_n\right)^{(n-1)} + \\ 
+        &+ \ldots + \\ 
+        &+ p_{n-1}(x) \left(C_1y_1 + \ldots + C_ny_n\right)' + \\ 
+        &+ p_{n}(x) \left(C_1y_1 + \ldots + C_ny_n\right) = 0
+    \end{align*}
+    Вычислим производные:
+    \begin{align*}
+        C_1y_1^{(n)} + \ldots + C_ny_n^{(n)} &+ p_1(x) C_1y_1^{(n-1)} + \ldots + p_1(x)C_ny_n^{(n-1)} + \\ 
+        &+ \ldots + \\ 
+        &+ p_{n-1}(x) C_1y_1' + \ldots + p_{n-1}(x)C_ny_n' + \\ 
+        &+ p_{n}(x) C_1y_1 + \ldots + p_{n}(x)C_ny_n = 0
+    \end{align*} \vspace{-0.5\topsep}
+    Группируем:
+    \begin{align*}
+        &C_1\overbrace{\left(y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1}(x)y_1' + p_n(x) y_1\right)}^0 + \\ 
+        + &\ldots + \\ 
+        + &C_n\underbrace{\left(y_n^{(n)} + p_1(x)y_n^{(n-1)} + \ldots + p_{n-1}(x)y_n' + p_n(x) y_n\right)}_0 = 0
+    \end{align*}
+    Так как $y_1,\, \ldots,\, y_n$ --- частные решения ЛОДУ (1), то:
+    \begin{align*}
+        C_1\cdot 0 + \ldots + C_n \cdot 0 &= 0 \\
+        0 &= 0\ \Rightarrow\ (2)\text{ --- решение } (1)
+    \end{align*}
+    2) Покажем, что (2) --- это общее решение (1), то есть из него можно выделить единственное частное решение, удовлетворяющее начальному условию:
+    \begin{align*}
+        \left\{ \begin{aligned}
+            y(x_0) &= y_0 \\
+            y'(x_0) &= y_{10} \\
+            y''(x_0) &= y_{20} \\
+            \cdots\cdots&\cdots\cdots \\
+            y^{(n-1)}(x_0) &= y_{n\cdot10} \\
+        \end{aligned} \right.\quad x_0 \in I \tag{3}
+    \end{align*}
+    Подставим (2) в (3):
+    \begin{gather*}
+        \left\{ \begin{aligned}
+            y(x_0) &= C_1y_1(x_0) + \ldots + C_ny_n (x_0) = y_0 \\
+            y'(x_0) &=  C_1y_1'(x_0) + \ldots + C_ny_n' (x_0) = y_{10} \\
+            y''(x_0) &=  C_1y_1''(x_0) + \ldots + C_ny_n'' (x_0) = y_{20} \\
+            \cdots\cdots&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+            y^{(n-1)}(x_0) &=  C_1y_1^{(n-1)}(x_0) + \ldots + C_ny_n^{(n-1)} (x_0) = y_{n\cdot 10}
+        \end{aligned}\right. \text{ --- СЛАУ}
+    \end{gather*}
+    СЛАУ относительно $C_1,\, \ldots,\, C_n$. Определитель этой системы --- это определитель Вронского.\vspace{-\topsep}
+    \begin{gather*}
+        W (x_0) = \begin{vmatrix}
+            y_1(x_0) & y_2(x_0) & \cdots & y_n(x_0) \\
+            y_1'(x_0) & y_2'(x_0) & \cdots & y_n'(x_0) \\
+            \cdots & \cdots & \cdots & \cdots \\
+            y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x) & \cdots & y_n^{(n-1)}(x_0) 
+        \end{vmatrix}
+    \end{gather*}
+    так как $y_1,\, \ldots,\, y_n$ ФСР $\Rightarrow\ y_1,\, \ldots,\, y_n$ линейно независимы $\Rightarrow\ W(x_0) \ne 0\ \Rightarrow$ ранг расширенной матрицы СЛАУ совпадает с рангом основной матрицы $\Rightarrow$ число неизвестных совпадает с числом уравнений $\Rightarrow$ СЛАУ имеет единственное решение:
+    \[
+        C_1^{0},\, \ldots,\, C_n^{0}
+    \]
+    В силу теоремы \textit{о существовании и единственности решения задачи Коши} (\textbf{с.\pageref{т: о существовании и единственности решения ЗК ДУ}, Т.\ref{т: о существовании и единственности решения ЗК ДУ}}):
+    \[
+        y = C_1^0y_1 + \ldots + C_n^0y_n\text{ --- единственное решение ЗК (1), (3)}
+    \]
+    То есть получилось из (2) выделить частное решение, удовлетворяющее начальному условию (3) $\Rightarrow$ по определению общего решения (\textbf{опр.\ref{опр: общее решение ДУ n-го порядка}}) (2) --- общее решение ЛОДУ (2).
+\end{proof}
+
+\newpage
+\section{Вывести формулу Остроградского-Лиувилля для линейного дифференциального уравнения 2-го порядка}
+\setcounter{equation}{0}
+Рассмотрим ЛОДУ 2-го порядка
+\begin{gather}
+    y'' + p_1(x)y' + p_2(x)y = 0
+\end{gather}
+Пусть $y_1$ и $y_2$ --- два частных решения ЛОДУ (1). Для $y_1$ и $y_2$ верны равенства:
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y_1'' + p_1(x)y_1' + p_2(x)y_1 = 0 \\
+        y_2'' + p_1(x)y_2' + p_2(x)y_2 = 0 
+    \end{aligned}\quad \right| \begin{aligned}
+        &\cdot (-y_2) \\
+        &\cdot y_1
+    \end{aligned}\ \text{<<+>>}
+\end{gather*}
+\begin{align}
+    y_1y_2'' - y_2y_1'' + p_1(x) \left(y_1y_2' - y_2 y_1'\right) + p_2(x) (\cancel{y_1y_2 - y_1y_2})= 0
+\end{align}
+Введём обозначение:
+\[
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} = y_1 y_2' - y_1' y_2
+\]
+\begin{align*}
+    \Big(W(x)\Big)' = \Big(y_1y_2' - y_2 y_1'\Big)' = \cancel{y_1'y_2'} + y_1y_2'' - y_1''y_2 - \cancel{y_1'y_2'} = y_1y_2'' - y_1''y_2
+\end{align*}
+(2) примет вид:
+\begin{align*}
+    W' + p_1(x)\cdot W &= 0 \text{ ДУ с разделяющимися переменными} \\
+    W' &= -p_1(x) \cdot W \\
+    \dv{W}{x} &= -p_1(x) \cdot W\quad \Big|\ : W \ne 0\quad \Big| \cdot dx \\
+    \frac{dW}{W} &= -p_1(x)\dd{x} \\
+    \ln |W| &= - \int p_1(x)\dd{x} + C,\ \forall C \text{ --- } const \\
+    e^{\ln |W|} &= e^{-\int p_1(x)\dd{x}} \cdot e^C \\
+    |W| &= e^{-\int p_1(x)\dd{x}} \cdot C_1,\ \forall C_1 = e^C > 0 \\
+    W &= C_2 \cdot e^{-\int p_1(x)\dd{x}},\ \forall C_2 = \pm C_1 \ne 0
+\end{align*}
+$W = 0$ --- особое решение
+\[
+    \stackunder{\boxed{W = C_3 \cdot e^{-\int p_1(x)\dd{x}},\ \forall C_3 \text{ --- } const}}{\text{Формула Остроградского-Лиувилля}}
+\]
+\begin{remark}
+    Формула Остроградского-Лиувилля для ЛОДУ n-го порядка имеет тот же вид, что и для ЛОДУ 2-го порядка, где $p_1(x)$ --- коэффициент при $(n-1)$-ой производной при условии, что коэффициент при n-ой производной равен 1.
+\end{remark}
+
+\section{Вывести формулу для общего решения линейного однородного дифференциального уравнения второго порядка при одном известном частном решении}
+
+Пусть дано ЛОДУ 2-го порядка
+\begin{gather}
+    y'' + p_1(x)y' + p_2(x)y = 0 \tag{1}
+\end{gather}
+$y_1$ --- частное решение ЛОДУ (1) дано по условию. \\
+$y_2$ --- ? --- второе частное решение ЛОДУ (1) линейно независимо с $y_1$
+\[
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} = y_1 y_2' - y_2 y_1' \ne 0
+\]
+Рассмотрим:
+\begin{align*}
+    \left(\frac{y_2}{y_1}\right)' &= \frac{y_1 y_2' - y_2 y_1'}{y_1^2} = \frac{W(x)}{y_1^2} \xlongequal{\text{ф. О-Л}} \frac{1}{y_1^2} \cdot C_3 \cdot e^{- \int p_1(x)\dd{x}} \\
+    \left(\frac{y_2}{y_1}\right)' &= \frac{1}{y_1^2} \cdot C_3 \cdot e^{- \int p_1(x)\dd{x}}
+\end{align*}
+Интегрируем:
+\begin{align*}
+    \frac{y_2}{y_1} &= C_3 \int \frac{1}{y_1^2}\cdot e^{-\int p_1(x)\dd{x}} \dd{x} + C_4 \\
+    y_2 &= y_1 \cdot \left(C_3 \int \frac{1}{y_1^2}\cdot e^{-\int p_1(x)\dd{x}} \dd{x} + C_4\right)
+\end{align*}
+$y_2$ --- частное решение\qquad $C_4 = 0$\qquad $C_3 = 1$ \\
+Главное $C_3 \ne 0$, так как иначе $y_1$ и $y_2$ линейно зависимы.
+\[
+    y_2 = y_1 \int \frac{1}{y_1^2}\cdot e^{-\int p_1(x)\dd{x}}\dd{x}
+\]
+По теореме \textit{о структуре общего решения ЛОДУ} (\textbf{Т.\ref{т: структура общего решения ЛОДУ n-го порядка}}):
+\begin{align*}
+    y_{\text{оо}} &= C_1y_1 + C_2 y_2 \\
+    y_{\text{оо}} &= C_1y_1 + C_2 y_1 \int \frac{1}{y_1^2}\cdot e^{-\int p_1(x)\dd{x}}\dd{x}
+\end{align*}
+
+\newpage
+\section{Сформулировать и доказать теорему о структуре общего решения линейного неоднородного дифференциального уравнения n-го порядка}
+\setcounter{equation}{0}
+\begin{gather}
+    y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = f(x)\quad \text{ЛНДУ}
+\end{gather}
+$p_1(x),\, \ldots,\, p_n(x),\, f(x)$ --- функции на $I$
+\begin{gather}
+    y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = 0\qquad \text{ЛОДУ}
+\end{gather}
+\begin{gather}
+    \left\{ \begin{aligned}
+        y(x_0) &= y_0 \\
+        y'(x_0) &= y_{10} \\
+        \cdots\cdots&\cdots\cdots \\
+        y^{(n-1)}(x_0) &= y_{n\cdot10} \\
+    \end{aligned} \right.\quad \text{начальное условие}
+\end{gather}
+
+\begin{theorem}[О структуре общего решения ЛНДУ]
+    Общее решение ЛНДУ (1) с непрерывными на промежутке $I$ функциями\break $p_1(x),\, \ldots,\, p_n(x),\, f(x)$ равно сумме общего решения соответствующего ЛОДУ (2) и некоторого частного решения ЛНДУ (1).
+    \begin{gather}
+        \boxed{y_{\text{он}} = y_{\text{оо}} + y_{\text{чн}}}
+    \end{gather}
+    \begin{itemize}
+        \item <<оо>> --- общее решение однородного уравнения
+        \item <<чн>> --- частное решение неоднородного уравнения
+    \end{itemize}
+\end{theorem}
+\begin{proof}
+    Сначала покажем, что (4) решение ЛНДУ (1), но не общее.
+    Подставим (4) в (1):
+    \begin{align*}
+        \big(y_{\text{оо}} + y_{\text{чн}}\big)^{(n)} + p_1(x) \big(y_{\text{оо}} + y_{\text{чн}}\big)^{(n-1)} + \ldots + p_{n-1}(x) \big(y_{\text{оо}} + y_{\text{чн}}\big)' + p_n(x) \big(y_{\text{оо}} + y_{\text{чн}}\big) = f
+    \end{align*}
+    Вычислим производные:
+    \begin{align*}
+        y_{\text{оо}}^{(n)} + y_{\text{чн}}^{(n)} + p_1(x)y_{\text{оо}}^{(n-1)} + p_1(x) y_{\text{чн}}^{(n-1)} + \ldots &+ p_{n-1}(x)y_{\text{оо}}' + p_{n-1}(x) y_{\text{чн}}' + \\ 
+        &+ p_{n}(x)y_{\text{оо}} + p_{n}(x) y_{\text{чн}} = f
+    \end{align*}
+    Группируем $y_{\text{оо}},\ y_{\text{чн}}\colon$
+    \begin{align*}
+        &\overbrace{y_{\text{оо}}^{(n)} + p_1(x)y_{\text{оо}}^{(n-1)} + \ldots + p_{n-1}(x)y_{\text{оо}}' + p_{n}(x)y_{\text{оо}}}^0 + \\ 
+        +\, &\underbrace{y_{\text{чн}}^{(n)} + p_1(x) y_{\text{чн}}^{(n-1)} + \ldots  + p_{n-1}(x) y_{\text{чн}}' + p_{n}(x) y_{\text{чн}}}_f = f
+    \end{align*}
+    Так как $y_{\text{оо}}$ --- общее решение ЛОДУ (2), $y_{\text{чн}}$ --- частное решение ЛНДУ (1):
+    \[
+    0 + f = f\ \Rightarrow\ f = f\ \Rightarrow\ (4) \text{ --- решение ЛНДУ (1)}
+    \]
+    По теореме \textit{о существовании и единственности решения задачи Коши} (\textbf{Т.\ref{т: о существовании и единственности решения ЗК ДУ}}) следует, что ЗК (1), (3) имеет единственное решение.\\[1ex]
+    Покажем, что (4) --- общее решение. (4) перепишется в виде:
+    \begin{align*}
+        y_{\text{он}} = C_1 y_1 + \dots + C_n y_n + y_{\text{чн}} \tag{4.1}
+    \end{align*}
+    $y_1,\, \ldots,\, y_n$ --- ФСР ЛОДУ (2)\qquad $C_1,\, \ldots,\, C_n$ --- $const$\\[1ex]
+    Так как функции $p_1(x),\, \ldots,\, p_n(x),\, f(x)$ непрерывны на $I$, то по теореме \textit{о существовании и единственности решения задачи Коши} $\Rightarrow\ \exists$ единственное решение задачи Коши (1), (3). \\[1ex]
+    Остаётся показать, что (4.1) и его производная удовлетворяют начальному условию (3), то есть из начального условия (3) единственным образом можно выделить константы $C_1^0,\, \ldots\, C_n^0$, то есть можно выделить частное решение. \\
+    Для этого (4.1) дифференцируем $(n - 1)$ раз и подставляем в (3):
+    \begin{align*}
+        &\left\{ \begin{aligned}
+            y_\text{он} (x_0) &= C_1y_1 (x_0) + \dots + C_ny_n (x_0) + y_{\text{чн}} (x_0) = y_0 \\
+            y'_\text{он} (x_0) &= C_1y_1' (x_0) + \dots + C_ny_n' (x_0) + y_{\text{чн}}' (x_0) = y_{10} \\
+            \cdot\cdots\cdots&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+            y_\text{он}^{(n-1)} (x_0) &= C_1y_1^{(n-1)} (x_0) + \dots + C_ny_n^{(n-1)} (x_0) + y_{\text{чн}}^{(n-1)} (x_0) = y_{n\cdot 10} \\
+        \end{aligned} \right. \\[1ex]
+        &\left\{ \begin{aligned}
+            C_1y_1 (x_0) + \dots + C_ny_n (x_0) &= y_0 - y_{\text{чн}} (x_0)\\
+            C_1y_1' (x_0) + \dots + C_ny_n' (x_0) &= y_{10} - y_{\text{чн}}' (x_0)  \\
+            \cdot\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots&\cdots\cdots\cdots\cdots\cdots \\
+            C_1y_1^{(n-1)} (x_0) + \dots + C_ny_n^{(n-1)} (x_0) &= y_{n\cdot 10} - y_{\text{чн}}^{(n-1)} (x_0) \\
+        \end{aligned} \right. \tag{5}
+    \end{align*} 
+    (5) --- это СЛАУ относительно $C_1,\, \ldots,\, C_n$.\\[1ex]
+    Определитель СЛАУ (5) --- это определитель Вронского:
+    \begin{gather*}
+        W (x_0) = \begin{vmatrix}
+            y_1(x_0) & y_2(x_0) & \cdots & y_n(x_0) \\
+            y_1'(x_0) & y_2'(x_0) & \cdots & y_n'(x_0) \\
+            \cdots & \cdots & \cdots & \cdots \\
+            y_1^{(n-1)}(x_0) & y_2^{(n-1)}(x_0) & \cdots & y_n^{(n-1)}(x_0)\\
+        \end{vmatrix} \ne 0\text{ т.к. } y_1,\, \ldots,\, y_n \text{ ФСР ЛОДУ (2)}
+    \end{gather*}
+    Так как $W(x_0) \ne 0$, то ранг расширенной матрицы равен рангу основной матрицы (число уравнений совпадает с числом неизвестных) $\Rightarrow$ СЛАУ (5) имеет единственное решение $C_1^0,\, \ldots,\, C_n^0$. \\[1ex]
+    Тогда функция $y = C_1^0 y_1 + \ldots + C_n^0y_n + y_{\text{чн}}$ --- является частным решением ЗК (1), (3), удовлетворяющим начальному условию (3) $\Rightarrow$ из решения (4.1) выделим частное решение $y = C_1^0 y_1 + \ldots + C_n^0y_n + y_{\text{чн}}$ $\Rightarrow$ по определению общего решения (\textbf{Т.\ref{опр: общее решение ДУ n-го порядка}}) (4.1) или (4) --- общее решение ЛНДУ (1).
+\end{proof}
+
+\newpage
+\section{Вывести формулу для общего решения линейного однородного дифференциального уравнения второго порядка с постоянными коэффициентами в случае кратных корней характеристического уравнения}
+
+\begin{align*}
+    &\boxed{y'' + a_1 y' + a_2 y = 0}\quad a_1, a_2 \text{ --- } const\qquad \text{ЛОДУ} \tag{1} \\
+    &\boxed{k^2 + a_1k + a_2 = 0}\qquad \text{характеристическое уравнение}\\
+    &D = a_1^2 - 4a_2
+\end{align*}
+$D = 0\ \Rightarrow$ характеристическое уравнение имеет два действительных равных между собой корня / один корень кратности два.
+\begin{gather*}
+    \begin{aligned}
+        k_1 = k_2 = k \in \R\\
+        y_1 = e^{kx}
+    \end{aligned}\quad k = -\dfrac{a_1}{2}
+\end{gather*}
+Найдём $y_2$ --- частное решение ЛОДУ (1) по известному частному решению $y_1$, причём $y_1$ и $y_2$ линейно независимы:
+\begin{align*}
+    y_2 &= y_1 \int \frac{1}{y^2_1} e^{-\int p_1(x_0 \dd{x})}\dd{x} = \left| \begin{aligned}
+    p_1(x) = a_1 \text{ --- } const \\
+    y_1 = e^{kx},\ k\in \R
+    \end{aligned} \right| e^{kx} \int \frac{1}{e^{2kx}} \cdot e^{-\int a_1\dd{x}} = \\ 
+    &= e^{-\tfrac{a_1}{2}x} \int \frac{1}{\cancel{e^{-a_1x}}}\cdot \cancel{e^{-a_1x}}\dd{x} = e^{-\tfrac{a_1}{2}x} \int dx = e^{-\tfrac{a_1}{2}x}x
+\end{align*}
+\begin{gather*}
+    \left.\begin{aligned}
+        y_1 &= e^{-\tfrac{a_1}{2}x} \\
+        y_2 &= xe^{-\tfrac{a_1}{2}x}
+    \end{aligned}\right\}\ \text{два частных решения ЛОДУ (1)}
+\end{gather*}
+Покажем, что $y_1$ и $y_2$ линейно независимы:
+\begin{align*}
+    W(x) &= \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} = \begin{vmatrix}
+        e^{-\tfrac{a_1}{2}x} & xe^{-\tfrac{a}{2}x} \\
+        -\frac{a_1}{2} e^{-\tfrac{a_1}{2}x} & e^{-\tfrac{a_1}{2}x} - \frac{a_1}{2} x e^{-\tfrac{a_1}{2}x}
+    \end{vmatrix} = e^{-a_1x} - \cancel{\frac{a_1}{2}x e^{-a_1x}} + \cancel{\frac{a_1}{2}x e^{-a_1x}} = \\ 
+    &= e^{-a_1x} \ne 0,\ \forall x \in I\ \Rightarrow\ y_1, y_2 \text{ лн. з. } \Rightarrow \text{ образуют ФСР } 
+\end{align*}
+ФСР ЛОДУ (1):
+\begin{gather*}
+    \left\{ \begin{aligned}
+        y_1 &= e^{-\tfrac{a_1}{2}x} \\
+        y_2 &= xe^{-\tfrac{a_1}{2}x} \\
+    \end{aligned} \right.
+\end{gather*}
+По теореме \textit{о структуре общего решения ЛОДУ} (\textbf{Т.\ref{т: структура общего решения ЛОДУ n-го порядка}}):
+\[
+    y_{\text{оо}} = C_1y_1 + C_2y_2 = C_1 e^{-\tfrac{a_1}{2}x} + C_2 xe^{-\tfrac{a_1}{2}x}
+\]
+
+\section{Вывести формулу для общего решения линейного однородного дифференциального уравнения второго порядка с постоянными коэффициентами в случае комплексных корней характеристического уравнения}
+
+\begin{align*}
+    &\boxed{y'' + a_1 y' + a_2 y = 0}\quad a_1, a_2 \text{ --- } const\qquad \text{ЛОДУ} \tag{1} \\
+    &\boxed{k^2 + a_1k + a_2 = 0}\qquad \text{характеристическое уравнение}\\
+    &D = a_1^2 - 4a_2
+\end{align*}
+$D< 0\ \Rightarrow$ характеристическое уравнение имеет комплексные корни.
+\[
+    k_{1,2} = \alpha \pm \beta \cdot i\qquad i \text{ --- мнимая единица},\ \sqrt{-1} = i
+\]
+$\alpha$ --- действительная часть\qquad $\beta$ --- мнимая часть \\
+Формула Эйлера:
+\begin{gather*}
+    \left\{ \begin{aligned}
+        e^{i\varphi} &= \cos \varphi + i \sin \varphi \\
+        e^{-i \varphi} &= \cos \varphi - i \sin \varphi
+    \end{aligned} \right.
+\end{gather*}
+По корням характеристического уравнения находим частные решения ЛОДУ (1). \\
+$k_1 = \alpha + \beta i\colon$
+\[
+    y_1 = e^{k_1x} = e^{(\alpha + \beta i)x} = e^{\alpha x}\cdot e^{\beta i x} = \boxed{e^{\alpha x} \left(\cos \beta x + i\cdot \sin \beta x\right)}
+\]
+$k_2 = \alpha - \beta i\colon$
+\[
+    y_2 = e^{k_2x} = e^{(\alpha - \beta i)x} = e^{\alpha x} \cdot e^{-\beta i x} = \boxed{e^{\alpha x} \left(\cos \beta x - i\cdot \sin \beta x\right)}
+\]
+Найдём действительные решения ЛОДУ (1). Составим линейные комбинации:
+\begin{align*}
+    \widetilde{y_1} = \frac{y_1 + y_2}{2} = e^{\alpha x} \cos \beta x \\
+    \widetilde{y_2} = \frac{y_1 - y_2}{2i} = e^{\alpha x} \sin \beta x
+\end{align*}
+Из свойств частных решений ЛОДУ следует (\textbf{с.\pageref{sec: свойства частных решений ЛОДУ n-го порядка}}), что $\widetilde{y_1}$ и $\widetilde{y_2}$ --- тоже решения ЛОДУ (как линейная комбинация). \\
+Покажем, что $\widetilde{y_1}$ и $\widetilde{y_2}$ линейно независимы:
+\begin{align*}
+    W(x) &= \begin{vmatrix}
+        \widetilde{y_1} & \widetilde{y_2} \\
+        \widetilde{y_1}' & \widetilde{y_2}'
+    \end{vmatrix} = \begin{vmatrix}
+        e^{\alpha x} \cos \beta x & e^{\alpha x} \sin \beta x \\
+        \alpha e^{\alpha x} \cos \beta x - \beta e^{\alpha x} \sin \beta x & \alpha e^{\alpha x} \sin \beta x + \beta e^{\alpha x} \cos \beta x
+    \end{vmatrix} = \\ 
+    &= \cancel{\alpha e^{2 \alpha x} \cos \beta x \sin \beta x} + \beta e^{2 \alpha x} \cos^2 \beta x - \cancel{\alpha e^{2 \alpha x} \cos \beta x \sin \beta x} + \beta e^{2 \alpha x} \sin^2 \beta x = \\ 
+    &= e^{2 \alpha x} \beta \cdot 1 \ne 0\qquad \text{т.к } e^{2 \alpha x} \ne 0\ \forall x \in I
+\end{align*}
+$\beta \ne 0$, так как если $\beta = 0$, то $k_1 = k_2 = \alpha$ --- действительные корни
+\begin{gather*}
+    \Rightarrow\ \left. \begin{aligned}
+        \widetilde{y_1} &= e^{\alpha x} \cos \beta x \\
+        \widetilde{y_2} &= e^{\alpha x} \sin \beta x
+    \end{aligned} \right\}\ \text{линейно независимы } \Rightarrow \text{ ФСР}
+\end{gather*}
+По теореме \textit{о структуре решений ЛОДУ} (\textbf{Т.\ref{т: структура общего решения ЛОДУ n-го порядка}}):
+\[
+    y_{\text{оо}} = C_1 y_1 + C_2 y  _2 = e^{\alpha x} \left(C_1 \cos \beta x + C_2 \sin \beta x\right)
+\]
+
+\section{Частное решение линейного неоднородного дифференциального уравнения с постоянными коэффициентами и правой частью специального вида (являющейся квазимногочленом). Сформулировать и доказать теорему о наложении частных решений}
+\setcounter{equation}{0}
+\begin{gather}
+    y^{(n)} + p_1(x)y^{(n-1)} + \ldots + p_{n-1}(x) y' + p_n(x) y = f(x)\quad \text{ЛНДУ}
+\end{gather}
+$p_1(x),\, \ldots,\, p_n(x),\, f(x)$ --- функции на $I$ \\
+\begin{theorem}[О суперпозиции (наложении) решений ЛНДУ n-го порядка]
+    Если \vspace{-\topsep}
+    \begin{align*}
+        y_1 &\text{ --- решение ЛНДУ (1) с правой частью } f_1, \\ 
+        \cdot\cdot&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+        y_n &\text{ --- решение ЛНДУ (1) с правой частью } f_n
+    \end{align*}
+    то линейная комбинация 
+    \[
+        y = C_1y_1 + \ldots + C_ny_n
+    \]
+    является решением ЛНДУ (1) с правой частью 
+    \[
+        f = C_1f_1 + \ldots + C_nf_n
+    \]
+\end{theorem}
+\begin{proof}
+    Так как \vspace{-\topsep}
+    \begin{align*}
+        y_1 &\text{ --- решение ЛНДУ (1) с правой частью } f_1, \\ 
+        \cdot\cdot&\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots \\
+        y_n &\text{ --- решение ЛНДУ (1) с правой частью } f_n
+    \end{align*}
+    то верны равенства
+    \begin{align*}
+        \left\{\begin{aligned}
+            y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1}(x)y_1' + p_n(x)y_1 &= f_1 \\ 
+            \cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots\cdots&\cdots\cdot \\
+            y_n^{(n)} + p_1(x)y_n^{(n-1)} + \ldots + p_{n-1}(x)y_n' + p_n(x)y_n &= f_n
+        \end{aligned}\right. \tag{$*$}
+    \end{align*}
+    Рассмотрим \vspace{-\topsep}
+    \begin{align*}
+        y = C_1 y_1 + \ldots + C_ny_n \tag{$\vee$}
+    \end{align*}
+    Подставим ($\vee$) в левую часть (1):
+    \begin{align*}
+        \big(C_1 y_1 + \ldots + C_ny_n\big)^{(n)} &+ p_1(x)\big(C_1 y_1 + \ldots + C_ny_n\big)^{(n-1)} + \ldots + \\ 
+        &+ p_{n-1} (x) \big(C_1 y_1 + \ldots + C_ny_n\big)' + p_n(x) \big(C_1 y_1 + \ldots + C_ny_n\big)
+    \end{align*}
+    Вычислим производные:
+    \begin{align*}
+        C_1 y_1^{(n)} + \ldots + C_ny_n^{(n)} &+ p_1(x)C_1 y_1^{(n-1)} + \ldots + p_1(x)C_ny_n^{(n-1)} + \ldots + \\ 
+        &+ p_{n-1} (x) C_1 y_1' + \ldots + p_{n-1}(x)C_ny_n' + p_n(x) C_1 y_1 + \ldots + p_n(x)C_ny_n
+    \end{align*}
+    Группируем $y_1/y_n$:
+    \begin{align*}
+        &C_1 \overbrace{\big(y_1^{(n)} + p_1(x)y_1^{(n-1)} + \ldots + p_{n-1} (x) y_1' + p_n(x) y_1\big)}^{f_1} + \ldots + \\ 
+        +\, &C_n \underbrace{\big(y_n^{(n)} + p_1(x)y_n^{(n-1)} + \ldots + p_{n-1}(x) y_n'+ p_n(x) y_n\big)}_{f_n} \xlongequal{\text{($*$)}} C_1f_1 + \ldots + C_nf_n
+    \end{align*}
+\end{proof}
+\subsection*{Частное решение ЛНДУ}
+Рассмотрим ЛНДУ n-го порядка с постоянными коэффициентами
+\begin{align*}
+    y^{(n)} + a_1 y^{(n-1)} + \ldots + a_{n-1} y' + a_n y = f\quad \text{ЛНДУ} \tag{1}
+\end{align*}
+$a_1\, \ldots,\, a_n$ --- $const$\\[1ex]
+Соответствующее ЛОДУ:
+\[
+    y^{(n)} + a_1 y^{(n-1)} + \ldots + a_{n-1} y' + a_n y = 0\quad \text{ЛОДУ}
+\]
+$a_1\, \ldots,\, a_n$ --- $const$\\[1ex]
+Характеристическое уравнение:
+\[
+    k^n + a_1k^{n-1} + \ldots + a_{n-1}k + a_n = 0
+\]
+$k_1\, \ldots,\, k_n$ --- корни характеристического уравнения \\[1ex]
+ФСР ЛОДУ: $\left\{ e^{k_1x},\, \ldots,\, e^{k_nx} \right\}$
+\[
+    y_{\text{оо}} = C_1 e^{k_1x} + \ldots + C_n e^{k_nx}
+\]
+где $C_1\, \ldots,\, C_n$ --- $const$\\[1ex]
+Если правая часть ЛНДУ (1) представима специальным видом, то есть \textit{квазиполиномом}, то по её виду можно найти некоторое частное решение ЛНДУ (1). \\[1ex]
+\underline{Суть метода}: по виду функции $f$ записывается предполагаемый вид частного решения ЛНДУ с неопределёнными коэффициентами. Затем это предполагаемое решение подставляем в ЛНДУ (1) и из полученного равенства находим неопределённые коэффициенты. \\[2ex]
+\begin{center}
+    \textcolor{gray}{Продолжение на следующей странице}
+\end{center}
+\begin{center}
+    \begin{tikzcd}[column sep = -7pt, row sep = 0.1ex]
+        &\arrow[end anchor = north east, dl] f(x) \arrow[end anchor = north west, dr]& \\ 
+        \boxed{e^{\alpha x} P_n(x)} & & \boxed{e^{\alpha x} \left(P_n(x) \cos \beta x + Q_m (x) \sin \beta x\right)} \\ 
+        \begin{tabular}{c}
+            $\alpha \in \R,\ P_n(x)$ --- многочлен степени \\ 
+            $n$ с определёнными коэффициентами
+        \end{tabular} \arrow{d} & & \begin{tabular}{c}
+            $\alpha,\, \beta \in \R,\ P_n(x),\ Q_m(x)$ --- многочлены \\ 
+            степеней $n$ и $m$ соответственно \\ 
+            с определёнными коэффициентами
+        \end{tabular} \arrow{d} \\[3ex]
+        \boxed{y_{\text{чн}} = e^{\alpha x}\cdot Q_n (x)\cdot x^r} & & \boxed{y_{\text{чн}} = e^{\alpha x}\cdot\big(M_s(x) \cos \beta (x) + N_s(x) \sin \beta x\big)\cdot x^r} \\ 
+        \begin{tabular}{c}
+            $\alpha \in \R,\ Q_n(x)$ --- многочлен степени \\ 
+            $n$ с неопределёнными коэффициентами. \\ 
+            $r$ --- кратность (сколько раз $\alpha$ является \\ 
+            действительным корнем \\ 
+            характеристического уравнения)
+        \end{tabular} & & \begin{tabular}{c}
+            $\alpha,\, \beta \in \R,\ M_s(x),\, N_s(x)$ --- многочлены \\ 
+            степени $s$ с неопределёнными \\ 
+            коэффициентами, \\ 
+            $s = \max \{n,m\}$\\ 
+            $r$ --- кратность (сколько раз $\alpha \pm \beta i$ \\ 
+            является корнем характеристического \\ 
+            уравнения)
+        \end{tabular} \\
+        \begin{tabular}{l}
+            $\alpha = k_1\ \Rightarrow\ r = 1$ \\ 
+            $\alpha = k_1 = k_2\ \Rightarrow\ r = 2$ \\ 
+            $\alpha \ne k_i,\ i = \overline{1, n}\ \Rightarrow\ r = 0$
+        \end{tabular} & & \begin{tabular}{l}
+            $\alpha \pm \beta i = k_{1,2}\ \Rightarrow\ r = 1$ \\ 
+            $\alpha \pm \beta i = k_{1,2} = k_{3,4}\ \Rightarrow\ r = 2$ \\ 
+            $\alpha \pm \beta i \ne k_i,\ i = \overline{1, n}\ \Rightarrow\ r = 0$
+        \end{tabular}
+    \end{tikzcd}
+\end{center}
+
+\section{Метод Лагранжа вариации произвольных постоянных для нахождения решения линейного неоднородного дифференциального уравнения 2-го порядка и вывод системы соотношений для варьируемых переменных}
+\setcounter{equation}{0}
+Рассмотрим ЛНДУ 2-го порядка
+\begin{align}
+    y'' + p_1(x)y' + p_2(x)y &= f(x) \\
+    y_1'' + p_1(x)y' + p_2(x)y &= 0\qquad \text{ЛОДУ}
+\end{align}
+$p_1(x),\, \ldots,\, p_n(x)$ --- функции.\\
+Пусть $y_1$ и $y_2$ --- это ФСР ЛОДУ (2). Тогда по теореме \textit{о структуре общего решения ЛОДУ} (\textbf{Т.\ref{т: структура общего решения ЛОДУ n-го порядка}}):
+\[
+    y_\text{оо} = \underbrace{C_1y_1 + C_2y_2}_{\text{ФСР ЛОДУ}}\qquad C_1,\, C_2 \text{ --- } \forall const
+\]
+\underline{Метод Лагранжа}: предполагаемый вид решения ЛНДУ (1):
+\begin{gather}
+    y_{\text{он}} = C_1(x)y_1 + C_2(x)y_2
+\end{gather}
+$C_1(x),\, C_2(x)$ --- некоторые функции. \\
+Вычислим:
+\begin{align*}
+    y_{\text{он}}' = C_1'y_1 + C_1y_1' + C_2'y_2 + C_2y_2' = \underbrace{C_1'y_1 + C_2'y_2}_0 + C_1y_1' + C_2y_2'
+\end{align*}
+\textbf{Первое дополнительное условие Лагранжа}:
+\[
+    \boxed{C_1'y_1 + C_2'y_2 = 0}
+\]
+\begin{align*}
+    y_{\text{он}}' &= C_1y_1' + C_2y_2' \\
+    y_{\text{он}}'' &= C_1'y_1' + C_1y_1'' + C_2'y_2' + C_2y_2''
+\end{align*}
+$y_{\text{он}},\, y_{\text{он}}',\, y_{\text{он}}''$ в (1):
+\begin{align*}
+    C_1'y_1' + C_1y_1'' + C_2'y_2' + C_2y_2'' + p_1(x) \cdot \big(C_1y_1' + C_2y_2'\big) + p_2(x) \big(C_1y_1 + C_2y_2\big) = f
+\end{align*}
+Группируем:
+\begin{align*}
+    C_1'y_1' + C_2'y_2' + C_1 \underbrace{\Big(y_1'' + p_1(x)y_1' + p_2(x)y_1\Big)}_0 + C_2 \underbrace{\Big(y_2'' + p_1(x)y_2' + p_2(x)y_2\Big)}_0 = f
+\end{align*}
+Так как $y_1,y_2$ --- решения ЛОДУ (2), то\\
+\textbf{Второе условие Лагранжа}:
+\[
+    \boxed{C_1'y_1' + C_2'y_2' = f}
+\]
+Предполагаемое решение (3) будет являться решением ЛНДУ (1), если функции $C_1(x)$ и $C_2(x)$ удовлетворяют условиям:
+\begin{align*}
+    \left\{ \begin{aligned}
+        C_1' y_1 + C_2y_2 &= 0 \\
+        C_1'y_1' + C_2'y_2' &= f
+    \end{aligned}\right.\text{ --- \textbf{система варьируемых переменных}}
+\end{align*}
+Определяем из системы варьируемых переменных $C_1'(x)$ и $C_2'(x)$.
+\[
+    C_1'(x) = \varphi(x)\qquad C_2'(x) = \Psi (x)
+\]
+Интегрируем:
+\begin{align*}
+    C_1(x) &= \int \varphi(x)\dd{x} + k_1,\quad \forall k_1 \text{ --- } const \\
+    C_2(x) &= \int \Psi(x)\dd{x} + k_2,\quad \forall k_2 \text{ --- } const
+\end{align*}
+Подставляем $C_1(x),\ C_2(x)$ в (3):
+\begin{align*}
+    y_{\text{он}} &= C_1(x) y_1 + C_2(x) y_2 = \left(\int \varphi(x)\dd{x} + k_1\right) y_1 + \left(\int \Psi (x)\dd{x} + k_2\right) y_2 = \\ 
+    &= \underbrace{k_1y_1 + k_2y_2}_{y_{\text{оо}}} + \underbrace{y_1 \int \varphi(x) \dd{x} + y_2 \int \Psi(x)\dd{x}}_{y_{\text{чн}}}
+\end{align*}
+Система варьируемых переменных имеет единственное решение, так как определитель --- это определитель Вронского.
+\begin{gather*}
+    W(x) = \begin{vmatrix}
+        y_1 & y_2 \\
+        y_1' & y_2'
+    \end{vmatrix} \ne 0 \quad\text{ т.к. } y_1 \text{ и } y_2 \text{ ФСР ЛОДУ}
+\end{gather*}
+
+\newpage
+\section{Дополнительные определения}
+
+\subsection{Неопределённый интеграл}
+
+\begin{definition}\hlabel{опр: неопределённый интеграл}
+    Множество первообразных функции $f(x)$ на $(a;b)$ называется \textbf{неопределённым интегралом}.
+    \begin{gather}
+        \boxed{\int f(x)\, dx = F(x) + C}
+    \end{gather}
+    $\int$ --- знак интеграла\\
+    $f(x)$ --- подынтегральная функция\\
+    $f(x)\, dx$ --- подынтегральное выражение\\
+    $x$ --- переменная\\
+    $F(x) + C$ --- множество первообразных\\
+    $C$ --- произвольная константа
+\end{definition}
+
+\begin{definition}
+    \textbf{Интегрирование} --- нахождение неопределённого интеграла.
+\end{definition}
+
+\subsection{Правильные и неправильные рациональные дроби}
+
+\begin{definition}
+    \textbf{Дробно-рациональной функцией} или рациональной дробью называется функция, равная частному от деления двух многочленов.
+    \begin{gather*}
+        \frac{P_m(x)}{Q_n(x)} = \frac{a_mx^m + a_{m-1}x^{m-1} + \ldots + a_1x + a_0}{b_nx^n + b_{n-1}x^{n-1} + \ldots + b_1x + b_0},\\
+        a_m, a_{m-1}, \ldots, a_1, a_0, b_n, b_{n-1}, \ldots, b_1, b_0 \text{ --- } const
+    \end{gather*}
+    где $P_m(x),\ Q_n(x)$ --- многочлены степени $m$ и $n$ соответственно.
+\end{definition}
+
+\begin{definition}
+    Рациональная дробь называется \textbf{правильной}, если степень числителя меньше степени знаменателя, то есть $m < n$.
+\end{definition}
+
+\begin{definition}
+    Рациональная дробь называется \textbf{неправильной}, если степень числителя не меньше степени знаменателя, то есть $m \geqslant n$.
+\end{definition}
+
+\subsubsection{Простейшие рациональные дроби}
+
+\begin{gather*}
+            1.\quad \frac{A}{x - a}\qquad
+            2.\quad \frac{A}{(x-a)^k}\qquad
+            3.\quad \frac{Mx + N}{x^2 + px + q}\qquad
+            4.\quad \frac{Mx + N}{(x^2 + px + q)^k}
+\end{gather*}
+где $A,\ a,\ M,\ N,\ p,\ q$ --- $const$,\ $K\in \N,\ k \geqslant 2$\\
+$x^2 + px + q$ не имеет действительных корней.
+\begin{gather*}
+    D = p^2 - 4q < 0,\quad 4q - p^2 > 0,\quad \boxed{q - \frac{p^2}{4} > 0} \tag{$*$}
+\end{gather*}
+
+\subsection{Определённый интеграл}
+Пусть функция $y = f(x)$ определена на $[a;b]$.
+
+\begin{definition}
+    Множество точек $a = x_0 < x_1 < \ldots < x_i < \ldots < x_n = b$ называется \textbf{разбиением отрезка} $\bm{[a;b]}$, при этом отрезки $[x_{i-1}; x_i]$ называются \textbf{отрезками разбиения}. \\[2ex]
+    $i = 1,\ldots,n\quad i = \overline{1, n}$\\
+    $\Delta x_i = x_i - x_{i-1}$ --- длина $i$-го отрезка разбиения\quad $i = \overline{1, n}$\\
+    $\lambda = \underset{i}{\max}\, \Delta x_i$ --- диаметр разбиения\\
+\end{definition}
+Рассмотрим произвольное разбиение $[a;b]$. В каждом из отрезков разбиения $[x_{i-1}; x_i]$ выберем точку $\xi_i,\ i = \overline{1, n}$. Составим сумму
+\begin{gather}\hlabel{ф: интегральная сумма}
+    \boxed{S_n = \sum_{i=1}^{n}f(\xi_i)\cdot \Delta x_i}
+\end{gather}
+(\ref{ф: интегральная сумма}) --- интегральная сумма для функции $y=f(x)$ на $[a;b]$.
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \tkzInit[xmin=-0.5, xmax=6, ymin=-0.5, ymax=2]
+        \tkzDrawX \tkzDrawY
+        \tkzDefPoint(3, 1.45){f}
+        \tkzDrawPoint[fill=black, size = 3pt](f)
+        \node[below left] at (0, 0) {$0$};
+        \draw[very thick] (1, 1) .. controls (2, 2.5) and (4, 0.5) .. (5, 1.5) node[right]{$y=f(x)$};
+        \draw[thick, dotted] (1, 0) node[below]{$\underset{x_0}{a}$} -- (1, 1);
+        \draw[thick, dotted] (1.5, 0) node[below]{$x_1$} -- (1.5, 1.45);
+        \draw[thick, dotted] (2, 0) -- (2, 1.6);
+        \draw[thick, dotted] (2.5, 0) node[below]{\scriptsize{$x_{i-1}$}} -- (2.5, 1.5);
+        \draw[thick, dotted] (3, 0) node[below]{$\xi_i$} -- (3, 1.45) node[above]{$f(\xi_i)$};
+        \draw[thick, dotted] (3.5, 0) node[below]{$x_i$} -- (3.5, 1.3);
+        \draw[thick, dotted] (4, 0) -- (4, 1.2);
+        \draw[thick, dotted] (4.5, 0) -- (4.5, 1.25);
+        \draw[thick, dotted] (5, 0) node[below]{$\underset{x_n}{b}$} -- (5, 1.5);
+    \end{tikzpicture}
+\end{figure}
+
+\begin{definition}\hlabel{опр: определённый интеграл}
+    \textbf{Определённым интегралом} от функции $y=f(x)$ на $[a;b]$ называется \underline{конечный} предел интегральной суммы (\ref{ф: интегральная сумма}), когда число отрезков разбиения растёт, а их длины стремятся к нулю.
+    \begin{gather}\hlabel{ф: определённый интеграл}
+        \boxed{\int_{a}^{b} f(x)\, dx = \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)\cdot \Delta x_i}
+    \end{gather}
+    Предел (\ref{ф: определённый интеграл}) не зависит от способа разбиения отрезка $[a;b]$ и выбора точек $\xi_i,\ \overline{1, n}$.\\
+    $f(x)$ --- подынтегральная функция\\
+    $f(x)\, dx$ --- подынтегральное выражение\\
+    $\displaystyle\int_{a}^{b}$ --- знак определённого интеграла\\
+    $a$ --- нижний предел интегрирования\\
+    $b$ --- верхний предел интегрирования
+\end{definition}
+
+\subsection{Криволинейная трапеция}
+
+\begin{definition}
+    \textbf{Криволинейной трапецией} называется фигура, ограниченная графиком функции $y=f(x)$, отрезком $[a;b]$ на $Ox$, прямыми $x = a$ и $x = b$ параллельными оси $Oy$.
+\end{definition}
+
+\subsection{Абсолютная и условная сходимость}
+
+\begin{definition}\hlabel{опр: абсолютная сходимость}
+    Если наряду с несобственным интегралом от функции $f(x)$ по бесконечному промежутку $[a;+\infty)$ сходится и несобственный интеграл от функции $|f(x)|$ по этому же промежутку, то первый несобственный интеграл называется \textbf{сходящимся абсолютно}.
+    \begin{gather*}
+        \boxed{\begin{aligned}
+            &\text{несобственный интеграл} \\
+            &\text{от $f(x)$ сходится абсолютно} 
+        \end{aligned}} = \boxed{\begin{aligned}
+            &\text{несобственный интеграл}  \\
+            &\text{от $f(x)$ сходится}
+        \end{aligned}} + \boxed{\begin{aligned}
+            &\text{несобственный интеграл} \\
+            &\text{от $|f(x)|$ сходится}
+        \end{aligned}}
+    \end{gather*}
+\end{definition}
+
+\begin{definition}
+    Если несобственный интеграл от функции $f(x)$ по бесконечному промежутку $[a;+\infty)$ сходится, а несобственный интеграл от функции $|f(x)|$ по этому же промежутку расходится, то первый несобственный интеграл называется \textbf{сходящимся условно}.
+    \begin{gather*}
+        \boxed{\begin{aligned}
+                &\text{несобственный интеграл} \\
+                &\text{от $f(x)$ сходится условно} 
+            \end{aligned}} = \boxed{\begin{aligned}
+                &\text{несобственный интеграл}  \\
+                &\text{от $f(x)$ сходится}
+            \end{aligned}} + \boxed{\begin{aligned}
+                &\text{несобственный интеграл} \\
+                &\text{от $|f(x)|$ расходится}
+            \end{aligned}}
+    \end{gather*}
+\end{definition}
+
+\subsection{Уравнение Бернулли}
+\begin{definition}\hlabel{опр: уравнение Бернулли}
+    ДУ 1-го порядка называется \textbf{уравнением Бернулли}, если оно имеет вид:
+    \begin{gather*}
+        \boxed{y' + p(x) \cdot y = y^{m} \cdot f(x)}\qquad m \ne 0,\ m \ne 1 \\[1ex]
+        m = 0\ \Rightarrow \text{ уравнение Бернулли } \longrightarrow \text{ЛНДУ} \\
+        m = 1\ \Rightarrow \text{ уравнение Бернулли } \longrightarrow \text{ЛОДУ} 
+    \end{gather*}
+    $p(x),\ f(x)$ --- непрерывны на $I \subset \R$
+\end{definition}
+
+\subsection{Общее и частное решения ДУ}
+
+\begin{definition}
+    \textbf{Общим решением} ДУ 2-го порядка называется функция \break$y = \varphi(x, C_1, C_2)$, удовлетворяющая условиям:
+    \begin{enumerate}
+        \item $y = \varphi(x, C_1, C_2)$ --- решение ДУ (2) при любых $C_1,\ C_2$ --- $const$.
+        \item Какого бы ни было начальное условие (3), можно найти такие $C_1^0,\ C_2^0$, что функция $y = \varphi(x, C_1^0, C_2^0)$ будет удовлетворять начальному условию (3).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \textbf{Частным решением} ДУ 2-го порядка называется любая функция $y = \varphi(x, C_1^0, C_2^0)$, полученная из общего решения при конкретных значениях $C_1^0$ и $C_2^0$.
+\end{definition}
+\newpage
+\begin{definition}\hlabel{опр: общее решение ДУ n-го порядка}
+    \textbf{Общим решением} ДУ n-го порядка называется функция\break$y = \varphi(x,\, C_1,\, C_2,\, \ldots,\, C_n)$ удовлетворяющая условиям:
+    \begin{enumerate}
+        \item $y = \varphi(x, C_1, C_2, \ldots, C_n)$ --- решение ДУ n-го порядка при любых $C_1, C_2, \ldots, C_n$ --- $const$.
+        \item Какого бы ни было начальное условие (3), можно найти такие $C_1^0,\, C_2^0,\, \ldots,\, C_n^0$, что функция $y = \varphi(x,\, C_1^0,\, C_2^0,\, \ldots,\, C_n^0)$ будет удовлетворять начальным условиям (3).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}
+    \textbf{Частным решением} ДУ n-го порядка называется функция\break$y = \varphi(x,\, C_1^0,\, C_2^0,\, \ldots,\, C_n^0)$, полученная из общего решения $y = \varphi(x,\, C_1,\, C_2,\, \ldots,\, C_n)$ при конкретных значениях $C_1^0,\, C_2^0,\, \ldots,\, C_n^0$.
+\end{definition}
+
+\subsection{Определитель Вронского (вронскиан)}
+
+\begin{definition}
+    \textbf{Определителем Вронского} (вронскианом) системы $(n - 1)$ раз дифференцируемых функций $y_1 (x),\ \ldots,\ y_n(x)$ называется определитель вида:
+    \begin{gather*}
+        W (x) = \begin{vmatrix}
+            y_1(x) & y_2(x) & \cdots & y_n(x) \\
+            y_1'(x) & y_2'(x) & \cdots & y_n'(x) \\
+            \cdots & \cdots & \cdots & \cdots \\
+            y_1^{(n-1)}(x) & y_2^{(n-1)}(x) & \cdots & y_n^{(n-1)}(x) \\
+        \end{vmatrix}
+    \end{gather*}
+\end{definition}
+
+\subsection{Характеристическое уравнение}
+\begin{align*}
+    y^{(n)} + a_1 y^{(n-1)} + \ldots + a_{n-1} y' + a_n y = 0 \tag{1} \\
+    \boxed{k^n + a_1k^{n-1} + \ldots + a_{n-1} k + a_n = 0} \tag{2}
+\end{align*}
+\begin{definition}
+    Уравнение (2) называется характеристическим уравнением. \textbf{Характеристическое уравнение} --- это алгебраическое уравнение/полином/многочлен, полученный из ДУ (1) путём замены n-ой производной неизвестной функции $y$ на n-ую степень величины $k$, а сама функция $y$ заменена на единицу.
+\end{definition}
+
+\section{Дополнительные теоремы}
+
+\begin{theorem}[Непрерывность $I(x)$]\hlabel{т: непрерывность I(x)}
+    Если функция $f(x)$ на $[a;b]$ непрерывна, то $I(x) = \int_{a}^{x} f(t)\, dt$ --- непрерывна на $[a;b]$.
+\end{theorem}
+
+\begin{theorem}[О существовании и единственности решения ЗК (1), (3)]\hlabel{т: о существовании и единственности решения ЗК ЛНДУ}
+    Если в ЛНДУ (1) функции $p_1(x),\ \ldots,\ p_n(x),\ f(x)$ непрерывны на некотором промежутке $I$, то задача Коши для ЛНДУ (1) имеет единственное решение удовлетворяющее начальному условию (3).
+\end{theorem}
+
+\section{Дополнительные материалы}
+
+\subsection{Таблица основных интегралов}
+
+\begin{table}[h]
+    \caption{Таблица основных интегралов}
+    \centering
+    \begin{tabular}{|ll|}
+        \hline
+         & \\[-8pt]
+        1. $\displaystyle \int x^n \, dx = \frac{x^{n+1}}{n+1} + C,\ \forall C \text{ --- } const$ & 11. $\displaystyle \int \frac{dx}{a^2 - x^2} = \frac{1}{2a}\ln \left| \frac{a+x}{a-x} \right| + C$ \\[2ex]
+        2. $\displaystyle \int dx = x + C$ & 12. $\displaystyle \int \frac{dx}{x^2 - a^2} = \frac{1}{2a}\ln \left| \frac{a-x}{a+x} \right| + C$ \\[2ex]
+        3. $\displaystyle \int \frac{dx}{x} = \ln |x| + C$ & 13. $\displaystyle \int \frac{dx}{\sqrt{a^2 - x^2}} = \arcsin \frac{x}{a} + C$ \\[2ex]
+        4. $\displaystyle \int e^x\, dx = e^x + C$ & 14. $\displaystyle \int \frac{dx}{\sqrt{x^2 \pm a^2}} = \ln \left|x + \sqrt{x^2 \pm a^2}\right| + C$ \\[2ex]
+        5. $\displaystyle \int a^x\, dx = \frac{a^x}{\ln a} + C$ & 15. $\displaystyle \int \sh x\, dx = \ch x + C$\\[2ex]
+        6. $\displaystyle \int \sin x\, dx = -\cos x + C$ & 16. $\displaystyle \int \ch x\, dx = \sh x + C$ \\[2ex]
+        7. $\displaystyle \int \cos x\, dx = \sin x + C$ & 17. $\displaystyle \int \frac{dx}{\ch^2x} = \th x + C$ \\[2ex]
+        8. $\displaystyle \int \frac{dx}{\cos^2x} = \tg x + C$ & 18. $\displaystyle \int \frac{dx}{\sh^2x} = - \cth x + C$\\[2ex]
+        9. $\displaystyle \int \frac{dx}{\sin^2x} = -\ctg x + C$ & 19. $\displaystyle \int \frac{dx}{\sin x} = \ln \left| \tg \frac{x}{2} \right| + C$ \\[2ex]
+        10. $\displaystyle \int \frac{dx}{a^2 + x^2} = \frac{1}{a}\arctg \frac{x}{a} + C$ & 20. $\displaystyle \int \frac{dx}{\cos x} = \ln \left| \tg \left(\frac{x}{2} + \frac{\pi}{4}\right) \right| + C$ \\[2ex]
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Интегралы для сравнения. Эталоны, интегралы Дирихле}
+\begin{gather*}
+    \boxed{\int_{1}^{+\infty} \frac{dx}{x^\alpha} = \left\{ \begin{aligned}
+        \text{сходится при } \alpha > 1 \\
+        \text{расходится при } \alpha \leqslant 1
+    \end{aligned} \right.} \\[1ex]
+    \boxed{\int_{0}^{b} \frac{dx}{x^\alpha} = \left\{ \begin{aligned}
+        \text{сходится}\quad &\alpha < 1 \\
+        \text{расходится}\quad &\alpha \geqslant 1
+    \end{aligned} \right. } \\[1ex]
+    \boxed{\int_{a}^{b} \frac{dx}{(x - a)^\alpha} = \left\{ \begin{aligned}
+        \text{сходится}\quad \alpha < 1 \\
+        \text{расходится}\quad \alpha \geqslant 1
+    \end{aligned} \right.} \\[1ex]
+    \boxed{\int_{a}^{b} \frac{dx}{(b - x)^\alpha} = \left\{ \begin{aligned}
+        \text{сходится}\quad &\alpha < 1 \\
+        \text{расходится}\quad &\alpha \geqslant 1
+    \end{aligned} \right. }
+\end{gather*}
+
+\end{document}
