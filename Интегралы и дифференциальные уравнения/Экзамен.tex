@@ -25,9 +25,9 @@
 \subsection*{Первообразная}
 \begin{definition}\hlabel{опр: первообразная}
     Функция $F(x)$ называется \textbf{первообразной} функции $f(x)$ на интервале $(a;b)$, если $F(x)$ дифференцируема на $(a;b)$ и $\forall x \in (a;b)\colon$
-    \begin{gather}
+    \begin{gather*}
         \boxed{F'(x) = f(x)}
-    \end{gather}
+    \end{gather*}
 \end{definition}
 
 \subsection*{Свойства первообразной}
@@ -126,7 +126,7 @@
 \begin{theorem}[О разложении правильной рациональной дроби на простейшие]\hlabel{т: о разложении прав. рац. дроби}
     Любая правильная рациональная дробь $\dfrac{P(x)}{Q(x)}$, знаменатель которой можно разложить на множители:
     \begin{align*}
-        Q(x) = (x - x_1)^{k_1} \cdot (x - x_2)^{k_2}\cdot \ldots \cdot (x - x_n)^{k_n} \cdot (x^2 + p_1x + q_1)^{s_1}\cdot \ldots \cdot (x^2 + p_m + q_m)^{s_m},
+        Q(x) = (x - x_1)^{k_1} \cdot (x - x_2)^{k_2}\cdot \ldots \cdot (x - x_n)^{k_n} \cdot (x^2 + p_1x + q_1)^{s_1}\cdot \ldots \cdot (x^2 + p_m x + q_m)^{s_m},
     \end{align*}
     может быть представлена и при том единственным образом в виде суммы простейших рациональных дробей:
     \begin{align*}
@@ -158,7 +158,7 @@
 \subsubsection{$\frac{A}{x - a}$}
 
 \begin{align*}
-    \int \frac{A}{x - a}\, dx = A \int \frac{dx}{x - 1} = A \int \frac{d(x - a)}{x - 1} = A \cdot \ln |x - a| + C,\quad \forall C \text{ --- } const
+    \int \frac{A}{x - a}\, dx = A \int \frac{dx}{x - a} = A \int \frac{d(x - a)}{x - a} = A \cdot \ln |x - a| + C,\quad \forall C \text{ --- } const
 \end{align*}
 
 \subsubsection{$\frac{A}{(x-a)^k}$}
@@ -169,7 +169,11 @@
 \end{align*}
 
 \newpage
-\subsubsection{$\frac{Mx + N}{x^k + px + q}$}
+\subsubsection{$\frac{Mx + N}{x^2 + px + q}$}
+
+\begin{gather*}
+    D = p^2 - 4q < 0,\quad 4q - p^2 > 0,\quad \boxed{q - \frac{p^2}{4} > 0} \tag{$*$}
+\end{gather*} \vspace{-2\topsep}
 
 \begin{align*}
     \int \frac{Mx + N}{x^2 + px + q}\, dx &= \left| \begin{aligned}
@@ -204,7 +208,7 @@
 \begin{theorem}\hlabel{т: опр. интеграл и константа}
     Если $C$ --- $const$, то 
     \begin{gather*}
-        \boxed{\int_{a}^{b} c\, dx = c\cdot (b-a)}
+        \boxed{\int_{a}^{b} C\, dx = C\cdot (b-a)}
     \end{gather*}
 \end{theorem}
 
@@ -256,7 +260,7 @@
 
 \newpage
 \begin{theorem}[Об оценке определённого интеграла]
-    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0}$. Тогда
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0},\break m,\, M \in \R$. Тогда
     \begin{gather*}
         \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
     \end{gather*}
@@ -297,7 +301,7 @@
 \subsection{Доказать теорему об оценке определенного интеграла}
 \setcounter{theorem}{10}
 \begin{theorem}[Об оценке определённого интеграла]
-    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0}$. Тогда
+    Пусть функции $f(x)$ и $g(x)$ интегрируемы на $[a;b]$ и $\forall x \in [a;b]\colon m \leqslant f(x) \leqslant M,\ {g(x) \geqslant 0},\break m,\, M \in \R$. Тогда
     \begin{gather*}
         \boxed{m \int_{a}^{b} g(x)\, dx \leqslant \int_{a}^{b} f(x)\, g(x)\, dx \leqslant M \int_{a}^{b} g(x)\, dx}
     \end{gather*}
@@ -595,7 +599,7 @@
         \boxed{\int_{a}^{+\infty} f(x)\dd{x} = \lim_{b \to +\infty} \Phi(b) = \lim\limits_{b \to +\infty} \int_{a}^{b}f(x)\dd{x}} 
     \end{gather}
     Если предел в правой части равенства (2) существует и конечен, то несобственный интеграл в левой части равенства (2) \textbf{сходится}.\\
-    Если предел в правой части равенства (2) не существует или равен бесконечности, то несобственный интеграл в левой части равенства (2) \textbf{расходится}.
+    Если предел в правой части равенства (2) не существует или равен $\infty$, то несобственный интеграл в левой части равенства (2) \textbf{расходится}.
 \end{definition}
 
 \newpage
@@ -749,7 +753,7 @@
 \end{theorem}
 
 \begin{theorem}[Признак абсолютной сходимости]
-    Пусть функция $f(x)$ знакопеременна на $[a;b)$. Если $f(x)$ и $|f(x)|$ интегрируемы на $\forall [a; \eta] \subset [a;b)$ и несобственный интеграл от функции $|f(x)|$ сходится по этому промежутку, то несобственный интеграл от функции $f(x)$ сходится, причём абсолютно.
+    Пусть функция $f(x)$ знакопеременна на $[a;b)$. Если $f(x)$ и $|f(x)|$ интегрируемы на $\forall\, [a; \eta] \subset [a;b)$ и несобственный интеграл от функции $|f(x)|$ сходится по этому промежутку, то несобственный интеграл от функции $f(x)$ сходится, причём абсолютно.
 \end{theorem}
 
 \section{Фигура ограничена кривой $y=f(x) \geqslant 0$, прямыми $x=a,\, x=b$ и ${y=0\ (a<b)}$. Вывести формулу для вычисления с помощью определенного интеграла площади этой фигуры} 
@@ -807,7 +811,7 @@ $S = S(x)$ --- непрерывная функция на $[a;b]$
     \item Разбиваем отрезок $[a;b]$ точками $a = x_0 < x_1 < \ldots < x_{i-1} < x_i < \ldots < x_n = b$\\
     Отрезки разбиения $[x_{i-1}; x_i]$ \\
     $\Delta x_i = x_i - x_{i-1}$ --- длина отрезка разбиения \\
-    $a = \underset{i}{\max}\, \Delta x_i,\ i = \overline{1, n}$ %рисунок
+    $\lambda = \underset{i}{\max}\, \Delta x_i,\ i = \overline{1, n}$ %рисунок
     \item Проводим плоскости
     \begin{flalign*}
         & \left\{ \begin{aligned}
@@ -865,7 +869,7 @@ $\triangle MM_1A\quad MA = \Delta x\quad AM_1 = \Delta y $
 Вычислим предел при $\Delta x \to 0$.\\
 Левая часть:
 \begin{flalign*}
-    & \lim\limits_{\Delta \to 0} \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = \left| \begin{aligned}
+    & \lim\limits_{\Delta x \to 0} \left(\frac{MM_1}{\Delta l}\right)^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = \left| \begin{aligned}
         &\text{при } \Delta x \to 0\quad M\to M_1 \\
         &\Delta l \to MM_1\quad \text{дуга } \to \text{ хорде}
     \end{aligned} \right| = \lim\limits_{\Delta x \to 0} 1^2 \cdot \left(\frac{\Delta l}{\Delta x}\right)^2 = (l'_x)^2 &
@@ -1452,7 +1456,7 @@ $y = 0$ --- особое решение
 
 \newpage
 \begin{theorem}[О существовании ФСР ЛОДУ n-го порядка]
-    Любое ЛОДУ n-го порядка (1) с непрерывными на промежутке $I$ коэффициентами $p_1(x),\, \ldots,\, p_n(x)$ имеет ФСР, то есть системы из $n$ линейно независимых функций.
+    Любое ЛОДУ n-го порядка (1) с непрерывными на промежутке $I$ коэффициентами $p_1(x),\, \ldots,\, p_n(x)$ имеет ФСР, то есть систему из $n$ линейно независимых функций.
 \end{theorem}
 \begin{proof}
     Рассмотрим ЛОДУ n-го порядка
@@ -2081,7 +2085,7 @@ $y_{\text{он}},\, y_{\text{он}}',\, y_{\text{он}}''$ в (1):
 \subsection{Неопределённый интеграл}
 
 \begin{definition}\hlabel{опр: неопределённый интеграл}
-    Множество первообразных функции $f(x)$ на $(a;b)$ называется \textbf{неопределённым интегралом}.
+    Множество первообразных функции $f(x)$ на $(a;b)$ называется\break\textbf{неопределённым интегралом}.
     \begin{gather}
         \boxed{\int f(x)\, dx = F(x) + C}
     \end{gather}
@@ -2126,10 +2130,8 @@ $y_{\text{он}},\, y_{\text{он}}',\, y_{\text{он}}''$ в (1):
 \end{gather*}
 где $A,\ a,\ M,\ N,\ p,\ q$ --- $const$,\ $K\in \N,\ k \geqslant 2$\\
 $x^2 + px + q$ не имеет действительных корней.
-\begin{gather*}
-    D = p^2 - 4q < 0,\quad 4q - p^2 > 0,\quad \boxed{q - \frac{p^2}{4} > 0} \tag{$*$}
-\end{gather*}
 
+\newpage
 \subsection{Определённый интеграл}
 Пусть функция $y = f(x)$ определена на $[a;b]$.
 
@@ -2285,7 +2287,7 @@ $x^2 + px + q$ не имеет действительных корней.
 \end{theorem}
 
 \begin{theorem}[О существовании и единственности решения ЗК (1), (3)]\hlabel{т: о существовании и единственности решения ЗК ЛНДУ}
-    Если в ЛНДУ (1) функции $p_1(x),\ \ldots,\ p_n(x),\ f(x)$ непрерывны на некотором промежутке $I$, то задача Коши для ЛНДУ (1) имеет единственное решение удовлетворяющее начальному условию (3).
+    Если в ЛНДУ функции $p_1(x),\ \ldots,\ p_n(x),\ f(x)$ непрерывны на некотором промежутке $I$, то задача Коши для ЛНДУ имеет единственное решение удовлетворяющее начальному условию.
 \end{theorem}
 
 \section{Дополнительные материалы}
