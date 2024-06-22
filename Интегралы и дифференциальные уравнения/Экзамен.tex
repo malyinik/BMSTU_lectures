@@ -2056,7 +2056,7 @@ $y_{\text{он}},\, y_{\text{он}}',\, y_{\text{он}}''$ в (1):
 Предполагаемое решение (3) будет являться решением ЛНДУ (1), если функции $C_1(x)$ и $C_2(x)$ удовлетворяют условиям:
 \begin{align*}
     \left\{ \begin{aligned}
-        C_1' y_1 + C_2y_2 &= 0 \\
+        C_1' y_1 + C_2'y_2 &= 0 \\
         C_1'y_1' + C_2'y_2' &= f
     \end{aligned}\right.\text{ --- \textbf{система варьируемых переменных}}
 \end{align*}
@@ -2306,7 +2306,6 @@ $x^2 + px + q$ не имеет действительных корней.
 \subsection{Таблица основных интегралов}
 
 \begin{table}[h]
-    \caption{Таблица основных интегралов}
     \centering
     \begin{tabular}{|ll|}
         \hline
@@ -2328,21 +2327,82 @@ $x^2 + px + q$ не имеет действительных корней.
 \subsection{Интегралы для сравнения. Эталоны, интегралы Дирихле}
 \begin{gather*}
     \boxed{\int_{1}^{+\infty} \frac{dx}{x^\alpha} = \left\{ \begin{aligned}
-        \text{сходится при } \alpha > 1 \\
-        \text{расходится при } \alpha \leqslant 1
+        \text{сходится при } &\alpha > 1 \\
+        \text{расходится при } &\alpha \leqslant 1
     \end{aligned} \right.} \\[1ex]
     \boxed{\int_{0}^{b} \frac{dx}{x^\alpha} = \left\{ \begin{aligned}
-        \text{сходится}\quad &\alpha < 1 \\
-        \text{расходится}\quad &\alpha \geqslant 1
+        \text{сходится при } &\alpha < 1 \\
+        \text{расходится при } &\alpha \geqslant 1
     \end{aligned} \right. } \\[1ex]
     \boxed{\int_{a}^{b} \frac{dx}{(x - a)^\alpha} = \left\{ \begin{aligned}
-        \text{сходится}\quad \alpha < 1 \\
-        \text{расходится}\quad \alpha \geqslant 1
+        \text{сходится при } &\alpha < 1 \\
+        \text{расходится при } &\alpha \geqslant 1
     \end{aligned} \right.} \\[1ex]
     \boxed{\int_{a}^{b} \frac{dx}{(b - x)^\alpha} = \left\{ \begin{aligned}
-        \text{сходится}\quad &\alpha < 1 \\
-        \text{расходится}\quad &\alpha \geqslant 1
+        \text{сходится при } &\alpha < 1 \\
+        \text{расходится при } &\alpha \geqslant 1
     \end{aligned} \right. }
 \end{gather*}
+
+\newpage
+\subsection{Таблица приложений определённого интеграла}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        & & \\[-8pt]
+        Площадь фигуры & Объём тела & Длина дуги \\[1ex]
+        $\displaystyle S = \int_{a}^{b} f(x)\dd{x}$ & $\displaystyle V_{T} = \int_{a}^{b} S(x)\dd{x}$ & $\displaystyle l = \int_{a}^{b} \sqrt{1 + (y'_x)^2} \dd{x}$ \\[2ex]
+        $\displaystyle S = - \int_{a}^{b} f(x)\dd{x}$ & $\displaystyle V_{Ox} = \pi \int_{a}^{b} y^2 \dd{x}$ & $\displaystyle l = \int_{t_1}^{t_2} \sqrt{(x'_t)^2 + (y'_t)^2} \dd{t}$ \\[2ex]
+        $\displaystyle S = \int_{a}^{b}\Big(f_1(x) - f_2(x)\Big)\dd{x}$ & $\displaystyle V_{Ox} = \pi \int_{a}^{b} \left(y_1^2 - y_2^2\right) \dd{x}$ & $\displaystyle l = \int_{\alpha}^{\beta} \sqrt{(r')^2 + r^2}\dd{\varphi}$ \\[2ex]
+        \cline{3-3}
+        $\displaystyle S = \int_{t_1}^{t_2} y(t) x'(t)\dd{t}$ & $\displaystyle V_{Oy} = \pi \int_{c}^{d} x^2 \dd{y}$ & Площадь поверхности \\[2ex]
+        $\displaystyle S = \frac{1}{2} \int_{\alpha}^{\beta} r^2 \dd{\varphi}$ & $\displaystyle V_{Oy} = 2 \pi \int_{a}^{b} x|y|\dd{x}$ & $\displaystyle Q_{Ox} = 2\pi \int_{a}^{b} y \sqrt{1 + (y'_x)^2}\dd{x}$ \\[2ex]
+        & $\displaystyle V_{Ox} = \pi \int_{t_1}^{t_2} y^2 (t)\, x'(t) \dd{t}$ & $\displaystyle Q_{Oy} = 2\pi \int_{c}^{d} x \sqrt{1 + (x'_y)^2}\dd{y}$ \\[2ex]
+        & $\displaystyle V_{Oy} = \pi \int_{t_1}^{t_2} x^2(t) y'(t) \dd{t}$ & $\displaystyle Q_{Ox} = 2\pi \int_{t_1}^{t_2} y(t) \sqrt{(x'_t)^2 + (y'_t)^2}\dd{t}$\\[2ex]
+        & $\displaystyle V_{Oy} = \pi \int_{a}^{b} x(t)y(t) x'(t) \dd{t}$ & $\displaystyle Q_{Oy} = 2\pi \int_{t_1}^{t_2} x(t) \sqrt{(x'_t)^2 + (y'_t)^2}\dd{t}$ \\[2ex]
+        & $\displaystyle V_{Or} = \frac{2}{3} \pi \int_{\alpha}^{\beta} r^3 \sin \varphi \dd{\varphi}$ & $\displaystyle Q_{Or} = 2\pi \int_{\alpha}^{\beta} r\sin \varphi \sqrt{(r')^2 + r^2} \dd{\varphi}$ \\[2ex]
+        \hline
+    \end{tabular}
+\end{table}
+
+\subsection{Таблица эквивалентных бесконечно малых функций}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|ll|}
+    \hline
+    1. $\sin x \sim x$ при $x\to 0$; &\quad 6. $e^x - 1 \sim x\ (x \to 0)$;\\
+    2. $\tg x \sim x\ (x \to 0)$; &\quad 7. $a^x - 1 \sim x \cdot \ln a\ (x \to 0)$;\\
+    3. $\arcsin x \sim x\ (x \to 0)$; &\quad 8. $\ln(1 + x) \sim x\ (x \to 0)$;\\
+    4. $\arctg x \sim x\ (x \to 0)$; &\quad 9. $\log_a (1 + x) \sim x\cdot \log_a e\ (x \to 0)$;\\
+    5. $1 - \cos x \sim \dfrac{x^2}{2}\ (x \to 0)$; &\quad 10. $(1 + x)^k - 1 \sim k\cdot x,\ k>0\ (x \to 0)$;\\
+    \multicolumn{2}{|l|}{11. $a_0 + a_1x + a_2x^2 + \ldots + a_nx^n \sim a_nx^n\ (x \to \infty)$} \\
+    \multicolumn{2}{|l|}{12. $a_1x + a_2x^2 + \ldots + a_nx^n \sim a_1x\ (x \to 0)$} \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\newpage
+\subsection{Таблица производных}
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|ll|}
+    \hline
+    \vspace{-6.5pt} & \\
+    \multicolumn{2}{|l|}{1. $(c)'=0$;}\\
+    \multicolumn{2}{|l|}{2. $\left(u^a\right)'=a \cdot u^{a - 1}\cdot u'$, в частности, $(\sqrt{u})'=\dfrac{1}{2\sqrt{u}}\cdot u'$;}\\[1ex]
+    \multicolumn{2}{|l|}{3. $\left(a^u\right)'=a^u\cdot \ln a \cdot u'$, в частности, $(e^u)'=e^u\cdot u'$;}\\
+    \multicolumn{2}{|l|}{4. $\left(\log_a u\right)' = \dfrac{1}{u \cdot \ln a}\cdot u'$, в частности, $(\ln u)' = \dfrac{1}{u}\cdot u'$;}\\[2ex]
+    5. $(\sin u)' = \cos u \cdot u';$ & 6. $(\cos u)' = -\sin u \cdot u'$;\\[1ex]
+    7. $(\tg u)' = \dfrac{1}{\cos^2 u}\cdot u';$ & 8. $(\ctg u)' = -\dfrac{1}{\sin^2 u} \cdot u'$;\\[2ex]
+    9. $(\arcsin u)' = \dfrac{1}{\sqrt{1 - u^2}}\cdot u'$; & 10. $(\arccos u)' = -\dfrac{1}{\sqrt{1 - u^2}}\cdot u'$;\\[2ex]
+    11. $(\arctg u)' = \dfrac{1}{1+u^2}\cdot u'$; & 12. $(\arcctg u)' = -\dfrac{1}{1+u^2}\cdot u'$;\\[2ex]
+    13. $(\sh u)' = \ch u \cdot u'$; & 14. $(\ch u)' = \sh u \cdot u'$;\\[1ex]
+    15. $(\th u)' = \dfrac{1}{\ch^2 u} \cdot u'$; & 16. $(\cth u)' = -\dfrac{1}{\sh^2 u} \cdot u'$.\\[2ex]
+    \hline
+  \end{tabular}
+\end{table}
+
 
 \end{document}
